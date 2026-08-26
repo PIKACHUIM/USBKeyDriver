@@ -1,0 +1,14 @@
+C:\USBKey\tools\genkeys\bin\Debug\net8.0\genkeys.exe
+C:\USBKey\tools\genkeys\bin\Debug\net8.0\genkeys.deps.json
+C:\USBKey\tools\genkeys\bin\Debug\net8.0\genkeys.runtimeconfig.json
+C:\USBKey\tools\genkeys\bin\Debug\net8.0\genkeys.dll
+C:\USBKey\tools\genkeys\bin\Debug\net8.0\genkeys.pdb
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.GeneratedMSBuildEditorConfig.editorconfig
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.AssemblyInfoInputs.cache
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.AssemblyInfo.cs
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.csproj.CoreCompileInputs.cache
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.dll
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\refint\genkeys.dll
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.pdb
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\genkeys.genruntimeconfig.cache
+C:\USBKey\tools\genkeys\obj\Debug\net8.0\ref\genkeys.dll

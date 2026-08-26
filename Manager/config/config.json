@@ -1,0 +1,40 @@
+{
+  "usermode": true,
+  "platform": [
+    "lnca"
+  ],
+  "keyslist": {
+    "lnca": [
+      {
+        "name": "LNCA安全USBKey",
+        "vid": "",
+        "pid": ""
+      }
+    ]
+  },
+  "features": {
+    "login": "enabled",
+    "cloudimport": "hidden",
+    "importcert": "enabled",
+    "viewcert": "enabled",
+    "exportcert": "enabled",
+    "delcert": "disabled",
+    "regcert": "enabled",
+    "changepin": "disabled",
+    "unlock": "enabled",
+    "reset": "enabled"
+  },
+  "settings": {
+    "allowDeleteCert": false,
+    "allowChangePin": false,
+    "loginTimeoutMinutes": 15,
+    "cloudEndpoint": "",
+    "autoStart": true,
+    "autoRegisterCert": true
+  },
+  "api": {
+    "enabled": false,
+    "port": 18443,
+    "token": ""
+  }
+}

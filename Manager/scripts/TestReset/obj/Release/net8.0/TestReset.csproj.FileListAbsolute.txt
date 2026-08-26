@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\bin\Release\net8.0\TestReset.exe
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\bin\Release\net8.0\TestReset.deps.json
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\bin\Release\net8.0\TestReset.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\bin\Release\net8.0\TestReset.dll
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\bin\Release\net8.0\TestReset.pdb
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.dll
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\refint\TestReset.dll
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.pdb
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\TestReset.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\scripts\TestReset\obj\Release\net8.0\ref\TestReset.dll

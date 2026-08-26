@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\bin\Release\net8.0\PathTest.exe
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\bin\Release\net8.0\PathTest.deps.json
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\bin\Release\net8.0\PathTest.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\bin\Release\net8.0\PathTest.dll
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\bin\Release\net8.0\PathTest.pdb
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.dll
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\refint\PathTest.dll
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.pdb
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\PathTest.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\tools\PathTest\obj\Release\net8.0\ref\PathTest.dll

@@ -67,3 +67,9 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+Manager/src/USBKey.Manager/bin
+Manager/src/USBKey.Manager/obj
+Manager/src/USBKey.LicenseTool/bin
+Manager/src/USBKey.LicenseTool/obj
+Manager/src/USBKey.Core/bin
+Manager/.vs

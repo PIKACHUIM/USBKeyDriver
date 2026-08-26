@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\bin\Release\net8.0\TestHDReset.exe
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\bin\Release\net8.0\TestHDReset.deps.json
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\bin\Release\net8.0\TestHDReset.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\bin\Release\net8.0\TestHDReset.dll
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\bin\Release\net8.0\TestHDReset.pdb
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.dll
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\refint\TestHDReset.dll
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.pdb
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\TestHDReset.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\scripts\TestHDReset\obj\Release\net8.0\ref\TestHDReset.dll

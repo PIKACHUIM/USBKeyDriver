@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\USBKey.Core\USBKey.Core.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>USBKey.LicenseTool</RootNamespace>
+    <AssemblyName>USBKey.LicenseTool</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="USBKey.Core.Configuration" />
+    <Using Include="USBKey.Core.Common" />
+    <Using Include="USBKey.Core.Licensing" />
+  </ItemGroup>
+
+</Project>

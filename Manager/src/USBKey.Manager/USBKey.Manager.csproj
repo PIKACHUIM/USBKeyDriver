@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\USBKey.Core\USBKey.Core.csproj" />
+  </ItemGroup>
+
+  <!-- 部署：构建时复制厂商驱动 DLL（Library/LNCA）与运行配置到输出目录 -->
+  <ItemGroup>
+    <None Include="..\..\..\Library\LNCA\*.dll" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\config\*" Link="config\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <!-- LNCA 厂商驱动 DLL（JIT_USBKEY_HD.dll 等）为 32 位，宿主必须以 x86 运行 -->
+    <PlatformTarget>x86</PlatformTarget>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>false</PublishSingleFile>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>USBKey.Manager</RootNamespace>
+    <AssemblyName>USBKey.Manager</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="USBKey.Core.Configuration" />
+    <Using Include="USBKey.Core.Common" />
+    <Using Include="USBKey.Core.Licensing" />
+    <Using Include="USBKey.Core.UsbKey" />
+    <Using Include="USBKey.Core.Crypto" />
+    <Using Include="USBKey.Core.Service" />
+    <Using Include="USBKey.Core.Native" />
+  </ItemGroup>
+
+</Project>
