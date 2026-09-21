@@ -1,0 +1,42 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll
+;; rva=0x6920 len=0x60 file_off=0x5D20
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10006920 <.text+0x5920>:
+10006920:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006924:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000692a:	7d 19                	jge    0x10006945
+1000692c:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006932:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006939:	74 0a                	je     0x10006945
+1000693b:	8d 90 d8 eb 01 10    	lea    edx,[eax+0x1001ebd8]
+10006941:	85 d2                	test   edx,edx
+10006943:	75 08                	jne    0x1000694d
+10006945:	b8 01 00 00 00       	mov    eax,0x1
+1000694a:	c2 08 00             	ret    0x8
+1000694d:	53                   	push   ebx
+1000694e:	8b 5c 24 0c          	mov    ebx,DWORD PTR [esp+0xc]
+10006952:	8b c3                	mov    eax,ebx
+10006954:	56                   	push   esi
+10006955:	8d 70 01             	lea    esi,[eax+0x1]
+10006958:	8a 08                	mov    cl,BYTE PTR [eax]
+1000695a:	40                   	inc    eax
+1000695b:	84 c9                	test   cl,cl
+1000695d:	75 f9                	jne    0x10006958
+1000695f:	2b c6                	sub    eax,esi
+10006961:	83 f8 40             	cmp    eax,0x40
+10006964:	76 0a                	jbe    0x10006970
+10006966:	5e                   	pop    esi
+10006967:	b8 02 00 00 00       	mov    eax,0x2
+1000696c:	5b                   	pop    ebx
+1000696d:	c2 08 00             	ret    0x8
+10006970:	8b 72 04             	mov    esi,DWORD PTR [edx+0x4]
+10006973:	8b 52 10             	mov    edx,DWORD PTR [edx+0x10]
+10006976:	8b c3                	mov    eax,ebx
+10006978:	57                   	push   edi
+10006979:	8d 78 01             	lea    edi,[eax+0x1]
+1000697c:	8d 64 24 00          	lea    esp,[esp+0x0]

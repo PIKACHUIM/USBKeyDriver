@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/jquery.js"></script>
+<script src="js/test1.js"></script>
+<style>
+
+img{border:0;margin:0;padding:0;display:block}
+body {position:relative; padding:0; margin:0; background:#ffffff; border:0;width:920px;height:430px;overflow:scroll;overflow-y:hidden;overflow:hidden}
+a{text-decoration:none;line-height:27.6px;}
+
+ul,li{margin:0;padding:0; list-style:none;border:none;}
+
+.clear{clear:both;}
+
+.wrap{width:920px;position:relative;height:357.5px;margin:-2px  auto 0;overflow:hidden}
+.float_right{float:right;}
+.float_left{float:left;}
+
+.block_logo{position:absolute;bottom:0;}
+
+.h01{height:16px;}
+
+.block_logo .lianjie:hover{background:rgba(181,223,253,0.6);}
+
+.box13 { background:#fff; padding: 0px; height: 357.5px;}
+.voice_2 { width: 923px; position: relative;}
+.voice_2 ul li { float: left; display: inline; height: 357.5px; color: #fff; cursor: pointer; position: relative; font-weight:800}
+.voice_2 ul li.li1 { background: #4a9ebd}
+.voice_2 ul li.li2 { background: #99cc33}
+.voice_2 ul li.li3 { background: #066666}
+.voice_2 ul li.li4 { background: #666699}
+.voice_2 ul li.li5 { background: #00C3BA}
+.voice_2 ul li.li6 { background: #cccc99}
+.voice_2 ul li.li7 { background: #f49c14}
+
+.voice_2 .fold { width: 23px; height: 130%; text-align: center; position: absolute; top: 0px; left: 0px;}
+.voice_2 .fold .img { display: block; margin-top: 0px;}
+.voice_2 .li1 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .li2 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .li3 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .li4 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .li5 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .li6 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .li7 .fold .img {width: 46px; height:69px; margin-top: 57.5px;margin-left:13px;}
+.voice_2 .fold .txt { font-size: 24px; display: block; width: 25px; font-weight: normal; margin: 14.95px 20px; line-height: 28.75px;font-weight:800; font-family:"微软雅黑", "幼圆", Arial, Harrington}
+.voice_2 .unfold { width: 457.5px; height: 149.5%; display: none; position: absolute; top: 0px; left: 0px;}
+.voice_2 .unfold dl { margin: 23px auto 69px;}
+.voice_2 .unfold dt {text-align: center; margin-bottom: 23px;margin-left:230px;}
+.voice_2 .unfold dt img{height:103.5px;}
+.voice_2 .unfold dd { font-size: 16px; line-height: 34.5px; width:460px;}
+.voice_2 .unfold dd b { font-size: 30px; font-weight:600;font-family:"微软雅黑";}
+.voice_2 .unfold dd b a { font-size: 14px; display: inline-block; color: #fff; margin-left: 46px;}
+
+</style>
+<script language="javascript">
+//当拖拽图片时发生，设置图片不支持拖拽
+function imgdragstart()
+{
+	return false;
+}
+</script>
+</head>
+
+<body onSelectStart="return false">
+
+<img src="images/title2.png" style="position:fixed;top:-1px;left:0;">
+<div style="position:relative;top:-3px;left:0;height:80.5px;"></div>
+
+<div class="wrap">
+	<div class="item_box box13">
+	<div class="item_box_wp">
+		<div class="voice_2">
+			<ul>
+					<li class="li1" id="li1">
+					<div class="fold" style="display:none;">
+						<span class="img"><img src="images/img05.png" width="46px"/></span>
+						<span class="txt">安信桥</span>
+					</div>
+					<div class="unfold" style="display:block">
+						<dl>
+							<dt><img src="images/img05.png" /></dt>
+							<dd>
+								<b>安信桥<a href="http://www.anxinq.com/">点击查看更多>></a></b>
+							</dd>
+							<dd>安信桥，东北首家一站式企业服务平台，专注为中小型企业提供在线服务，是线上线下相结合的企业服务平台，助力创业者实现创业梦想!</dd>
+						</dl>
+					</div>
+				</li>
+				<li class="li2">
+					<div class="fold">
+						<span class="img"><img src="images/img01.png" width="46px"/></span>
+						<span class="txt">数字证书管家</span>
+					</div>
+					<div class="unfold">
+						<dl>
+							<dt><img src="images/img01.png"/></dt>
+							<dd>
+								<b>LNCA数字证书管家<a href="http://www.lnca.org.cn/szzsxq1.html">点击查看更多>></a></b>
+							</dd>
+							<dd>"LNCA数字证书管家"，辽宁CA最新推出的全新数字证书服务，实现了一张企业数字证书为企业在不同部门和不同业务系统在线办事提供统一数字认证服。</dd>
+						</dl>
+					</div>
+				</li>
+				<li class="li3">
+					<div class="fold">
+						<span class="img"><img src="images/img02.png" width="46px"/></span>
+						<span class="txt">电子证照系统</span>
+					</div>
+					<div class="unfold">
+						<dl>
+							<dt><img src="images/img02.png" /></dt>
+                            <dd>
+								<b>电子证照系统<a href="http://www.lnca.org.cn/new1.html">点击查看更多>></a></b>
+							</dd>
+							<dd>电子证照系统是将工商营业执照、税务登记证、组织机构代码证进行电子化集中管理。免去了往返奔波、时间与资源的浪费。</dd>
+							
+						</dl>
+					</div>
+				</li>
+				<li class="li4">
+					<div class="fold">
+						<span class="img"><img src="images/img03.png" width="46px"/></span>
+						<span class="txt">电子合同</span>
+					</div>
+					<div class="unfold">
+						<dl>
+							<dt><img src="images/img03.png" /></dt>
+							<dd>
+								<b>电子合同<a href="http://www.lnca.org.cn/new2.html">点击查看更多>></a></b>
+							</dd>
+							<dd>电子合同具备与传统纸质合同相等的法律效益，突破了时间与空间的限制，是您不必奔波在外皆可签订相关合同。</dd>
+						</dl>
+					</div>
+				</li>
+				<li class="li5">
+					<div class="fold">
+						<span class="img"><img src="images/ca.png" width="46px"/></span>
+						<span class="txt">辽宁C<br>A官网</span>
+					</div>
+					<div class="unfold">
+						<dl>
+							<dt><img src="images/ca.png" /></dt>
+							<dd>
+								<b>辽宁CA官网<a href="http://www.lnca.org.cn">辽宁省数字证书认证中心>></a></b>
+							</dd>
+							<dd>辽宁CA是您身边的信息安全专家。是经国家信息产业部、国家密码管理局批准，辽宁省唯一的获得国家电子认证服务许可证的区域性认证中心。</dd>
+						</dl>
+					</div>
+				</li>
+				<li class="li6">
+					<div class="fold">
+						<span class="img"><img src="images/ewm.png" width="46px"/></span>
+						<span class="txt">官方微信</span>
+					</div>
+					<div class="unfold">
+						<dl>
+							<dt><img src="images/ewm.png" /></dt>
+							<dd>
+								<b>扫描关注辽宁CA官方微信</b>
+							</dd>
+							<dd>欢迎关注辽宁CA官方微信，这里有最新的政务资讯、办事指南、信息安全宝典。关注辽宁CA官方微信，获取最贴心的信息安全服务。</dd>
+						</dl>
+					</div>
+				</li>
+                <li class="li7">
+					<div class="fold">
+						<span class="img"><img src="images/img04.png" width="46px"/></span>
+						<span class="txt">好会计</span>
+					</div>
+					<div class="unfold">
+						<a href=" http://h.uu.com.cn?a=LNCA&c=lnca16&p=59"><img width="130%" src="images/ca_partner.jpg"></a>
+					</div>
+				</li>
+			</ul>         
+		</div>
+	</div>
+	</div>
+</div>
+<!--div class="block_logo">
+	<span class="float_left lianjie"><a href="http://www.lnca.org.cn/"><img src="images/logo_CA.png" ></a></span>
+	<span class="float_left lianjie"><a href="http://www.lnjh.net"><img src="images/logo_jh.png"></a></span>
+	<span class="float_left"><img src="images/ewm.png"></span>
+</div-->
+
+</div>
+<script>
+for(i in document.images)
+	document.images[i].ondragstart=imgdragstart;
+</script>
+</body>
+</html>

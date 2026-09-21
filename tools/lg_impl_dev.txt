@@ -1,0 +1,12 @@
+secure device signature
+- unable to open console device
+Linguo_APDU_Mutex_LOG_{34ACF644-6F92-4e37-A9C7-D70E05930905}
+d:\LinguoAPDU.log
+Linguo_CSP_APDU_Mutex_LOG_{34ACF644-6F92-4e37-A9C7-D70E05930905}
+\\.\
+SetupDiDestroyDeviceInfoList
+SetupDiGetDeviceInterfaceDetailA
+SetupDiEnumDeviceInterfaces
+DeviceIoControl
+RegisterDeviceNotificationA
+UnregisterDeviceNotification

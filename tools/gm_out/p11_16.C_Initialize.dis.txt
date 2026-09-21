@@ -1,0 +1,48 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; C_Initialize rva=0x1400 va=0x10001400 stop=0x10001450
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10001400 <.text+0x400>:
+10001400:	55                   	push   ebp
+10001401:	8b ec                	mov    ebp,esp
+10001403:	83 e4 f8             	and    esp,0xfffffff8
+10001406:	56                   	push   esi
+10001407:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000140d:	57                   	push   edi
+1000140e:	85 f6                	test   esi,esi
+10001410:	74 0a                	je     0x1000141c
+10001412:	56                   	push   esi
+10001413:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10001419:	83 c4 04             	add    esp,0x4
+1000141c:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+1000141f:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+10001422:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+10001425:	50                   	push   eax
+10001426:	51                   	push   ecx
+10001427:	52                   	push   edx
+10001428:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+1000142b:	e8 90 1f 00 00       	call   0x100033c0
+10001430:	8b f8                	mov    edi,eax
+10001432:	85 f6                	test   esi,esi
+10001434:	74 0a                	je     0x10001440
+10001436:	56                   	push   esi
+10001437:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+1000143d:	83 c4 04             	add    esp,0x4
+10001440:	8b c7                	mov    eax,edi
+10001442:	5f                   	pop    edi
+10001443:	5e                   	pop    esi
+10001444:	8b e5                	mov    esp,ebp
+10001446:	5d                   	pop    ebp
+10001447:	c3                   	ret
+10001448:	cc                   	int3
+10001449:	cc                   	int3
+1000144a:	cc                   	int3
+1000144b:	cc                   	int3
+1000144c:	cc                   	int3
+1000144d:	cc                   	int3
+1000144e:	cc                   	int3
+1000144f:	cc                   	int3

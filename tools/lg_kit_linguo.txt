@@ -1,0 +1,9 @@
+LINGUO_UKEY
+\LinGuo_ZJK_UKey.ini
+LinguoKit_SlotEventMutex_{352A2444-85AC-4f34-946B-DD96A01948C0}
+Software\Microsoft\Cryptography\Defaults\Provider\Linguo Cryptographic Provider v2.0
+localKeyID
+authorityKeyIdentifier
+subjectKeyIdentifier
+Linguo Cryptographic Provider v2.0
+Copyright (C) Linguo Corp. 2011-2014

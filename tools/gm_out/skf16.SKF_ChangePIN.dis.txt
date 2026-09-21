@@ -1,0 +1,24 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; SKF_ChangePIN rva=0x10620 va=0x10010620 stop=0x10010640
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10010620 <.text+0xf620>:
+10010620:	8b 44 24 0c          	mov    eax,DWORD PTR [esp+0xc]
+10010624:	8b 4c 24 04          	mov    ecx,DWORD PTR [esp+0x4]
+10010628:	50                   	push   eax
+10010629:	8b 44 24 0c          	mov    eax,DWORD PTR [esp+0xc]
+1001062d:	e8 2e fe ff ff       	call   0x10010460
+10010632:	83 c4 04             	add    esp,0x4
+10010635:	c2 0c 00             	ret    0xc
+10010638:	cc                   	int3
+10010639:	cc                   	int3
+1001063a:	cc                   	int3
+1001063b:	cc                   	int3
+1001063c:	cc                   	int3
+1001063d:	cc                   	int3
+1001063e:	cc                   	int3
+1001063f:	cc                   	int3

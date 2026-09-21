@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "dEqld13/7Ek=",
+  "success": true,
+  "projectFilePath": "G:\\Codes\\USBKeyDriver\\Manager\\tools\\LinguoProbe\\LinguoProbe.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pikachuren\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\pikachuren\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,825 @@
+analysis done
+
+==========================================================================
+### 10020747 GenSessionKey_16B  func=10020747-100207BB
+==========================================================================
+int __cdecl sub_10020747(int a1, _DWORD *Time)
+{
+  _DWORD *v2; // esi
+  unsigned int v3; // eax
+  int i; // edi
+  char v7[125]; // [esp+8h] [ebp-80h] BYREF
+  __int16 v8; // [esp+85h] [ebp-3h]
+  char v9; // [esp+87h] [ebp-1h]
+
+  memset(v7, 0, sizeof(v7));
+  v8 = 0;
+  v9 = 0;
+  if ( !a1 )
+    return 0;
+  v2 = Time;
+  if ( !Time )
+    return 0;
+  v3 = time((__time32_t *const)&Time);
+  srand(v3);
+  for ( i = 0; i < 16; v7[i - 1] = rand() % 255 )
+    ++i;
+  *v2 = sub_1001EB6C(a1, v7, *v2);
+  return 1;
+}
+
+
+==========================================================================
+### 100207BB RsaEncryptSessionKey  func=100207BB-1002088C
+==========================================================================
+int __cdecl sub_100207BB(int a1, int a2, int a3, unsigned int a4, int a5, _DWORD *a6)
+{
+  char v7[509]; // [esp+8h] [ebp-300h] BYREF
+  __int16 v8; // [esp+205h] [ebp-103h]
+  char v9; // [esp+207h] [ebp-101h]
+  char Src[125]; // [esp+208h] [ebp-100h] BYREF
+  __int16 v11; // [esp+285h] [ebp-83h]
+  char v12; // [esp+287h] [ebp-81h]
+  int v13[32]; // [esp+288h] [ebp-80h] BYREF
+
+  memset(v7, 0, sizeof(v7));
+  v8 = 0;
+  v9 = 0;
+  memset(v13, 0, sizeof(v13));
+  memset(Src, 0, sizeof(Src));
+  v11 = 0;
+  v12 = 0;
+  if ( !a1 )
+    return 0;
+  if ( a2 != 1024 )
+    return 0;
+  if ( !a3 )
+    return 0;
+  if ( !a5 )
+    return 0;
+  sub_1001EB09(v7, a1 + 4, 256);
+  sub_1001EB09(Src, a3, a4);
+  if ( sub_10021676(v7, Src, a4 >> 1, (int)v13) <= 0 )
+    return 0;
+  sub_1001EB6C(a5, v13, 128);
+  *a6 = 128;
+  return 1;
+}
+
+
+==========================================================================
+### 1001EC96 MspCipher_EncryptDecrypt  func=1001EC96-1001ECF6
+==========================================================================
+int __cdecl sub_1001EC96(char *Str, char *String, unsigned __int8 a3, char *Destination, int a5)
+{
+  int v5; // eax
+  int v6; // esi
+  char v8[6280]; // [esp+4h] [ebp-1894h] BYREF
+  int v9; // [esp+1894h] [ebp-4h]
+
+  sub_1001EF5C(v8);
+  v9 = 0;
+  v5 = sub_1001F02A(Str, String, a3, Destination, a5);
+  v9 = -1;
+  v6 = v5;
+  sub_1001EFD2(v8);
+  return v6;
+}
+
+
+==========================================================================
+### 1001EB6C BinToHex  func=1001EB6C-1001EBBC
+==========================================================================
+int __cdecl sub_1001EB6C(_BYTE *a1, _BYTE *a2, int a3)
+{
+  _BYTE *v4; // eax
+  int v5; // edi
+  _BYTE *v6; // eax
+  char v8[20]; // [esp+8h] [ebp-14h] BYREF
+
+  strcpy(v8, "0123456789ABCDEF");
+  if ( a3 <= 0 )
+  {
+    v4 = a1;
+  }
+  else
+  {
+    v4 = a1;
+    v5 = a3;
+    do
+    {
+      *v4 = v8[(unsigned __int8)*a2 >> 4];
+      v6 = v4 + 1;
+      *v6 = v8[*a2 & 0xF];
+      v4 = v6 + 1;
+      ++a2;
+      --v5;
+    }
+    while ( v5 );
+  }
+  *v4 = 0;
+  return 2 * a3;
+}
+
+
+==========================================================================
+### 1001EB09 HexToBin  func=1001EB09-1001EB6C
+==========================================================================
+int __cdecl sub_1001EB09(_BYTE *a1, char *a2, int a3)
+{
+  unsigned int v5; // edi
+  char v6; // cl
+  char v7; // cl
+  char *v8; // esi
+  char v9; // cl
+  char v10; // cl
+
+  if ( a3 > 0 )
+  {
+    v5 = (unsigned int)(a3 + 1) >> 1;
+    do
+    {
+      v6 = *a2;
+      if ( *a2 < 48 || v6 > 57 )
+        v7 = 16 * (v6 - 7);
+      else
+        v7 = 16 * v6;
+      v8 = a2 + 1;
+      *a1 = v7;
+      v9 = *v8;
+      if ( *v8 < 48 || v9 > 57 )
+      {
+        if ( v9 < 65 || v9 > 70 )
+          v10 = v9 - 87;
+        else
+          v10 = v9 - 55;
+      }
+      else
+      {
+        v10 = v9 - 48;
+      }
+      *a1 |= v10;
+      a2 = v8 + 1;
+      ++a1;
+      --v5;
+    }
+    while ( v5 );
+  }
+  return a3 / 2;
+}
+
+
+==========================================================================
+### 10020376 MspCtxCheck  func=10020376-100205A6
+==========================================================================
+int __cdecl sub_10020376(int a1, int a2, int *a3, int a4)
+{
+  int v4; // eax
+  int v5; // eax
+  HANDLE MutexA; // eax
+  void *v7; // esi
+  int v8; // esi
+  char *v9; // eax
+  char *v10; // ecx
+  char *v11; // ebx
+  int v12; // eax
+  bool v13; // dl
+  char v14; // al
+  _BYTE *v15; // ebx
+  unsigned __int8 v16; // cl
+  char v17; // al
+  char v18; // cl
+  int v19; // edi
+  int v20; // kr04_4
+  int v21; // eax
+  char v22; // cl
+  char v23; // cl
+  int v24; // eax
+  CHAR String1[257]; // [esp+Ch] [ebp-218h] BYREF
+  __int16 v27; // [esp+10Dh] [ebp-117h]
+  char v28; // [esp+10Fh] [ebp-115h]
+  CHAR String[257]; // [esp+110h] [ebp-114h] BYREF
+  __int16 v30; // [esp+211h] [ebp-13h]
+  char v31; // [esp+213h] [ebp-11h]
+  LPCVOID lpBaseAddress; // [esp+214h] [ebp-10h]
+  HANDLE hFileMappingObject; // [esp+218h] [ebp-Ch]
+  HANDLE hMutex; // [esp+21Ch] [ebp-8h]
+  int v35; // [esp+220h] [ebp-4h]
+  bool v36; // [esp+22Fh] [ebp+Bh]
+  int v37; // [esp+238h] [ebp+14h]
+
+  memset(String1, 0, sizeof(String1));
+  memset(String, 0, sizeof(String));
+  v27 = 0;
+  v28 = 0;
+  v30 = 0;
+  v31 = 0;
+  hFileMappingObject = 0;
+  v35 = 0;
+  hMutex = 0;
+  if ( !a1 )
+    goto LABEL_27;
+  v4 = lstrlenA((LPCSTR)(a1 + 4));
+  memcpy(String, (const void *)(a1 + 4), v4);
+  v5 = lstrlenA(String);
+  memcpy(String1, String, v5);
+  lstrcatA(String1, aMutex);
+  MutexA = CreateMutexA(0, 0, String1);
+  v7 = MutexA;
+  hMutex = MutexA;
+  if ( MutexA && WaitForSingleObject(MutexA, 0x493E0u) == 258 )
+  {
+    CloseHandle(v7);
+    hMutex = 0;
+  }
+  hFileMappingObject = OpenFileMappingA(4u, 1, String);
+  if ( !hFileMappingObject )
+    goto LABEL_27;
+  v8 = a4 << 7;
+  v9 = (char *)MapViewOfFile(hFileMappingObject, 4u, 0, 0, 0);
+  lpBaseAddress = v9;
+  if ( !v9 )
+    goto LABEL_29;
+  v10 = &v9[v8];
+  if ( a2 )
+  {
+    if ( !a4 )
+    {
+      v11 = &v9[v8];
+      v12 = 32;
+      v37 = 32;
+      goto LABEL_14;
+    }
+  }
+  else if ( !a4 )
+  {
+LABEL_25:
+    v35 = 1;
+    goto LABEL_27;
+  }
+  if ( (unsigned __int8)*v10 != a4 )
+    goto LABEL_27;
+  v11 = v10 + 2;
+  v12 = (unsigned __int8)v10[1] / 3;
+  v37 = v12;
+LABEL_14:
+  if ( a2 && v12 <= (unsigned int)*a3 )
+  {
+    v35 = 0;
+    if ( v12 > 0 )
+    {
+      do
+      {
+        v36 = (*v11 & 1) != 0;
+        v13 = (*v11 & 2) != 0;
+        v14 = v11[1];
+        v15 = v11 + 1;
+        v16 = v14;
+        v17 = v14 & 0xF;
+        v18 = v16 >> 4;
+        if ( v13 )
+          v18 += 16;
+        v19 = v18;
+        if ( v36 )
+        {
+          v20 = v18 - v17;
+          v21 = v18 + v17;
+          v22 = 16 * (v20 / 2);
+        }
+        else
+        {
+          v22 = 16 * ((v18 + v17) / 2);
+          v21 = v19 - v17;
+        }
+        v23 = v21 / 2 + v22;
+        v24 = v35;
+        v11 = v15 + 1;
+        *(_BYTE *)(v35 + a2) = v23;
+        v35 = v24 + 1;
+      }
+      while ( v24 + 1 < v37 );
+      v12 = v37;
+    }
+    *a3 = v12;
+    goto LABEL_25;
+  }
+  *a3 = v12;
+LABEL_27:
+  if ( lpBaseAddress )
+    UnmapViewOfFile(lpBaseAddress);
+LABEL_29:
+  if ( hFileMappingObject )
+    CloseHandle(hFileMappingObject);
+  if ( hMutex )
+  {
+    ReleaseMutex(hMutex);
+    CloseHandle(hMutex);
+  }
+  return v35;
+}
+
+
+==========================================================================
+### 100200EC MspSetSessionKey  func=100200EC-10020376
+==========================================================================
+int __cdecl sub_100200EC(int a1, int a2, int hMutex, int a4)
+{
+  char *v4; // edi
+  unsigned int v5; // eax
+  int v6; // edx
+  unsigned __int8 v7; // cl
+  char v8; // al
+  char v9; // cl
+  char v10; // dl
+  _BYTE *v11; // edi
+  int v12; // esi
+  int v13; // edx
+  size_t v14; // eax
+  int v15; // eax
+  int v16; // eax
+  HANDLE MutexA; // eax
+  void *v18; // esi
+  HANDLE v19; // ebx
+  HANDLE FileMappingA; // eax
+  int v21; // esi
+  char *v22; // edi
+  CHAR String1[257]; // [esp+8h] [ebp-2A0h] BYREF
+  __int16 v25; // [esp+109h] [ebp-19Fh]
+  char v26; // [esp+10Bh] [ebp-19Dh]
+  CHAR String[257]; // [esp+10Ch] [ebp-19Ch] BYREF
+  __int16 v28; // [esp+20Dh] [ebp-9Bh]
+  char v29; // [esp+20Fh] [ebp-99h]
+  char Src[125]; // [esp+210h] [ebp-98h] BYREF
+  __int16 v31; // [esp+28Dh] [ebp-1Bh]
+  char v32; // [esp+28Fh] [ebp-19h]
+  __time32_t Time; // [esp+290h] [ebp-18h] BYREF
+  int v34; // [esp+294h] [ebp-14h]
+  int v35; // [esp+298h] [ebp-10h]
+  int v36; // [esp+29Ch] [ebp-Ch]
+  char v37; // [esp+2A3h] [ebp-5h]
+  size_t Size; // [esp+2A4h] [ebp-4h]
+  HANDLE hMutexa; // [esp+2B8h] [ebp+10h]
+
+  memset(Src, 0, sizeof(Src));
+  v31 = 0;
+  v32 = 0;
+  memset(String1, 0, sizeof(String1));
+  memset(String, 0, sizeof(String));
+  v25 = 0;
+  v26 = 0;
+  v35 = 0;
+  v28 = 0;
+  v34 = 0;
+  v29 = 0;
+  if ( !a1 || !a2 )
+    return v35;
+  if ( a4 )
+  {
+    v4 = &Src[2];
+    Size = 2;
+  }
+  else
+  {
+    v4 = Src;
+    Size = 0;
+  }
+  v5 = time(&Time);
+  srand(v5);
+  v36 = 0;
+  if ( hMutex > 0 )
+  {
+    Size += 2 * hMutex;
+    do
+    {
+      v6 = rand() % 255;
+      v7 = *(_BYTE *)(v36 + a2);
+      v8 = v7 & 0xF;
+      v9 = v7 >> 4;
+      v37 = v9;
+      v10 = v6 & 0xFC;
+      if ( v9 < v8 )
+        v10 |= 1u;
+      if ( v9 + v8 > 15 )
+        v10 |= 2u;
+      *v4 = v10;
+      v11 = v4 + 1;
+      *v11 = 16 * (v37 + v8) + abs(v9 - v8);
+      v4 = v11 + 1;
+      ++v36;
+    }
+    while ( v36 < hMutex );
+  }
+  v12 = hMutex;
+  if ( hMutex > 0 )
+  {
+    do
+    {
+      v13 = rand() % 255;
+      v14 = Size++;
+      --v12;
+      Src[v14] = v13;
+    }
+    while ( v12 );
+  }
+  if ( a4 )
+  {
+    Src[0] = a4;
+    Src[1] = Size;
+  }
+  v15 = lstrlenA((LPCSTR)(a1 + 4));
+  memcpy(String, (const void *)(a1 + 4), v15);
+  v16 = lstrlenA(String);
+  memcpy(String1, String, v16);
+  lstrcatA(String1, aMutex);
+  MutexA = CreateMutexA(0, 0, String1);
+  v18 = MutexA;
+  hMutexa = MutexA;
+  if ( MutexA && WaitForSingleObject(MutexA, 0x493E0u) == 258 )
+  {
+    CloseHandle(v18);
+    hMutexa = 0;
+  }
+  v19 = OpenFileMappingA(2u, 1, String);
+  if ( v19 )
+    goto LABEL_23;
+  FileMappingA = CreateFileMappingA((HANDLE)0xFFFFFFFF, 0, 4u, 0, 0x400u, String);
+  v19 = FileMappingA;
+  if ( FileMappingA )
+  {
+    sub_1002007D(FileMappingA, SE_KERNEL_OBJECT);
+    v34 = 1;
+LABEL_23:
+    v21 = a4 << 7;
+    v22 = (char *)MapViewOfFile(v19, 2u, 0, 0, 0);
+    if ( v22 )
+    {
+      if ( v21 + Size <= 0x400 )
+      {
+        memcpy(&v22[v21], Src, Size);
+        v35 = 1;
+      }
+      UnmapViewOfFile(v22);
+    }
+    if ( v19 && !v34 )
+      CloseHandle(v19);
+  }
+  if ( hMutexa )
+  {
+    ReleaseMutex(hMutexa);
+    CloseHandle(hMutexa);
+  }
+  return v35;
+}
+
+
+==========================================================================
+### 100205A6 MspEnable  func=100205A6-10020747
+==========================================================================
+int __cdecl sub_100205A6(const CHAR *hMutex, int a2)
+{
+  int v2; // eax
+  int v3; // eax
+  HANDLE MutexA; // eax
+  void *v5; // esi
+  HANDLE v6; // eax
+  int v7; // edx
+  unsigned int v8; // edx
+  char Src[1021]; // [esp+8h] [ebp-614h] BYREF
+  __int16 v11; // [esp+405h] [ebp-217h]
+  char v12; // [esp+407h] [ebp-215h]
+  CHAR String1[257]; // [esp+408h] [ebp-214h] BYREF
+  __int16 v14; // [esp+509h] [ebp-113h]
+  char v15; // [esp+50Bh] [ebp-111h]
+  CHAR String[257]; // [esp+50Ch] [ebp-110h] BYREF
+  __int16 v17; // [esp+60Dh] [ebp-Fh]
+  char v18; // [esp+60Fh] [ebp-Dh]
+  HANDLE hObject; // [esp+610h] [ebp-Ch]
+  int v20; // [esp+614h] [ebp-8h]
+  LPCVOID lpBaseAddress; // [esp+618h] [ebp-4h]
+  HANDLE hMutexa; // [esp+624h] [ebp+8h]
+
+  memset(Src, 0, sizeof(Src));
+  v11 = 0;
+  v12 = 0;
+  memset(String1, 0, sizeof(String1));
+  v14 = 0;
+  v15 = 0;
+  memset(String, 0, sizeof(String));
+  v20 = 0;
+  v17 = 0;
+  v18 = 0;
+  if ( hMutex )
+  {
+    v2 = lstrlenA(hMutex + 4);
+    memcpy(String, hMutex + 4, v2);
+    v3 = lstrlenA(String);
+    memcpy(String1, String, v3);
+    lstrcatA(String1, aMutex);
+    MutexA = CreateMutexA(0, 0, String1);
+    v5 = MutexA;
+    hMutexa = MutexA;
+    if ( MutexA && WaitForSingleObject(MutexA, 0x493E0u) == 258 )
+    {
+      CloseHandle(v5);
+      hMutexa = 0;
+    }
+    v6 = OpenFileMappingA(2u, 1, String);
+    hObject = v6;
+    if ( v6 )
+    {
+      lpBaseAddress = MapViewOfFile(v6, 2u, 0, 0, 0);
+      if ( lpBaseAddress )
+      {
+        v7 = -(a2 != 0);
+        LOWORD(v7) = v7 & 0xFC80;
+        v8 = v7 + 1024;
+        if ( v8 + (a2 << 7) <= 0x400 )
+        {
+          if ( v8 )
+            memset(Src, 0xFFu, v8);
+          memcpy((char *)lpBaseAddress + 128 * a2, Src, v8);
+          v20 = 1;
+        }
+        UnmapViewOfFile(lpBaseAddress);
+      }
+      CloseHandle(hObject);
+    }
+    if ( hMutexa )
+    {
+      ReleaseMutex(hMutexa);
+      CloseHandle(hMutexa);
+    }
+  }
+  return v20;
+}
+
+
+==========================================================================
+### 10021532 TransportSendRaw  func=10021532-10021676
+==========================================================================
+int __thiscall sub_10021532(void *this, int a2, char *Str, char *Destination, _DWORD *a5)
+{
+  int v6; // edi
+  int v8; // eax
+  int v9; // esi
+  char v10; // dl
+  char Source[2045]; // [esp+Ch] [ebp-1004h] BYREF
+  __int16 v12; // [esp+809h] [ebp-807h]
+  char v13; // [esp+80Bh] [ebp-805h]
+  char v14[1021]; // [esp+80Ch] [ebp-804h] BYREF
+  __int16 v15; // [esp+C09h] [ebp-407h]
+  char v16; // [esp+C0Bh] [ebp-405h]
+  char v17[1021]; // [esp+C0Ch] [ebp-404h] BYREF
+  __int16 v18; // [esp+1009h] [ebp-7h]
+  char v19; // [esp+100Bh] [ebp-5h]
+  char Src[2]; // [esp+100Eh] [ebp-2h] BYREF
+
+  memset(v14, 0, sizeof(v14));
+  v15 = 0;
+  v16 = 0;
+  memset(v17, 0, sizeof(v17));
+  v18 = 0;
+  v19 = 0;
+  memset(Source, 0, sizeof(Source));
+  Src[0] = 0;
+  v12 = 0;
+  v13 = 0;
+  Src[1] = 0;
+  v6 = strlen(Str);
+  if ( v6 % 2 || v6 < 8 )
+    return -2;
+  sub_1001EB09(v14, Str, v6);
+  v8 = (*(int (__thiscall **)(void *, int, char *, int, char *))(*(_DWORD *)this + 24))(this, a2, v14, v6 / 2, v17);
+  v9 = v8;
+  if ( v8 < 0 )
+    return v9;
+  sub_1001EB6C(Source, v17, v8);
+  strcpy(Destination, Source);
+  if ( !strncmp(Str, a00000000, 8u) )
+  {
+    *a5 = 36864;
+    return v9;
+  }
+  Destination[2 * v9 - 4] = 0;
+  v10 = v17[v9 - 1];
+  *a5 = 0;
+  Src[0] = v10;
+  Src[1] = *((_BYTE *)&v15 + v9 + 1);
+  memcpy(a5, Src, 2u);
+  return v9 - 2;
+}
+
+
+==========================================================================
+### 1001EAD3 EAD3_maybe_bswap_or_pad  func=1001EAD3-1001EB09
+==========================================================================
+char *__cdecl sub_1001EAD3(int a1, int a2)
+{
+  char *result; // eax
+  int v3; // edi
+  char *v4; // ecx
+  char v5; // dl
+
+  result = (char *)(a2 - (a2 >> 31));
+  v3 = 0;
+  if ( a2 / 2 > 0 )
+  {
+    v4 = (char *)(a2 + a1 - 1);
+    do
+    {
+      result = (char *)(v3 + a1);
+      ++v3;
+      v5 = *result;
+      *result = *v4;
+      *v4-- = v5;
+    }
+    while ( v3 < a2 / 2 );
+  }
+  return result;
+}
+
+
+==========================================================================
+### 1001FDDE Handshake_80F2  func=1001FDDE-1002007D
+==========================================================================
+int __thiscall sub_1001FDDE(void *this, int a2)
+{
+  int result; // eax
+  size_t v3; // eax
+  size_t v4; // [esp-1Ch] [ebp-ABCh]
+  char Buffer[1021]; // [esp+Ch] [ebp-A94h] BYREF
+  __int16 v6; // [esp+409h] [ebp-697h]
+  char v7; // [esp+40Bh] [ebp-695h]
+  char Str[1021]; // [esp+40Ch] [ebp-694h] BYREF
+  __int16 v9; // [esp+809h] [ebp-297h]
+  char v10; // [esp+80Bh] [ebp-295h]
+  char v11[509]; // [esp+80Ch] [ebp-294h] BYREF
+  __int16 v12; // [esp+A09h] [ebp-97h]
+  char v13; // [esp+A0Bh] [ebp-95h]
+  int v14[32]; // [esp+A0Ch] [ebp-94h] BYREF
+  int v15; // [esp+A8Ch] [ebp-14h] BYREF
+  size_t v16; // [esp+A90h] [ebp-10h] BYREF
+  size_t Size; // [esp+A94h] [ebp-Ch] BYREF
+  void *v18; // [esp+A98h] [ebp-8h]
+  int v19; // [esp+A9Ch] [ebp-4h] BYREF
+
+  v18 = this;
+  memset(Str, 0, sizeof(Str));
+  v9 = 0;
+  v10 = 0;
+  memset(v14, 0, sizeof(v14));
+  memset(v11, 0, sizeof(v11));
+  v12 = 0;
+  v13 = 0;
+  memset(Buffer, 0, sizeof(Buffer));
+  v6 = 0;
+  v7 = 0;
+  v19 = 0;
+  Size = 16;
+  v16 = 512;
+  v15 = 0;
+  sub_1001FA64(this, a2, a80f2030001, Str, &v19);
+  if ( v19 == 36864 )
+  {
+    if ( Str[1] != 49 )
+      goto LABEL_19;
+  }
+  else if ( v19 == 27904 )
+  {
+    goto LABEL_9;
+  }
+  sub_1001FA64(v18, a2, a80f4020000, Str, &v19);
+  if ( v19 != 36864 )
+  {
+    if ( v19 != 27904 )
+      goto LABEL_10;
+LABEL_9:
+    *(_DWORD *)(a2 + 268) = 0;
+    return 0;
+  }
+  if ( sub_10020376(a2 + 8, 0, &v15, 0) )
+  {
+    *(_DWORD *)(a2 + 268) = 2;
+    return 2;
+  }
+LABEL_10:
+  sub_1001FA64(v18, a2, a80f4000087, Str, &v19);
+  if ( v19 != 36864 )
+  {
+    if ( v19 != 27266 )
+      goto LABEL_19;
+    sub_1001FA64(v18, a2, a80f6000000, Str, &v19);
+    if ( v19 != 36864 )
+      goto LABEL_19;
+    v3 = strlen(Str);
+    memset(Str, 0, v3);
+    sub_1001FA64(v18, a2, a80f4000087, Str, &v19);
+    if ( v19 != 36864 )
+      goto LABEL_19;
+  }
+  sub_10020747((int)v14, &Size);
+  if ( sub_100207BB((int)Str, 1024, (int)v14, Size, (int)v11, &v16) )
+  {
+    sprintf(Buffer, "80F40100%02X%s", v16, v11);
+    sub_1001FA64(v18, a2, Buffer, Str, &v19);
+    if ( v19 == 36864 )
+    {
+      sub_100200EC(a2 + 8, (int)v14, Size, 0);
+      sub_100205A6((const CHAR *)(a2 + 8), 1);
+      v4 = Size;
+      *(_DWORD *)(a2 + 268) = 2;
+      memset(v14, 0, v4);
+      memset(v11, 0, v16);
+      return 2;
+    }
+  }
+  memset(v14, 0, Size);
+  memset(v11, 0, v16);
+LABEL_19:
+  result = 1;
+  *(_DWORD *)(a2 + 268) = 1;
+  return result;
+}
+
+
+==========================================================================
+### 100205A6 MspEnable2  func=100205A6-10020747
+==========================================================================
+int __cdecl sub_100205A6(const CHAR *hMutex, int a2)
+{
+  int v2; // eax
+  int v3; // eax
+  HANDLE MutexA; // eax
+  void *v5; // esi
+  HANDLE v6; // eax
+  int v7; // edx
+  unsigned int v8; // edx
+  char Src[1021]; // [esp+8h] [ebp-614h] BYREF
+  __int16 v11; // [esp+405h] [ebp-217h]
+  char v12; // [esp+407h] [ebp-215h]
+  CHAR String1[257]; // [esp+408h] [ebp-214h] BYREF
+  __int16 v14; // [esp+509h] [ebp-113h]
+  char v15; // [esp+50Bh] [ebp-111h]
+  CHAR String[257]; // [esp+50Ch] [ebp-110h] BYREF
+  __int16 v17; // [esp+60Dh] [ebp-Fh]
+  char v18; // [esp+60Fh] [ebp-Dh]
+  HANDLE hObject; // [esp+610h] [ebp-Ch]
+  int v20; // [esp+614h] [ebp-8h]
+  LPCVOID lpBaseAddress; // [esp+618h] [ebp-4h]
+  HANDLE hMutexa; // [esp+624h] [ebp+8h]
+
+  memset(Src, 0, sizeof(Src));
+  v11 = 0;
+  v12 = 0;
+  memset(String1, 0, sizeof(String1));
+  v14 = 0;
+  v15 = 0;
+  memset(String, 0, sizeof(String));
+  v20 = 0;
+  v17 = 0;
+  v18 = 0;
+  if ( hMutex )
+  {
+    v2 = lstrlenA(hMutex + 4);
+    memcpy(String, hMutex + 4, v2);
+    v3 = lstrlenA(String);
+    memcpy(String1, String, v3);
+    lstrcatA(String1, aMutex);
+    MutexA = CreateMutexA(0, 0, String1);
+    v5 = MutexA;
+    hMutexa = MutexA;
+    if ( MutexA && WaitForSingleObject(MutexA, 0x493E0u) == 258 )
+    {
+      CloseHandle(v5);
+      hMutexa = 0;
+    }
+    v6 = OpenFileMappingA(2u, 1, String);
+    hObject = v6;
+    if ( v6 )
+    {
+      lpBaseAddress = MapViewOfFile(v6, 2u, 0, 0, 0);
+      if ( lpBaseAddress )
+      {
+        v7 = -(a2 != 0);
+        LOWORD(v7) = v7 & 0xFC80;
+        v8 = v7 + 1024;
+        if ( v8 + (a2 << 7) <= 0x400 )
+        {
+          if ( v8 )
+            memset(Src, 0xFFu, v8);
+          memcpy((char *)lpBaseAddress + 128 * a2, Src, v8);
+          v20 = 1;
+        }
+        UnmapViewOfFile(lpBaseAddress);
+      }
+      CloseHandle(hObject);
+    }
+    if ( hMutexa )
+    {
+      ReleaseMutex(hMutexa);
+      CloseHandle(hMutexa);
+    }
+  }
+  return v20;
+}
+

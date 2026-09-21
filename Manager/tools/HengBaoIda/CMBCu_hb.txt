@@ -1,0 +1,265 @@
+FILE: G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCu.exe
+IMAGEBASE: 0x400000
+
+=== IMPORTS ===
+  KERNEL32                 00412084 GetDriveTypeA
+  KERNEL32                 00412088 GetLogicalDrives
+  KERNEL32                 0041208C GetUserDefaultLangID
+  KERNEL32                 00412090 FindClose
+  KERNEL32                 00412094 FindNextFileA
+  KERNEL32                 00412098 FindFirstFileA
+  KERNEL32                 0041209C WaitForSingleObject
+  KERNEL32                 004120A0 OpenEventA
+  KERNEL32                 004120A4 SetEvent
+  KERNEL32                 004120A8 TerminateThread
+  KERNEL32                 004120AC CreateEventA
+  KERNEL32                 004120B0 CreateMutexA
+  KERNEL32                 004120B4 LocalAlloc
+  KERNEL32                 004120B8 MultiByteToWideChar
+  KERNEL32                 004120BC LocalFree
+  KERNEL32                 004120C0 LoadLibraryA
+  KERNEL32                 004120C4 FreeLibrary
+  KERNEL32                 004120C8 FileTimeToSystemTime
+  KERNEL32                 004120CC GetStartupInfoA
+  KERNEL32                 004120D0 GetVolumeInformationA
+  KERNEL32                 004120D4 DeviceIoControl
+  KERNEL32                 004120D8 WriteFile
+  KERNEL32                 004120DC ReadFile
+  KERNEL32                 004120E0 CreateFileA
+  KERNEL32                 004120E4 CreateFileMappingA
+  KERNEL32                 004120E8 UnmapViewOfFile
+  KERNEL32                 004120EC ReleaseMutex
+  KERNEL32                 004120F0 Sleep
+  KERNEL32                 004120F4 GetModuleFileNameW
+  KERNEL32                 004120F8 LoadLibraryW
+  KERNEL32                 004120FC OutputDebugStringA
+  KERNEL32                 00412100 GetVersion
+  KERNEL32                 00412104 GetFileAttributesW
+  KERNEL32                 00412108 GetProcAddress
+  KERNEL32                 0041210C GetModuleHandleW
+  KERNEL32                 00412110 GetModuleHandleA
+  KERNEL32                 00412114 GetLastError
+  KERNEL32                 00412118 SetLastError
+  KERNEL32                 0041211C lstrcmpA
+  KERNEL32                 00412120 CreateToolhelp32Snapshot
+  KERNEL32                 00412124 CreateThread
+  KERNEL32                 00412128 WritePrivateProfileStringA
+  KERNEL32                 0041212C GetSystemTimeAsFileTime
+  KERNEL32                 00412130 CompareFileTime
+  KERNEL32                 00412134 Process32First
+  KERNEL32                 00412138 Process32Next
+  KERNEL32                 0041213C OpenFileMappingA
+  KERNEL32                 00412140 MapViewOfFile
+  KERNEL32                 00412144 CloseHandle
+  KERNEL32                 00412148 GetCurrentThreadId
+  KERNEL32                 0041214C GetCurrentProcessId
+  KERNEL32                 00412150 GetModuleFileNameA
+  KERNEL32                 00412154 lstrlenA
+  KERNEL32                 00412158 GetPrivateProfileIntA
+  KERNEL32                 0041215C lstrcatA
+  KERNEL32                 00412160 lstrcpyA
+  KERNEL32                 00412164 GetPrivateProfileStringA
+  KERNEL32                 00412168 GetCommandLineA
+  USER32                   00412270 SetWindowPos
+  USER32                   00412274 GetWindowRect
+  USER32                   00412278 CallWindowProcA
+  USER32                   0041227C CheckRadioButton
+  USER32                   00412280 IsDlgButtonChecked
+  USER32                   00412284 GetDesktopWindow
+  USER32                   00412288 ScreenToClient
+  USER32                   0041228C SetTimer
+  USER32                   00412290 SendDlgItemMessageA
+  USER32                   00412294 SetWindowLongA
+  USER32                   00412298 GetDlgItem
+  USER32                   0041229C DefWindowProcA
+  USER32                   004122A0 LoadBitmapA
+  USER32                   004122A4 PostMessageA
+  USER32                   004122A8 GetDlgItemTextA
+  USER32                   004122AC SetWindowTextA
+  USER32                   004122B0 DispatchMessageA
+  USER32                   004122B4 TranslateMessage
+  USER32                   004122B8 PeekMessageA
+  USER32                   004122BC GetWindowTextA
+  USER32                   004122C0 CharUpperA
+  USER32                   004122C4 GetSysColor
+  USER32                   004122C8 SetForegroundWindow
+  USER32                   004122CC GetCursorPos
+  USER32                   004122D0 TrackPopupMenu
+  USER32                   004122D4 FindWindowA
+  USER32                   004122D8 FindWindowExA
+  USER32                   004122DC ShowWindow
+  USER32                   004122E0 GetMenuItemCount
+  USER32                   004122E4 CheckMenuRadioItem
+  USER32                   004122E8 DestroyMenu
+  USER32                   004122EC DestroyWindow
+  USER32                   004122F0 SetFocus
+  USER32                   004122F4 SetDlgItemTextA
+  USER32                   004122F8 EndDialog
+  USER32                   004122FC SetWindowsHookExA
+  USER32                   00412300 UnhookWindowsHookEx
+  USER32                   00412304 GetAsyncKeyState
+  USER32                   00412308 GetKeyState
+  USER32                   0041230C CallNextHookEx
+  USER32                   00412310 LoadStringA
+  USER32                   00412314 DialogBoxParamA
+  USER32                   00412318 GetForegroundWindow
+  USER32                   0041231C MessageBoxExA
+  USER32                   00412320 GetClientRect
+  USER32                   00412324 CheckDlgButton
+  USER32                   00412328 KillTimer
+  USER32                   0041232C GetFocus
+  USER32                   00412330 EnableWindow
+  USER32                   00412334 LoadIconA
+  USER32                   00412338 GetWindowLongA
+  USER32                   0041233C GetParent
+  USER32                   00412340 SendMessageA
+  USER32                   00412344 InvalidateRect
+  USER32                   00412348 GetDC
+  USER32                   0041234C ValidateRect
+  USER32                   00412350 DrawFrameControl
+  USER32                   00412354 DrawIcon
+  USER32                   00412358 ReleaseDC
+  USER32                   0041235C BeginPaint
+  USER32                   00412360 EndPaint
+  USER32                   00412364 GetDlgCtrlID
+  GDI32                    00412044 CreateFontIndirectA
+  GDI32                    00412048 SetTextColor
+  GDI32                    0041204C SetBkMode
+  GDI32                    00412050 CreateSolidBrush
+  GDI32                    00412054 CreateCompatibleDC
+  GDI32                    00412058 SelectObject
+  GDI32                    0041205C DeleteObject
+  GDI32                    00412060 GetObjectA
+  GDI32                    00412064 DeleteDC
+  SHELL32                  00412254 Shell_NotifyIconA
+  SHELL32                  00412258 SHGetSpecialFolderLocation
+  SHELL32                  0041225C SHGetPathFromIDListA
+  SHELL32                  00412260 ShellExecuteExA
+  ADVAPI32                 00412000 ConvertStringSecurityDescriptorToSecurityDescriptorW
+  ADVAPI32                 00412004 GetSecurityDescriptorSacl
+  ADVAPI32                 00412008 SetSecurityInfo
+  ole32                    0041236C CoCreateInstance
+  ole32                    00412370 OleInitialize
+  ole32                    00412374 CoTaskMemFree
+  OLEAUT32                 00412238 SysAllocString
+  OLEAUT32                 00412234 VariantClear
+  SETUPAPI                 00412240 SetupDiDestroyDeviceInfoList
+  SETUPAPI                 00412244 SetupDiGetClassDevsA
+  SETUPAPI                 00412248 SetupDiGetDeviceInterfaceDetailA
+  SETUPAPI                 0041224C SetupDiEnumDeviceInterfaces
+  HID                      0041206C HidD_GetAttributes
+  HID                      00412070 HidD_SetFeature
+  HID                      00412074 HidP_GetCaps
+  HID                      00412078 HidD_GetPreparsedData
+  HID                      0041207C HidD_GetFeature
+  MSVCRT                   00412178 _stricmp
+  MSVCRT                   0041217C _except_handler3
+  MSVCRT                   00412180 _controlfp
+  MSVCRT                   00412184 ??1type_info@@UAE@XZ
+  MSVCRT                   00412188 _onexit
+  MSVCRT                   0041218C __dllonexit
+  MSVCRT                   00412190 __set_app_type
+  MSVCRT                   00412194 __p__fmode
+  MSVCRT                   00412198 __p__commode
+  MSVCRT                   0041219C _adjust_fdiv
+  MSVCRT                   004121A0 __setusermatherr
+  MSVCRT                   004121A4 _initterm
+  MSVCRT                   004121A8 __getmainargs
+  MSVCRT                   004121AC _acmdln
+  MSVCRT                   004121B0 exit
+  MSVCRT                   004121B4 _XcptFilter
+  MSVCRT                   004121B8 _exit
+  MSVCRT                   004121BC _purecall
+  MSVCRT                   004121C0 abs
+  MSVCRT                   004121C4 strncmp
+  MSVCRT                   004121C8 vfprintf
+  MSVCRT                   004121CC strtol
+  MSVCRT                   004121D0 _CxxThrowException
+  MSVCRT                   004121D4 strrchr
+  MSVCRT                   004121D8 srand
+  MSVCRT                   004121DC rand
+  MSVCRT                   004121E0 strstr
+  MSVCRT                   004121E4 strtoul
+  MSVCRT                   004121E8 isxdigit
+  MSVCRT                   004121EC memcmp
+  MSVCRT                   004121F0 __CxxFrameHandler
+  MSVCRT                   004121F4 ??2@YAPAXI@Z
+  MSVCRT                   004121F8 sprintf
+  MSVCRT                   004121FC ??3@YAXPAX@Z
+  MSVCRT                   00412200 _strupr
+  MSVCRT                   00412204 strlen
+  MSVCRT                   00412208 strcat
+  MSVCRT                   0041220C strcpy
+  MSVCRT                   00412210 strcmp
+  MSVCRT                   00412214 memcpy
+  MSVCRT                   00412218 _access
+  MSVCRT                   0041221C time
+  MSVCRT                   00412220 fopen
+  MSVCRT                   00412224 fprintf
+  MSVCRT                   00412228 fclose
+  MSVCRT                   0041222C memset
+  CRYPT32                  00412010 CertCompareCertificate
+  CRYPT32                  00412014 CertEnumCertificatesInStore
+  CRYPT32                  00412018 CertDuplicateCertificateContext
+  CRYPT32                  0041201C CertCloseStore
+  CRYPT32                  00412020 CertFreeCertificateContext
+  CRYPT32                  00412024 CertCreateCertificateContext
+  CRYPT32                  00412028 CertOpenStore
+  CRYPT32                  0041202C CertGetNameStringA
+  CRYPT32                  00412030 CertAddCertificateContextToStore
+  CRYPT32                  00412034 CertSetCertificateContextProperty
+  CRYPT32                  00412038 CertOpenSystemStoreA
+  CRYPT32                  0041203C CertDeleteCertificateFromStore
+  MSIMG32                  00412170 TransparentBlt
+  SHLWAPI                  00412268 PathFileExistsA
+
+=== EXPORTS ===
+ord=4263362 ea=00410DC2 name=start
+
+=== NAMED FUNCTIONS (interesting) ===
+00412014  CertEnumCertificatesInStore
+0041201C  CertCloseStore
+00412028  CertOpenStore
+00412038  CertOpenSystemStoreA
+00412090  FindClose
+004120A0  OpenEventA
+004120D4  DeviceIoControl
+0041213C  OpenFileMappingA
+00412144  CloseHandle
+00412168  GetCommandLineA
+00412234  VariantClear
+00412240  SetupDiDestroyDeviceInfoList
+00412248  SetupDiGetDeviceInterfaceDetailA
+0041224C  SetupDiEnumDeviceInterfaces
+00412290  SendDlgItemMessageA
+00412340  SendMessageA
+00412370  OleInitialize
+
+=== KEYWORD HITS ===
+
+#### keyword: 初始化U宝
+   raw hits: 0
+
+#### keyword: 修改U宝口令
+   raw hits: 0
+
+#### keyword: 验证U宝口令
+   raw hits: 0
+
+#### keyword: 初始化U宝，请按键确认
+   raw hits: 0
+
+#### keyword: U宝硬件初始口令
+   raw hits: 0
+
+#### keyword: CMBCu
+   raw hits: 0
+
+#### keyword: CMBCC.dll
+   raw hits: 0
+
+#### keyword: CMBCp.dll
+   raw hits: 0
+
+#### keyword: CMBC.dll
+   raw hits: 0

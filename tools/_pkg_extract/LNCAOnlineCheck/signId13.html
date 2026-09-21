@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title>signId13</title>
+</head>
+<script type="text/javascript" src="js/jquery.js"></script>
+<body onload="slotLinkClicked()">
+<div class="bd">
+	
+	<div class="h01"></div>
+	<div class="middle_1">
+    	
+        <p class="left_p">工具版本检测</p>
+    	<div class="clear"></div>
+    </div>
+    
+	<div class="down_1">
+    <div class="h01"></div>
+    <div class="h01"></div>
+    <div class="h01"></div>
+
+		<div class="middle_2">
+    		
+            <ul class="p4">
+        		<li class="only_line" >
+                在线年检工具版本过低，请更新至最新版本，<a id="urladdr" href="http://ww.baidu.com" style="color:#b10000; text-decoration:underline;font-size:18px;">http://ww.baidu.com</a>。
+                </li>
+           
+               
+        	</ul>
+            </div>
+   		</div>
+			<script type="text/javascript">
+			javascript:obj_web_view.GetUrlAddr.connect(slotLinkClicked);
+			function slotLinkClicked()
+    			{
+
+					var certsn = obj_web_view.GetUrlAddr();
+					$('#urladdr').attr('href',certsn); 
+					$("#urladdr").text(certsn);
+				
+    			}
+		</script>	
+        <div class="down_2">
+		<div class="bg_index_1">	
+    		<!--<div class="left"><img src="images/jdtd.png"> </div>-->
+        	
+            
+    	</div>
+        </div>
+	</div>
+</div>
+</body>
+</html>

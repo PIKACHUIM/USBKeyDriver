@@ -27,6 +27,7 @@ public static class FeatureKeys
     public const string ChangePin = "changepin";     // 修改密码
     public const string UnlockDevice = "unlock";     // 解锁设备
     public const string ResetDevice = "reset";       // 重置设备
+    public const string EnrollCert = "enrollcert";   // 证书登记（卡内生成密钥→导出P10→导回签发证书）
 }
 
 /// <summary>用户（非管理）模式的本地偏好设置。</summary>
@@ -59,6 +60,28 @@ public class UsbDeviceDef
     public string Vid { get; set; } = "";
     /// <summary>十六进制PID，如 "0D00"。</summary>
     public string Pid { get; set; } = "";
+
+    /// <summary>
+    /// SKF 平台（<c>skf</c>）专用：该设备对应的 SKF 中间件 DLL 文件名，
+    /// 如 <c>lgu3073_p1514_gm.dll</c>（会在 Library 目录下递归查找）。
+    /// </summary>
+    public string Dll { get; set; } = "";
+
+    /// <summary>
+    /// 该型号在 Windows 侧使用的 CAPI 提供程序名（CSP），用于把证书与卡内私钥容器关联。
+    /// <para>
+    /// 留空时程序会在系统已注册的 CSP/KSP 里按容器名自动查找；只有自动查找不中
+    /// （例如容器名与 CSP 里的名字不同）才需要在这里写死，取值为注册表
+    /// <c>HKLM\SOFTWARE\Microsoft\Cryptography\Defaults\Provider</c> 下的键名。
+    /// </para>
+    /// </summary>
+    public string Csp { get; set; } = "";
+
+    /// <summary>
+    /// 该型号在 Windows 侧使用的 CNG 密钥存储提供程序名（KSP）。配置后优先于 <see cref="Csp"/>。
+    /// </summary>
+    public string Ksp { get; set; } = "";
+
     [JsonIgnore] public int VidInt => ParseHex(Vid);
     [JsonIgnore] public int PidInt => ParseHex(Pid);
     private static int ParseHex(string s) =>
@@ -82,7 +105,15 @@ public class AppConfig
     /// <summary>当前可用的平台列表，如 ["lnca"]。</summary>
     public List<string> Platform { get; set; } = new() { "lnca" };
 
-    /// <summary>每个平台支持的 USB 设备 VID/PID 列表。</summary>
+    /// <summary>
+    /// 每个平台支持的 USB 设备 VID/PID 列表（含 SKF 平台的中间件 DLL 名）。
+    /// <para>
+    /// 必须显式标注 JSON 键：配置文件里是 <c>keyslist</c>，而 <see cref="JsonNamingPolicy.CamelCase"/>
+    /// 会把 <c>KeyList</c> 推导成 <c>keyList</c>，两者不匹配（"keyslist" ≠ "keylist"），
+    /// 缺省会静默反序列化成空字典——各平台的 VID/PID 白名单与 SKF 的 dll 名会全部丢失。
+    /// </para>
+    /// </summary>
+    [JsonPropertyName("keyslist")]
     public Dictionary<string, List<UsbDeviceDef>> KeyList { get; set; } = new();
 
     /// <summary>功能按钮的可见性/可用性配置。</summary>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>底部</title>
+    <script src="js/jquery.js"></script>
+    <style>
+        img {
+            border: none;
+        }
+
+        body {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            background: #ffffff;
+            border: 0;
+            width: 920px;
+            height: 100px;
+            overflow: scroll;
+            overflow: hidden;
+            
+        }
+
+        a {
+            text-decoration: none;
+            line-height: 27.6px;
+        }
+
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .footer {
+            width: 920px;
+            height: 100px;
+            background: url("images/footerBg.png");
+        }
+
+        .footer_top {
+            height: 100px;
+            border-bottom: 1px solid #eee;
+
+        }
+
+        .top_a {
+            float: right;
+            width: 100px;
+            height: 100px;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+       
+        .top_a img {
+            width: 100px;
+            height: 100px;
+        }
+        .top_a:hover{
+            background: #2185e5;
+        }
+        .top_bg{
+            background: #2185e5; 
+        }
+        
+        .top_a .newRemindImg {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+
+        .top_a .newRemindImg img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+    <script language="javascript">
+        //当拖拽图片时发生，设置图片不支持拖拽
+        function imgdragstart() {
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="footer">
+        <div class="footer_top clear">
+            <a class="top_a" id = "downcenter">
+            		<div class="newRemindImg"></div>
+                <img src="images/Ficon-7.png" alt="下载">
+            </a>
+            <a class="top_a" id = "appcenter">
+            	<div class="newRemindImg"></div>
+                <img src="images/Ficon-6.png" alt="应用中心">
+            </a>
+            <a class="top_a" id = "toolcenter">
+            	<div class="newRemindImg"></div>
+                <img src="images/Ficon-5.png" alt="工具">
+            </a>
+            <!--<a class="top_a" id = "info">
+            <div class="newRemindImg"></div>
+                <img src="images/Ficon-4.png" alt="资讯中心">
+            </a>-->
+            <a class="top_a" id = "problem">
+            	<div class="newRemindImg"></div>
+                <img src="images/Ficon-3.png" alt="常见问题">
+            </a>
+            <a class="top_a" id = "envchk">
+            	<div class="newRemindImg"></div>
+                <img src="images/Ficon-2.png" alt="环境检测">
+            </a>
+            <a class="top_a" id = "home">
+            		<div class="newRemindImg"></div>
+                <img src="images/Ficon-1.png" alt="首页">
+            </a>
+        </div>
+    </div>
+    <script>
+        for (i in document.images)
+            document.images[i].ondragstart = imgdragstart;
+    </script>
+</body>
+
+<script type="text/javascript">
+    
+    $(function () {       
+        
+        $(".top_a").mouseup(function () {
+
+
+            eventid = $(this).attr('id');
+
+            toolbtn_clicked(eventid);
+           
+
+        });
+
+    });
+
+
+    $(".top_a").click(function () {
+        $(this).addClass("top_bg").siblings().removeClass("top_bg")
+        $(this).find(".newRemindImg").html("");
+    })
+    // 消息新提示
+    //单个有消息时
+    newRemind(1)
+    //  多个有消息时
+   // newRemind([2,3,4])
+    function newRemind(index){         
+        var newRemindImg='<img src="images/newRemind.gif" alt="">'           
+        if (typeof index== "number") {
+            $(".newRemindImg").eq($(".top_a").length-index).html(newRemindImg)
+        } else {
+            for(var i=0;i<index.length;i++){
+                $(".newRemindImg").eq($(".top_a").length-index[i]).html(newRemindImg)
+            }
+        }
+       }
+
+    function toolbtn_clicked(eventid) {
+
+        window.toolbarObject.on_toolbtn_clicked(eventid);
+    }
+      
+
+    
+</script>
+
+</html>

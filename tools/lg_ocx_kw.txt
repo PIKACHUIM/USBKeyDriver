@@ -1,0 +1,34 @@
+LocalKeySet
+password based MAC
+id-PasswordBasedMAC
+Proxy Certificate Information
+targetInformation
+Subject Information Access
+Authority Information Access
+challengePassword
+HeapQueryInformation
+Please contact the application's support team for more information.
+- not enough space for locale information
+GetUserObjectInformationA
+GetLinguoKeyId
+GetLinguoKeyCount
+GlobalUnlock
+FormatMessageA
+UnlockFile
+GetVolumeInformationA
+GetTimeZoneInformation
+GetUserObjectInformationW
+RegisterClipboardFormatA
+RegDeleteKeyA
+.?AVCResetPropExchange@@
+.?AVCOleConnPtContainer@@
+.?AUIConnectionPointContainer@@
+.?AVCEnumFormatEtc@@
+GetLinguoKeyCountWWW
+^GetLinguoKeyIdWWd
+GetLinguoKeyCountW
+GetLinguoKeyId 
+cjx@linguo.cn1-0+
+隵GetLinguoKeyIdWWd
+方法GetLinguoKeyCountW
+方法GetLinguoKeyId 

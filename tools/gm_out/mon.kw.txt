@@ -1,0 +1,271 @@
+0x004013E9	%XYL
+0x00408E39	%x_L
+0x00408E61	%d_L
+0x00408E79	%X_L
+0x00408EC1	%D_L
+0x004090CD	%x^L
+0x004090F5	%d^L
+0x0040910D	%X^L
+0x00409135	%D^L
+0x004092C5	%x]L
+0x004092ED	%d]L
+0x00409305	%X]L
+0x0040932D	%D]L
+0x004094BD	%x\L
+0x004094E5	%d\L
+0x004094FD	%X\L
+0x00409525	%D\L
+0x004096DD	%x[L
+0x0040970D	%d[L
+0x0040971D	%X[L
+0x0040974D	%D[L
+0x004098F5	%xZL
+0x00409925	%dZL
+0x0040993D	%XZL
+0x00409975	%DZL
+0x00409C12	tagEXCEPINFO 
+0x00415A20	VariantChangeTypeEx
+0x004255D9	TPropIntfFixup
+0x0042AB9D	HelpIntfs
+0x0042CC21	%x`L
+0x0042CC49	%d`L
+0x0042CC61	%X`L
+0x0042CC89	%D`L
+0x0042F2D2	IChangeNotifier|
+0x0043EC95	OnChange
+0x004424A5	Uh*%D
+0x0044251C	h1%D
+0x0044AFD2	TMenuChangeEvent
+0x0044B580	GroupIndex,
+0x0046A821	TChangeLink0
+0x0046C4F6	OnChangeP
+0x0046C53D	OnStateChangeP
+0x00491FE2	TNodeChange
+0x00492472	TNodeChangeEvent
+0x00492495	ChangeType
+0x00492B3F	BeforeNodeChangel$I
+0x00492B6A	AfterNodeChange@
+0x004A7A0E	TSpinDirection
+0x004A7A4E	TSpinButtonType
+0x004A7A86	TSpinChangingEvent
+0x004A7ABF	AllowChange
+0x004A7AE6	TSpinButtonEvent
+0x004A7CD1	TRzSpinButtons
+0x004A7E5F	InitialDelay
+0x004A854D	TRzSpinEdit\
+0x004A855E	TRzSpinEdit
+0x004AF411	GroupIndex
+0x004B3781	cbDefaultPIN
+0x004B42F6	edtUPin
+0x004B4304	edtNewUPin1
+0x004B4316	edtNewUPin2
+0x004B43D5	edtUPinChange
+0x004B43E9	edtUPinExit
+0x004B43FB	edtNewUPin1Change
+0x004B4413	edtNewUPin1Exit
+0x004B4429	edtNewUPin2Change
+0x004B4441	edtNewUPin2Exit
+0x004B4469	edtNewUPin2KeyDown
+0x004B449C	TUPinSetForm
+0x004B44E9	upinsetfrm
+0x004B54DC	TCheckDefaultUPIN
+0x004B5508	TCheckInit
+0x004B5686	TCheckDefaultUPINTimer
+0x004B56BC	TCheckInitTimer
+0x004B5EB4	mToken_Setup.exe
+0x004C60EC	oleaut32.dll
+0x004C6134	advapi32.dll
+0x004C6174	user32.dll
+0x004C61BA	kernel32.dll
+0x004C62A6	GetStartupInfoA
+0x004C6432	CreateFileW
+0x004C705E	msimg32.dll
+0x004C7078	gdi32.dll
+0x004C756E	version.dll
+0x004C7738	ResetEvent
+0x004C7752	OpenFileMappingW
+0x004C77EE	InitializeCriticalSection
+0x004C780A	GlobalUnlock
+0x004C7A22	GetCPInfo
+0x004C7A56	InterlockedExchangeAdd
+0x004C7A70	InterlockedExchange
+0x004C7A9E	InterlockedCompareExchange
+0x004C7B6C	CreateFileMappingW
+0x004C7CA0	ole32.dll
+0x004C7CAC	OleUninitialize
+0x004C7CBE	OleInitialize
+0x004C7CE2	CoUninitialize
+0x004C7CF4	CoInitialize
+0x004C7D7C	VariantChangeType
+0x004C7DAE	VariantInit
+0x004C7DBA	comctl32.dll
+0x004C7DCA	InitializeFlatSB
+0x004C8044	URLMON.DLL
+0x004C8066	wininet.dll
+0x004C808A	shell32.dll
+0x004C80BA	TokenMgr.dll
+0x004C811E	token_change_upin
+0x004C8142	token_get_pin_state
+0x004C8216	uninit_pkcs11
+0x004C8226	init_pkcs11_ex
+0x004C8238	init_pkcs11
+0x004EE5C9	~GM3000Mon
+0x004EE5FC	SysInit
+0x004EE6D7	QTypInfo
+0x004EE7EB	RHelpIntfs
+0x004EE9FB	Zupinsetfrm
+0x004EEE56	http://www.longmai.com.cn
+0x004EEF46	support@longmai.com.cn
+0x004F1E7B	LstControlsChange
+0x004F212E	UPinSetForm
+0x00405A34	u%S媂
+0x004255D9	TPropIntfFixup怳嬱SV勔t
+0x0043EC95	OnChange橁A
+0x004424A3	3繳h*%D
+0x0044B580	GroupIndex,闍
+0x0044B9E7	OnChange愻笵
+0x0046C4F6	OnChangeP翭
+0x0046C53D	OnStateChangeP翭
+0x004A7CD1	TRzSpinButtons愪|J
+0x004A7CE6	TRzSpinButtons剓J
+0x004A854D	TRzSpinEdit\匤
+0x004A855E	TRzSpinEdit魝J
+0x004EE5FB	丼ysInit
+0x00427810	%s_%d
+0x0042CBD0	USER32.DLL
+0x00439EC0	InitializeConditionVariable
+0x0043A7A4	uxtheme.dll
+0x0043AFA0	DWMAPI.DLL
+0x0043C400	clWebDeepPink
+0x0043C428	clWebLightPink
+0x0043C4E4	clWebHotPink
+0x0043C50C	clWebPink
+0x0044AD14	UninitializeFlatSB
+0x00458640	%s (%s)
+0x00467DA0	imm32.dll
+0x0046985C	spin
+0x0047FCC8	Wtsapi32.dll
+0x00480688	K3ProCSP11.dll
+0x004806B4	k3pro_pkcs11.dll
+0x004806E4	Longmai mToken K3Pro CSP V1.1
+0x00480E62	SO PIN
+0x004815A4	GM3000Mon.exe
+0x00483AF0	K_PIN_Error
+0x00484120	K_Info_maxPinLen
+0x00484150	K_Info_minPinLen
+0x004844E8	I_InputPIN
+0x0048450C	I_CertPINError
+0x004845C8	S_PIN_equal
+0x004846A8	K_DefaultUPINInfo
+0x00484868	Main_Form_btn_SetUPIN
+0x00484AA4	UPINSet_Form_NewPIN1
+0x00484ADC	UPINSet_Form_NewPIN2
+0x004850E4	UPINSet_Form_OldPIN
+0x0048528C	SOPIN_Error
+0x004852B0	Change_No
+0x004852D0	Change_Yes
+0x004852F4	SOPIN_E2
+0x00485314	UPIN_E2
+0x00485330	K_Init_Info
+0x00485354	K_Init_try
+0x00485414	Admin_btn_Init
+0x00485440	Admin_btn_SOPIN
+0x0048546C	Admin_btn_Unlock
+0x0048549C	Admin_btn_DownISO
+0x004854CC	Admin_label_TryCount
+0x00485504	Admin_label_SOPIN
+0x00485534	Admin_label_UPIN
+0x0048558C	Admin_Name
+0x004855D0	Admin_label_OldSOPIN
+0x00485608	Admin_label_NewSOPIN1
+0x00485640	Admin_label_NewSOPIN2
+0x00485678	Admin_label_NewUPIN1
+0x004856B0	Admin_label_NewUPIN2
+0x004856E8	Admin_label_ISOPath
+0x00485744	K_Info_SOPIN_maxPinLen
+0x00485780	K_Info_SOPIN_minPinLen
+0x004857BC	K_Info_SOPIN_TryCount
+0x00485818	K_pkcs11Init_Error
+0x0048591C	Config_Form_DefaultPIN
+0x00485958	Init_Info
+0x00485A78	K_InputSOPIN
+0x00485E40	P_DefaultPIN_Info
+0x00487B64	CoInitializeEx
+0x0049165C	NMTOKEN
+0x00491678	NMTOKENS
+0x004937C0	%s="%s"
+0x00497C74	%s%s%s: %d%s%s
+0x0049A6C0	DefaultPIN
+0x004B4684	%s(%d--%d)
+0x004B5E64	Server Ver = %s  Client Ver = %s
+0x004B6334	%s(%s %s)
+0x004B70A0	 = %d
+0x004B72D4	TupinsetForm
+0x004B75CC	 =%d
+0x004D92F2	TUPINSETFORM
+0x004E2CC2	Menu Bar+{GM3000HZTWMon-8066-443E-9998-5713F4427EDF}
+0x004E30BC	Pink
+0x004E30E8	OLE error %.8x.Method '%s' not supported by automation object/Variant does not reference an automation object7Dispatch methods do not support more than 64 parameters
+0x004E32FA	No matching DOM Vendor: "%s"<Selected DOM Vendor does not support this property or method;Property or Method "%s" is not supported by DOM Vendor "%s"
+0x004E34B6	Node "%s" not found
+0x004E37F2	GM3000HZTW
+0x004E381A	GM3000HZTW.EN.dll
+0x004E383E	GM3000HZTW.CHS.dll
+0x004E3864	TGM3000HZTW_Mgr
+0x004E3884	gm3000HZTW_TrayIcon*gm3000,vid_055c&pid_db08,vid_055c&pid_e618
+0x004E3914	GM3000APP)"%s" DOMImplementation already registered
+0x004E39F8	 - Dock zone has no controlLError loading dock zone from the stream. Expecting version %d, but found %d.
+0x004E3B4A	Longmai
+0x004E3CAE	Cannot open clipboard: %s/Menu '%s' is already being used by another form
+0x004E3ED4	Invalid input value7Invalid input value.  Use escape key to abandon changes
+0x004E405E	Not enough timers available@GroupIndex cannot be less than a previous menu item's GroupIndex5Cannot create form. No MDI forms are currently active*A control cannot have itself as its parent
+0x004E4456	Error creating window class+Cannot focus a disabled or invisible window!Control '%s' has no parent window$Parent given is not a parent of '%s'
+0x004E4574	Cannot hide an MDI Child Form)Cannot change Visible in OnShow or OnHide"Cannot make a visible window modal#''%s'' is not a valid date and time#''%s'' is not a valid integer value
+0x004E46DA	''%s'' is not a valid time
+0x004E48B2	No help found for %s
+0x004E496C	Invalid pixel format!Cannot change the size of an icon
+0x004E4A2A	Failed to get data for '%s'
+0x004E4A62	Failed to set data for '%s'
+0x004E4A9A	Resource %s not found
+0x004E4AC6	%s.Seek not implemented$Operation not allowed on sorted list$%s not in a class registration group
+0x004E4B8A	Property %s does not exist
+0x004E4BE6	Thread creation error: %s
+0x004E4C1A	Thread Error: %s (%d)-Cannot terminate an externally created thread,Cannot wait for an externally created thread$No help viewer that supports filters
+0x004E4D46	''%s'' is not a valid date
+0x004E4D7C	%String list does not allow duplicates
+0x004E4DCA	Cannot create file "%s". %s
+0x004E4E02	Cannot open file "%s". %s
+0x004E4E36	Unable to write to %s
+0x004E4E62	Invalid file name - %s
+0x004E4E90	Invalid stream format$''%s'' is not a valid component name
+0x004E4F06	Invalid property element: %s
+0x004E4F9A	Invalid data type for '%s' List capacity out of bounds (%d)
+0x004E5012	List count out of bounds (%d)
+0x004E504E	List index out of bounds (%d)+Out of memory while expanding memory stream
+0x004E50E2	Error reading %s%s%s: %s
+0x004E5140	Invalid destination array"Character index out of bounds (%d)
+0x004E51BA	Start index out of bounds (%d)
+0x004E51F8	Invalid count (%d)
+0x004E521E	Invalid destination index (%d)
+0x004E5280	Ancestor for '%s' not found
+0x004E52B8	Cannot assign a %s to a %s
+0x004E52EE	Bits index out of range*Can't write to a read-only resource streamECheckSynchronize called from thread $%x, which is NOT the main thread
+0x004E5400	Class %s not found
+0x004E5426	A class named %s already exists%List does not allow duplicates ($0%x)#A component named %s already exists
+0x004E571C	Object lock not owned(Monitor support function not initialized
+0x004E579A	%s (%s, line %d)
+0x004E57BC	Abstract Error?Access violation at address %p in module '%s'. %s of address %p
+0x004E585A	System Error.  Code: %d.
+0x004E5A60	Invalid NULL variant operation%Invalid variant operation (%s%.8x)
+0x004E5AE4	%s5Could not convert variant of type (%s) into type (%s)=Overflow while converting variant of type (%s) into type (%s)
+0x004E5CA2	External exception %x
+0x004E5D58	Invalid class typecast0Access violation at address %p. %s of address %p
+0x004E5E72	Operation aborted(Exception %s in module %s at %p.
+0x004E5EDA	%s%s
+0x004E5EE8	Application Error1Format '%s' invalid or incompatible with argument
+0x004E5F70	No argument for format '%s'"Variant method calls not supported
+0x004E6004	('%s' is not a valid floating point value
+0x004E60B4	I/O error %d
+0x004F2BEC	Longmai Technology
+0x004F2C3C	GM3000 Mon
+0x004F2D94	GM3000

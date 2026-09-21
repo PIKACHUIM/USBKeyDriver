@@ -1,0 +1,8 @@
+== g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+size=424448
+machine=0x014C magic=0x10B x86 image_base=0x10000000
+  .text     va=0x00001000 vsize=0x00055F09 raw=0x00000400 rsize=0x00056000
+  .rdata    va=0x00057000 vsize=0x000087ED raw=0x00056400 rsize=0x00008800
+  .data     va=0x00060000 vsize=0x00006838 raw=0x0005EC00 rsize=0x00004400
+  .rsrc     va=0x00067000 vsize=0x000004CC raw=0x00063000 rsize=0x00000600
+  .reloc    va=0x00068000 vsize=0x000042E4 raw=0x00063600 rsize=0x00004400

@@ -1,0 +1,265 @@
+FILE: G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCC.dll
+IMAGEBASE: 0x10000000
+
+=== WAITING FOR AUTOANALYSIS ===
+done
+=== IMPORTS ===
+  KERNEL32                 10023054 WaitForSingleObject
+  KERNEL32                 10023058 SetEvent
+  KERNEL32                 1002305C CreateThread
+  KERNEL32                 10023060 lstrlenA
+  KERNEL32                 10023064 GetPrivateProfileStringA
+  KERNEL32                 10023068 lstrcmpA
+  KERNEL32                 1002306C UnmapViewOfFile
+  KERNEL32                 10023070 OpenEventA
+  KERNEL32                 10023074 lstrcatA
+  KERNEL32                 10023078 GetUserDefaultLangID
+  KERNEL32                 1002307C FreeLibrary
+  KERNEL32                 10023080 CloseHandle
+  KERNEL32                 10023084 Sleep
+  KERNEL32                 10023088 GetCurrentThreadId
+  KERNEL32                 1002308C FileTimeToSystemTime
+  KERNEL32                 10023090 LocalAlloc
+  KERNEL32                 10023094 LocalFree
+  KERNEL32                 10023098 DeviceIoControl
+  KERNEL32                 1002309C WriteFile
+  KERNEL32                 100230A0 ReadFile
+  KERNEL32                 100230A4 CreateFileA
+  KERNEL32                 100230A8 CreateFileMappingA
+  KERNEL32                 100230AC GetLocalTime
+  KERNEL32                 100230B0 GetCurrentProcessId
+  KERNEL32                 100230B4 GetModuleFileNameA
+  KERNEL32                 100230B8 ReleaseMutex
+  KERNEL32                 100230BC CreateMutexA
+  KERNEL32                 100230C0 OpenFileMappingA
+  KERNEL32                 100230C4 MapViewOfFile
+  KERNEL32                 100230C8 LoadLibraryA
+  KERNEL32                 100230CC lstrlenW
+  KERNEL32                 100230D0 lstrcpynA
+  KERNEL32                 100230D4 GetLastError
+  KERNEL32                 100230D8 WideCharToMultiByte
+  KERNEL32                 100230DC SetLastError
+  KERNEL32                 100230E0 InterlockedDecrement
+  KERNEL32                 100230E4 InterlockedIncrement
+  KERNEL32                 100230E8 HeapAlloc
+  KERNEL32                 100230EC EnterCriticalSection
+  KERNEL32                 100230F0 LeaveCriticalSection
+  KERNEL32                 100230F4 GetProcessHeap
+  KERNEL32                 100230F8 HeapFree
+  KERNEL32                 100230FC DeleteCriticalSection
+  KERNEL32                 10023100 InitializeCriticalSection
+  KERNEL32                 10023104 MultiByteToWideChar
+  USER32                   10023128 SetFocus
+  USER32                   1002312C SendDlgItemMessageA
+  USER32                   10023130 GetDesktopWindow
+  USER32                   10023134 GetForegroundWindow
+  USER32                   10023138 GetParent
+  USER32                   1002313C BeginPaint
+  USER32                   10023140 GetDlgItem
+  USER32                   10023144 GetWindowRect
+  USER32                   10023148 LoadBitmapA
+  USER32                   1002314C DialogBoxParamA
+  USER32                   10023150 GetDlgItemTextA
+  USER32                   10023154 FindWindowA
+  USER32                   10023158 EndPaint
+  USER32                   1002315C SetTimer
+  USER32                   10023160 PostMessageA
+  USER32                   10023164 LoadStringA
+  USER32                   10023168 SetDlgItemTextA
+  USER32                   1002316C GetFocus
+  USER32                   10023170 MessageBoxA
+  USER32                   10023174 CallNextHookEx
+  USER32                   10023178 GetKeyState
+  USER32                   1002317C GetAsyncKeyState
+  USER32                   10023180 UnhookWindowsHookEx
+  USER32                   10023184 SetWindowsHookExA
+  USER32                   10023188 DefWindowProcA
+  USER32                   1002318C SetWindowPos
+  USER32                   10023190 EndDialog
+  USER32                   10023194 GetActiveWindow
+  USER32                   10023198 ScreenToClient
+  USER32                   1002319C MessageBoxExA
+  USER32                   100231A0 CreateDialogParamA
+  USER32                   100231A4 DestroyWindow
+  USER32                   100231A8 SendMessageA
+  USER32                   100231AC ShowWindow
+  GDI32                    10023024 GetObjectA
+  GDI32                    10023028 CreateCompatibleDC
+  GDI32                    1002302C SelectObject
+  GDI32                    10023030 DeleteObject
+  GDI32                    10023034 DeleteDC
+  ole32                    10023254 CoCreateGuid
+  ole32                    10023258 StringFromGUID2
+  CRYPT32                  10023010 CertOpenStore
+  CRYPT32                  10023014 CertCreateCertificateContext
+  CRYPT32                  10023018 CertGetNameStringA
+  CRYPT32                  1002301C CertCloseStore
+  msvcrt                   100231B4 strtoul
+  msvcrt                   100231B8 atoi
+  msvcrt                   100231BC strncpy
+  msvcrt                   100231C0 _initterm
+  msvcrt                   100231C4 _adjust_fdiv
+  msvcrt                   100231C8 __dllonexit
+  msvcrt                   100231CC _onexit
+  msvcrt                   100231D0 _beginthread
+  msvcrt                   100231D4 _endthread
+  msvcrt                   100231D8 strcat
+  msvcrt                   100231DC sprintf
+  msvcrt                   100231E0 ??2@YAPAXI@Z
+  msvcrt                   100231E4 fopen
+  msvcrt                   100231E8 fclose
+  msvcrt                   100231EC __CxxFrameHandler
+  msvcrt                   100231F0 strcmp
+  msvcrt                   100231F4 strstr
+  msvcrt                   100231F8 strcpy
+  msvcrt                   100231FC memcmp
+  msvcrt                   10023200 memmove
+  msvcrt                   10023204 strlen
+  msvcrt                   10023208 ??3@YAXPAX@Z
+  msvcrt                   1002320C malloc
+  msvcrt                   10023210 realloc
+  msvcrt                   10023214 free
+  msvcrt                   10023218 memset
+  msvcrt                   1002321C time
+  msvcrt                   10023220 srand
+  msvcrt                   10023224 rand
+  msvcrt                   10023228 memcpy
+  msvcrt                   1002322C _access
+  msvcrt                   10023230 isxdigit
+  msvcrt                   10023234 strncmp
+  msvcrt                   10023238 abs
+  msvcrt                   1002323C _strupr
+  msvcrt                   10023240 strtol
+  msvcrt                   10023244 vfprintf
+  msvcrt                   10023248 fprintf
+  msvcrt                   1002324C _purecall
+  MSIMG32                  1002310C TransparentBlt
+  SETUPAPI                 10023114 SetupDiGetDeviceInterfaceDetailA
+  SETUPAPI                 10023118 SetupDiGetClassDevsA
+  SETUPAPI                 1002311C SetupDiEnumDeviceInterfaces
+  SETUPAPI                 10023120 SetupDiDestroyDeviceInfoList
+  HID                      1002303C HidD_GetAttributes
+  HID                      10023040 HidD_SetFeature
+  HID                      10023044 HidP_GetCaps
+  HID                      10023048 HidD_GetPreparsedData
+  HID                      1002304C HidD_GetFeature
+  ADVAPI32                 10023000 ConvertStringSecurityDescriptorToSecurityDescriptorW
+  ADVAPI32                 10023004 GetSecurityDescriptorSacl
+  ADVAPI32                 10023008 SetSecurityInfo
+
+=== EXPORTS ===
+ord=2      ea=100076DD name=CPAcquireContext
+ord=3      ea=10007BCB name=CPCreateHash
+ord=4      ea=10008A56 name=CPDestroyHash
+ord=5      ea=10008B02 name=CPDestroyKey
+ord=6      ea=10008BAE name=CPDuplicateHash
+ord=7      ea=10008E78 name=CPDuplicateKey
+ord=8      ea=10008FEA name=CPEncrypt
+ord=9      ea=10009649 name=CPDecrypt
+ord=10     ea=10009C1A name=CPExportKey
+ord=11     ea=1000A12B name=CPImportKey
+ord=12     ea=1000A5D0 name=CPGenKey
+ord=13     ea=1000AA78 name=CPGenRandom
+ord=14     ea=1000AB32 name=CPGetHashParam
+ord=15     ea=1000ADD5 name=CPSetKeyParam
+ord=16     ea=1000B109 name=CPGetKeyParam
+ord=17     ea=1000B63E name=CPGetProvParam
+ord=18     ea=1000BFBB name=CPDeriveKey
+ord=19     ea=1000C429 name=CPGetUserKey
+ord=20     ea=1000C691 name=CPHashData
+ord=21     ea=1000C7C1 name=CPHashSessionKey
+ord=22     ea=1000C90F name=CPReleaseContext
+ord=23     ea=1000C9A2 name=CPSetHashParam
+ord=24     ea=1000CC44 name=CPSetProvParam
+ord=25     ea=1000CE08 name=CPSignHash
+ord=26     ea=1000D7E7 name=CPVerifySignature
+ord=27     ea=1000DC0C name=GetCspName
+ord=268534737 ea=100183D1 name=DllEntryPoint
+
+=== NAMED FUNCTIONS (interesting) ===
+1000D7E7  CPVerifySignature
+10023010  CertOpenStore
+1002301C  CertCloseStore
+10023070  OpenEventA
+10023080  CloseHandle
+10023098  DeviceIoControl
+100230C0  OpenFileMappingA
+10023100  InitializeCriticalSection
+10023114  SetupDiGetDeviceInterfaceDetailA
+1002311C  SetupDiEnumDeviceInterfaces
+10023120  SetupDiDestroyDeviceInfoList
+1002312C  SendDlgItemMessageA
+100231A8  SendMessageA
+1002FDB0  Format
+100302FC  aVerifypinDialo
+1003033C  aBspVerifypinEr
+10030370  aBspVerifypinAg
+10030C68  aThidtspEnumdev
+10030C80  aThidtspOpendev_0
+10030CD0  aThidtspOpendev
+10030CE8  aThidtspClosede_0
+10030D00  aThidtspClosede
+10030E48  aCtspbotEnumdev
+10030E60  aCtspbotOpendev_0
+10030E9C  aCtspbotOpendev
+10030EB4  aTbotutspClosed_0
+10030ECC  aTbotutspClosed
+10030EE4  aSendcmdBotuRea
+10030F04  aSendcmdBotuWri
+10030F28  aDeviceiocontro_2
+10030F4C  aDeviceiocontro_1
+10030F78  aDeviceiocontro_0
+10031004  aDeviceiocontro
+
+=== KEYWORD HITS ===
+
+#### keyword: 初始化U宝，请按键确认
+   raw hits: 0
+
+#### keyword: 初始化U宝成功
+   raw hits: 0
+
+#### keyword: 初始化U宝失败
+   raw hits: 0
+
+#### keyword: 修改U宝口令
+   raw hits: 0
+
+#### keyword: U宝口令修改成功
+   raw hits: 0
+
+#### keyword: 验证U宝口令
+   raw hits: 0
+
+#### keyword: HENGBAO_FILEMAPPING_STRING_ghSDWEADFO
+   raw hits: 1
+   hit @100303A0 (utf16=False) -> HENGBAO_FILEMAPPING_STRING_ghSDWEADFO
+      data xrefs: 10017DAA
+
+======================================================================
+### FUNC @10017DA8  (refs string HENGBAO_FILEMAPPING_STRING_ghSDWEADFO)
+======================================================================
+char *__cdecl sub_10017DA8(char *Source, size_t Count)
+{
+  char *result; // eax
+  char *v3; // ebx
+  void *v4; // esi
+
+  result = (char *)OpenFileMappingA(0xF001Fu, 1, Name);
+  v3 = result;
+  if ( result )
+  {
+    v4 = MapViewOfFile(result, 0xF001Fu, 0, 0, 0);
+    if ( v4 )
+    {
+      memset(v4, 0, Count + 1);
+      return strncpy((char *)v4, Source, Count);
+    }
+    else
+    {
+      return (char *)CloseHandle(v3);
+    }
+  }
+  return result;
+}
+

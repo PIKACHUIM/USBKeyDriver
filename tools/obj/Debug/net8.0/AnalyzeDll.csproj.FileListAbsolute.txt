@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\tools\bin\Debug\net8.0\AnalyzeDll.exe
+G:\Codes\USBKeyDriver\tools\bin\Debug\net8.0\AnalyzeDll.deps.json
+G:\Codes\USBKeyDriver\tools\bin\Debug\net8.0\AnalyzeDll.runtimeconfig.json
+G:\Codes\USBKeyDriver\tools\bin\Debug\net8.0\AnalyzeDll.dll
+G:\Codes\USBKeyDriver\tools\bin\Debug\net8.0\AnalyzeDll.pdb
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.sourcelink.json
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.dll
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\refint\AnalyzeDll.dll
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.pdb
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\AnalyzeDll.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\tools\obj\Debug\net8.0\ref\AnalyzeDll.dll

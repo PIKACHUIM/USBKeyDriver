@@ -1,0 +1,45 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll
+;; rva=0xB450 len=0x60 file_off=0xA850
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+1000b450 <.text+0xa450>:
+1000b450:	8b 54 24 0c          	mov    edx,DWORD PTR [esp+0xc]
+1000b454:	8b 4c 24 04          	mov    ecx,DWORD PTR [esp+0x4]
+1000b458:	85 d2                	test   edx,edx
+1000b45a:	74 69                	je     0x1000b4c5
+1000b45c:	33 c0                	xor    eax,eax
+1000b45e:	8a 44 24 08          	mov    al,BYTE PTR [esp+0x8]
+1000b462:	84 c0                	test   al,al
+1000b464:	75 16                	jne    0x1000b47c
+1000b466:	81 fa 00 01 00 00    	cmp    edx,0x100
+1000b46c:	72 0e                	jb     0x1000b47c
+1000b46e:	83 3d 90 d7 01 10 00 	cmp    DWORD PTR ds:0x1001d790,0x0
+1000b475:	74 05                	je     0x1000b47c
+1000b477:	e9 89 5c 00 00       	jmp    0x10011105
+1000b47c:	57                   	push   edi
+1000b47d:	8b f9                	mov    edi,ecx
+1000b47f:	83 fa 04             	cmp    edx,0x4
+1000b482:	72 31                	jb     0x1000b4b5
+1000b484:	f7 d9                	neg    ecx
+1000b486:	83 e1 03             	and    ecx,0x3
+1000b489:	74 0c                	je     0x1000b497
+1000b48b:	2b d1                	sub    edx,ecx
+1000b48d:	88 07                	mov    BYTE PTR [edi],al
+1000b48f:	83 c7 01             	add    edi,0x1
+1000b492:	83 e9 01             	sub    ecx,0x1
+1000b495:	75 f6                	jne    0x1000b48d
+1000b497:	8b c8                	mov    ecx,eax
+1000b499:	c1 e0 08             	shl    eax,0x8
+1000b49c:	03 c1                	add    eax,ecx
+1000b49e:	8b c8                	mov    ecx,eax
+1000b4a0:	c1 e0 10             	shl    eax,0x10
+1000b4a3:	03 c1                	add    eax,ecx
+1000b4a5:	8b ca                	mov    ecx,edx
+1000b4a7:	83 e2 03             	and    edx,0x3
+1000b4aa:	c1 e9 02             	shr    ecx,0x2
+1000b4ad:	74 06                	je     0x1000b4b5
+1000b4af:	f3                   	repz

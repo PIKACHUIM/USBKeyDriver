@@ -1,0 +1,38 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll
+;; M_EnumContainer rva=0x15D0 va=0x100015D0 stop=0x10001610
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100015d0 <.text+0x5d0>:
+100015d0:	56                   	push   esi
+100015d1:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+100015d7:	57                   	push   edi
+100015d8:	85 f6                	test   esi,esi
+100015da:	74 0a                	je     0x100015e6
+100015dc:	56                   	push   esi
+100015dd:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+100015e3:	83 c4 04             	add    esp,0x4
+100015e6:	8b 44 24 10          	mov    eax,DWORD PTR [esp+0x10]
+100015ea:	8b 54 24 0c          	mov    edx,DWORD PTR [esp+0xc]
+100015ee:	50                   	push   eax
+100015ef:	e8 4c 45 00 00       	call   0x10005b40
+100015f4:	8b f8                	mov    edi,eax
+100015f6:	85 f6                	test   esi,esi
+100015f8:	74 0a                	je     0x10001604
+100015fa:	56                   	push   esi
+100015fb:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+10001601:	83 c4 04             	add    esp,0x4
+10001604:	8b c7                	mov    eax,edi
+10001606:	5f                   	pop    edi
+10001607:	5e                   	pop    esi
+10001608:	c3                   	ret
+10001609:	cc                   	int3
+1000160a:	cc                   	int3
+1000160b:	cc                   	int3
+1000160c:	cc                   	int3
+1000160d:	cc                   	int3
+1000160e:	cc                   	int3
+1000160f:	cc                   	int3

@@ -1,0 +1,152 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; rva=0x16E0 len=0x130 file_off=0xAE0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100016e0 <.text+0x6e0>:
+100016e0:	55                   	push   ebp
+100016e1:	8b ec                	mov    ebp,esp
+100016e3:	83 e4 f8             	and    esp,0xfffffff8
+100016e6:	56                   	push   esi
+100016e7:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+100016ed:	57                   	push   edi
+100016ee:	85 f6                	test   esi,esi
+100016f0:	74 0a                	je     0x100016fc
+100016f2:	56                   	push   esi
+100016f3:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+100016f9:	83 c4 04             	add    esp,0x4
+100016fc:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+100016ff:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+10001702:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+10001705:	50                   	push   eax
+10001706:	51                   	push   ecx
+10001707:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+1000170a:	e8 51 21 00 00       	call   0x10003860
+1000170f:	8b f8                	mov    edi,eax
+10001711:	85 f6                	test   esi,esi
+10001713:	74 0a                	je     0x1000171f
+10001715:	56                   	push   esi
+10001716:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+1000171c:	83 c4 04             	add    esp,0x4
+1000171f:	8b c7                	mov    eax,edi
+10001721:	5f                   	pop    edi
+10001722:	5e                   	pop    esi
+10001723:	8b e5                	mov    esp,ebp
+10001725:	5d                   	pop    ebp
+10001726:	c3                   	ret
+10001727:	cc                   	int3
+10001728:	cc                   	int3
+10001729:	cc                   	int3
+1000172a:	cc                   	int3
+1000172b:	cc                   	int3
+1000172c:	cc                   	int3
+1000172d:	cc                   	int3
+1000172e:	cc                   	int3
+1000172f:	cc                   	int3
+10001730:	56                   	push   esi
+10001731:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+10001737:	57                   	push   edi
+10001738:	85 f6                	test   esi,esi
+1000173a:	74 0a                	je     0x10001746
+1000173c:	56                   	push   esi
+1000173d:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10001743:	83 c4 04             	add    esp,0x4
+10001746:	8b 4c 24 0c          	mov    ecx,DWORD PTR [esp+0xc]
+1000174a:	e8 b1 21 00 00       	call   0x10003900
+1000174f:	8b f8                	mov    edi,eax
+10001751:	85 f6                	test   esi,esi
+10001753:	74 0a                	je     0x1000175f
+10001755:	56                   	push   esi
+10001756:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+1000175c:	83 c4 04             	add    esp,0x4
+1000175f:	8b c7                	mov    eax,edi
+10001761:	5f                   	pop    edi
+10001762:	5e                   	pop    esi
+10001763:	c3                   	ret
+10001764:	cc                   	int3
+10001765:	cc                   	int3
+10001766:	cc                   	int3
+10001767:	cc                   	int3
+10001768:	cc                   	int3
+10001769:	cc                   	int3
+1000176a:	cc                   	int3
+1000176b:	cc                   	int3
+1000176c:	cc                   	int3
+1000176d:	cc                   	int3
+1000176e:	cc                   	int3
+1000176f:	cc                   	int3
+10001770:	55                   	push   ebp
+10001771:	8b ec                	mov    ebp,esp
+10001773:	83 e4 f8             	and    esp,0xfffffff8
+10001776:	83 ec 0c             	sub    esp,0xc
+10001779:	53                   	push   ebx
+1000177a:	56                   	push   esi
+1000177b:	57                   	push   edi
+1000177c:	8b 3d e0 4f 06 10    	mov    edi,DWORD PTR ds:0x10064fe0
+10001782:	89 7c 24 14          	mov    DWORD PTR [esp+0x14],edi
+10001786:	85 ff                	test   edi,edi
+10001788:	74 0a                	je     0x10001794
+1000178a:	57                   	push   edi
+1000178b:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10001791:	83 c4 04             	add    esp,0x4
+10001794:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+10001797:	8b 5d 0c             	mov    ebx,DWORD PTR [ebp+0xc]
+1000179a:	85 c0                	test   eax,eax
+1000179c:	76 2d                	jbe    0x100017cb
+1000179e:	8b f3                	mov    esi,ebx
+100017a0:	8b f8                	mov    edi,eax
+100017a2:	8b 16                	mov    edx,DWORD PTR [esi]
+100017a4:	b9 e0 16 06 10       	mov    ecx,0x100616e0
+100017a9:	8d a4 24 00 00 00 00 	lea    esp,[esp+0x0]
+100017b0:	3b 11                	cmp    edx,DWORD PTR [ecx]
+100017b2:	74 0b                	je     0x100017bf
+100017b4:	83 c1 44             	add    ecx,0x44
+100017b7:	81 f9 3c 32 06 10    	cmp    ecx,0x1006323c
+100017bd:	7c f1                	jl     0x100017b0
+100017bf:	83 c6 0c             	add    esi,0xc
+100017c2:	83 ef 01             	sub    edi,0x1
+100017c5:	75 db                	jne    0x100017a2
+100017c7:	8b 7c 24 14          	mov    edi,DWORD PTR [esp+0x14]
+100017cb:	8b 4d 14             	mov    ecx,DWORD PTR [ebp+0x14]
+100017ce:	51                   	push   ecx
+100017cf:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+100017d2:	53                   	push   ebx
+100017d3:	e8 08 33 00 00       	call   0x10004ae0
+100017d8:	8b f0                	mov    esi,eax
+100017da:	85 ff                	test   edi,edi
+100017dc:	74 0a                	je     0x100017e8
+100017de:	57                   	push   edi
+100017df:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+100017e5:	83 c4 04             	add    esp,0x4
+100017e8:	5f                   	pop    edi
+100017e9:	8b c6                	mov    eax,esi
+100017eb:	5e                   	pop    esi
+100017ec:	5b                   	pop    ebx
+100017ed:	8b e5                	mov    esp,ebp
+100017ef:	5d                   	pop    ebp
+100017f0:	c3                   	ret
+100017f1:	cc                   	int3
+100017f2:	cc                   	int3
+100017f3:	cc                   	int3
+100017f4:	cc                   	int3
+100017f5:	cc                   	int3
+100017f6:	cc                   	int3
+100017f7:	cc                   	int3
+100017f8:	cc                   	int3
+100017f9:	cc                   	int3
+100017fa:	cc                   	int3
+100017fb:	cc                   	int3
+100017fc:	cc                   	int3
+100017fd:	cc                   	int3
+100017fe:	cc                   	int3
+100017ff:	cc                   	int3
+10001800:	55                   	push   ebp
+10001801:	8b ec                	mov    ebp,esp
+10001803:	83 e4 f8             	and    esp,0xfffffff8
+10001806:	56                   	push   esi
+10001807:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000180d:	57                   	push   edi
+1000180e:	85 f6                	test   esi,esi

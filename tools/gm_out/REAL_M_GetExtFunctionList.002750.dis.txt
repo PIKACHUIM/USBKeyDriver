@@ -1,0 +1,173 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; rva=0x2750 len=0x160 file_off=0x1B50
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10002750 <.text+0x1750>:
+10002750:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10002754:	85 c0                	test   eax,eax
+10002756:	75 06                	jne    0x1000275e
+10002758:	b8 07 00 00 00       	mov    eax,0x7
+1000275d:	c3                   	ret
+1000275e:	c7 00 e8 35 06 10    	mov    DWORD PTR [eax],0x100635e8
+10002764:	33 c0                	xor    eax,eax
+10002766:	c3                   	ret
+10002767:	cc                   	int3
+10002768:	cc                   	int3
+10002769:	cc                   	int3
+1000276a:	cc                   	int3
+1000276b:	cc                   	int3
+1000276c:	cc                   	int3
+1000276d:	cc                   	int3
+1000276e:	cc                   	int3
+1000276f:	cc                   	int3
+10002770:	55                   	push   ebp
+10002771:	8b ec                	mov    ebp,esp
+10002773:	83 e4 f8             	and    esp,0xfffffff8
+10002776:	56                   	push   esi
+10002777:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000277d:	57                   	push   edi
+1000277e:	85 f6                	test   esi,esi
+10002780:	74 0a                	je     0x1000278c
+10002782:	56                   	push   esi
+10002783:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002789:	83 c4 04             	add    esp,0x4
+1000278c:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+1000278f:	8b 4d 0c             	mov    ecx,DWORD PTR [ebp+0xc]
+10002792:	50                   	push   eax
+10002793:	51                   	push   ecx
+10002794:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+10002797:	e8 e4 29 00 00       	call   0x10005180
+1000279c:	8b f8                	mov    edi,eax
+1000279e:	85 f6                	test   esi,esi
+100027a0:	74 0a                	je     0x100027ac
+100027a2:	56                   	push   esi
+100027a3:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+100027a9:	83 c4 04             	add    esp,0x4
+100027ac:	8b c7                	mov    eax,edi
+100027ae:	5f                   	pop    edi
+100027af:	5e                   	pop    esi
+100027b0:	8b e5                	mov    esp,ebp
+100027b2:	5d                   	pop    ebp
+100027b3:	c3                   	ret
+100027b4:	cc                   	int3
+100027b5:	cc                   	int3
+100027b6:	cc                   	int3
+100027b7:	cc                   	int3
+100027b8:	cc                   	int3
+100027b9:	cc                   	int3
+100027ba:	cc                   	int3
+100027bb:	cc                   	int3
+100027bc:	cc                   	int3
+100027bd:	cc                   	int3
+100027be:	cc                   	int3
+100027bf:	cc                   	int3
+100027c0:	55                   	push   ebp
+100027c1:	8b ec                	mov    ebp,esp
+100027c3:	83 e4 f8             	and    esp,0xfffffff8
+100027c6:	51                   	push   ecx
+100027c7:	53                   	push   ebx
+100027c8:	56                   	push   esi
+100027c9:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+100027cf:	57                   	push   edi
+100027d0:	85 f6                	test   esi,esi
+100027d2:	74 0a                	je     0x100027de
+100027d4:	56                   	push   esi
+100027d5:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+100027db:	83 c4 04             	add    esp,0x4
+100027de:	8b 5d 18             	mov    ebx,DWORD PTR [ebp+0x18]
+100027e1:	8b 7d 14             	mov    edi,DWORD PTR [ebp+0x14]
+100027e4:	8b 4d 0c             	mov    ecx,DWORD PTR [ebp+0xc]
+100027e7:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+100027ea:	e8 e1 29 00 00       	call   0x100051d0
+100027ef:	8b f8                	mov    edi,eax
+100027f1:	85 f6                	test   esi,esi
+100027f3:	74 0a                	je     0x100027ff
+100027f5:	56                   	push   esi
+100027f6:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+100027fc:	83 c4 04             	add    esp,0x4
+100027ff:	8b c7                	mov    eax,edi
+10002801:	5f                   	pop    edi
+10002802:	5e                   	pop    esi
+10002803:	5b                   	pop    ebx
+10002804:	8b e5                	mov    esp,ebp
+10002806:	5d                   	pop    ebp
+10002807:	c3                   	ret
+10002808:	cc                   	int3
+10002809:	cc                   	int3
+1000280a:	cc                   	int3
+1000280b:	cc                   	int3
+1000280c:	cc                   	int3
+1000280d:	cc                   	int3
+1000280e:	cc                   	int3
+1000280f:	cc                   	int3
+10002810:	55                   	push   ebp
+10002811:	8b ec                	mov    ebp,esp
+10002813:	83 e4 f8             	and    esp,0xfffffff8
+10002816:	56                   	push   esi
+10002817:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000281d:	57                   	push   edi
+1000281e:	85 f6                	test   esi,esi
+10002820:	74 0a                	je     0x1000282c
+10002822:	56                   	push   esi
+10002823:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002829:	83 c4 04             	add    esp,0x4
+1000282c:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+1000282f:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+10002832:	50                   	push   eax
+10002833:	e8 18 2a 00 00       	call   0x10005250
+10002838:	8b f8                	mov    edi,eax
+1000283a:	85 f6                	test   esi,esi
+1000283c:	74 0a                	je     0x10002848
+1000283e:	56                   	push   esi
+1000283f:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+10002845:	83 c4 04             	add    esp,0x4
+10002848:	8b c7                	mov    eax,edi
+1000284a:	5f                   	pop    edi
+1000284b:	5e                   	pop    esi
+1000284c:	8b e5                	mov    esp,ebp
+1000284e:	5d                   	pop    ebp
+1000284f:	c3                   	ret
+10002850:	55                   	push   ebp
+10002851:	8b ec                	mov    ebp,esp
+10002853:	83 e4 f8             	and    esp,0xfffffff8
+10002856:	56                   	push   esi
+10002857:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000285d:	57                   	push   edi
+1000285e:	85 f6                	test   esi,esi
+10002860:	74 0a                	je     0x1000286c
+10002862:	56                   	push   esi
+10002863:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002869:	83 c4 04             	add    esp,0x4
+1000286c:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+1000286f:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+10002872:	50                   	push   eax
+10002873:	e8 58 2a 00 00       	call   0x100052d0
+10002878:	8b f8                	mov    edi,eax
+1000287a:	85 f6                	test   esi,esi
+1000287c:	74 0a                	je     0x10002888
+1000287e:	56                   	push   esi
+1000287f:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+10002885:	83 c4 04             	add    esp,0x4
+10002888:	8b c7                	mov    eax,edi
+1000288a:	5f                   	pop    edi
+1000288b:	5e                   	pop    esi
+1000288c:	8b e5                	mov    esp,ebp
+1000288e:	5d                   	pop    ebp
+1000288f:	c3                   	ret
+10002890:	55                   	push   ebp
+10002891:	8b ec                	mov    ebp,esp
+10002893:	83 e4 f8             	and    esp,0xfffffff8
+10002896:	56                   	push   esi
+10002897:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000289d:	57                   	push   edi
+1000289e:	85 f6                	test   esi,esi
+100028a0:	74 0a                	je     0x100028ac
+100028a2:	56                   	push   esi
+100028a3:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+100028a9:	83 c4 04             	add    esp,0x4
+100028ac:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+100028af:	8b                   	.byte 0x8b

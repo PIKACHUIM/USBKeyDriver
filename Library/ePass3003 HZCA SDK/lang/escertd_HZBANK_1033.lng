@@ -1,0 +1,156 @@
+[settings]
+; 1033 = 0x0409
+CodePage=1033
+Language=English
+FontFace=Tahoma
+FontHeight=8
+
+[strings]
+;==============================================================
+; Dialog Box String
+;==============================================================
+1=OK
+2=Cancel
+102=Hangzhou Bank PKI Manager
+1000=Error
+1001=Information
+1015=Change User &PIN
+1016=&View Cert
+1017=&Register Cert
+1018=&Unregister Cert
+1019=Hangzhou Bank PKI Manager
+1021=Certificates
+2000=Change Token &Name
+2001=New Token Name(at most %d characters)
+2002=Change Token Name
+
+2004=Intensity:
+
+1020=We build Security!
+1008=Don't show anymore
+1010=Run Manager
+1012=View detail
+136=EnterSafe CertD
+135=Please Change User PIN
+1039=Don't prompt this dialog again
+500=Your %s's User PIN has not been changed after initialized.Please change your initialized PIN for security assurance!
+61216=Sorry, please select one certificate firstly!
+61212=Parameter Error!
+61217=Register certificate successfully!
+61218=Register certificate failed!
+61214=logout certificate successfully!
+61215=logout certificate failed!
+1029=New PIN(%d to %d characters):
+5000=The new and confirm password do not match, please try again.
+5007=Your new PIN must be a mixtures of alphabets and numbers, eg. \"SKY3818V6\"!
+5001=The token has been removed.
+5004=This token has been blocked! Contact your administrator to unblock it.
+5003=Wrong PIN, please try again. \n\nWarning: It is the LAST PIN attempt! If the PIN is still wrong, the token will be blocked!
+5002=Wrong PIN, please try again.
+5005=Change User PIN failed!
+5006=Change User PIN successfully!
+5008=Invalid Password!\r\nTry again, You now have %d chances
+5009=Incorrect PIN.\r\nNow it's the last chance to try.\r\nIf the PIN is still incorrect, the token will be blocked
+57344=Certificates Manager
+
+;=======================
+;Menu
+;=======================
+128=No Use
+140=DUMMY
+32771=Show Hangzhou Bank PKI Manager
+32772=About...
+
+100=About Hangzhou Bank PKI Manager
+1022=Hangzhou Bank PKI Manager
+1023=Version 1.0
+1024=Copyright(C) 2012 EnterSafe
+;==============================================================
+; Runtime String
+;==============================================================
+10000=USBKey is inserted
+10001=USBkey is removed
+10002=Public Key
+10003=Private Key
+10004=Certificate
+10005=Saving %s, please wait...
+10006=%s is saved successfully
+10007=Failed to save %s
+10008=Generating key pair, please wait...
+10009=Key pair are generated successfully
+10010=Failed to generate key pair
+10011=Low level initializing the USBKey, please wait...
+10012=Low level initialization finished
+10013=Low level initialization failed
+10014=initializing the USBKey, please wait...
+10015=USBKey is initialized successfully
+10016=Failed to initialize USBKey
+10017=The inserted USBKey can not be recognized
+10018=pull or 
+10019=One certificate or more in the token is to be expired(or already expired). Please remember to update.
+10020=The User PIN has not been changed after initialized. Please remember to change.
+10021=The User PIN has not been changed after initialized. Would you like to change it now?
+;==============================================================
+; Common string
+;==============================================================
+11000=Certificate Manager is ready
+11001=Failed to load PKCS#11 library, please check your installation
+11002=Can not start USBKey monitor, the certificate register can not works perfectly well
+11003=Hangzhou Bank PKI Manager - %s
+11004=Invalid after
+11005=Common name
+11006=Container name
+11007=Key spec.
+11008=Serial number
+11009=Signature
+11010=Key exchange
+
+6300=Initialize USBKey
+6301=All the certificates info of your USBKey will lose if initialize, continue?
+6302=Initialize USBKey Successful! \n Initialized Token PIN is 123456.
+6303=Initialize USBKey Failed!
+20000=Hangzhou Bank PKI Manager
+20001=No certificate is found in your USB key!
+20002=you have closed the online bank page, please remove your USBKey in time!
+20003=Your cert: %s has been not used, please update!
+20004=Your cert: %s will be not used after %d days, please remember update.
+
+
+;==============================================================
+; SetPIN dlg
+;==============================================================
+;---Static string
+;---can be enabled by ml_loadDlgStr
+
+1046=Old user PIN:
+1047=New PIN(%d to %d characters):
+1048=Confirm PIN:
+1092=L
+1093=M
+1094=H
+1096=Check intensity
+1101=Enable soft keyboard
+
+30036=Change user PIN of %s
+30037=Change SO PIN of %s
+30038=Old SO PIN:
+30039=New SO PIN:
+
+30040=Unblock %s.
+30041=SO PIN:
+30042=New user PIN:
+30043=Export
+
+;Option Dlg
+2003=Setting(&S)
+105=Setting
+2005=Auto Open URL Bank of HangZhou
+
+;update dlg
+2006=&Update Online
+200701=Download update failed!
+200702=Installing update...
+200703=Download update success!
+200704=Install update failed!
+200705=Already the newest version!
+200706=Alread running the latest version, Don't need update.

@@ -1,0 +1,76 @@
+0x100100BD	L$%SQ
+0x10035F97	w%SQ
+0x10057517	- Attempt to use MSIL code from this assembly during native code initialization
+0x10057647	- Attempt to initialize the CRT more than once.
+0x100576AB	- CRT not initialized
+0x100576CB	- unable to initialize heap
+0x100576F3	- not enough space for lowio initialization
+0x1005772B	- not enough space for stdio initialization
+0x10057C14	`dynamic initializer for '
+0x100582EC	USER32.DLL
+0x10058CC8	Longmai mToken GM3000 CSP V1.1
+0x10058D4C	Virtual Slot %d
+0x1005B46C	%s%s_%d
+0x1005B918	Time Stamping
+0x1005B928	id-kp-timeStamping
+0x1005BC24	%d.%d
+0x1005BC98	mCOSInit
+0x1005BD00	GetPinInfo
+0x1005BD0C	ChangePin
+0x1005BD18	VerifyPin
+0x1005BD24	UnblockPin
+0x1005BD30	ReloadPin
+0x1005BD98	CreateFile
+0x1005BF74	DigestInit
+0x1005C004	EncryptInit
+0x1005C030	DecryptInit
+0x1005C4E8	e:\svn\Software\mPKCS11\4.Development\kernel\prj\MSVC\Release\gm3000_pkcs11.pdb
+0x1005E6AC	KERNEL32.dll
+0x1005E6EC	ADVAPI32.dll
+0x1005E8BA	GetStartupInfoA
+0x1005EA58	GetCPInfo
+0x1005EB06	InitializeCriticalSectionAndSpinCount
+0x1005EBAC	CreateFileA
+0x1005ED7C	USER32.dll
+0x1005ED8A	InitializeSecurityDescriptor
+0x1005EDC6	SetupDiGetClassDevsA
+0x1005EDDE	SetupDiDestroyDeviceInfoList
+0x1005EDFE	SetupDiGetDeviceInterfaceDetailA
+0x1005EE22	SetupDiEnumDeviceInterfaces
+0x1005EE3E	SETUPAPI.dll
+0x1005EEC4	HID.DLL
+0x1005EEDA	DeviceIoControl
+0x1005F2A8	gm3000_pkcs11.dll
+0x1005F338	C_DecryptInit
+0x1005F3B5	C_DigestInit
+0x1005F3F6	C_EncryptInit
+0x1005F440	C_FindObjectsInit
+0x1005F54D	C_InitPIN
+0x1005F557	C_InitToken
+0x1005F563	C_Initialize
+0x1005F5C4	C_SetPIN
+0x1005F5F4	C_SignInit
+0x1005F60D	C_SignRecoverInit
+0x1005F64F	C_VerifyInit
+0x1005F66C	C_VerifyRecoverInit
+0x1005F6D5	M_CreateFile
+0x1005F7C1	M_UnblockUserPin
+0x1006275C	CKA_AUTH_PIN_FLAGS
+0x10062A8C	CKA_OTP_PIN_REQUIREMENT
+0x10062CAC	CKA_RESET_ON_INIT
+0x10062CF0	CKA_HAS_RESET
+0x10063242	Longmai Technology
+0x10063288	gm3000,vid_055c&pid_db08,vid_055c&pid_e618
+0x10063308	gm3000
+0x10063348	GM3000RSA
+0x10063428	GM3000
+0x10063448	Longmai
+0x10063488	admin
+0x100100BC	峀$%SQ塂$
+0x10024BF2	峀$%SQ圽$,
+0x10035F91	呿t);遷%SQ岲.(P桦s
+0x10041055	W3踛?嬮峀$%SQ塂$
+0x100572AC	KERNEL32.DLL
+0x10057314	mscoree.dll
+0x10058C94	ieframe.dll
+0x1005C3A0	\\.\pipe\mTokenIOSvr

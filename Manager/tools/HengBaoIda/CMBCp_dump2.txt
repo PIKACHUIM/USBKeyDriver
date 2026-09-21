@@ -1,0 +1,857 @@
+=== EXPORT THUNKS ===
+C_CancelFunction               stub=100011EF real=100011EF   
+C_CloseAllSessions             stub=100012B2 real=100012B2   
+C_CloseSession                 stub=10001217 real=10001217   
+C_CopyObject                   stub=1000147E real=1000147E   
+C_CreateObject                 stub=10001014 real=10001014   
+C_Decrypt                      stub=100016BD real=100016BD   
+C_DecryptDigestUpdate          stub=1000152D real=1000152D   
+C_DecryptFinal                 stub=1000123F real=1000123F   
+C_DecryptInit                  stub=100015FA real=100015FA   
+C_DecryptUpdate                stub=100014EC real=100014EC   
+C_DecryptVerifyUpdate          stub=100013BB real=100013BB   
+C_DeriveKey                    stub=10001311 real=10001311   
+C_DestroyObject                stub=10001712 real=10001712   
+C_Digest                       stub=1000105A real=1000105A   
+C_DigestEncryptUpdate          stub=100013C0 real=100013C0   
+C_DigestFinal                  stub=10001343 real=10001343   
+C_DigestInit                   stub=1000154B real=1000154B   
+C_DigestKey                    stub=10001663 real=10001663   
+C_DigestUpdate                 stub=100011C7 real=100011C7   
+C_Encrypt                      stub=10001668 real=10001668   
+C_EncryptFinal                 stub=10001442 real=10001442   
+C_EncryptInit                  stub=1000156E real=1000156E   
+C_EncryptUpdate                stub=1000166D real=1000166D   
+C_Finalize                     stub=10001028 real=10001028   
+C_FindObjects                  stub=10001186 real=10001186   
+C_FindObjectsFinal             stub=1000102D real=1000102D   
+C_FindObjectsInit              stub=100011EA real=100011EA   
+C_GenerateKey                  stub=1000112C real=1000112C   
+C_GenerateKeyPair              stub=1000126C real=1000126C   
+C_GenerateRandom               stub=10001609 real=10001609   
+C_GetAttributeValue            stub=100015A5 real=100015A5   
+C_GetFunctionList              stub=1000116D real=1000116D   
+C_GetFunctionStatus            stub=10001438 real=10001438   
+C_GetInfo                      stub=1000131B real=1000131B   
+C_GetMechanismInfo             stub=10001686 real=10001686   
+C_GetMechanismList             stub=1000168B real=1000168B   
+C_GetObjectSize                stub=100011DB real=100011DB   
+C_GetOperationState            stub=100010B9 real=100010B9   
+C_GetSessionInfo               stub=100011D6 real=100011D6   
+C_GetSlotInfo                  stub=100013F2 real=100013F2   
+C_GetSlotList                  stub=1000141F real=1000141F   
+C_GetTokenInfo                 stub=10001159 real=10001159   
+C_InitPIN                      stub=1000139D real=1000139D   
+C_InitToken                    stub=10001550 real=10001550   
+C_Initialize                   stub=100011B3 real=100011B3   
+C_Login                        stub=10001447 real=10001447   
+C_Logout                       stub=1000172B real=1000172B   
+C_OpenSession                  stub=10001717 real=10001717   
+C_SeedRandom                   stub=1000103C real=1000103C   
+C_SetAttributeValue            stub=1000169A real=1000169A   
+C_SetOperationState            stub=100016A9 real=100016A9   
+C_SetPIN                       stub=10001127 real=10001127   
+C_Sign                         stub=1000104B real=1000104B   
+C_SignEncryptUpdate            stub=100013E8 real=100013E8   
+C_SignFinal                    stub=10001384 real=10001384   
+C_SignInit                     stub=1000136B real=1000136B   
+C_SignRecover                  stub=100010A5 real=100010A5   
+C_SignRecoverInit              stub=10001226 real=10001226   
+C_SignUpdate                   stub=10001140 real=10001140   
+C_UnwrapKey                    stub=1000164F real=1000164F   
+C_Verify                       stub=10001735 real=10001735   
+C_VerifyFinal                  stub=10001294 real=10001294   
+C_VerifyInit                   stub=1000135C real=1000135C   
+C_VerifyRecover                stub=10001046 real=10001046   
+C_VerifyRecoverInit            stub=10001230 real=10001230   
+C_VerifyUpdate                 stub=100016B8 real=100016B8   
+C_WaitForSlotEvent             stub=10001375 real=10001375   
+C_WrapKey                      stub=100013AC real=100013AC   
+DllEntryPoint                  stub=10029855 real=10029855   push    ebp | mov     ebp, esp | push    ebx | mov     ebx, [ebp+8] | push    esi | mov     esi, [ebp+0Ch] | push    edi | mov     edi, [ebp+10h] | test    esi, esi | jnz     short loc_10029871 | cmp     dword_10049710, 0
+
+=== STRINGS (interesting) ===
+10039C9C  C_DecryptInit
+10039CBA  C_DecryptVerifyUpdate
+10039CD0  C_DeriveKey
+10039D19  C_DigestInit
+10039D26  C_DigestKey
+10039D5A  C_EncryptInit
+10039DA4  C_FindObjectsInit
+10039DB6  C_GenerateKey
+10039DC4  C_GenerateKeyPair
+10039EB1  C_InitPIN
+10039EBB  C_InitToken
+10039EC7  C_Initialize
+10039F28  C_SetPIN
+10039F58  C_SignInit
+10039F71  C_SignRecoverInit
+10039F90  C_UnwrapKey
+10039F9C  C_Verify
+10039FA5  C_VerifyFinal
+10039FB3  C_VerifyInit
+10039FC0  C_VerifyRecover
+10039FD0  C_VerifyRecoverInit
+10039FE4  C_VerifyUpdate
+1003A006  C_WrapKey
+1003B520  CPDuplicateKey 411
+1003B538  CPDuplicateKey 410
+1003B550  CPDuplicateKey 49
+1003B568  CPDuplicateKey 48
+1003B580  CPDuplicateKey 47
+1003B598  CPDuplicateKey 46
+1003B5B0  CPDuplicateKey 45
+1003B5C8  D:\CvsRoot\Uranusafe5.0\UranusafeKitV5.0\Src\Pkcs11\P11Frame\implglue.cpp
+1003B620  CPDuplicateKey 44
+1003B638  encrypt_block_impl HeapAlloc
+1003B65C  encrypt_block_impl In
+1003B6B4  D:\CvsRoot\Uranusafe5.0\UranusafeKitV5.0\Src\Pkcs11\P11Frame\token_comm.cpp
+1003B748  KGenerateKeyPairs Out
+1003B774  FSP_RSAPriKeyOperate In
+1003B790  BSP_GetKeyLen In
+1003B7E8  GetPinAndCheckStatus Out
+1003BCF8  RSA_PKCS_KEY_PAIR_GEN
+1003BD90  DES3_KEY_GEN
+1003BDDC  DES_KEY_GEN
+1003BE28  RC4_KEY_GEN
+1003BE74  RC2_KEY_GEN
+1003C774  C_Initialize Out
+1003C788  D:\CvsRoot\Uranusafe5.0\UranusafeKitV5.0\Src\Pkcs11\P11Frame\uZJPKCS11.cpp
+1003C7E4  C_Initialize In
+1003C808  Unranusafe KEY
+1003C81C  Unranusafe KEY 
+1003C9CC  C_DigestInit Out
+1003C9E0  C_DigestInit In
+1003CA70  C_GenerateKeyPair Out
+1003CA8C  WriteObjAttr pPrivateKeyObject
+1003CAB4  WriteObjAttr pPublicKeyObject
+1003CAD8  C_GenerateKeyPair In
+1003CAF4  C_SignInit Out
+1003CB08  C_SignInit In
+1003CBB0  C_VerifyInit In
+1003CBC4  C_VerifyUpdate In
+1003CBDC  C_VerifyFinal Out
+1003CBF4  C_VerifyFinal In
+1003CC08  C_Verify Out
+1003CC18  C_Verify In
+1003CC28  C_GenerateKey Out
+1003CC40  C_GenerateKey In
+1003CCB4  C_FindObjectsInit Out
+1003CD28  C_FindObjectsInit In
+1003CE24  C_EncryptInit Out
+1003CE3C  C_EncryptInit In
+1003CF50  C_WrapKey In
+1003CF60  C_UnwrapKey Out
+1003CF74  C_UnwrapKey In
+1003CFAC  HENGBAO KEY
+1003D0F0  c:\zj_log\zj_csp.log
+1003D1B0  c:\hblogfile\CSPLogFile.txt
+1003D738  THidTSP::EnumDevice]
+1003D790  [THidTSP::EnumDevice
+1003D7A8  THidTSP::OpenDevice]
+1003D7C0  GetHidCap(hHandle,hidp_cap)=false
+1003D7F8  [THidTSP::OpenDevice
+1003D810  THidTSP::CloseDevice]
+1003D828  [THidTSP::CloseDevice
+1003D840  THidTSP::SendData]
+1003D854  SenCmd_Hid READBUF_FLG ==false
+1003D874  SenCmd_Hid WRITEBUF_FLG ==false
+1003D894  [THidTSP::SendData
+1003D8A8   * HidD_SetFeature dwReturn=0x%x
+1003D918   * HidD_GetFeature i=0x%x
+1003D934    * HidD_GetFeature dwReturn=0x%x
+1003D958  * HidD_SetFeature dwReturn=0x%x
+1003DA34  SendCmd_BotU(READBUF_FLG)=false
+1003DA54  SendCmd_BotU(WRITEBUF_FLG)=false
+1003DB28  C:\HBLogFile\TSPLogFile.txt
+1003DB44  C:\HBLogFile
+1003DB54  HB UranuSafe Key PC/SC Driver
+1004A7E6  HidD_GetAttributes
+1004A7FC  HidD_GetFeature
+1004A80E  HidD_SetFeature
+1004A820  HidP_GetCaps
+1004A830  HidD_GetPreparsedData
+1004A846  HID.DLL
+1004A9CA  _initterm
+1004ABA6  AllocateAndInitializeSid
+
+=== DECOMPILED ===
+
+========================================================================
+### C_CancelFunction   stub=0x100011EF real=0x100011EF  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_CancelFunction()
+{
+  JUMPOUT(0x1001F560);
+}
+
+
+========================================================================
+### C_CloseAllSessions   stub=0x100012B2 real=0x100012B2  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_CloseAllSessions()
+{
+  JUMPOUT(0x1001BC10);
+}
+
+
+========================================================================
+### C_CloseSession   stub=0x10001217 real=0x10001217  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_CloseSession()
+{
+  JUMPOUT(0x1001BB50);
+}
+
+
+========================================================================
+### C_CopyObject   stub=0x1000147E real=0x1000147E  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_CopyObject()
+{
+  JUMPOUT(0x1001F3A0);
+}
+
+
+========================================================================
+### C_CreateObject   stub=0x10001014 real=0x10001014  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_CreateObject()
+{
+  JUMPOUT(0x1001D960);
+}
+
+
+========================================================================
+### C_Decrypt   stub=0x100016BD real=0x100016BD  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_Decrypt()
+{
+  JUMPOUT(0x1001EBE0);
+}
+
+
+========================================================================
+### C_DecryptDigestUpdate   stub=0x1000152D real=0x1000152D  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DecryptDigestUpdate()
+{
+  JUMPOUT(0x1001F4E0);
+}
+
+
+========================================================================
+### C_DecryptFinal   stub=0x1000123F real=0x1000123F  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_DecryptFinal()
+{
+  JUMPOUT(0x1001EA60);
+}
+
+
+========================================================================
+### C_DecryptInit   stub=0x100015FA real=0x100015FA  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DecryptInit()
+{
+  JUMPOUT(0x1001E8C0);
+}
+
+
+========================================================================
+### C_DecryptUpdate   stub=0x100014EC real=0x100014EC  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_DecryptUpdate()
+{
+  JUMPOUT(0x1001E8F0);
+}
+
+
+========================================================================
+### C_DecryptVerifyUpdate   stub=0x100013BB real=0x100013BB  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DecryptVerifyUpdate()
+{
+  JUMPOUT(0x1001F520);
+}
+
+
+========================================================================
+### C_DeriveKey   stub=0x10001311 real=0x10001311  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_DeriveKey()
+{
+  JUMPOUT(0x1001F1E0);
+}
+
+
+========================================================================
+### C_DestroyObject   stub=0x10001712 real=0x10001712  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DestroyObject()
+{
+  JUMPOUT(0x1001DC20);
+}
+
+
+========================================================================
+### C_Digest   stub=0x1000105A real=0x1000105A  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_Digest()
+{
+  JUMPOUT(0x1001C0F0);
+}
+
+
+========================================================================
+### C_DigestEncryptUpdate   stub=0x100013C0 real=0x100013C0  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DigestEncryptUpdate()
+{
+  JUMPOUT(0x1001F4C0);
+}
+
+
+========================================================================
+### C_DigestFinal   stub=0x10001343 real=0x10001343  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_DigestFinal()
+{
+  JUMPOUT(0x1001C020);
+}
+
+
+========================================================================
+### C_DigestInit   stub=0x1000154B real=0x1000154B  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DigestInit()
+{
+  JUMPOUT(0x1001BE50);
+}
+
+
+========================================================================
+### C_DigestKey   stub=0x10001663 real=0x10001663  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_DigestKey()
+{
+  JUMPOUT(0x1001F3C0);
+}
+
+
+========================================================================
+### C_DigestUpdate   stub=0x100011C7 real=0x100011C7  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_DigestUpdate()
+{
+  JUMPOUT(0x1001BF90);
+}
+
+
+========================================================================
+### C_Encrypt   stub=0x10001668 real=0x10001668  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_Encrypt()
+{
+  JUMPOUT(0x1001E750);
+}
+
+
+========================================================================
+### C_EncryptFinal   stub=0x10001442 real=0x10001442  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_EncryptFinal()
+{
+  JUMPOUT(0x1001E5D0);
+}
+
+
+========================================================================
+### C_EncryptInit   stub=0x1000156E real=0x1000156E  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_EncryptInit()
+{
+  JUMPOUT(0x1001E350);
+}
+
+
+========================================================================
+### C_EncryptUpdate   stub=0x1000166D real=0x1000166D  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_EncryptUpdate()
+{
+  JUMPOUT(0x1001E460);
+}
+
+
+========================================================================
+### C_Finalize   stub=0x10001028 real=0x10001028  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_Finalize()
+{
+  JUMPOUT(0x1001F110);
+}
+
+
+========================================================================
+### C_FindObjects   stub=0x10001186 real=0x10001186  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_FindObjects()
+{
+  JUMPOUT(0x1001DF20);
+}
+
+
+========================================================================
+### C_FindObjectsFinal   stub=0x1000102D real=0x1000102D  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_FindObjectsFinal()
+{
+  JUMPOUT(0x1001E050);
+}
+
+
+========================================================================
+### C_FindObjectsInit   stub=0x100011EA real=0x100011EA  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_FindObjectsInit()
+{
+  JUMPOUT(0x1001DD60);
+}
+
+
+========================================================================
+### C_GenerateKey   stub=0x1000112C real=0x1000112C  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_GenerateKey()
+{
+  JUMPOUT(0x1001D560);
+}
+
+
+========================================================================
+### C_GenerateKeyPair   stub=0x1000126C real=0x1000126C  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GenerateKeyPair()
+{
+  JUMPOUT(0x1001C180);
+}
+
+
+========================================================================
+### C_GenerateRandom   stub=0x10001609 real=0x10001609  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_GenerateRandom()
+{
+  JUMPOUT(0x1001F700);
+}
+
+
+========================================================================
+### C_GetAttributeValue   stub=0x100015A5 real=0x100015A5  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GetAttributeValue()
+{
+  JUMPOUT(0x1001E0F0);
+}
+
+
+========================================================================
+### C_GetFunctionList   stub=0x1000116D real=0x1000116D  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_GetFunctionList()
+{
+  JUMPOUT(0x1001F840);
+}
+
+
+========================================================================
+### C_GetFunctionStatus   stub=0x10001438 real=0x10001438  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GetFunctionStatus()
+{
+  JUMPOUT(0x1001F540);
+}
+
+
+========================================================================
+### C_GetInfo   stub=0x1000131B real=0x1000131B  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_GetInfo()
+{
+  JUMPOUT(0x1001B360);
+}
+
+
+========================================================================
+### C_GetMechanismInfo   stub=0x10001686 real=0x10001686  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GetMechanismInfo()
+{
+  JUMPOUT(0x1001BD80);
+}
+
+
+========================================================================
+### C_GetMechanismList   stub=0x1000168B real=0x1000168B  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_GetMechanismList()
+{
+  JUMPOUT(0x1001BCE0);
+}
+
+
+========================================================================
+### C_GetObjectSize   stub=0x100011DB real=0x100011DB  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GetObjectSize()
+{
+  JUMPOUT(0x1001DD40);
+}
+
+
+========================================================================
+### C_GetOperationState   stub=0x100010B9 real=0x100010B9  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_GetOperationState()
+{
+  JUMPOUT(0x1001F360);
+}
+
+
+========================================================================
+### C_GetSessionInfo   stub=0x100011D6 real=0x100011D6  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GetSessionInfo()
+{
+  JUMPOUT(0x1001F670);
+}
+
+
+========================================================================
+### C_GetSlotInfo   stub=0x100013F2 real=0x100013F2  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_GetSlotInfo()
+{
+  JUMPOUT(0x1001F580);
+}
+
+
+========================================================================
+### C_GetSlotList   stub=0x1000141F real=0x1000141F  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_GetSlotList()
+{
+  JUMPOUT(0x1001B480);
+}
+
+
+========================================================================
+### C_GetTokenInfo   stub=0x10001159 real=0x10001159  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_GetTokenInfo()
+{
+  JUMPOUT(0x1001B560);
+}
+
+
+========================================================================
+### C_InitPIN   stub=0x1000139D real=0x1000139D  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_InitPIN()
+{
+  JUMPOUT(0x1001F2C0);
+}
+
+
+========================================================================
+### C_InitToken   stub=0x10001550 real=0x10001550  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_InitToken()
+{
+  JUMPOUT(0x1001F2A0);
+}
+
+
+========================================================================
+### C_Initialize   stub=0x100011B3 real=0x100011B3  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_Initialize()
+{
+  JUMPOUT(0x1001B2D0);
+}
+
+
+========================================================================
+### C_Login   stub=0x10001447 real=0x10001447  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_Login()
+{
+  JUMPOUT(0x1001D130);
+}
+
+
+========================================================================
+### C_Logout   stub=0x1000172B real=0x1000172B  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_Logout()
+{
+  JUMPOUT(0x1001D210);
+}
+
+
+========================================================================
+### C_OpenSession   stub=0x10001717 real=0x10001717  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_OpenSession()
+{
+  JUMPOUT(0x1001B990);
+}
+
+
+========================================================================
+### C_SeedRandom   stub=0x1000103C real=0x1000103C  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_SeedRandom()
+{
+  JUMPOUT(0x1001F200);
+}
+
+
+========================================================================
+### C_SetAttributeValue   stub=0x1000169A real=0x1000169A  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_SetAttributeValue()
+{
+  JUMPOUT(0x1001E180);
+}
+
+
+========================================================================
+### C_SetOperationState   stub=0x100016A9 real=0x100016A9  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_SetOperationState()
+{
+  JUMPOUT(0x1001F380);
+}
+
+
+========================================================================
+### C_SetPIN   stub=0x10001127 real=0x10001127  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_SetPIN()
+{
+  JUMPOUT(0x1001F2E0);
+}
+
+
+========================================================================
+### C_Sign   stub=0x1000104B real=0x1000104B  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_Sign()
+{
+  JUMPOUT(0x1001D010);
+}
+
+
+========================================================================
+### C_SignEncryptUpdate   stub=0x100013E8 real=0x100013E8  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_SignEncryptUpdate()
+{
+  JUMPOUT(0x1001F500);
+}
+
+
+========================================================================
+### C_SignFinal   stub=0x10001384 real=0x10001384  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_SignFinal()
+{
+  JUMPOUT(0x1001CE60);
+}
+
+
+========================================================================
+### C_SignInit   stub=0x1000136B real=0x1000136B  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_SignInit()
+{
+  JUMPOUT(0x1001CCA0);
+}
+
+
+========================================================================
+### C_SignRecover   stub=0x100010A5 real=0x100010A5  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_SignRecover()
+{
+  JUMPOUT(0x1001F420);
+}
+
+
+========================================================================
+### C_SignRecoverInit   stub=0x10001226 real=0x10001226  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_SignRecoverInit()
+{
+  JUMPOUT(0x1001F3E0);
+}
+
+
+========================================================================
+### C_SignUpdate   stub=0x10001140 real=0x10001140  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_SignUpdate()
+{
+  JUMPOUT(0x1001CDE0);
+}
+
+
+========================================================================
+### C_UnwrapKey   stub=0x1000164F real=0x1000164F  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_UnwrapKey()
+{
+  JUMPOUT(0x1001EE70);
+}
+
+
+========================================================================
+### C_Verify   stub=0x10001735 real=0x10001735  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_Verify()
+{
+  JUMPOUT(0x1001D450);
+}
+
+
+========================================================================
+### C_VerifyFinal   stub=0x10001294 real=0x10001294  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_VerifyFinal()
+{
+  JUMPOUT(0x1001D310);
+}
+
+
+========================================================================
+### C_VerifyInit   stub=0x1000135C real=0x1000135C  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_VerifyInit()
+{
+  JUMPOUT(0x1001D290);
+}
+
+
+========================================================================
+### C_VerifyRecover   stub=0x10001046 real=0x10001046  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_VerifyRecover()
+{
+  JUMPOUT(0x1001F4A0);
+}
+
+
+========================================================================
+### C_VerifyRecoverInit   stub=0x10001230 real=0x10001230  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_VerifyRecoverInit()
+{
+  JUMPOUT(0x1001F460);
+}
+
+
+========================================================================
+### C_VerifyUpdate   stub=0x100016B8 real=0x100016B8  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149C60> >
+========================================================================
+// attributes: thunk
+void C_VerifyUpdate()
+{
+  JUMPOUT(0x1001D2D0);
+}
+
+
+========================================================================
+### C_WaitForSlotEvent   stub=0x10001375 real=0x10001375  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x0000000009FF1C00> >
+========================================================================
+// attributes: thunk
+void C_WaitForSlotEvent()
+{
+  JUMPOUT(0x1001F280);
+}
+
+
+========================================================================
+### C_WrapKey   stub=0x100013AC real=0x100013AC  func=<ida_funcs.func_t; proxy of <Swig Object of type 'func_t *' at 0x000000000A149DB0> >
+========================================================================
+// attributes: thunk
+void C_WrapKey()
+{
+  JUMPOUT(0x1001ED50);
+}
+

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "FM82wPQ7Faw=",
+  "success": true,
+  "projectFilePath": "G:\\Codes\\USBKeyDriver\\Manager\\tools\\CardInspect\\CardInspect.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pikachuren\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\pikachuren\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512",
+    "C:\\Users\\pikachuren\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\8.0.13\\microsoft.netcore.app.runtime.win-x86.8.0.13.nupkg.sha512",
+    "C:\\Users\\pikachuren\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\8.0.13\\microsoft.windowsdesktop.app.runtime.win-x86.8.0.13.nupkg.sha512",
+    "C:\\Users\\pikachuren\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\8.0.13\\microsoft.aspnetcore.app.runtime.win-x86.8.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}

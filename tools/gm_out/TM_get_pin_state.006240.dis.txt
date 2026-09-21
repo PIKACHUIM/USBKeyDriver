@@ -1,0 +1,133 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll
+;; rva=0x6240 len=0x150 file_off=0x5640
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10006240 <.text+0x5240>:
+10006240:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006244:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000624a:	7d 19                	jge    0x10006265
+1000624c:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006252:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006259:	74 0a                	je     0x10006265
+1000625b:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+10006261:	85 c0                	test   eax,eax
+10006263:	75 08                	jne    0x1000626d
+10006265:	b8 01 00 00 00       	mov    eax,0x1
+1000626a:	c2 20 00             	ret    0x20
+1000626d:	8b 4c 24 20          	mov    ecx,DWORD PTR [esp+0x20]
+10006271:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10006275:	51                   	push   ecx
+10006276:	8b 4c 24 1c          	mov    ecx,DWORD PTR [esp+0x1c]
+1000627a:	52                   	push   edx
+1000627b:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+1000627f:	51                   	push   ecx
+10006280:	8b 4c 24 1c          	mov    ecx,DWORD PTR [esp+0x1c]
+10006284:	52                   	push   edx
+10006285:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10006289:	51                   	push   ecx
+1000628a:	8b 4c 24 1c          	mov    ecx,DWORD PTR [esp+0x1c]
+1000628e:	52                   	push   edx
+1000628f:	51                   	push   ecx
+10006290:	e8 4b 23 00 00       	call   0x100085e0
+10006295:	c2 20 00             	ret    0x20
+10006298:	cc                   	int3
+10006299:	cc                   	int3
+1000629a:	cc                   	int3
+1000629b:	cc                   	int3
+1000629c:	cc                   	int3
+1000629d:	cc                   	int3
+1000629e:	cc                   	int3
+1000629f:	cc                   	int3
+100062a0:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+100062a4:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+100062aa:	7d 19                	jge    0x100062c5
+100062ac:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+100062b2:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+100062b9:	74 0a                	je     0x100062c5
+100062bb:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+100062c1:	85 c0                	test   eax,eax
+100062c3:	75 08                	jne    0x100062cd
+100062c5:	b8 01 00 00 00       	mov    eax,0x1
+100062ca:	c2 04 00             	ret    0x4
+100062cd:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+100062d0:	8b 40 10             	mov    eax,DWORD PTR [eax+0x10]
+100062d3:	8b 40 08             	mov    eax,DWORD PTR [eax+0x8]
+100062d6:	51                   	push   ecx
+100062d7:	8b 48 30             	mov    ecx,DWORD PTR [eax+0x30]
+100062da:	ff d1                	call   ecx
+100062dc:	83 c4 04             	add    esp,0x4
+100062df:	c2 04 00             	ret    0x4
+100062e2:	cc                   	int3
+100062e3:	cc                   	int3
+100062e4:	cc                   	int3
+100062e5:	cc                   	int3
+100062e6:	cc                   	int3
+100062e7:	cc                   	int3
+100062e8:	cc                   	int3
+100062e9:	cc                   	int3
+100062ea:	cc                   	int3
+100062eb:	cc                   	int3
+100062ec:	cc                   	int3
+100062ed:	cc                   	int3
+100062ee:	cc                   	int3
+100062ef:	cc                   	int3
+100062f0:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+100062f4:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+100062fa:	7d 19                	jge    0x10006315
+100062fc:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006302:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006309:	74 0a                	je     0x10006315
+1000630b:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+10006311:	85 c0                	test   eax,eax
+10006313:	75 08                	jne    0x1000631d
+10006315:	b8 01 00 00 00       	mov    eax,0x1
+1000631a:	c2 14 00             	ret    0x14
+1000631d:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+10006321:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+10006324:	8b 40 10             	mov    eax,DWORD PTR [eax+0x10]
+10006327:	8b 40 08             	mov    eax,DWORD PTR [eax+0x8]
+1000632a:	8b 40 34             	mov    eax,DWORD PTR [eax+0x34]
+1000632d:	52                   	push   edx
+1000632e:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+10006332:	52                   	push   edx
+10006333:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+10006337:	52                   	push   edx
+10006338:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+1000633c:	52                   	push   edx
+1000633d:	51                   	push   ecx
+1000633e:	ff d0                	call   eax
+10006340:	83 c4 14             	add    esp,0x14
+10006343:	c2 14 00             	ret    0x14
+10006346:	cc                   	int3
+10006347:	cc                   	int3
+10006348:	cc                   	int3
+10006349:	cc                   	int3
+1000634a:	cc                   	int3
+1000634b:	cc                   	int3
+1000634c:	cc                   	int3
+1000634d:	cc                   	int3
+1000634e:	cc                   	int3
+1000634f:	cc                   	int3
+10006350:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006354:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000635a:	7d 19                	jge    0x10006375
+1000635c:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006362:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006369:	74 0a                	je     0x10006375
+1000636b:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+10006371:	85 c0                	test   eax,eax
+10006373:	75 08                	jne    0x1000637d
+10006375:	b8 01 00 00 00       	mov    eax,0x1
+1000637a:	c2 14 00             	ret    0x14
+1000637d:	8b 54 24 10          	mov    edx,DWORD PTR [esp+0x10]
+10006381:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+10006384:	8b 40 10             	mov    eax,DWORD PTR [eax+0x10]
+10006387:	8b 40 08             	mov    eax,DWORD PTR [eax+0x8]
+1000638a:	8b 40 3c             	mov    eax,DWORD PTR [eax+0x3c]
+1000638d:	52                   	push   edx
+1000638e:	8b                   	.byte 0x8b
+1000638f:	54                   	push   esp

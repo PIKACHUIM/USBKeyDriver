@@ -1,0 +1,36 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll
+;; C_GetSlotList rva=0x2050 va=0x10002050 stop=0x10002090
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10002050 <.text+0x1050>:
+10002050:	55                   	push   ebp
+10002051:	8b ec                	mov    ebp,esp
+10002053:	83 e4 f8             	and    esp,0xfffffff8
+10002056:	56                   	push   esi
+10002057:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+1000205d:	57                   	push   edi
+1000205e:	85 f6                	test   esi,esi
+10002060:	74 0a                	je     0x1000206c
+10002062:	56                   	push   esi
+10002063:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+10002069:	83 c4 04             	add    esp,0x4
+1000206c:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+1000206f:	8b 4d 0c             	mov    ecx,DWORD PTR [ebp+0xc]
+10002072:	50                   	push   eax
+10002073:	e8 78 10 00 00       	call   0x100030f0
+10002078:	8b f8                	mov    edi,eax
+1000207a:	85 f6                	test   esi,esi
+1000207c:	74 0a                	je     0x10002088
+1000207e:	56                   	push   esi
+1000207f:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+10002085:	83 c4 04             	add    esp,0x4
+10002088:	8b c7                	mov    eax,edi
+1000208a:	5f                   	pop    edi
+1000208b:	5e                   	pop    esi
+1000208c:	8b e5                	mov    esp,ebp
+1000208e:	5d                   	pop    ebp
+1000208f:	c3                   	ret

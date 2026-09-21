@@ -1,0 +1,162 @@
+analysis done
+
+==========================================================================
+### 1002156A EnumDevices  func=1002156A-1002161D
+==========================================================================
+int __stdcall sub_1002156A(int a1, _DWORD *a2)
+{
+  int v2; // ebx
+  int v3; // esi
+  int v4; // eax
+  size_t v5; // edi
+  bool v6; // zf
+  char Str[33017]; // [esp+4h] [ebp-8104h] BYREF
+  __int16 v9; // [esp+80FDh] [ebp-Bh]
+  char v10; // [esp+80FFh] [ebp-9h]
+  int v11; // [esp+8100h] [ebp-8h]
+  int v12; // [esp+8104h] [ebp-4h]
+
+  v2 = 0;
+  if ( !a1 || !a2 )
+    return -2147483634;
+  memset(Str, 0, sizeof(Str));
+  v9 = 0;
+  v10 = 0;
+  v3 = 0;
+  v12 = 0;
+  v4 = sub_10028217(Str);
+  if ( v4 > 0 )
+  {
+    v11 = v4;
+    do
+    {
+      v5 = strlen(&Str[v2]);
+      if ( (unsigned __int8)sub_10023CB8(&Str[v2]) )
+      {
+        strcpy((char *)(v3 + a1), &Str[v2]);
+        ++v12;
+        v3 += v5 + 1;
+      }
+      v6 = v11-- == 1;
+      v2 += v5 + 1;
+    }
+    while ( !v6 );
+  }
+  *a2 = v12;
+  return 0;
+}
+
+
+==========================================================================
+### 1002161D KOpenDevice  func=1002161D-10021817
+==========================================================================
+int __stdcall sub_1002161D(char *Str, char **a2)
+{
+  int *v4; // ebx
+  const char *v5; // esi
+  int *v6; // edi
+  unsigned int v7; // eax
+  char *v8; // esi
+  char *v9; // ebx
+  int v10; // eax
+  int v11; // esi
+  char Destination[257]; // [esp+Ch] [ebp-258h] BYREF
+  __int16 v13; // [esp+10Dh] [ebp-157h]
+  char v14; // [esp+10Fh] [ebp-155h]
+  char Src[4]; // [esp+110h] [ebp-154h] BYREF
+  unsigned __int8 v16; // [esp+114h] [ebp-150h]
+  char v17[251]; // [esp+115h] [ebp-14Fh] BYREF
+  int v18[20]; // [esp+210h] [ebp-54h] BYREF
+  size_t Size; // [esp+260h] [ebp-4h] BYREF
+  char *Stra; // [esp+26Ch] [ebp+8h]
+  char *Strb; // [esp+26Ch] [ebp+8h]
+
+  memset(v18, 0, sizeof(v18));
+  memset(Destination, 0, sizeof(Destination));
+  Size = 256;
+  v13 = 0;
+  v14 = 0;
+  if ( !a2 || strlen(Str) <= 2 )
+    return -2147483634;
+  Stra = (char *)sub_10028226(Str);
+  if ( !Stra )
+    return 0x80000000;
+  strcpy(Destination, Str);
+  v4 = v18;
+  v5 = &Destination[strlen(Str)];
+  v6 = v18;
+  do
+  {
+    v5 -= 2;
+    v7 = strtoul(v5, 0, 16);
+    *v5 = 0;
+    ++v6;
+    *v4 = v7;
+    v4 = v6;
+  }
+  while ( (unsigned int)*v6 >= 0x80 );
+  v8 = (char *)operator new(0x254u);
+  memset(v8, 0, 0x254u);
+  v9 = Stra;
+  *(_DWORD *)v8 = Stra;
+  strcpy(v8 + 4, Destination);
+  Strb = (char *)sub_100218D8((int)v8, 0x493E0u);
+  if ( !Strb )
+    return -2147483632;
+  sub_100250EE(v9, 44529, Src, &Size);
+  sub_10023ECF(v8);
+  v10 = sub_100251C0(v9, 3);
+  if ( v10 == 36864
+    && (Size = 20, v10 = sub_100253C4(v9, 0, Src, &Size), v10 == 36864)
+    && (memset(v8 + 456, 0, 0x40u), memcpy(v8 + 456, Src, Size), v10 = sub_100251C0(v9, 1), v10 == 36864)
+    && (Size = 76, v10 = sub_100253C4(v9, 0, Src, &Size), v10 == 36864) )
+  {
+    memset(v8 + 520, 0, 0x40u);
+    if ( v16 != 0xFF )
+    {
+      if ( v16 )
+        memcpy(v8 + 520, v17, v16);
+    }
+    *a2 = v8;
+    v11 = 0;
+  }
+  else
+  {
+    v11 = v10;
+  }
+  sub_1002198C(Strb);
+  return v11;
+}
+
+
+==========================================================================
+### 10021817 KCloseDevice  func=10021817-10021833
+==========================================================================
+void __stdcall sub_10021817(void **a1)
+{
+  if ( a1 )
+  {
+    sub_10028235(*a1);
+    operator delete(a1);
+  }
+}
+
+
+==========================================================================
+### 10021833 KGetDeviceInfo  func=10021833-100218D8
+==========================================================================
+int __stdcall sub_10021833(int a1, char *Destination)
+{
+  if ( !a1 || !Destination )
+    return -2147483634;
+  strcpy(Destination, (const char *)(a1 + 264));
+  strcpy(Destination + 64, (const char *)(a1 + 328));
+  strcpy(Destination + 128, (const char *)(a1 + 392));
+  strcpy(Destination + 192, (const char *)(a1 + 456));
+  strcpy(Destination + 256, (const char *)(a1 + 520));
+  *((_DWORD *)Destination + 80) = *(_DWORD *)(a1 + 584);
+  *((_DWORD *)Destination + 81) = *(_DWORD *)(a1 + 588);
+  *((_DWORD *)Destination + 82) = *(_DWORD *)(a1 + 592);
+  return 0;
+}
+

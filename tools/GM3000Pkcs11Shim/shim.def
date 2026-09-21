@@ -1,0 +1,8 @@
+; gm3000_pkcs11.dll 垫片导出表
+; TokenMgr 仅按名绑定这两个符号，其余能力经两张函数表暴露。
+; 使用 .def 以「未修饰名」导出（x86 下 __cdecl 默认会被修饰成 _name）。
+LIBRARY gm3000_pkcs11
+
+EXPORTS
+    C_GetFunctionList
+    M_GetExtFunctionList

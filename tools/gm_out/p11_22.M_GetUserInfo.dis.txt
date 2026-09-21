@@ -1,0 +1,45 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll
+;; M_GetUserInfo rva=0x1530 va=0x10001530 stop=0x10001580
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10001530 <.text+0x530>:
+10001530:	56                   	push   esi
+10001531:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+10001537:	57                   	push   edi
+10001538:	85 f6                	test   esi,esi
+1000153a:	74 0a                	je     0x10001546
+1000153c:	56                   	push   esi
+1000153d:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+10001543:	83 c4 04             	add    esp,0x4
+10001546:	8b 44 24 1c          	mov    eax,DWORD PTR [esp+0x1c]
+1000154a:	8b 4c 24 18          	mov    ecx,DWORD PTR [esp+0x18]
+1000154e:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+10001552:	50                   	push   eax
+10001553:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+10001557:	51                   	push   ecx
+10001558:	52                   	push   edx
+10001559:	8b 54 24 18          	mov    edx,DWORD PTR [esp+0x18]
+1000155d:	50                   	push   eax
+1000155e:	e8 bd 44 00 00       	call   0x10005a20
+10001563:	8b f8                	mov    edi,eax
+10001565:	85 f6                	test   esi,esi
+10001567:	74 0a                	je     0x10001573
+10001569:	56                   	push   esi
+1000156a:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+10001570:	83 c4 04             	add    esp,0x4
+10001573:	8b c7                	mov    eax,edi
+10001575:	5f                   	pop    edi
+10001576:	5e                   	pop    esi
+10001577:	c3                   	ret
+10001578:	cc                   	int3
+10001579:	cc                   	int3
+1000157a:	cc                   	int3
+1000157b:	cc                   	int3
+1000157c:	cc                   	int3
+1000157d:	cc                   	int3
+1000157e:	cc                   	int3
+1000157f:	cc                   	int3

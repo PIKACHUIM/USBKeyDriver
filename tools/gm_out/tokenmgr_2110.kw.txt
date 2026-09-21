@@ -1,0 +1,33 @@
+0x1001658F	- Attempt to use MSIL code from this assembly during native code initialization
+0x100166BF	- Attempt to initialize the CRT more than once.
+0x10016723	- CRT not initialized
+0x10016743	- unable to initialize heap
+0x1001676B	- not enough space for lowio initialization
+0x100167A3	- not enough space for stdio initialization
+0x10016BA0	`dynamic initializer for '
+0x10017B80	USER32.DLL
+0x10017D8C	\\.\
+0x10018E62	CRYPT32.dll
+0x10018E8C	CRYPTUI.dll
+0x10018E9A	SCardEstablishContext
+0x10018EB2	SCardFreeMemory
+0x10018EC4	SCardListReadersA
+0x10018ED8	SCardReleaseContext
+0x10018EEC	WinSCard.dll
+0x10018FBA	KERNEL32.dll
+0x10019066	ADVAPI32.dll
+0x100191B6	GetStartupInfoA
+0x10019200	GetCPInfo
+0x10019406	CreateFileA
+0x10019414	InitializeCriticalSectionAndSpinCount
+0x100197CE	TokenMgr.dll
+0x100199A0	init_pkcs11
+0x100199AC	init_pkcs11_ex
+0x10019AD4	token_change_sopin
+0x10019AE7	token_change_upin
+0x10019BA0	token_get_pin_state
+0x10019C4B	token_set_upin
+0x10019C5A	token_unlock_upin
+0x10019CA5	uninit_pkcs11
+0x1001632C	KERNEL32.DLL
+0x10016394	mscoree.dll

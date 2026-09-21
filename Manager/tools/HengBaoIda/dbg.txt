@@ -1,0 +1,13 @@
+file=G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCC.dll
+base=0x10000000
+segments=4
+.text      10001000-10023000 size=0x22000 type=2 first=8B 44 24 08 83 E8 00 74 1F 48 75 32 68 20 10 03
+.idata     10023000-10023260 size=0x260 type=1 first=FF FF FF FF FF FF FF FF FF FF FF FF 00 00 00 00
+.rdata     10023260-1002E000 size=0xADA0 type=3 first=00 00 00 00 8D EE 01 10 00 00 00 00 00 00 00 00
+.data      1002E000-1003B000 size=0xD000 type=3 first=58 00 00 00 80 00 00 00 02 66 00 00 80 00 00 00
+
+qty via get_segm_qty=4
+get_bytes(0x400000,0x1000)=ok len=4096
+raw count of b'CMBC' via get_bytes = 1
+full get_bytes(.rdata) -> 44448, count CMBC=0
+full get_bytes(.data) -> 53248, count CMBC=1

@@ -1,0 +1,55 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll
+;; token_find rva=0x5A30 va=0x10005A30 stop=0x10005AA0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10005a30 <.text+0x4a30>:
+10005a30:	a1 b0 bb 01 10       	mov    eax,ds:0x1001bbb0
+10005a35:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+10005a38:	8b 51 12             	mov    edx,DWORD PTR [ecx+0x12]
+10005a3b:	56                   	push   esi
+10005a3c:	8b 74 24 08          	mov    esi,DWORD PTR [esp+0x8]
+10005a40:	57                   	push   edi
+10005a41:	8b 7c 24 10          	mov    edi,DWORD PTR [esp+0x10]
+10005a45:	57                   	push   edi
+10005a46:	56                   	push   esi
+10005a47:	6a 01                	push   0x1
+10005a49:	c7 05 b4 bb 01 10 00 	mov    DWORD PTR ds:0x1001bbb4,0x0
+10005a50:	00 00 00 
+10005a53:	ff d2                	call   edx
+10005a55:	83 c4 0c             	add    esp,0xc
+10005a58:	85 c0                	test   eax,eax
+10005a5a:	74 0a                	je     0x10005a66
+10005a5c:	5f                   	pop    edi
+10005a5d:	b8 01 00 00 00       	mov    eax,0x1
+10005a62:	5e                   	pop    esi
+10005a63:	c2 08 00             	ret    0x8
+10005a66:	8b 17                	mov    edx,DWORD PTR [edi]
+10005a68:	33 c0                	xor    eax,eax
+10005a6a:	89 15 b4 bb 01 10    	mov    DWORD PTR ds:0x1001bbb4,edx
+10005a70:	85 d2                	test   edx,edx
+10005a72:	7e 1c                	jle    0x10005a90
+10005a74:	b9 b8 bb 01 10       	mov    ecx,0x1001bbb8
+10005a79:	8d a4 24 00 00 00 00 	lea    esp,[esp+0x0]
+10005a80:	8b 3c 86             	mov    edi,DWORD PTR [esi+eax*4]
+10005a83:	89 39                	mov    DWORD PTR [ecx],edi
+10005a85:	40                   	inc    eax
+10005a86:	81 c1 dc 00 00 00    	add    ecx,0xdc
+10005a8c:	3b c2                	cmp    eax,edx
+10005a8e:	7c f0                	jl     0x10005a80
+10005a90:	5f                   	pop    edi
+10005a91:	33 c0                	xor    eax,eax
+10005a93:	5e                   	pop    esi
+10005a94:	c2 08 00             	ret    0x8
+10005a97:	cc                   	int3
+10005a98:	cc                   	int3
+10005a99:	cc                   	int3
+10005a9a:	cc                   	int3
+10005a9b:	cc                   	int3
+10005a9c:	cc                   	int3
+10005a9d:	cc                   	int3
+10005a9e:	cc                   	int3
+10005a9f:	cc                   	int3

@@ -1,0 +1,147 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll
+;; rva=0x7A60 len=0x120 file_off=0x6E60
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10007a60 <.text+0x6a60>:
+10007a60:	24 54                	and    al,0x54
+10007a62:	8b d0                	mov    edx,eax
+10007a64:	e8 e7 c1 ff ff       	call   0x10003c50
+10007a69:	8d 5c 24 10          	lea    ebx,[esp+0x10]
+10007a6d:	85 c0                	test   eax,eax
+10007a6f:	74 14                	je     0x10007a85
+10007a71:	e8 aa a4 ff ff       	call   0x10001f20
+10007a76:	5f                   	pop    edi
+10007a77:	5e                   	pop    esi
+10007a78:	5b                   	pop    ebx
+10007a79:	b8 06 00 00 00       	mov    eax,0x6
+10007a7e:	5d                   	pop    ebp
+10007a7f:	83 c4 2c             	add    esp,0x2c
+10007a82:	c2 14 00             	ret    0x14
+10007a85:	e8 96 a4 ff ff       	call   0x10001f20
+10007a8a:	5f                   	pop    edi
+10007a8b:	5e                   	pop    esi
+10007a8c:	5b                   	pop    ebx
+10007a8d:	33 c0                	xor    eax,eax
+10007a8f:	5d                   	pop    ebp
+10007a90:	83 c4 2c             	add    esp,0x2c
+10007a93:	c2 14 00             	ret    0x14
+10007a96:	cc                   	int3
+10007a97:	cc                   	int3
+10007a98:	cc                   	int3
+10007a99:	cc                   	int3
+10007a9a:	cc                   	int3
+10007a9b:	cc                   	int3
+10007a9c:	cc                   	int3
+10007a9d:	cc                   	int3
+10007a9e:	cc                   	int3
+10007a9f:	cc                   	int3
+10007aa0:	a1 ac bb 01 10       	mov    eax,ds:0x1001bbac
+10007aa5:	56                   	push   esi
+10007aa6:	57                   	push   edi
+10007aa7:	33 ff                	xor    edi,edi
+10007aa9:	8b f1                	mov    esi,ecx
+10007aab:	3b c7                	cmp    eax,edi
+10007aad:	75 1c                	jne    0x10007acb
+10007aaf:	6a 0c                	push   0xc
+10007ab1:	e8 97 09 00 00       	call   0x1000844d
+10007ab6:	83 c4 04             	add    esp,0x4
+10007ab9:	3b c7                	cmp    eax,edi
+10007abb:	74 07                	je     0x10007ac4
+10007abd:	89 78 04             	mov    DWORD PTR [eax+0x4],edi
+10007ac0:	89 38                	mov    DWORD PTR [eax],edi
+10007ac2:	eb 02                	jmp    0x10007ac6
+10007ac4:	33 c0                	xor    eax,eax
+10007ac6:	a3 ac bb 01 10       	mov    ds:0x1001bbac,eax
+10007acb:	89 be cc 00 00 00    	mov    DWORD PTR [esi+0xcc],edi
+10007ad1:	89 be d0 00 00 00    	mov    DWORD PTR [esi+0xd0],edi
+10007ad7:	89 7e 04             	mov    DWORD PTR [esi+0x4],edi
+10007ada:	89 7e 08             	mov    DWORD PTR [esi+0x8],edi
+10007add:	89 3e                	mov    DWORD PTR [esi],edi
+10007adf:	89 46 10             	mov    DWORD PTR [esi+0x10],eax
+10007ae2:	5f                   	pop    edi
+10007ae3:	8b c6                	mov    eax,esi
+10007ae5:	5e                   	pop    esi
+10007ae6:	c3                   	ret
+10007ae7:	cc                   	int3
+10007ae8:	cc                   	int3
+10007ae9:	cc                   	int3
+10007aea:	cc                   	int3
+10007aeb:	cc                   	int3
+10007aec:	cc                   	int3
+10007aed:	cc                   	int3
+10007aee:	cc                   	int3
+10007aef:	cc                   	int3
+10007af0:	c3                   	ret
+10007af1:	cc                   	int3
+10007af2:	cc                   	int3
+10007af3:	cc                   	int3
+10007af4:	cc                   	int3
+10007af5:	cc                   	int3
+10007af6:	cc                   	int3
+10007af7:	cc                   	int3
+10007af8:	cc                   	int3
+10007af9:	cc                   	int3
+10007afa:	cc                   	int3
+10007afb:	cc                   	int3
+10007afc:	cc                   	int3
+10007afd:	cc                   	int3
+10007afe:	cc                   	int3
+10007aff:	cc                   	int3
+10007b00:	8b 46 04             	mov    eax,DWORD PTR [esi+0x4]
+10007b03:	57                   	push   edi
+10007b04:	8d 7e 04             	lea    edi,[esi+0x4]
+10007b07:	85 c0                	test   eax,eax
+10007b09:	74 15                	je     0x10007b20
+10007b0b:	8b 4e 10             	mov    ecx,DWORD PTR [esi+0x10]
+10007b0e:	8b 51 04             	mov    edx,DWORD PTR [ecx+0x4]
+10007b11:	50                   	push   eax
+10007b12:	8b 42 36             	mov    eax,DWORD PTR [edx+0x36]
+10007b15:	ff d0                	call   eax
+10007b17:	83 c4 04             	add    esp,0x4
+10007b1a:	c7 07 00 00 00 00    	mov    DWORD PTR [edi],0x0
+10007b20:	8b 4e 10             	mov    ecx,DWORD PTR [esi+0x10]
+10007b23:	8b 06                	mov    eax,DWORD PTR [esi]
+10007b25:	57                   	push   edi
+10007b26:	6a 00                	push   0x0
+10007b28:	c7 86 cc 00 00 00 00 	mov    DWORD PTR [esi+0xcc],0x0
+10007b2f:	00 00 00 
+10007b32:	8b 49 04             	mov    ecx,DWORD PTR [ecx+0x4]
+10007b35:	8b 51 32             	mov    edx,DWORD PTR [ecx+0x32]
+10007b38:	6a 00                	push   0x0
+10007b3a:	6a 06                	push   0x6
+10007b3c:	50                   	push   eax
+10007b3d:	ff d2                	call   edx
+10007b3f:	83 c4 14             	add    esp,0x14
+10007b42:	5f                   	pop    edi
+10007b43:	85 c0                	test   eax,eax
+10007b45:	74 06                	je     0x10007b4d
+10007b47:	b8 01 00 00 00       	mov    eax,0x1
+10007b4c:	c3                   	ret
+10007b4d:	c7 86 cc 00 00 00 01 	mov    DWORD PTR [esi+0xcc],0x1
+10007b54:	00 00 00 
+10007b57:	33 c0                	xor    eax,eax
+10007b59:	c3                   	ret
+10007b5a:	cc                   	int3
+10007b5b:	cc                   	int3
+10007b5c:	cc                   	int3
+10007b5d:	cc                   	int3
+10007b5e:	cc                   	int3
+10007b5f:	cc                   	int3
+10007b60:	83 ec 54             	sub    esp,0x54
+10007b63:	a1 30 a0 01 10       	mov    eax,ds:0x1001a030
+10007b68:	33 c4                	xor    eax,esp
+10007b6a:	89 44 24 50          	mov    DWORD PTR [esp+0x50],eax
+10007b6e:	53                   	push   ebx
+10007b6f:	57                   	push   edi
+10007b70:	8d 44 24 08          	lea    eax,[esp+0x8]
+10007b74:	50                   	push   eax
+10007b75:	8d 8e c4 00 00 00    	lea    ecx,[esi+0xc4]
+10007b7b:	51                   	push   ecx
+10007b7c:	8d                   	.byte 0x8d
+10007b7d:	96                   	xchg   esi,eax
+10007b7e:	c8                   	.byte 0xc8
+	...

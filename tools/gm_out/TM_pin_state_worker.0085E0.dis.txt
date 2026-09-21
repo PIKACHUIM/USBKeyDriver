@@ -1,0 +1,75 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll
+;; rva=0x85E0 len=0xB0 file_off=0x79E0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100085e0 <.text+0x75e0>:
+100085e0:	83 ec 0c             	sub    esp,0xc
+100085e3:	8b 08                	mov    ecx,DWORD PTR [eax]
+100085e5:	8b 50 10             	mov    edx,DWORD PTR [eax+0x10]
+100085e8:	33 c0                	xor    eax,eax
+100085ea:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+100085ee:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+100085f2:	8b 42 08             	mov    eax,DWORD PTR [edx+0x8]
+100085f5:	8d 14 24             	lea    edx,[esp]
+100085f8:	52                   	push   edx
+100085f9:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+100085fd:	52                   	push   edx
+100085fe:	c7 44 24 08 00 00 00 	mov    DWORD PTR [esp+0x8],0x0
+10008605:	00 
+10008606:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+10008609:	51                   	push   ecx
+1000860a:	ff d0                	call   eax
+1000860c:	83 c4 0c             	add    esp,0xc
+1000860f:	85 c0                	test   eax,eax
+10008611:	74 0b                	je     0x1000861e
+10008613:	b8 01 00 00 00       	mov    eax,0x1
+10008618:	83 c4 0c             	add    esp,0xc
+1000861b:	c2 1c 00             	ret    0x1c
+1000861e:	8b 44 24 08          	mov    eax,DWORD PTR [esp+0x8]
+10008622:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10008626:	0f b6 c8             	movzx  ecx,al
+10008629:	89 0a                	mov    DWORD PTR [edx],ecx
+1000862b:	8b 4c 24 20          	mov    ecx,DWORD PTR [esp+0x20]
+1000862f:	0f b6 54 24 0a       	movzx  edx,BYTE PTR [esp+0xa]
+10008634:	0f b6 c4             	movzx  eax,ah
+10008637:	89 01                	mov    DWORD PTR [ecx],eax
+10008639:	8b 44 24 24          	mov    eax,DWORD PTR [esp+0x24]
+1000863d:	8b 0c 24             	mov    ecx,DWORD PTR [esp]
+10008640:	89 10                	mov    DWORD PTR [eax],edx
+10008642:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+10008646:	0f b6 44 24 0b       	movzx  eax,BYTE PTR [esp+0xb]
+1000864b:	89 0a                	mov    DWORD PTR [edx],ecx
+1000864d:	8b 4c 24 28          	mov    ecx,DWORD PTR [esp+0x28]
+10008651:	8b 54 24 04          	mov    edx,DWORD PTR [esp+0x4]
+10008655:	89 01                	mov    DWORD PTR [ecx],eax
+10008657:	8b 44 24 18          	mov    eax,DWORD PTR [esp+0x18]
+1000865b:	89 10                	mov    DWORD PTR [eax],edx
+1000865d:	33 c0                	xor    eax,eax
+1000865f:	83 c4 0c             	add    esp,0xc
+10008662:	c2 1c 00             	ret    0x1c
+10008665:	cc                   	int3
+10008666:	cc                   	int3
+10008667:	cc                   	int3
+10008668:	cc                   	int3
+10008669:	cc                   	int3
+1000866a:	cc                   	int3
+1000866b:	cc                   	int3
+1000866c:	cc                   	int3
+1000866d:	cc                   	int3
+1000866e:	cc                   	int3
+1000866f:	cc                   	int3
+10008670:	83 ec 08             	sub    esp,0x8
+10008673:	56                   	push   esi
+10008674:	8b 30                	mov    esi,DWORD PTR [eax]
+10008676:	89 74 24 04          	mov    DWORD PTR [esp+0x4],esi
+1000867a:	8b 70 04             	mov    esi,DWORD PTR [eax+0x4]
+1000867d:	85 c9                	test   ecx,ecx
+1000867f:	75 1c                	jne    0x1000869d
+10008681:	81 fe 00 a4 00 00    	cmp    esi,0xa400
+10008687:	75 07                	jne    0x10008690
+10008689:	b9 01 00 00 00       	mov    ecx,0x1
+1000868e:	eb 0d                	jmp    0x1000869d

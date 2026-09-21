@@ -1,0 +1,95 @@
+0x1005B4D7	- Attempt to use MSIL code from this assembly during native code initialization
+0x1005B607	- Attempt to initialize the CRT more than once.
+0x1005B66B	- CRT not initialized
+0x1005B68B	- unable to initialize heap
+0x1005B6B3	- not enough space for lowio initialization
+0x1005B6EB	- not enough space for stdio initialization
+0x1005C34C	USER32.DLL
+0x1005D3F4	\\.\C:
+0x1005D514	%s_trans
+0x1005D558	mCOSInit
+0x1005D5B8	%s%s_%d
+0x1005E4E8	`dynamic initializer for '
+0x1005EB74	CreateFile
+0x1005ED0C	ChangeDevAuthKey
+0x1005ED20	ChangeDevAuthKeyEx
+0x1005ED34	GetPinInfo
+0x1005ED40	ChangePin
+0x1005ED58	VerifyPin
+0x1005ED64	ChangePin_ms
+0x1005ED74	VerifyPin_MS
+0x1005ED84	UnblockPin
+0x1005ED9C	UnblockPin_MS
+0x1005EDAC	ReloadPin
+0x1005EDC4	RemoteUnblockPin
+0x1005F204	EncryptInit
+0x1005F238	DecryptInit
+0x1005F26C	DigestInit
+0x1005F2C8	MacInit
+0x1005F588	usbstor
+0x1005F8E8	E:\SVN\Software\K3_GM\4.Development\middleware\prj_windows\mtoken_k3gm\Release\mtoken_gm3000.pdb
+0x10061348	KERNEL32.dll
+0x1006147A	GetStartupInfoA
+0x100615EA	GetCPInfo
+0x100616E8	InitializeCriticalSectionAndSpinCount
+0x100617FE	DeviceIoControl
+0x10061810	CreateFileA
+0x100619EE	USER32.dll
+0x10061A18	InitializeSecurityDescriptor
+0x10061A36	ADVAPI32.dll
+0x10061A46	SetupDiDestroyDeviceInfoList
+0x10061A66	SetupDiGetDeviceInterfaceDetailA
+0x10061A8A	SetupDiEnumDeviceInterfaces
+0x10061AA8	SetupDiGetClassDevsA
+0x10061ABE	SETUPAPI.dll
+0x10061B44	HID.DLL
+0x100621D8	mtoken_gm3000.dll
+0x10062214	MKF_GenRemoteUnlockResponse
+0x10062230	MKF_GenRemoteUnlockResponseEx
+0x1006232C	SKF_ChangeDevAuthKey
+0x10062341	SKF_ChangePIN
+0x1006234F	SKF_ChangePinMS
+0x1006240A	SKF_CreateFile
+0x10062436	SKF_DecryptInit
+0x10062500	SKF_DigestInit
+0x1006250F	SKF_DigestInit_Display
+0x10062691	SKF_EncryptInit
+0x100626ED	SKF_EnrollFingerInit
+0x100629F3	SKF_GetPINInfo
+0x10062AB6	SKF_InitializeFinger
+0x10062ACB	SKF_InitializeFingerEx
+0x10062AE2	SKF_IsVerifyPIN
+0x10062B13	SKF_MacInit
+0x10062C94	SKF_RemoteUnblockPIN
+0x10062D4E	SKF_UnblockPIN
+0x10062D5D	SKF_UnblockPinMS
+0x10062D6E	SKF_UnlockDev
+0x10062D96	SKF_VerifyContainerFingerInit
+0x10062DC5	SKF_VerifyFingerInit
+0x10062DEC	SKF_VerifyFingersInit
+0x10062E02	SKF_VerifyPIN
+0x10062E10	SKF_VerifyPinMS
+0x10063CA4	%s%s
+0x10063CB0	%scert. version : %d
+0x10063CC8	%sserial number : 
+0x10063CDD	%sissuer name   : 
+0x10063CF1	%ssubject name  : 
+0x10063D05	%sissued  on    : %04d-%02d-%02d %02d:%02d:%02d
+0x10063D39	%sexpires on    : %04d-%02d-%02d %02d:%02d:%02d
+0x10063D6D	%ssigned using  : 
+0x10063D89	%s%-14s: %d bits
+0x100640A4	id-kp-timeStamping
+0x100640B8	Time Stamping
+0x100645C0	%d.%d
+0x10064660	%02X%s
+0x10064670	%s key size
+0x100646C8	gm3000,vid_055c&pid_db08,vid_055c&pid_e618|vid_055c&pid_f603|vid_055c&pid_2205
+0x10064AC8	gm3000
+0x1005B270	KERNEL32.DLL
+0x1005B2D8	mscoree.dll
+0x1005F784	ieframe.dll
+0x1005F7E8	\\.\pipe\mTokenIOSvr
+0x10068150	mtoken_gm
+0x1006818C	mtoken_gm Dynamic Link Library
+0x10068228	mToken GM3000
+0x100682B8	mtoken_gm300.dll

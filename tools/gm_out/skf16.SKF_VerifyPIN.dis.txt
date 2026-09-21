@@ -1,0 +1,98 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; SKF_VerifyPIN rva=0x11080 va=0x10011080 stop=0x10011160
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10011080 <.text+0x10080>:
+10011080:	83 ec 10             	sub    esp,0x10
+10011083:	53                   	push   ebx
+10011084:	56                   	push   esi
+10011085:	57                   	push   edi
+10011086:	8d 44 24 14          	lea    eax,[esp+0x14]
+1001108a:	50                   	push   eax
+1001108b:	c7 44 24 18 f4 04 04 	mov    DWORD PTR [esp+0x18],0x100404f4
+10011092:	10 
+10011093:	e8 28 1e 01 00       	call   0x10022ec0
+10011098:	8b 7c 24 20          	mov    edi,DWORD PTR [esp+0x20]
+1001109c:	8d 4c 24 0c          	lea    ecx,[esp+0xc]
+100110a0:	33 db                	xor    ebx,ebx
+100110a2:	51                   	push   ecx
+100110a3:	be b8 55 04 10       	mov    esi,0x100455b8
+100110a8:	89 5c 24 14          	mov    DWORD PTR [esp+0x14],ebx
+100110ac:	89 5c 24 10          	mov    DWORD PTR [esp+0x10],ebx
+100110b0:	e8 db ad 00 00       	call   0x1001be90
+100110b5:	8b f8                	mov    edi,eax
+100110b7:	3b fb                	cmp    edi,ebx
+100110b9:	75 07                	jne    0x100110c2
+100110bb:	be 05 00 00 0a       	mov    esi,0xa000005
+100110c0:	eb 58                	jmp    0x1001111a
+100110c2:	8b 5c 24 24          	mov    ebx,DWORD PTR [esp+0x24]
+100110c6:	55                   	push   ebp
+100110c7:	8b 6c 24 10          	mov    ebp,DWORD PTR [esp+0x10]
+100110cb:	eb 03                	jmp    0x100110d0
+100110cd:	8d 49 00             	lea    ecx,[ecx+0x0]
+100110d0:	8b 47 20             	mov    eax,DWORD PTR [edi+0x20]
+100110d3:	8b 8d 04 01 00 00    	mov    ecx,DWORD PTR [ebp+0x104]
+100110d9:	8d 54 24 14          	lea    edx,[esp+0x14]
+100110dd:	52                   	push   edx
+100110de:	50                   	push   eax
+100110df:	33 c0                	xor    eax,eax
+100110e1:	51                   	push   ecx
+100110e2:	8d 48 01             	lea    ecx,[eax+0x1]
+100110e5:	8b d3                	mov    edx,ebx
+100110e7:	e8 54 d6 00 00       	call   0x1001e740
+100110ec:	8b f0                	mov    esi,eax
+100110ee:	83 c4 0c             	add    esp,0xc
+100110f1:	85 f6                	test   esi,esi
+100110f3:	74 24                	je     0x10011119
+100110f5:	81 3d 50 50 04 10 0d 	cmp    DWORD PTR ds:0x10045050,0x6f0d
+100110fc:	6f 00 00 
+100110ff:	75 0d                	jne    0x1001110e
+10011101:	68 2c 01 00 00       	push   0x12c
+10011106:	ff 15 50 d0 03 10    	call   DWORD PTR ds:0x1003d050
+1001110c:	eb c2                	jmp    0x100110d0
+1001110e:	85 f6                	test   esi,esi
+10011110:	74 07                	je     0x10011119
+10011112:	e8 79 9c 00 00       	call   0x1001ad90
+10011117:	8b f0                	mov    esi,eax
+10011119:	5d                   	pop    ebp
+1001111a:	8b 44 24 18          	mov    eax,DWORD PTR [esp+0x18]
+1001111e:	85 c0                	test   eax,eax
+10011120:	74 24                	je     0x10011146
+10011122:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+10011125:	85 c0                	test   eax,eax
+10011127:	74 1d                	je     0x10011146
+10011129:	8b 08                	mov    ecx,DWORD PTR [eax]
+1001112b:	85 c9                	test   ecx,ecx
+1001112d:	74 17                	je     0x10011146
+1001112f:	83 78 08 00          	cmp    DWORD PTR [eax+0x8],0x0
+10011133:	8d 78 08             	lea    edi,[eax+0x8]
+10011136:	7e 0e                	jle    0x10011146
+10011138:	51                   	push   ecx
+10011139:	ff 15 04 d1 03 10    	call   DWORD PTR ds:0x1003d104
+1001113f:	57                   	push   edi
+10011140:	ff 15 48 d0 03 10    	call   DWORD PTR ds:0x1003d048
+10011146:	5f                   	pop    edi
+10011147:	8b c6                	mov    eax,esi
+10011149:	5e                   	pop    esi
+1001114a:	5b                   	pop    ebx
+1001114b:	83 c4 10             	add    esp,0x10
+1001114e:	c2 08 00             	ret    0x8
+10011151:	cc                   	int3
+10011152:	cc                   	int3
+10011153:	cc                   	int3
+10011154:	cc                   	int3
+10011155:	cc                   	int3
+10011156:	cc                   	int3
+10011157:	cc                   	int3
+10011158:	cc                   	int3
+10011159:	cc                   	int3
+1001115a:	cc                   	int3
+1001115b:	cc                   	int3
+1001115c:	cc                   	int3
+1001115d:	cc                   	int3
+1001115e:	cc                   	int3
+1001115f:	cc                   	int3

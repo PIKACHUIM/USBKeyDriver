@@ -24,7 +24,7 @@ public static class NativeDll
     private static extern bool FreeLibrary(IntPtr hModule);
 
     [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-    private static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+    internal static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
 
     /// <summary>基于序号的调用形式（序 1 对应 "#1"）。</summary>
     private static IntPtr GetProcAddressOrdinal(IntPtr hModule, ushort ordinal)

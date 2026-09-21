@@ -1,0 +1,230 @@
+file=G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCC.dll
+
+======================================================================
+### MspXSendAPDU  1001FA64-1001FD00
+======================================================================
+  1001FA64  push    ebp
+  1001FA65  mov     ebp, esp
+  1001FA67  sub     esp, 854h
+  1001FA6D  push    ebx
+  1001FA6E  push    esi
+  1001FA6F  push    edi
+  1001FA70  push    0Fh
+  1001FA72  xor     ebx, ebx
+  1001FA74  pop     ecx
+  1001FA75  xor     eax, eax
+  1001FA77  lea     edi, [ebp+var_53]
+  1001FA7A  mov     [ebp+var_54], bl
+  1001FA7D  mov     esi, 0FFh
+  1001FA82  rep stosd
+  1001FA84  stosw
+  1001FA86  stosb
+  1001FA87  mov     ecx, esi
+  1001FA89  xor     eax, eax
+  1001FA8B  lea     edi, [ebp+var_853]
+  1001FA91  mov     [ebp+var_854], bl
+  1001FA97  rep stosd
+  1001FA99  stosw
+  1001FA9B  stosb
+  1001FA9C  mov     ecx, esi
+  1001FA9E  xor     eax, eax
+  1001FAA0  lea     edi, [ebp+var_453]
+  1001FAA6  mov     [ebp+var_454], bl
+  1001FAAC  rep stosd
+  1001FAAE  push    [ebp+Str]; Str
+  1001FAB1  mov     edx, 400h
+  1001FAB6  stosw
+  1001FAB8  mov     [ebp+var_14], 40h ; '@'
+  1001FABF  mov     [ebp+var_10], edx
+  1001FAC2  stosb
+  1001FAC3  mov     [ebp+var_8], edx
+  1001FAC6  call    strlen
+  1001FACB  mov     [ebp+Size], eax
+  1001FACE  xor     eax, eax
+  1001FAD0  lea     edi, [ebp+var_1]
+  1001FAD3  mov     [ebp+var_2], bl
+  1001FAD6  stosb
+  1001FAD7  mov     edi, [ebp+arg_0]
+  1001FADA  pop     ecx
+  1001FADB  cmp     edi, ebx
+  1001FADD  jz      loc_1001FDD2
+  1001FAE3  cmp     [ebp+Str], ebx
+  1001FAE6  jz      loc_1001FDD2
+  1001FAEC  cmp     [ebp+arg_8], ebx
+  1001FAEF  jz      loc_1001FDD2
+  1001FAF5  mov     esi, [ebp+arg_C]
+  1001FAF8  cmp     esi, ebx
+  1001FAFA  jz      loc_1001FDD2
+  1001FB00  push    [ebp+Str]
+  1001FB03  push    offset aMspXsendapduSz; "[MSP::XSendAPDU: *szCommand=%s"
+  1001FB08  push    1
+  1001FB0A  call    sub_1001ED5D
+  1001FB0F  add     esp, 0Ch
+  1001FB12  cmp     dword ptr [edi+10Ch], 2
+  1001FB19  jnz     loc_1001FD9B
+  1001FB1F  lea     eax, [ebp+var_14]
+  1001FB22  push    ebx
+  1001FB23  push    eax
+  1001FB24  lea     eax, [ebp+var_54]
+  1001FB27  push    eax
+  1001FB28  lea     eax, [edi+8]
+  1001FB2B  push    eax
+  1001FB2C  call    sub_10020376
+  1001FB31  add     esp, 10h
+  1001FB34  test    eax, eax
+  1001FB36  jz      loc_1001FD9B
+  1001FB3C  mov     eax, [ebp+Size]
+  1001FB3F  push    2
+  1001FB41  cdq
+  1001FB42  sub     eax, edx
+  1001FB44  mov     [ebp+var_854], 30h ; '0'
+  1001FB4B  sar     eax, 1
+  1001FB4D  mov     ecx, eax
+  1001FB4F  mov     [ebp+var_1], al
+  1001FB52  lea     eax, [ebp+var_2]
+  1001FB55  mov     [ebp+var_853], 31h ; '1'
+  1001FB5C  push    eax
+  1001FB5D  lea     eax, [ebp+var_454]
+  1001FB63  sar     ecx, 8
+  1001FB66  push    eax
+  1001FB67  mov     [ebp+var_2], cl
+  1001FB6A  call    sub_1001EB6C
+  1001FB6F  push    [ebp+Size]; Size
+  1001FB72  lea     eax, [ebp+var_450]
+  1001FB78  push    [ebp+Str]; Src
+  1001FB7B  push    eax; void *
+  1001FB7C  call    memcpy
+  1001FB81  lea     eax, [ebp+var_10]
+  1001FB84  push    eax
+  1001FB85  lea     eax, [ebp+var_852]
+  1001FB8B  push    eax
+  1001FB8C  lea     eax, [ebp+var_54]
+  1001FB8F  push    1
+  1001FB91  push    eax
+  1001FB92  lea     eax, [ebp+var_454]
+  1001FB98  push    eax
+  1001FB99  call    sub_1001EC96
+  1001FB9E  mov     eax, [ebp+Size]
+  1001FBA1  add     eax, 4
+  1001FBA4  push    eax; Size
+  1001FBA5  lea     eax, [ebp+var_454]
+  1001FBAB  push    ebx; Val
+  1001FBAC  push    eax; void *
+  1001FBAD  call    memset
+  1001FBB2  add     esp, 38h
+  1001FBB5  lea     eax, [ebp+var_454]
+  1001FBBB  mov     ecx, [edi+4]
+  1001FBBE  push    esi
+  1001FBBF  push    eax
+  1001FBC0  lea     eax, [ebp+var_854]
+  1001FBC6  push    eax
+  1001FBC7  push    dword ptr [edi]
+  1001FBC9  call    sub_10021532
+  1001FBCE  mov     edi, eax
+  1001FBD0  cmp     edi, 7
+  1001FBD3  jge     short loc_1001FBF1
+  1001FBD5  push    dword ptr [esi]
+  1001FBD7  push    edi
+  1001FBD8  push    [ebp+arg_8]
+  1001FBDB  push    offset aSzreplySReturn; "szReply = %s,return value len=0x%08x,ul"...
+  1001FBE0  push    1
+  1001FBE2  call    sub_1001ED5D
+  1001FBE7  add     esp, 14h
+  1001FBEA  mov     eax, edi
+  1001FBEC  jmp     loc_1001FDD7
+  1001FBF1  push    [ebp+var_10]; Size
+  1001FBF4  lea     eax, [ebp+var_854]
+  1001FBFA  push    ebx; Val
+  1001FBFB  push    eax; void *
+  1001FBFC  call    memset
+  1001FC01  add     edi, edi
+  1001FC03  lea     eax, [edi-1]
+  1001FC06  push    eax; Size
+  1001FC07  lea     eax, [ebp+Src]
+  1001FC0D  push    eax; Src
+  1001FC0E  lea     eax, [ebp+var_854]
+  1001FC14  push    eax; void *
+  1001FC15  call    memcpy
+  1001FC1A  mov     eax, [esi]
+  1001FC1C  push    2
+  1001FC1E  sar     eax, 8
+  1001FC21  mov     [ebp+var_2], al
+  1001FC24  mov     al, [esi]
+  1001FC26  mov     [ebp+var_1], al
+  1001FC29  lea     eax, [ebp+var_2]
+  1001FC2C  push    eax
+  1001FC2D  lea     eax, [ebp+edi+var_856]
+  1001FC34  push    eax
+  1001FC35  call    sub_1001EB6C
+  1001FC3A  lea     eax, [ebp+var_454]
+  1001FC40  push    eax; Str
+  1001FC41  call    strlen
+  1001FC46  push    eax; Size
+  1001FC47  lea     eax, [ebp+var_454]
+  1001FC4D  push    ebx; Val
+  1001FC4E  push    eax; void *
+  1001FC4F  call    memset
+  1001FC54  lea     eax, [ebp+var_8]
+  1001FC57  push    eax
+  1001FC58  lea     eax, [ebp+var_454]
+  1001FC5E  push    eax
+  1001FC5F  lea     eax, [ebp+var_54]
+  1001FC62  push    ebx
+  1001FC63  push    eax
+  1001FC64  lea     eax, [ebp+var_854]
+  1001FC6A  push    eax
+  1001FC6B  call    sub_1001EC96
+  1001FC70  add     esp, 48h
+  1001FC73  lea     eax, [ebp+var_2]
+  1001FC76  push    2; Size
+  1001FC78  push    ebx; Val
+  1001FC79  push    eax; void *
+  1001FC7A  call    memset
+  1001FC7F  lea     eax, [ebp+var_454]
+  1001FC85  push    4
+  1001FC87  push    eax
+  1001FC88  lea     eax, [ebp+var_2]
+  1001FC8B  push    eax
+  1001FC8C  call    sub_1001EB09
+  1001FC91  push    8; MaxCount
+  1001FC93  push    offset a00000000; "00000000"
+  1001FC98  push    [ebp+Str]; Str1
+  1001FC9B  call    strncmp
+  1001FCA0  add     esp, 24h
+  1001FCA3  test    eax, eax
+  1001FCA5  jnz     short loc_1001FCEC
+  1001FCA7  movzx   ecx, [ebp+var_1]
+  1001FCAB  mov     ah, [ebp+var_2]
+  1001FCAE  or      eax, ecx
+  1001FCB0  mov     edi, eax
+  1001FCB2  mov     eax, [ebp+var_8]
+  1001FCB5  shr     eax, 1
+  1001FCB7  dec     eax
+  1001FCB8  mov     [ebp+Str], edi
+  1001FCBB  dec     eax
+  1001FCBC  cmp     edi, eax
+  1001FCBE  jg      short loc_1001FD09
+  1001FCC0  add     edi, edi
+  1001FCC2  lea     eax, [ebp+var_450]
+  1001FCC8  push    edi; Size
+  1001FCC9  push    eax; Src
+  1001FCCA  push    [ebp+arg_8]; void *
+  1001FCCD  call    memcpy
+  1001FCD2  mov     ecx, [ebp+arg_8]
+  1001FCD5  add     esp, 0Ch
+  1001FCD8  mov     eax, 9000h
+  1001FCDD  push    eax
+  1001FCDE  mov     [edi+ecx], bl
+  1001FCE1  push    [ebp+Str]
+  1001FCE4  mov     [esi], eax
+  1001FCE6  push    ecx
+  1001FCE7  jmp     loc_1001FD87
+  1001FCEC  movzx   ecx, [ebp+var_1]
+  1001FCF0  xor     eax, eax
+  1001FCF2  mov     ah, [ebp+var_2]
+  1001FCF5  or      eax, ecx
+  1001FCF7  dec     eax
+  1001FCF8  dec     eax
+  1001FCF9  mov     edi, eax
+  1001FCFB  mov     eax, [ebp+var_8]
+  1001FCFE  shr     eax, 1

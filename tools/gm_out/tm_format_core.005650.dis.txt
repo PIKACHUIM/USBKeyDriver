@@ -1,0 +1,107 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll
+;; rva=0x5650 len=0x120 file_off=0x4A50
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10005650 <.text+0x4650>:
+10005650:	55                   	push   ebp
+10005651:	8b 6c 24 08          	mov    ebp,DWORD PTR [esp+0x8]
+10005655:	56                   	push   esi
+10005656:	8b f0                	mov    esi,eax
+10005658:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+1000565b:	8b 48 14             	mov    ecx,DWORD PTR [eax+0x14]
+1000565e:	56                   	push   esi
+1000565f:	57                   	push   edi
+10005660:	ff d1                	call   ecx
+10005662:	83 c4 08             	add    esp,0x8
+10005665:	85 c0                	test   eax,eax
+10005667:	75 52                	jne    0x100056bb
+10005669:	53                   	push   ebx
+1000566a:	8d 54 24 10          	lea    edx,[esp+0x10]
+1000566e:	52                   	push   edx
+1000566f:	57                   	push   edi
+10005670:	8d 5e 60             	lea    ebx,[esi+0x60]
+10005673:	55                   	push   ebp
+10005674:	e8 57 ef ff ff       	call   0x100045d0
+10005679:	5b                   	pop    ebx
+1000567a:	85 c0                	test   eax,eax
+1000567c:	75 3d                	jne    0x100056bb
+1000567e:	8d 8e 80 00 00 00    	lea    ecx,[esi+0x80]
+10005684:	8b c1                	mov    eax,ecx
+10005686:	8d 70 01             	lea    esi,[eax+0x1]
+10005689:	8d a4 24 00 00 00 00 	lea    esp,[esp+0x0]
+10005690:	8a 10                	mov    dl,BYTE PTR [eax]
+10005692:	40                   	inc    eax
+10005693:	84 d2                	test   dl,dl
+10005695:	75 f9                	jne    0x10005690
+10005697:	8b 55 04             	mov    edx,DWORD PTR [ebp+0x4]
+1000569a:	2b c6                	sub    eax,esi
+1000569c:	50                   	push   eax
+1000569d:	8b 42 2a             	mov    eax,DWORD PTR [edx+0x2a]
+100056a0:	51                   	push   ecx
+100056a1:	57                   	push   edi
+100056a2:	ff d0                	call   eax
+100056a4:	8b f0                	mov    esi,eax
+100056a6:	83 c4 0c             	add    esp,0xc
+100056a9:	85 f6                	test   esi,esi
+100056ab:	75 0c                	jne    0x100056b9
+100056ad:	8b 4d 04             	mov    ecx,DWORD PTR [ebp+0x4]
+100056b0:	8b 51 4e             	mov    edx,DWORD PTR [ecx+0x4e]
+100056b3:	57                   	push   edi
+100056b4:	ff d2                	call   edx
+100056b6:	83 c4 04             	add    esp,0x4
+100056b9:	8b c6                	mov    eax,esi
+100056bb:	5e                   	pop    esi
+100056bc:	5d                   	pop    ebp
+100056bd:	c2 04 00             	ret    0x4
+100056c0:	83 ec 54             	sub    esp,0x54
+100056c3:	33 d2                	xor    edx,edx
+100056c5:	88 54 24 03          	mov    BYTE PTR [esp+0x3],dl
+100056c9:	89 54 24 0c          	mov    DWORD PTR [esp+0xc],edx
+100056cd:	8d 54 24 04          	lea    edx,[esp+0x4]
+100056d1:	89 54 24 10          	mov    DWORD PTR [esp+0x10],edx
+100056d5:	b8 01 00 00 00       	mov    eax,0x1
+100056da:	8d 54 24 03          	lea    edx,[esp+0x3]
+100056de:	89 54 24 1c          	mov    DWORD PTR [esp+0x1c],edx
+100056e2:	8d 54 24 02          	lea    edx,[esp+0x2]
+100056e6:	89 54 24 28          	mov    DWORD PTR [esp+0x28],edx
+100056ea:	89 54 24 34          	mov    DWORD PTR [esp+0x34],edx
+100056ee:	8b 54 24 64          	mov    edx,DWORD PTR [esp+0x64]
+100056f2:	88 44 24 02          	mov    BYTE PTR [esp+0x2],al
+100056f6:	89 44 24 18          	mov    DWORD PTR [esp+0x18],eax
+100056fa:	89 44 24 20          	mov    DWORD PTR [esp+0x20],eax
+100056fe:	89 44 24 2c          	mov    DWORD PTR [esp+0x2c],eax
+10005702:	89 44 24 38          	mov    DWORD PTR [esp+0x38],eax
+10005706:	b9 04 00 00 00       	mov    ecx,0x4
+1000570b:	89 4c 24 04          	mov    DWORD PTR [esp+0x4],ecx
+1000570f:	89 4c 24 14          	mov    DWORD PTR [esp+0x14],ecx
+10005713:	89 4c 24 44          	mov    DWORD PTR [esp+0x44],ecx
+10005717:	8b 4c 24 60          	mov    ecx,DWORD PTR [esp+0x60]
+1000571b:	89 54 24 50          	mov    DWORD PTR [esp+0x50],edx
+1000571f:	8b 54 24 68          	mov    edx,DWORD PTR [esp+0x68]
+10005723:	8d 44 24 08          	lea    eax,[esp+0x8]
+10005727:	89 44 24 40          	mov    DWORD PTR [esp+0x40],eax
+1000572b:	8b 44 24 58          	mov    eax,DWORD PTR [esp+0x58]
+1000572f:	52                   	push   edx
+10005730:	8b 54 24 60          	mov    edx,DWORD PTR [esp+0x60]
+10005734:	89 4c 24 50          	mov    DWORD PTR [esp+0x50],ecx
+10005738:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+1000573b:	6a 06                	push   0x6
+1000573d:	8d 44 24 14          	lea    eax,[esp+0x14]
+10005741:	50                   	push   eax
+10005742:	c7 44 24 14 10 00 00 	mov    DWORD PTR [esp+0x14],0x10
+10005749:	00 
+1000574a:	c7 44 24 30 04 01 00 	mov    DWORD PTR [esp+0x30],0x104
+10005751:	00 
+10005752:	c7 44 24 3c 05 01 00 	mov    DWORD PTR [esp+0x3c],0x105
+10005759:	00 
+1000575a:	c7 44 24 48 00 01 00 	mov    DWORD PTR [esp+0x48],0x100
+10005761:	00 
+10005762:	c7 44 24 54 11 00 00 	mov    DWORD PTR [esp+0x54],0x11
+10005769:	00 
+1000576a:	8b 41 52             	mov    eax,DWORD PTR [ecx+0x52]
+1000576d:	52                   	push   edx
+1000576e:	ff d0                	call   eax

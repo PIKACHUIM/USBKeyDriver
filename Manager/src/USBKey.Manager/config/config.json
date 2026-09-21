@@ -1,0 +1,56 @@
+{
+  "usermode": false,
+  "platform": [
+    "lnca",
+    "hengbao",
+    "epass3003"
+  ],
+  "keyslist": {
+    "lnca": [
+      {
+        "name": "LNCA安全USBKey",
+        "vid": "",
+        "pid": ""
+      }
+    ],
+    "hengbao": [
+      {
+        "name": "恒宝民生银行USBKey",
+        "vid": "",
+        "pid": ""
+      }
+    ],
+    "epass3003": [
+      {
+        "name": "EnterSafe ePass3003",
+        "vid": "096E",
+        "pid": "0303"
+      }
+    ]
+  },
+  "features": {
+    "login": "enabled",
+    "cloudimport": "hidden",
+    "importcert": "enabled",
+    "viewcert": "enabled",
+    "exportcert": "enabled",
+    "delcert": "enabled",
+    "regcert": "enabled",
+    "changepin": "disabled",
+    "unlock": "enabled",
+    "reset": "enabled"
+  },
+  "settings": {
+    "allowDeleteCert": true,
+    "allowChangePin": false,
+    "loginTimeoutMinutes": 15,
+    "cloudEndpoint": "",
+    "autoStart": true,
+    "autoRegisterCert": true
+  },
+  "api": {
+    "enabled": false,
+    "port": 18443,
+    "token": ""
+  }
+}

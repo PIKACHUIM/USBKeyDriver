@@ -1,0 +1,82 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; SKF_GetDevInfo rva=0x11BE0 va=0x10011BE0 stop=0x10011CB0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10011be0 <.text+0x10be0>:
+10011be0:	83 ec 20             	sub    esp,0x20
+10011be3:	53                   	push   ebx
+10011be4:	56                   	push   esi
+10011be5:	57                   	push   edi
+10011be6:	8d 44 24 20          	lea    eax,[esp+0x20]
+10011bea:	50                   	push   eax
+10011beb:	c7 44 24 24 f4 04 04 	mov    DWORD PTR [esp+0x24],0x100404f4
+10011bf2:	10 
+10011bf3:	e8 c8 12 01 00       	call   0x10022ec0
+10011bf8:	8b 44 24 30          	mov    eax,DWORD PTR [esp+0x30]
+10011bfc:	8d 4c 24 14          	lea    ecx,[esp+0x14]
+10011c00:	51                   	push   ecx
+10011c01:	8d 54 24 14          	lea    edx,[esp+0x14]
+10011c05:	52                   	push   edx
+10011c06:	bb b8 55 04 10       	mov    ebx,0x100455b8
+10011c0b:	c7 44 24 18 00 00 00 	mov    DWORD PTR [esp+0x18],0x0
+10011c12:	00 
+10011c13:	c7 44 24 1c 00 00 00 	mov    DWORD PTR [esp+0x1c],0x0
+10011c1a:	00 
+10011c1b:	e8 10 a2 00 00       	call   0x1001be30
+10011c20:	8b c8                	mov    ecx,eax
+10011c22:	85 c9                	test   ecx,ecx
+10011c24:	75 07                	jne    0x10011c2d
+10011c26:	be 05 00 00 0a       	mov    esi,0xa000005
+10011c2b:	eb 4b                	jmp    0x10011c78
+10011c2d:	8b 44 24 10          	mov    eax,DWORD PTR [esp+0x10]
+10011c31:	8b 90 04 01 00 00    	mov    edx,DWORD PTR [eax+0x104]
+10011c37:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+10011c3b:	8b 40 20             	mov    eax,DWORD PTR [eax+0x20]
+10011c3e:	8d 74 24 14          	lea    esi,[esp+0x14]
+10011c42:	56                   	push   esi
+10011c43:	8d 74 24 14          	lea    esi,[esp+0x14]
+10011c47:	56                   	push   esi
+10011c48:	8d 74 24 20          	lea    esi,[esp+0x20]
+10011c4c:	56                   	push   esi
+10011c4d:	8d 74 24 3c          	lea    esi,[esp+0x3c]
+10011c51:	56                   	push   esi
+10011c52:	52                   	push   edx
+10011c53:	8d 54 24 30          	lea    edx,[esp+0x30]
+10011c57:	e8 c4 d2 00 00       	call   0x1001ef20
+10011c5c:	8b f0                	mov    esi,eax
+10011c5e:	83 c4 14             	add    esp,0x14
+10011c61:	85 f6                	test   esi,esi
+10011c63:	74 09                	je     0x10011c6e
+10011c65:	e8 26 91 00 00       	call   0x1001ad90
+10011c6a:	8b f0                	mov    esi,eax
+10011c6c:	eb 0a                	jmp    0x10011c78
+10011c6e:	8b 4c 24 34          	mov    ecx,DWORD PTR [esp+0x34]
+10011c72:	8b 54 24 30          	mov    edx,DWORD PTR [esp+0x30]
+10011c76:	89 11                	mov    DWORD PTR [ecx],edx
+10011c78:	8b 44 24 24          	mov    eax,DWORD PTR [esp+0x24]
+10011c7c:	85 c0                	test   eax,eax
+10011c7e:	74 24                	je     0x10011ca4
+10011c80:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+10011c83:	85 c0                	test   eax,eax
+10011c85:	74 1d                	je     0x10011ca4
+10011c87:	8b 08                	mov    ecx,DWORD PTR [eax]
+10011c89:	85 c9                	test   ecx,ecx
+10011c8b:	74 17                	je     0x10011ca4
+10011c8d:	83 78 08 00          	cmp    DWORD PTR [eax+0x8],0x0
+10011c91:	8d 78 08             	lea    edi,[eax+0x8]
+10011c94:	7e 0e                	jle    0x10011ca4
+10011c96:	51                   	push   ecx
+10011c97:	ff 15 04 d1 03 10    	call   DWORD PTR ds:0x1003d104
+10011c9d:	57                   	push   edi
+10011c9e:	ff 15 48 d0 03 10    	call   DWORD PTR ds:0x1003d048
+10011ca4:	5f                   	pop    edi
+10011ca5:	8b c6                	mov    eax,esi
+10011ca7:	5e                   	pop    esi
+10011ca8:	5b                   	pop    ebx
+10011ca9:	83 c4 20             	add    esp,0x20
+10011cac:	c2 08 00             	ret    0x8
+10011caf:	cc                   	int3

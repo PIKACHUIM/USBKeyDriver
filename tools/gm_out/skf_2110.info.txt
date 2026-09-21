@@ -1,0 +1,8 @@
+== g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+size=292352
+machine=0x014C magic=0x10B x86 image_base=0x10000000
+  .text     va=0x00001000 vsize=0x0003B7E9 raw=0x00000400 rsize=0x0003B800
+  .rdata    va=0x0003D000 vsize=0x00006AC2 raw=0x0003BC00 rsize=0x00006C00
+  .data     va=0x00044000 vsize=0x00003C7C raw=0x00042800 rsize=0x00001A00
+  .rsrc     va=0x00048000 vsize=0x00000514 raw=0x00044200 rsize=0x00000600
+  .reloc    va=0x00049000 vsize=0x00002D9E raw=0x00044800 rsize=0x00002E00

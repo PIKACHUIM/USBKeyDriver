@@ -1,0 +1,58 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; M_SetTokenLabel rva=0x2C80 va=0x10002C80 stop=0x10002D00
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10002c80 <.text+0x1c80>:
+10002c80:	53                   	push   ebx
+10002c81:	8b 1d e0 4f 06 10    	mov    ebx,DWORD PTR ds:0x10064fe0
+10002c87:	85 db                	test   ebx,ebx
+10002c89:	74 0a                	je     0x10002c95
+10002c8b:	53                   	push   ebx
+10002c8c:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002c92:	83 c4 04             	add    esp,0x4
+10002c95:	56                   	push   esi
+10002c96:	8b 74 24 0c          	mov    esi,DWORD PTR [esp+0xc]
+10002c9a:	57                   	push   edi
+10002c9b:	6a 40                	push   0x40
+10002c9d:	56                   	push   esi
+10002c9e:	68 88 32 06 10       	push   0x10063288
+10002ca3:	e8 f8 2b 04 00       	call   0x100458a0
+10002ca8:	8b 7c 24 20          	mov    edi,DWORD PTR [esp+0x20]
+10002cac:	6a 40                	push   0x40
+10002cae:	57                   	push   edi
+10002caf:	68 c8 33 06 10       	push   0x100633c8
+10002cb4:	e8 e7 2b 04 00       	call   0x100458a0
+10002cb9:	83 c4 18             	add    esp,0x18
+10002cbc:	8b d6                	mov    edx,esi
+10002cbe:	e8 6d 01 02 00       	call   0x10022e30
+10002cc3:	8b 54 24 18          	mov    edx,DWORD PTR [esp+0x18]
+10002cc7:	85 d2                	test   edx,edx
+10002cc9:	74 20                	je     0x10002ceb
+10002ccb:	8b c2                	mov    eax,edx
+10002ccd:	8d 70 01             	lea    esi,[eax+0x1]
+10002cd0:	8a 08                	mov    cl,BYTE PTR [eax]
+10002cd2:	40                   	inc    eax
+10002cd3:	84 c9                	test   cl,cl
+10002cd5:	75 f9                	jne    0x10002cd0
+10002cd7:	2b c6                	sub    eax,esi
+10002cd9:	74 10                	je     0x10002ceb
+10002cdb:	6a 40                	push   0x40
+10002cdd:	52                   	push   edx
+10002cde:	68 48 33 06 10       	push   0x10063348
+10002ce3:	e8 b8 2b 04 00       	call   0x100458a0
+10002ce8:	83 c4 0c             	add    esp,0xc
+10002ceb:	5f                   	pop    edi
+10002cec:	5e                   	pop    esi
+10002ced:	85 db                	test   ebx,ebx
+10002cef:	74 0a                	je     0x10002cfb
+10002cf1:	53                   	push   ebx
+10002cf2:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+10002cf8:	83 c4 04             	add    esp,0x4
+10002cfb:	33 c0                	xor    eax,eax
+10002cfd:	5b                   	pop    ebx
+10002cfe:	c3                   	ret
+10002cff:	cc                   	int3

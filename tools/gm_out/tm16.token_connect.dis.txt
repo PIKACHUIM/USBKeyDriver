@@ -1,0 +1,26 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll
+;; token_connect rva=0x5AF0 va=0x10005AF0 stop=0x10005B20
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10005af0 <.text+0x4af0>:
+10005af0:	56                   	push   esi
+10005af1:	8b 74 24 08          	mov    esi,DWORD PTR [esp+0x8]
+10005af5:	3b 35 b4 bb 01 10    	cmp    esi,DWORD PTR ds:0x1001bbb4
+10005afb:	7c 09                	jl     0x10005b06
+10005afd:	b8 01 00 00 00       	mov    eax,0x1
+10005b02:	5e                   	pop    esi
+10005b03:	c2 04 00             	ret    0x4
+10005b06:	69 f6 dc 00 00 00    	imul   esi,esi,0xdc
+10005b0c:	81 c6 b8 bb 01 10    	add    esi,0x1001bbb8
+10005b12:	e8 e9 1f 00 00       	call   0x10007b00
+10005b17:	5e                   	pop    esi
+10005b18:	c2 04 00             	ret    0x4
+10005b1b:	cc                   	int3
+10005b1c:	cc                   	int3
+10005b1d:	cc                   	int3
+10005b1e:	cc                   	int3
+10005b1f:	cc                   	int3

@@ -1,0 +1,92 @@
+FILE: G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBC.dll
+IMAGEBASE: 0x10000000
+
+=== WAITING FOR AUTOANALYSIS ===
+done
+=== IMPORTS ===
+  KERNEL32                 10003014 FindResourceA
+  KERNEL32                 10003018 GetLastError
+  KERNEL32                 1000301C GetModuleFileNameA
+  KERNEL32                 10003020 GetVersionExA
+  KERNEL32                 10003024 LoadLibraryA
+  KERNEL32                 10003028 FreeLibrary
+  KERNEL32                 1000302C CreateFileA
+  KERNEL32                 10003030 GetFileSize
+  KERNEL32                 10003034 ReadFile
+  KERNEL32                 10003038 CloseHandle
+  KERNEL32                 1000303C GetProcAddress
+  USER32                   10003064 GetActiveWindow
+  USER32                   10003068 MessageBoxA
+  ADVAPI32                 10003000 RegCloseKey
+  ADVAPI32                 10003004 RegCreateKeyExA
+  ADVAPI32                 10003008 RegSetValueExA
+  ADVAPI32                 1000300C RegDeleteKeyA
+  MSVCRT                   10003044 free
+  MSVCRT                   10003048 _mbsrchr
+  MSVCRT                   1000304C sprintf
+  MSVCRT                   10003050 strstr
+  MSVCRT                   10003054 _initterm
+  MSVCRT                   10003058 malloc
+  MSVCRT                   1000305C _adjust_fdiv
+
+=== EXPORTS ===
+ord=1      ea=10001AD0 name=CPAcquireContext
+ord=2      ea=10001AF0 name=CPCreateHash
+ord=3      ea=10001C00 name=CPDecrypt
+ord=4      ea=10001D90 name=CPDeriveKey
+ord=5      ea=10001B20 name=CPDestroyHash
+ord=6      ea=10001B40 name=CPDestroyKey
+ord=7      ea=10001B60 name=CPDuplicateHash
+ord=8      ea=10001B90 name=CPDuplicateKey
+ord=9      ea=10001BC0 name=CPEncrypt
+ord=10     ea=10001C30 name=CPExportKey
+ord=11     ea=10001C90 name=CPGenKey
+ord=12     ea=10001CB0 name=CPGenRandom
+ord=13     ea=10001CD0 name=CPGetHashParam
+ord=14     ea=10001D30 name=CPGetKeyParam
+ord=15     ea=10001D60 name=CPGetProvParam
+ord=16     ea=10001DC0 name=CPGetUserKey
+ord=17     ea=10001DE0 name=CPHashData
+ord=18     ea=10001E10 name=CPHashSessionKey
+ord=19     ea=10001C60 name=CPImportKey
+ord=20     ea=10001E30 name=CPReleaseContext
+ord=21     ea=10001E50 name=CPSetHashParam
+ord=22     ea=10001D00 name=CPSetKeyParam
+ord=23     ea=10001E80 name=CPSetProvParam
+ord=24     ea=10001EA0 name=CPSignHash
+ord=25     ea=10001ED0 name=CPVerifySignature
+ord=26     ea=10001060 name=DllRegisterServer
+ord=27     ea=10001000 name=DllUnregisterServer
+ord=268443579 ea=10001FBB name=DllEntryPoint
+
+=== NAMED FUNCTIONS (interesting) ===
+10001ED0  CPVerifySignature
+10003000  RegCloseKey
+10003038  CloseHandle
+1000420C  Format
+
+=== KEYWORD HITS ===
+
+#### keyword: KInitEnv
+   raw hits: 0
+
+#### keyword: VerifyPIN
+   raw hits: 0
+
+#### keyword: UnLockPin
+   raw hits: 0
+
+#### keyword: GetPinAndCheckStatus
+   raw hits: 0
+
+#### keyword: ReadFileMapping
+   raw hits: 0
+
+#### keyword: BSP_
+   raw hits: 0
+
+#### keyword: FSP_
+   raw hits: 0
+
+#### keyword: CSP_
+   raw hits: 0

@@ -1,0 +1,135 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; rva=0x5950 len=0x140 file_off=0x4D50
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10005950 <.text+0x4950>:
+10005950:	a1 58 51 06 10       	mov    eax,ds:0x10065158
+10005955:	57                   	push   edi
+10005956:	85 c0                	test   eax,eax
+10005958:	74 26                	je     0x10005980
+1000595a:	8d 9b 00 00 00 00    	lea    ebx,[ebx+0x0]
+10005960:	8b 48 08             	mov    ecx,DWORD PTR [eax+0x8]
+10005963:	85 c9                	test   ecx,ecx
+10005965:	74 05                	je     0x1000596c
+10005967:	3b 51 14             	cmp    edx,DWORD PTR [ecx+0x14]
+1000596a:	74 10                	je     0x1000597c
+1000596c:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+1000596f:	85 c0                	test   eax,eax
+10005971:	75 ed                	jne    0x10005960
+10005973:	b8 b3 00 00 00       	mov    eax,0xb3
+10005978:	5f                   	pop    edi
+10005979:	c2 10 00             	ret    0x10
+1000597c:	85 c9                	test   ecx,ecx
+1000597e:	75 09                	jne    0x10005989
+10005980:	b8 b3 00 00 00       	mov    eax,0xb3
+10005985:	5f                   	pop    edi
+10005986:	c2 10 00             	ret    0x10
+10005989:	a1 2c 51 06 10       	mov    eax,ds:0x1006512c
+1000598e:	8b 51 18             	mov    edx,DWORD PTR [ecx+0x18]
+10005991:	85 c0                	test   eax,eax
+10005993:	74 16                	je     0x100059ab
+10005995:	8b 48 08             	mov    ecx,DWORD PTR [eax+0x8]
+10005998:	85 c9                	test   ecx,ecx
+1000599a:	74 08                	je     0x100059a4
+1000599c:	3b 91 50 02 00 00    	cmp    edx,DWORD PTR [ecx+0x250]
+100059a2:	74 10                	je     0x100059b4
+100059a4:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+100059a7:	85 c0                	test   eax,eax
+100059a9:	75 ea                	jne    0x10005995
+100059ab:	b8 32 00 00 00       	mov    eax,0x32
+100059b0:	5f                   	pop    edi
+100059b1:	c2 10 00             	ret    0x10
+100059b4:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+100059b8:	8b 54 24 10          	mov    edx,DWORD PTR [esp+0x10]
+100059bc:	8b 7c 24 0c          	mov    edi,DWORD PTR [esp+0xc]
+100059c0:	50                   	push   eax
+100059c1:	52                   	push   edx
+100059c2:	8b 54 24 10          	mov    edx,DWORD PTR [esp+0x10]
+100059c6:	e8 f5 63 00 00       	call   0x1000bdc0
+100059cb:	5f                   	pop    edi
+100059cc:	c2 10 00             	ret    0x10
+100059cf:	cc                   	int3
+100059d0:	51                   	push   ecx
+100059d1:	a1 58 51 06 10       	mov    eax,ds:0x10065158
+100059d6:	53                   	push   ebx
+100059d7:	56                   	push   esi
+100059d8:	85 c0                	test   eax,eax
+100059da:	74 26                	je     0x10005a02
+100059dc:	8d 64 24 00          	lea    esp,[esp+0x0]
+100059e0:	8b 48 08             	mov    ecx,DWORD PTR [eax+0x8]
+100059e3:	85 c9                	test   ecx,ecx
+100059e5:	74 05                	je     0x100059ec
+100059e7:	3b 51 14             	cmp    edx,DWORD PTR [ecx+0x14]
+100059ea:	74 12                	je     0x100059fe
+100059ec:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+100059ef:	85 c0                	test   eax,eax
+100059f1:	75 ed                	jne    0x100059e0
+100059f3:	b8 b3 00 00 00       	mov    eax,0xb3
+100059f8:	5e                   	pop    esi
+100059f9:	5b                   	pop    ebx
+100059fa:	59                   	pop    ecx
+100059fb:	c2 10 00             	ret    0x10
+100059fe:	85 c9                	test   ecx,ecx
+10005a00:	75 0b                	jne    0x10005a0d
+10005a02:	b8 b3 00 00 00       	mov    eax,0xb3
+10005a07:	5e                   	pop    esi
+10005a08:	5b                   	pop    ebx
+10005a09:	59                   	pop    ecx
+10005a0a:	c2 10 00             	ret    0x10
+10005a0d:	a1 2c 51 06 10       	mov    eax,ds:0x1006512c
+10005a12:	8b 49 18             	mov    ecx,DWORD PTR [ecx+0x18]
+10005a15:	85 c0                	test   eax,eax
+10005a17:	74 1d                	je     0x10005a36
+10005a19:	8d a4 24 00 00 00 00 	lea    esp,[esp+0x0]
+10005a20:	8b 70 08             	mov    esi,DWORD PTR [eax+0x8]
+10005a23:	85 f6                	test   esi,esi
+10005a25:	74 08                	je     0x10005a2f
+10005a27:	3b 8e 50 02 00 00    	cmp    ecx,DWORD PTR [esi+0x250]
+10005a2d:	74 12                	je     0x10005a41
+10005a2f:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+10005a32:	85 c0                	test   eax,eax
+10005a34:	75 ea                	jne    0x10005a20
+10005a36:	b8 32 00 00 00       	mov    eax,0x32
+10005a3b:	5e                   	pop    esi
+10005a3c:	5b                   	pop    ebx
+10005a3d:	59                   	pop    ecx
+10005a3e:	c2 10 00             	ret    0x10
+10005a41:	83 be 78 02 00 00 00 	cmp    DWORD PTR [esi+0x278],0x0
+10005a48:	75 07                	jne    0x10005a51
+10005a4a:	8b ce                	mov    ecx,esi
+10005a4c:	e8 af 5d 00 00       	call   0x1000b800
+10005a51:	8b 44 24 18          	mov    eax,DWORD PTR [esp+0x18]
+10005a55:	8b 4c 24 14          	mov    ecx,DWORD PTR [esp+0x14]
+10005a59:	8b 54 24 10          	mov    edx,DWORD PTR [esp+0x10]
+10005a5d:	8b b6 78 02 00 00    	mov    esi,DWORD PTR [esi+0x278]
+10005a63:	8b 5c 24 1c          	mov    ebx,DWORD PTR [esp+0x1c]
+10005a67:	50                   	push   eax
+10005a68:	51                   	push   ecx
+10005a69:	52                   	push   edx
+10005a6a:	56                   	push   esi
+10005a6b:	e8 30 f7 01 00       	call   0x100251a0
+10005a70:	5e                   	pop    esi
+10005a71:	5b                   	pop    ebx
+10005a72:	59                   	pop    ecx
+10005a73:	c2 10 00             	ret    0x10
+10005a76:	cc                   	int3
+10005a77:	cc                   	int3
+10005a78:	cc                   	int3
+10005a79:	cc                   	int3
+10005a7a:	cc                   	int3
+10005a7b:	cc                   	int3
+10005a7c:	cc                   	int3
+10005a7d:	cc                   	int3
+10005a7e:	cc                   	int3
+10005a7f:	cc                   	int3
+10005a80:	51                   	push   ecx
+10005a81:	a1 58 51 06 10       	mov    eax,ds:0x10065158
+10005a86:	56                   	push   esi
+10005a87:	85 c0                	test   eax,eax
+10005a89:	74 26                	je     0x10005ab1
+10005a8b:	eb 03                	jmp    0x10005a90
+10005a8d:	8d 49 00             	lea    ecx,[ecx+0x0]

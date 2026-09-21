@@ -1,0 +1,35 @@
+directory services - algorithms
+X500algorithms
+algorithm
+algor
+USER32.DLL
+NETAPI32.DLL
+KERNEL32.DLL
+ADVAPI32.DLL
+X509_ALGORS
+algorithms
+X509_ALGOR
+Linguo_APDU_Mutex_LOG_{34ACF644-6F92-4e37-A9C7-D70E05930905}
+d:\LinguoAPDU.log
+Linguo_CSP_APDU_Mutex_LOG_{34ACF644-6F92-4e37-A9C7-D70E05930905}
+d:\LinguoCSP.log
+Kernel32.dll
+Unicows.dll
+Comctl32.dll
+Secure Hash Algorithm (SHA-1)
+Secure Hash Algorithm (SHA-256)
+LGUSB   ZJK
+LinguoContainerKeyIDHeader
+Linguo Cryptographic Provider v2.0
+CPCreateHash: hProv: 0x%08x,Algid: 0x%08x,hKey: 0x%08x,dwFlags: 0x%08X,phHash: 0x%08p
+CPDeriveKey: hProv:0x%08x,Algid:0x%08x,hHash:0x%08x,dwFlags:%08x,phKey:0x%08p
+CPGenKey: hProv:0x%08x,Algid:0x%08x,dwFlags:0x%08x,phKey:0x%08p
+CRYPT32.dll
+SETUPAPI.dll
+RPCRT4.dll
+KERNEL32.dll
+GetDlgItem
+USER32.dll
+ADVAPI32.dll
+LgImpl.dll
+cjx@linguo.cn1-0+

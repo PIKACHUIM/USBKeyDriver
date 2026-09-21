@@ -1,0 +1,164 @@
+/*
+[]=========================================================================[]
+
+	Copyright(C) Feitian Technologies Co., Ltd.
+	All rights reserved.
+
+FILE:
+	dsatest.cpp
+
+DESC:
+	implementation of the DSATest class.
+[]=========================================================================[]
+*/
+
+#include "Common.h"
+#include "DSATest.h"
+#define  DSA_KEY_LENGTH 1024 
+#define  DSA_SEED 0
+#define  DSA_SEED_LEN 0
+
+DSATest::DSATest(char* dll_file_path):CBaseAll(dll_file_path)
+{
+}
+
+DSATest::~DSATest()
+{
+}
+
+void DSATest::TestDSA()
+{
+	CK_RV rv = CKR_OK;
+	if(CKR_OK != BaseAllStart())
+	{
+		cout << "..LoadLibrary and initialize PKCS#11's dll failed!" <<endl;
+		return ;
+	}
+
+	START_OP("Now test DSA key pair generate and sign data and then verify...\n");
+	do {
+		START_OP("Now Test DSA key pair generate...\n");
+		CK_BYTE bCipherBuffer[MODULUS_BIT_LENGTH] = {0};
+		CK_ULONG ulCipherLen = 0;
+		CK_BYTE bRestoredMsg[MODULUS_BIT_LENGTH] = {0};
+		CK_ULONG ulRestoredMsgLen = 0;
+		
+		CK_BYTE pbMsg[] = "UsbToken DSAKeyTest..../////[Yubo]!";
+		CK_ULONG ulMsgLen = strlen((const char *)pbMsg);
+
+		//CK_OBJECT_HANDLE hPubKey, hPriKey;
+		CK_MECHANISM dsamechanism = {CKM_DSA_KEY_PAIR_GEN, NULL_PTR, 0};
+	  byte temP[128]={0xdf,0x16,0x1a,0x54,0x65,0xa7,0xd8,0x35,0x50,0xbe,0xb9,\
+						0xdb,0x4f,0xde,0x3b,0xaa,0xa8,0x90,0xc3,0x1a,0xa2,0x92,\
+						0x71,0x85,0x48,0x3e,0xe9,0xd4,0x46,0x13,0xfa,0xde,0xae,\
+						0xef,0xa9,0xa3,0x4f,0x71,0xc7,0x63,0xc,0xf0,0x83,0xe1,\
+						0x60,0x1,0x25,0xcf,0xd2,0x72,0x3,0xc5,0x86,0xb7,0x32,\
+						0xfd,0x37,0x9f,0x3b,0x79,0x2b,0x10,0x78,0xd9,0x19,0xd5,\
+						0x36,0xfe,0x7,0xff,0x47,0xdf,0xce,0x37,0xc6,0xd,0x27,0xb5,\
+						0x27,0x1c,0x66,0xeb,0xd1,0x13,0x3d,0xf0,0x69,0x92,0x78,\
+						0x16,0xab,0xde,0xe9,0x7a,0xfb,0x75,0x33,0x96,0x7e,0xb6,0x4f,\
+						0x9b,0xe6,0x13,0x89,0xba,0x4a,0xc3,0xfe,0x59,0x9d,0x41,\
+						0xee,0xe,0x38,0xfe,0x8b,0x14,0x4a,0xc2,0x7f,0x93,0x26,0xe6,0x4e,0xbe,0x76,0x7d};			
+		 
+		byte temQ[20] = {0x80,0x5e,0xad,0x31,0x4,0xbc,0x75,0x5c,0xae,0x67,\
+							0xda,0xcd,0x9a,0x3b,0x2e,0x89,0x2,0x9d,0x24,0xbb};
+
+		byte temG[128] = {0xd6,0xdb,0xd2,0x78,0xa8,0x1c,0xae,0x63,0xaa,0x6b,\
+							0x6d,0x68,0xd5,0x62,0xe4,0xa4,0x51,0x58,0x43,0x9b,\
+							0x1a,0x5b,0x8d,0x59,0xc8,0xba,0x89,0xa4,0xf6,0x70,0xb,\
+							0x6a,0x82,0xfe,0x3c,0xe7,0xf4,0xb2,0x68,0x46,0x12,0xf8,\
+							0xba,0xcf,0x2e,0x84,0xe2,0xdd,0x92,0x33,0x5b,0xce,0x7e,\
+							0x4e,0xdf,0x53,0xa8,0x8f,0xe0,0x8,0xf1,0xcc,0x8d,0x7e,\
+							0x1a,0xcf,0xc8,0x23,0xea,0xd6,0x83,0xd5,0xc1,0x39,0x6b,\
+							0xe9,0xd0,0x47,0x37,0xda,0x65,0x8c,0xb3,0x41,0x6b,0xf9,\
+							0xa7,0x1b,0xd3,0x53,0xcb,0x2a,0xea,0x71,0xd2,0x41,0x26,0xf9,\
+							0xd9,0x4,0x6b,0xed,0x9c,0xa5,0x4,0x36,0x47,0x56,0x1e,\
+							0x45,0xc6,0x29,0x9,0xbc,0x44,0x75,0x62,0xba,0xce,0x45,0xd1,\
+							0x4d,0xf0,0x1e,0x6a,0xee,0x76,0x4d};
+		//Public:
+		CK_ATTRIBUTE dsaTemplatePub[] = {
+			{CKA_PRIME, (CK_BYTE_PTR)temP, 128},//p
+			{CKA_SUBPRIME, (CK_BYTE_PTR)temQ, 20},//q
+			{CKA_BASE, (CK_BYTE_PTR)temG, 128},//g
+		};
+		CK_ULONG dsaCountPub = 3;
+		//Private:
+		CK_ATTRIBUTE dsaTemplatePri[] = {
+			{CKA_PRIME, (CK_BYTE_PTR)temP, 128},//p
+			{CKA_SUBPRIME, (CK_BYTE_PTR)temQ, 20},//q
+			{CKA_BASE, (CK_BYTE_PTR)temG, 128},//g
+		};
+		CK_ULONG dsaCountPri = 3;
+		//call C_GenerateKeyPair:
+		CK_OBJECT_HANDLE m_hPubKey = 0;
+		CK_OBJECT_HANDLE m_hPriKey = 0;
+		START_OP("Now call C_GenerateKeyPair(CKM_DSA_KEY_PAIR_GEN)...");
+		rv = m_gToken->C_GenerateKeyPair(hSession, &dsamechanism, 
+								dsaTemplatePub, dsaCountPub,
+								dsaTemplatePri, dsaCountPri,
+								&m_hPubKey, &m_hPriKey);
+		CHECK_OP(rv);
+		if(m_hPubKey == 0 || m_hPriKey == 0)
+		{
+			cout << "C_GenerateKeyPair's key pair handles are invalid!" <<endl;
+			return ;
+		}
+
+		////////////////////////////Sign and Verify://////////////////////
+		// Try Sign and Verify operations with the key pair.
+		// Sign a message. 
+		SHOW_INFO("\nThe message to be signed is:")
+			SHOW_INFO(pbMsg)
+			SHOW_INFO("\".");
+
+		//Digest msg:
+		CK_MECHANISM digestMechan[] = {CKM_SHA_1, NULL_PTR, 0};
+		START_OP("Get the digest data for signing...");
+		rv = m_gToken->C_DigestInit(hSession, digestMechan);
+		CHECK_OP(rv);
+
+		CK_BYTE ucDigest[20] = {0};
+		CK_ULONG ulDigest = sizeof(ucDigest);
+		START_OP("Digest data....");
+		rv = m_gToken->C_Digest(hSession, pbMsg, ulMsgLen,
+						ucDigest, &ulDigest);
+		CHECK_OP(rv);
+		SHOW_INFO("\nDigest data is: ");
+		ShowData(ucDigest, ulDigest);
+		
+		CK_BYTE bSignatureBuffer[48] = {0};
+		CK_ULONG ulSignatureLen	= sizeof(bSignatureBuffer);
+		
+		CK_MECHANISM ckMechanism = {CKM_DSA, NULL_PTR, 0};
+		START_OP("Signing initialize...");
+		rv =  m_gToken->C_SignInit(hSession, &ckMechanism, m_hPriKey);
+		CHECK_OP(rv);
+		START_OP("Sign the message...")
+			rv =  m_gToken->C_Sign(hSession, 
+									ucDigest,
+									ulDigest, 
+									bSignatureBuffer, &ulSignatureLen);
+		CHECK_OP(rv)
+		SHOW_INFO("\nSigned data is: ");
+		ShowData(bSignatureBuffer, ulSignatureLen);
+
+		// Verify the previously signed message.
+			START_OP("Verifying initialize...")
+			rv =  m_gToken->C_VerifyInit(hSession, &ckMechanism, m_hPubKey);
+		CHECK_OP(rv)
+			
+		START_OP("Verify the message....")
+			rv =  m_gToken->C_Verify(hSession, 
+			ucDigest, ulDigest, 
+			bSignatureBuffer, ulSignatureLen);
+		CHECK_OP(rv)
+
+		START_OP("Logout normally...")
+			rv = m_gToken->C_Logout(hSession);
+		CHECK_OP(rv);
+	} while(0);
+	
+	BaseAllEnd();
+}
+
+

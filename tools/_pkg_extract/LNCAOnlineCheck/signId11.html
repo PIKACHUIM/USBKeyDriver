@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title>signId11</title>
+</head>
+
+<body onload="slotLinkClicked()">
+<div class="bd">
+	
+	<div class="h01"></div>
+	<div class="middle_1">
+    	
+        <p class="left_p">请您填写年检申请表，填写完成。点击按钮，提交年检申请表。</p>
+    	<div class="clear"></div>
+    </div>
+    
+	<div class="down_1">
+ 	<div class="h01"></div>
+
+    <div class="h01"></div>
+		<div class="middle_2">
+    		<div class="left"><img src="images/bg_m1.png" ><br><img src="images/bg_m2.png" style="margin-left:2px;"></div>
+            <div class="right">
+            <ul class="p3">
+        		<li>
+                <div class="left">
+                	<div class="left">单位名称：</div>
+                    <div class="textC right">
+                    <input  disabled="disabled" type="text" ID="unit_name" value="浑南新区工商管理局" style="width:300px;"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="right">
+                	<div class="left">法定代表人：</div>
+                    <div class="textC right"><input  disabled="disabled" type="text" ID="legal_person" value="丁一" style="width:70px;"></div>
+                    <div class="clear"></div>
+                </div>
+                	<div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+                <li>
+                <div class="left">
+                	<div class="left">详细地址：</div>
+                    <div class="textC right" style="width:320px;">
+                    <input  disabled="disabled" type="text" ID="unit_add" value="浑南新区浑南新区工商管理局" ></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="right">
+                	<div class="left">邮政编码：&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div class="textC right"><input  disabled="disabled" type="text" ID="postal_code" value="110000" style="width:70px;"></div>
+                    <div class="clear"></div>
+                </div>
+                	<div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+                <li>
+                	<div class="left">业务主管部门（分局）：</div>
+                    <div class="right textC"><input  disabled="disabled" type="text" ID="bureau" value="11000fffffffffffffff0" style="width:410px;"></div>
+                    <div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+                <li>
+                	<div class="left">组织机构代码证号（质监）：</div>
+                    <div class="right textC"><input  disabled="disabled" type="text" ID="organization_code" value="11000fffffffffffffff0" style="width:410px;"></div>
+                    <div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+                 <li>
+                	<div class="left">营业执照注册号（工商）：</div>
+                    <div class="right textC"><input  disabled="disabled" type="text" ID="business_code" value="11000fffffffffffffff0" style="width:410px;"></div>
+                    <div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+               <div class="h01"></div> <div class="h01"></div> 
+        	</ul>
+            <ul class="p3">
+        		<li>
+                <div class="left">
+                	<div class="left">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</div>
+                    <div class="textC right">
+                    <input  disabled="disabled" type="text" ID="name" value="丁一" style="width:100px;"></div>
+                    <div class="clear"></div>
+                </div>
+                
+                 <div class="left" style="margin-left:10px;">
+                	<div class="left">联系电话：</div>
+                    <div class="textC right">
+                    <input  disabled="disabled" type="text" ID="tel" value="123456789000" style="width:100px;"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="left" style="margin-left:10px;">
+                	<div class="left">年检费用：</div>
+                    <div class="right"style="margin-left:10px;">元</div>
+                    <div class="textC right"><input  disabled="disabled" type="text" ID="cert_match" value="11111" style="width:90px;"></div>
+                    <div class="clear"></div>
+                </div>
+                	<div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+                <li>
+               	<input type="checkbox" checked="checked" value="">本单位已认真阅读并同意遵守<a href="" style="color:#000; text-decoration:underline;">《数字证书申请责任书》</a>中的各项规定。
+                	
+                	<div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+           
+               
+        	</ul>
+            <script>
+                javascript: obj_web_view.SetCertSinal.connect(slotLinkClicked);
+                function slotLinkClicked() {
+                    //alert("dd");
+                    var effectiveDate = obj_web_view.GetCorpName();
+                    document.getElementById("unit_name").value = effectiveDate;
+                    var data = obj_web_view.GetCorpAddr();
+                    document.getElementById("unit_add").value = data;
+                    var enterprise = obj_web_view.GetAgentName();
+                    document.getElementById("name").value = enterprise;
+                    //
+                }
+		    </script>    
+            </div>
+   		</div>
+        <div class="down_2">
+		<div class="bg_index_1">	
+    		<div class="left"><img src="images/jdta.png"> </div>
+        	<a href="javascript:obj_web_view.Submitapplication()" class="right">
+            	<div class="po"><img class="btn_2" src="images/btn3.png"><img src="images/button.png"><span>提交申请</span></div>
+            </a>
+    	</div>
+        </div>
+	</div>
+</div>
+</body>
+</html>

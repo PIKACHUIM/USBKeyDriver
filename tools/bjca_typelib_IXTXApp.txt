@@ -1,0 +1,205 @@
+﻿DLL: G:\Codes\USBKeyDriver\Library\BJCA USBKEY DRIVER\BJCAClient\CertAppEnvV3.7.418.0052\Program\XTXAppCOM.dll
+----------------------------------------------------------------------------------------------------
+TypeLib 接口数量: 6
+
+=== _IXTXAppEvents  kind=TKIND_DISPATCH  methods=3  GUID=5efaf5ba-42cd-4e85-b298-bb550208adc0 ===
+  id=1    OnUsbkeyChange  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_VOID
+  id=2    OnUsbkeyInsert  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_VOID
+  id=3    OnUsbkeyRemove  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_VOID
+
+=== IXTXApp  kind=TKIND_DISPATCH  methods=195  GUID=6c12d5b5-343c-4d55-b37e-7e7a151dce71 ===
+  id=1610612736 QueryInterface  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_PTR in riid, VT_PTR out ppvObj)  -> VT_VOID
+  id=1610612737 AddRef  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_UI4
+  id=1610612738 Release  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_UI4
+  id=1610678272 GetTypeInfoCount  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_PTR out pctinfo)  -> VT_VOID
+  id=1610678273 GetTypeInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_UINT in itinfo, VT_UI4 in lcid, VT_PTR out pptinfo)  -> VT_VOID
+  id=1610678274 GetIDsOfNames  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_PTR in riid, VT_PTR in rgszNames, VT_UINT in cNames, VT_UI4 in lcid, VT_PTR out rgdispid)  -> VT_VOID
+  id=1610678275 Invoke  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in dispidMember, VT_PTR in riid, VT_UI4 in lcid, VT_UI2 in wFlags, VT_PTR in pdispparams, VT_PTR out pvarResult, VT_PTR out pexcepinfo, VT_PTR out puArgErr)  -> VT_VOID
+  id=1    SOF_SetSignMethod  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in SignMethod)  -> VT_I4
+  id=2    SOF_GetSignMethod  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_I4
+  id=3    SOF_SetEncryptMethod  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in EncryptMethod)  -> VT_I4
+  id=4    SOF_GetEncryptMethod  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_I4
+  id=5    SOF_GetUserList  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=6    SOF_ExportUserCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_BSTR
+  id=7    SOF_Login  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in PassWd)  -> VT_BOOL
+  id=8    SOF_GetPinRetryCount  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_I4
+  id=9    SOF_ChangePassWd  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in oldPass, VT_BSTR in newPass)  -> VT_BOOL
+  id=10   SOF_GetCertInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_I2 in type)  -> VT_BSTR
+  id=11   SOF_GetCertInfoByOid  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in Oid)  -> VT_BSTR
+  id=12   SOF_SignData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=13   SOF_VerifySignedData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in inData, VT_BSTR in SignValue)  -> VT_BOOL
+  id=14   SOF_SignFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in InFile)  -> VT_BSTR
+  id=15   SOF_VerifySignedFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in InFile, VT_BSTR in SignValue)  -> VT_BOOL
+  id=16   SOF_EncryptData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in inData)  -> VT_BSTR
+  id=17   SOF_DecryptData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=18   SOF_EncryptFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in InFile, VT_BSTR in OutFile)  -> VT_BOOL
+  id=19   SOF_DecryptFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in InFile, VT_BSTR in OutFile)  -> VT_BOOL
+  id=20   SOF_SignMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I2 in dwFlag, VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=21   SOF_VerifySignedMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in MessageData, VT_BSTR in inData)  -> VT_BOOL
+  id=22   SOF_GetInfoFromSignedMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in SignedMessage, VT_I2 in type)  -> VT_BSTR
+  id=23   SOF_SignDataXML  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=24   SOF_VerifySignedDataXML  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in inData)  -> VT_BOOL
+  id=25   SOF_GetXMLSignatureInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in XMLSignedData, VT_I2 in type)  -> VT_BSTR
+  id=26   SOF_GenRandom  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in RandomLen)  -> VT_BSTR
+  id=27   SOF_PubKeyEncrypt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in inData)  -> VT_BSTR
+  id=28   SOF_PriKeyDecrypt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=29   SOF_SecertSegment  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Secert, VT_I2 in m, VT_I2 in n, VT_I2 in k)  -> VT_BSTR
+  id=30   SOF_SecertRecovery  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Seg)  -> VT_BSTR
+  id=31   SOF_GetLastError  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_I4
+  id=32   GetDeviceCount  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_I4
+  id=33   GetAllDeviceSN  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=34   GetDeviceSNByIndex  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in iIndex)  -> VT_BSTR
+  id=35   GetDeviceInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_I4 in iType)  -> VT_BSTR
+  id=36   ChangeAdminPass  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sOldPass, VT_BSTR in sNewPass)  -> VT_BOOL
+  id=37   UnlockUserPass  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sAdminPass, VT_BSTR in sNewUserPass)  -> VT_BOOL
+  id=38   GenerateKeyPair  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_I4 in iKeyType, VT_BOOL in bSign)  -> VT_BOOL
+  id=39   ExportPubKey  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BOOL in bSign)  -> VT_BSTR
+  id=40   ImportSignCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sCert)  -> VT_BOOL
+  id=41   ImportEncCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sCert, VT_BSTR in sPriKeyCipher)  -> VT_BOOL
+  id=42   ReadFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sFileName)  -> VT_BSTR
+  id=43   WriteFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sFileName, VT_BSTR in sContent, VT_BOOL  bPrivate)  -> VT_BOOL
+  id=44   IsContainerExist  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName)  -> VT_BOOL
+  id=45   DeleteContainer  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName)  -> VT_BOOL
+  id=46   ExportPKCS10  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sDN, VT_BOOL in bSign)  -> VT_BSTR
+  id=47   InitDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sAdminPass)  -> VT_BOOL
+  id=48   CertListFormElement  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=48   CertListFormElement  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=49   AlertBeforeCertDate  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=49   AlertBeforeCertDate  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=50   ServerSignedData  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=50   ServerSignedData  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=51   ServerRan  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=51   ServerRan  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=52   ServerCert  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=52   ServerCert  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=53   ServerMode  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=53   ServerMode  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=54   ShowError  invkind=INVOKE_PROPERTYGET callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=54   ShowError  invkind=INVOKE_PROPERTYPUT callconv=CC_STDCALL  (VT_BSTR in )  -> VT_VOID
+  id=55   AddSignInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sUserPass)  -> VT_BOOL
+  id=56   SOF_GetVersion  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=57   SOF_ExportExChangeUserCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_BSTR
+  id=58   SOF_ValidateCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert)  -> VT_I4
+  id=59   GetENVSN  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BSTR
+  id=60   SetENVSN  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sEnvsn)  -> VT_BOOL
+  id=61   IsDeviceExist  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BOOL
+  id=62   GetContainerCount  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_I4
+  id=63   SOF_SymEncryptData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sKey, VT_BSTR in inData)  -> VT_BSTR
+  id=64   SOF_SymDecryptData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sKey, VT_BSTR in inData)  -> VT_BSTR
+  id=65   SOF_SymEncryptFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sKey, VT_BSTR in InFile, VT_BSTR in OutFile)  -> VT_BOOL
+  id=66   SOF_SymDecryptFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sKey, VT_BSTR in InFile, VT_BSTR in OutFile)  -> VT_BOOL
+  id=67   SOF_GetLastErrMsg  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=68   SOF_Base64Encode  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sInData)  -> VT_BSTR
+  id=69   SOF_Base64Decode  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sInData)  -> VT_BSTR
+  id=70   SOF_HashData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashAlg, VT_BSTR in sInData)  -> VT_BSTR
+  id=71   SOF_HashFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashAlg, VT_BSTR in InFile)  -> VT_BSTR
+  id=72   UnlockUserPassEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sAdminPin, VT_BSTR in sNewUserPass)  -> VT_BOOL
+  id=73   DeleteOldContainer  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BOOL
+  id=74   WriteFileEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sFileName, VT_BSTR in sContent)  -> VT_BOOL
+  id=75   ReadFileEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sFileName)  -> VT_BSTR
+  id=76   SOF_EncryptDataEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in inData)  -> VT_BSTR
+  id=77   Base64EncodeFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sInFile)  -> VT_BSTR
+  id=78   SOF_GetRetryCount  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_I4
+  id=79   SOF_GetAllContainerName  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BSTR
+  id=80   CreateSoftDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sLabel)  -> VT_BOOL
+  id=81   DeleteSoftDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR  sPasswd)  -> VT_BOOL
+  id=82   EnableSoftDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BOOL in enable, VT_BSTR in sDeviceSN)  -> VT_BOOL
+  id=83   SoftDeviceBackup  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sPasswd)  -> VT_BSTR
+  id=84   SoftDeviceRestore  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sPasswd, VT_BSTR in sInFilePath)  -> VT_BOOL
+  id=85   SOF_Logout  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_BOOL
+  id=86   SetUserConfig  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in type, VT_BSTR in strConfig)  -> VT_BOOL
+  id=87   SOF_SignByteData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_PTR in byteInData, VT_I4 in byteLen)  -> VT_BSTR
+  id=88   SOF_VerifySignedByteData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_PTR in byteInData, VT_I4 in byteLen, VT_BSTR in SignValue)  -> VT_BOOL
+  id=89   OTP_GetChallengeCode  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sCertID)  -> VT_BSTR
+  id=90   ImportEncCertEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sCert, VT_BSTR in sPriKeyCipher, VT_I4 in ulSymAlg)  -> VT_BOOL
+  id=91   SOF_GetCertEntity  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sCert)  -> VT_BSTR
+  id=92   SOF_HMAC  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashid, VT_BSTR in key, VT_BSTR in inData)  -> VT_BSTR
+  id=93   SOF_SignDataByPriKey  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sPriKey, VT_BSTR in sCert, VT_BSTR in sInData)  -> VT_BSTR
+  id=94   ImportKeyCertToSoftDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sPriKey, VT_BSTR in sCert, VT_BOOL in bSign)  -> VT_BOOL
+  id=95   InitDeviceEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sAdminPass, VT_BSTR in sUserPin, VT_BSTR in sKeyLabel, VT_I4 in adminPinMaxRetry, VT_I4 in userPinMaxRetry)  -> VT_BOOL
+  id=96   SelectFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=97   SOF_SignHashData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in b64ashData, VT_I4 in hashAlg)  -> VT_BSTR
+  id=98   SOF_VerifySignedHashData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in b64ashData, VT_BSTR in SignValue, VT_I4 in hashAlg)  -> VT_BOOL
+  id=99   CheckSoftDeviceEnv  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BOOL
+  id=100  SOF_SignBinaryData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_VARIANT in inData)  -> VT_BSTR
+  id=101  SOF_VerifySignedBinaryData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_VARIANT in inData, VT_BSTR in SignValue)  -> VT_BOOL
+  id=102  SOF_EncryptBinaryData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_VARIANT in inData)  -> VT_BSTR
+  id=103  SOF_EncryptBinaryDataEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_VARIANT in inData)  -> VT_BSTR
+  id=104  SOF_DecryptBinaryData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_VARIANT
+  id=105  SOF_SignBinaryMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I2 in dwFlag, VT_BSTR in CertID, VT_VARIANT in inData)  -> VT_BSTR
+  id=106  SOF_VerifySignedBinaryMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in MessageData, VT_VARIANT in inData)  -> VT_BOOL
+  id=107  SOF_PubKeyBinaryEncrypt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_VARIANT in inData)  -> VT_BSTR
+  id=108  SOF_PriKeyBinaryDecrypt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_VARIANT
+  id=109  SOF_Base64BinaryEncode  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_VARIANT in sInData)  -> VT_BSTR
+  id=110  SOF_Base64BinaryDecode  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sInData)  -> VT_VARIANT
+  id=111  SOF_HashBinaryData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashAlg, VT_VARIANT in sInData, VT_BSTR in sCert, VT_BSTR in sID)  -> VT_BSTR
+  id=112  SOF_SignBinaryDataByPriKey  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sPriKey, VT_BSTR in sCert, VT_VARIANT in sInData)  -> VT_BSTR
+  id=113  ImportPfxToDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BOOL in bSign, VT_BSTR in strPfx, VT_BSTR in strPfxPass)  -> VT_BOOL
+  id=114  SOF_HashDataEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashAlg, VT_BSTR in sInData, VT_BSTR in sCert, VT_BSTR in sID)  -> VT_BSTR
+  id=115  SOF_HashFileEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashAlg, VT_BSTR in InFile, VT_BSTR in sCert, VT_BSTR in sID)  -> VT_BSTR
+  id=116  GetDeviceCountEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in type)  -> VT_I4
+  id=117  GetAllDeviceSNEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in type)  -> VT_BSTR
+  id=118  SOF_UpdateCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in type)  -> VT_I4
+  id=119  OpenSpecifiedFolder  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in backupFilePath)  -> VT_VOID
+  id=120  OTP_GetChallengeCodeEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sCertID, VT_BSTR in szAccount, VT_I4 in money)  -> VT_BSTR
+  id=121  Base64DecodeFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sInData, VT_BSTR in sFilePath)  -> VT_BOOL
+  id=122  EnumFilesInDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BSTR
+  id=123  OTP_Halt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sCertID)  -> VT_BOOL
+  id=124  SOF_TSGenREQ  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in b64Hash, VT_I4 in hashAlg, VT_BOOL  bReqCert, VT_BSTR in|opt policyID, VT_BSTR in|opt b64Nonce, VT_BSTR in|opt b64Extension)  -> VT_BSTR
+  id=125  SOF_TSCompareNonce  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in b64TSReq, VT_BSTR in b64TSAResp)  -> VT_BOOL
+  id=126  SOF_TSGenPDFSignature  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in b64TSAResp, VT_BSTR in b64OriPDFSignature)  -> VT_BSTR
+  id=127  SOF_TSVerifyPDFSignature  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in b64TSPDFSignature)  -> VT_BOOL
+  id=128  SOF_TSGetPDFSignatureInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in b64TSPDFSignature, VT_I4 in iType)  -> VT_BSTR
+  id=129  OTP_GetState  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sCertID, VT_BOOL in bCert)  -> VT_BSTR
+  id=130  OTP_GetSyncCode  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sCertID, VT_BSTR in ChallengeCode)  -> VT_BSTR
+  id=131  SOF_IsLogin  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_BOOL
+  id=132  SOF_LoginEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in PassWd, VT_I4 in updateFlag)  -> VT_BOOL
+  id=133  EnumSupportDeviceList  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=134  ExportPfxFromDevice  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BOOL in bSign, VT_BSTR in strPfxPass)  -> VT_BSTR
+  id=135  SOF_SignHashMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in InHashData, VT_I4 in hashAlg)  -> VT_BSTR
+  id=136  ExportPfxToFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BOOL in bSign, VT_BSTR in strPfxPass)  -> VT_BSTR
+  id=137  SOF_SignAPK  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in strOriSignature)  -> VT_BSTR
+  id=138  YZT_GenerateKeyPair  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_I4 in iKeyTypeRSA, VT_I4 in iKeyTypeSM2)  -> VT_BOOL
+  id=139  YZT_ExportPubKey  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BOOL in bSign)  -> VT_BSTR
+  id=140  YZT_ImportSignCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sRSACert, VT_BSTR in sSM2Cert)  -> VT_BOOL
+  id=141  YZT_ImportEncCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sContainerName, VT_BSTR in sRSACert, VT_BSTR in sRSAPriKeyCipher, VT_I4 in ulRSASymAlg, VT_BSTR in sSM2Cert, VT_BSTR in sSM2PriKeyCipher, VT_I4 in ulSM2SymAlg)  -> VT_BOOL
+  id=142  SOF_ListenUKey  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in Parm)  -> VT_BSTR
+  id=143  SOF_EnableLoginWindow  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in Parm)  -> VT_BSTR
+  id=144  SOF_SignEnvelope  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in Cert, VT_BSTR in inData)  -> VT_BSTR
+  id=145  SOF_UnSignEnvelope  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=146  BIO_MAKExportPKCS10  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_I4 in iKeyType, VT_BSTR in sDN)  -> VT_BSTR
+  id=147  BIO_MAKImportSignEncCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sSignCert, VT_BSTR in sEncCert, VT_BSTR in sPriKeyCipher)  -> VT_BOOL
+  id=148  BIO_IssueDAKCert  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_I4 in iKeyType, VT_BSTR in sDN)  -> VT_BOOL
+  id=149  BIO_InfoCollect  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=150  BIO_GetBioInfo  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BSTR
+  id=151  SOF_GetLastLoginCertID  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=152  SOF_ReadESealData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_I4 in ulKeyAlgId, VT_I4 in ulFlags)  -> VT_BSTR
+  id=153  SOF_ReadKFXESealData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_I4 in ulKeyAlgId, VT_I4 in ulFlags)  -> VT_BSTR
+  id=154  SOF_SymDecryptFileToData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sKey, VT_BSTR in InFile)  -> VT_BSTR
+  id=155  SOF_SignMessageBase64  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I2 in dwFlag, VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=156  SOF_VerifySignedMessageBase64  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in MessageData, VT_BSTR in inData)  -> VT_BOOL
+  id=157  SOF_VerifySignedHashMessage  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in MessageData, VT_BSTR in InHashData)  -> VT_BOOL
+  id=158  SOF_SignDataBase64  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=159  SOF_VerifySignedDataBase64  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in Cert, VT_BSTR in inData, VT_BSTR in SignValue)  -> VT_BOOL
+  id=160  SOF_HashDataExBase64  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_I4 in hashAlg, VT_BSTR in sInData, VT_BSTR in sCert, VT_BSTR in sID)  -> VT_BSTR
+  id=161  SOF_GetProductVersion  invkind=INVOKE_FUNC callconv=CC_STDCALL  ()  -> VT_BSTR
+  id=162  SOF_UpdateCertEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in PassWd)  -> VT_I4
+  id=163  SOF_GetLastSignDataCertID  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID)  -> VT_BSTR
+  id=164  BIO_SetUserConfig  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in type, VT_BSTR in strConfig)  -> VT_BOOL
+  id=165  BIO_InvokeCommand  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in bstrCommand)  -> VT_BSTR
+  id=166  SOF_ImportSymmKey  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_BSTR in inData, VT_I4 in ulFlags)  -> VT_BOOL
+  id=167  SOF_WriteESealData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData, VT_I4 in ulFlags)  -> VT_BOOL
+  id=168  SOF_EPS_Encrypt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_I4 in ulKeyAlgId, VT_BSTR in IVData, VT_I4 in DivCount, VT_BSTR in DivComponent, VT_BSTR in inData, VT_I4 in ulFlags)  -> VT_BSTR
+  id=169  SOF_EPS_Decrypt  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_I4 in ulKeyAlgId, VT_BSTR in IVData, VT_I4 in DivCount, VT_BSTR in DivComponent, VT_BSTR in inData, VT_I4 in ulFlags)  -> VT_BSTR
+  id=170  SOF_EPS_Mac  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_I4 in ulKeyAlgId, VT_BSTR in IVData, VT_I4 in DivCount, VT_BSTR in DivComponent, VT_BSTR in inData, VT_I4 in ulFlags)  -> VT_BSTR
+  id=171  SOF_PriKeyDecryptEx  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData)  -> VT_BSTR
+  id=172  SOF_EPS_ReadESealData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_I4 in ulKeyIndex, VT_I4 in ulKeyAlgId, VT_I4 in ulFlags)  -> VT_BSTR
+  id=173  SOF_EPS_WriteESealData  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in inData, VT_I4 in ulFlags)  -> VT_BOOL
+  id=174  EnumESeal  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN)  -> VT_BSTR
+  id=175  GetPicture  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in bstrConName)  -> VT_BSTR
+  id=176  SOF_SignEnvelopeFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in Cert, VT_BSTR in InFile, VT_BSTR in OutFile)  -> VT_BOOL
+  id=177  SOF_UnSignEnvelopeFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in InFile, VT_BSTR in OutFile)  -> VT_BOOL
+  id=178  SOFX_EncryptFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in Cert, VT_BSTR in InFile, VT_BSTR in OutFile, VT_I4 in ulFlags)  -> VT_BOOL
+  id=179  SOFX_DecryptFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in CertID, VT_BSTR in InFile, VT_BSTR in OutFile, VT_I4 in ulFlags)  -> VT_BOOL
+  id=180  WriteFileBase64  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sFileName, VT_BSTR in sContent)  -> VT_BOOL
+  id=181  DeleteFile  invkind=INVOKE_FUNC callconv=CC_STDCALL  (VT_BSTR in sDeviceSN, VT_BSTR in sFileName)  -> VT_BOOL

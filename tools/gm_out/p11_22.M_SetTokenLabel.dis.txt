@@ -1,0 +1,35 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll
+;; M_SetTokenLabel rva=0x1800 va=0x10001800 stop=0x10001840
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10001800 <.text+0x800>:
+10001800:	56                   	push   esi
+10001801:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+10001807:	57                   	push   edi
+10001808:	85 f6                	test   esi,esi
+1000180a:	74 0a                	je     0x10001816
+1000180c:	56                   	push   esi
+1000180d:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+10001813:	83 c4 04             	add    esp,0x4
+10001816:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+1000181a:	8b 4c 24 10          	mov    ecx,DWORD PTR [esp+0x10]
+1000181e:	50                   	push   eax
+1000181f:	51                   	push   ecx
+10001820:	8b 4c 24 14          	mov    ecx,DWORD PTR [esp+0x14]
+10001824:	e8 d7 44 00 00       	call   0x10005d00
+10001829:	8b f8                	mov    edi,eax
+1000182b:	85 f6                	test   esi,esi
+1000182d:	74 0a                	je     0x10001839
+1000182f:	56                   	push   esi
+10001830:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+10001836:	83 c4 04             	add    esp,0x4
+10001839:	8b c7                	mov    eax,edi
+1000183b:	5f                   	pop    edi
+1000183c:	5e                   	pop    esi
+1000183d:	c3                   	ret
+1000183e:	cc                   	int3
+1000183f:	cc                   	int3

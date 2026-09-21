@@ -210,7 +210,14 @@ public sealed class MockKeyProvider : IKeyProvider
         device.IsLoggedIn = true;
     }
 
-    public void ResetDevice(UsbKeyDevice device, string newPin, string? puk = null, string? adminKey = null)
+    /// <summary>模拟设备不走「必须先提供当前 PIN」的约束。</summary>
+    public bool ResetRequiresCurrentPin => false;
+
+    /// <summary>模拟设备的 ImportPfx 会检查 IsLoggedIn，需要先登录。</summary>
+    public bool ImportRequiresLogin => true;
+
+    public void ResetDevice(UsbKeyDevice device, string newPin, string? puk = null, string? adminKey = null,
+        string? currentPin = null)
     {
         if (newPin.Length < 6) throw new InvalidOperationException("PIN 长度不能少于 6 位");
         device.IsLoggedIn = true;

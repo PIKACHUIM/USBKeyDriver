@@ -1,0 +1,90 @@
+LGUSB   ZJK
+CryptUIDlgViewCertificateA
+Cryptui.dll
+\LgImpl.dll
+Software\Microsoft\Cryptography\Defaults\Provider\Linguo Cryptographic Provider v2.0
+.\crypto\bio\bio_lib.c
+.\crypto\evp\bio_b64.c
+.\crypto\bio\bss_mem.c
+.\crypto\evp\digest.c
+.\crypto\asn1\a_object.c
+GOST R 3410-2001 Parameter Set Cryptocom
+GOST R 34.11-94 with GOST R 34.10-2001 Cryptocom
+GOST R 34.11-94 with GOST R 34.10-94 Cryptocom
+GOST 34.10-2001 Cryptocom
+GOST 34.10-94 Cryptocom
+GOST 28147-89 Cryptocom ParamSet
+id-GostR3410-2001-CryptoPro-XchB-ParamSet
+id-GostR3410-2001-CryptoPro-XchA-ParamSet
+id-GostR3410-2001-CryptoPro-C-ParamSet
+id-GostR3410-2001-CryptoPro-B-ParamSet
+id-GostR3410-2001-CryptoPro-A-ParamSet
+id-GostR3410-94-CryptoPro-XchC-ParamSet
+id-GostR3410-94-CryptoPro-XchB-ParamSet
+id-GostR3410-94-CryptoPro-XchA-ParamSet
+id-GostR3410-94-CryptoPro-D-ParamSet
+id-GostR3410-94-CryptoPro-C-ParamSet
+id-GostR3410-94-CryptoPro-B-ParamSet
+id-GostR3410-94-CryptoPro-A-ParamSet
+id-Gost28147-89-CryptoPro-RIC-1-ParamSet
+id-Gost28147-89-CryptoPro-Oscar-1-0-ParamSet
+id-Gost28147-89-CryptoPro-Oscar-1-1-ParamSet
+id-Gost28147-89-CryptoPro-D-ParamSet
+id-Gost28147-89-CryptoPro-C-ParamSet
+id-Gost28147-89-CryptoPro-B-ParamSet
+id-Gost28147-89-CryptoPro-A-ParamSet
+id-GostR3411-94-CryptoProParamSet
+id-Gost28147-89-CryptoPro-KeyMeshing
+cryptocom
+cryptopro
+sha224WithRSAEncryption
+sha512WithRSAEncryption
+sha384WithRSAEncryption
+sha256WithRSAEncryption
+rsaOAEPEncryptionSET
+encrypted track 2
+generate cryptogram
+setAttr-GenCryptgrm
+generic cryptogram
+md4WithRSAEncryption
+id-cmc-decryptedPOP
+id-cmc-encryptedPOP
+id-smime-aa-smimeEncryptCerts
+Netscape Server Gated Crypto
+Microsoft Encrypted File System
+Microsoft Server Gated Crypto
+dsaEncryption
+dsaEncryption-old
+sha1WithRSAEncryption
+shaWithRSAEncryption
+pkcs7-encryptedData
+md5WithRSAEncryption
+md2WithRSAEncryption
+rsaEncryption
+.\crypto\objects\obj_dat.c
+.\crypto\rsa\rsa_sign.c
+Dl.\crypto\ex_data.c
+.\crypto\err\err.c
+.\crypto\evp\encode.c
+.\crypto\buffer\buffer.c
+.\crypto\engine\tb_digest.c
+.\crypto\engine\eng_init.c
+.\crypto\asn1\asn1_lib.c
+.\crypto\asn1\a_int.c
+.\crypto\lhash\lhash.c
+.\crypto\stack\stack.c
+.\crypto\err\err_def.c
+.\crypto\engine\eng_table.c
+.\crypto\engine\eng_lib.c
+.\crypto\asn1\tasn_dec.c
+.\crypto\asn1\tasn_enc.c
+.\crypto\asn1\tasn_new.c
+.\crypto\bio\bss_file.c
+.\crypto\asn1\tasn_utl.c
+.\crypto\asn1\a_bitstr.c
+@@.\crypto\rand\md_rand.c
+CryptReleaseContext
+CryptGenRandom
+CryptAcquireContextW
+LoadLibraryA
+GetProcAddress

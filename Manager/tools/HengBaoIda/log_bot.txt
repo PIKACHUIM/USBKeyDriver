@@ -1,0 +1,107 @@
+WPeChatGPT has appointed the proxy.
+
+v8.3 48-FAEE-B562-1F QiuChenly
+
+Your support plan expired on 2025-06-25.
+To renew it, please visit our web site for the instructions.
+
+https://www.hex-rays.com/idapro/idaupgrade.htm
+
+Thank you for using IDA! -> OK
+Possible file format: MS-DOS executable (EXE) (G:\Setup\IDA_Pro_8.3\loaders\dos.dll)
+Possible file format: Portable executable for 80386 (PE) (G:\Setup\IDA_Pro_8.3\loaders\pe.dll)
+
+  bytes   pages size description
+--------- ----- ---- --------------------------------------------
+  1081344   132 8192 allocating memory for b-tree...
+  1081344   132 8192 allocating memory for virtual array...
+   262144    32 8192 allocating memory for name pointers...
+-----------------------------------------------------------------
+  2424832            total memory allocated
+
+Loading file 'G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCp.dll' into database...
+Detected file format: Portable executable for 80386 (PE)
+Loading processor module G:\Setup\IDA_Pro_8.3\procs\pc.dll for metapc...Initializing processor module metapc...OK
+Autoanalysis subsystem has been initialized.
+Assuming __cdecl calling convention by default
+  0. Creating a new segment  (10001000-1002E000) ... ... OK
+  1. Creating a new segment  (1002E000-1003B000) ... ... OK
+  2. Creating a new segment  (1003B000-1004A000) ... ... OK
+  3. Creating a new segment  (1004A000-1004B000) ... ... OK
+Reading exports directory...
+Reading imports directory...
+Applying fixups...
+  4. Creating a new segment  (1004A650-1004B000) ... ... OK
+  5. Creating a new segment  (1004A378-1004A650) ... ... OK
+The input file was linked with debug information
+ and the symbol filename is:
+"D:\CvsRoot\Uranusafe5.0\UranusafeKitV5.0\Src\Pkcs11\Windows\pkcs11\Debug\pkcs11.pdb"
+Do you want to look for this file at the specified path
+and the Microsoft Symbol Server?
+ -> ~Y~es
+PDB: using PDBIDA provider
+PDB: downloading http://msdl.microsoft.com/download/symbols/pkcs11.pdb/4f13f6ea1/pkcs11.pdb => C:\Users\pikachuren\AppData\Local\Temp\ida\pkcs11.pdb\4f13f6ea1\pkcs11.pdb
+Could not find PDB file 'pkcs11.pdb'.
+Please check _NT_SYMBOL_PATH
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCp.dll: failed to load pdb info.
+
+Do you want to browse for the pdb file on disk? -> ~Y~es
+Plan  FLIRT signature: Microsoft VisualC 2-14/net runtime
+autoload.cfg: vc32rtf.sig autoloads mssdk_win7.til
+Type library 'mssdk_win7' loaded. Applying types...
+Types applied to 83 names.
+main() function at 1000114F, named "_DllMain@12"
+Plan  FLIRT signature: SEH for vc7-14
+Marking typical code sequences...
+Flushing buffers, please wait...ok
+File 'G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCp.dll' has been successfully loaded into the database.
+Hex-Rays Decompiler plugin has been loaded (v8.3.0.230608)
+  License: 57-76ED-CDC6-E3 QiuChenly (99 users)
+  The hotkeys are F5: decompile, Ctrl-F5: decompile all.
+
+  Please check the Edit/Plugins menu for more information.
+Hex-rays version 8.3.0.230608 has been detected, gooMBA plugin ready to use
+LazyIDA (v1.0.0.3) plugin has been loaded.
+OllyDumpEx v1.82 by low_priority, IDA64 8.3 (32bit)
+
+ IDA Strong Charset Code View 0.1 
+ Enable/Disable Strong Charset View Use 'shift + a' 
+ IDA Strong Charset Code View Plugin By 微笑一刀 
+
+WPeChatGPT has appointed the proxy.
+Auto-WPeGPT v0.2 is ready.
+WPeChatGPT v2.4 works fine! :)@WPeace
+
+IDA is analysing the input file...
+You may start to explore the input file right now.
+Using FLIRT signature: Microsoft VisualC 2-14/net runtime
+Using FLIRT signature: SEH for vc7-14
+Propagating type information...
+Function argument information has been propagated
+The initial autoanalysis has been finished.
+[Patching] Loaded v0.1.2 - (c) Markus Gaasedelen - 2022
+[autohidden] The decompiler assumes that the segment '.idata' is read-only because of its NAME.
+All data references to the segment will be replaced by constant values.
+This may lead to drastic changes in the decompiler output.
+If the segment is not read-only, please change the segment NAME.
+
+In general, the decompiler checks the segment permissions, class, and name
+to determine if it is read-only.
+ -> OK
+[autohidden] The decompiler assumes that the segment '.rdata' is read-only because of its NAME.
+All data references to the segment will be replaced by constant values.
+This may lead to drastic changes in the decompiler output.
+If the segment is not read-only, please change the segment NAME.
+
+In general, the decompiler checks the segment permissions, class, and name
+to determine if it is read-only.
+ -> OK
+Flushing buffers, please wait...ok
+FAILED TO DETACH MENU ITEM Edit/WPeChatGPT/Auto-WPeGPT/Auto-WPeGPT v0.2/二进制文件自动化分析 v0.2
+FAILED TO DETACH MENU ITEM Edit/WPeChatGPT/函数分析/函数分析
+FAILED TO DETACH MENU ITEM Edit/WPeChatGPT/重命名函数变量/重命名函数变量
+FAILED TO DETACH MENU ITEM Edit/WPeChatGPT/Python还原此函数/Python还原此函数
+FAILED TO DETACH MENU ITEM Edit/WPeChatGPT/二进制漏洞查找/二进制漏洞查找
+FAILED TO DETACH MENU ITEM Edit/WPeChatGPT/尝试生成Exploit/尝试生成Exploit
+[Patching] Unloading v0.1.2...
+Unloading IDP module G:\Setup\IDA_Pro_8.3\procs\pc.dll...

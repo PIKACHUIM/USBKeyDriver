@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\bin\Debug\net8.0\HengBaoProbe.exe
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\bin\Debug\net8.0\HengBaoProbe.deps.json
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\bin\Debug\net8.0\HengBaoProbe.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\bin\Debug\net8.0\HengBaoProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\bin\Debug\net8.0\HengBaoProbe.pdb
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\refint\HengBaoProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.pdb
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\HengBaoProbe.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\tools\HengBaoProbe\obj\Debug\net8.0\ref\HengBaoProbe.dll

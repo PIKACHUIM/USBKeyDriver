@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<meta charset="gb2312">
+<title>signId7</title>
+</head>
+
+<script>
+function SetErrorCode()
+{
+	var code = obj_web_view.GetErrCode();
+	var codemsg = obj_web_view.GetStatusMsg();
+	var errmsg = obj_web_view.GetErrMsg();
+	document.getElementById("table_1").innerHTML = codemsg+"<br> 错误码:"+code+","+errmsg;
+	
+}
+</script>
+<body>
+
+<div class="bd">
+	
+	<div class="h01"></div>
+	<div class="middle_1">
+    	
+        <p class="left_p">年检受理失败。</p>
+    	<div class="clear"></div>
+    </div>
+    
+	<div class="down_1">
+    <div class="h01"></div>
+    <div class="h01"></div>
+    <div class="h01"></div>
+		<div class="middle_2">
+    		<ul class="p4">
+        		<li class="only_line" id="table_1">
+                数字证书中心处理失败，请用户到受理点办理。
+                </li>
+				</ul>
+            </div>
+   		</div>
+        <div class="down_2">
+		<div class="bg_index_2">	
+    		<div class="left"><!--img src="images/jdtd.png"--> </div>
+        	<!--<a href="javascript:obj_web_view.CheckedCard()" class="right">-->
+			<a href="javascript:obj_web_view.QueryStatus()" class="right">
+            	<div class="po"><img class="btn_2" src="images/btn8.png"><img src="images/button.png"><span>刷新</span></div>
+            </a>
+            
+    	</div>
+        </div>
+	</div>
+</div>
+
+</body>
+</html>

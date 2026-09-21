@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        html,body{
+            margin: 0 auto;
+        }
+        ul,li,ol{
+            list-style: none;
+        }
+        .bjca_head{
+            margin: 0 auto;
+            height:50px;
+            width: 1000px;
+			background: url("image/faq_title.gif");         
+			padding:20px 40px 30px 40px;
+        }
+        .bjca_left{
+            width: 180px;
+            height: 500px;
+            background: white;			
+        }
+        .box{
+            margin: 0 auto;
+            width: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bjca_right{
+            top: 0;
+            left: 200px;
+            position: absolute;
+            width: 100%;
+            background: blue;
+        }
+        ul  h3{
+			padding-top: 10px;
+            padding-left: 38px;
+            color: black;
+			height: 35px;
+			background-image: url(image/faq_left.gif);
+        }
+        li{
+            height: 35px;
+            line-height: 35px;
+            padding-left: 38px;
+            font-size: 14px;
+            /*background: url("");*/
+        }
+        #tab1 div{
+            width: 800px;
+            height: 500px;
+            background: #E0FFFF;
+            position: absolute;
+            top: 0;
+            left: 0;
+			overflow-y:scroll;
+        }
+        .addli{
+            background: #9AFF9A;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bjca_head">
+	<h2>BJCA证书应用环境FAQ</h2>
+</div>
+<div class="box">
+    <div class="bjca_left">
+        <ul id="ulList">
+            <h3>证书应用环境</h3>
+            <li class="addli">常见问题</li>
+            <li>老产品升级</li>
+            <li>问题诊断分析</li>
+            <li>安全漏洞</li>
+        </ul>
+    </div>
+    <div class="bjca_right" id="tab1">
+        <div>
+		<strong>问题一：证书应用环境V2.0.1和V2.3 不能识别飞天ePass3000GM的解决办法（Win7 32位系统）？</strong><br/>
+		答：1.首先查看是否开启了智能卡服务，如未开启，先开启后再尝试识别设备。<br/>
+		2.如果已经开启智能卡服务仍然不能识别设备，请卸载该设备驱动，重新安装附件中的ccid驱动，安装后插拔一下设备。<br/>
+		<br/>
+		<strong>问题二：北京银行新办理的一张证书（ePass 2000），在激活过程中出现一个问题，在点击确定后，键盘只能使用回车键，其他按键都无法使用，在关闭IE后恢复正常（原有证书在登录界面工作正常），怎么办？</strong><br/>
+		答：有如下两种方案均可解决此问题.<br/>
+			方案一.在“来自网页的消息”提示框中点击“取消”按钮，在页面中找到“启用网银”的笑脸提示，点击笑脸提示右侧的“这里”，进入北京银行 启用网银证书 的页面；<br/>
+			方案二.在浏览器中直接输入如下URL地址，点击“Enter”按键，进入北京银行 启用网银证书 的页面：https://ebank.bankofbeijing.com.cn/bccbpb/customerLogon/reqcert1.htm。<br/>
+		<br/>
+		<strong>问题三：证书应用环境版本2.10.2，在Win10上使用需要注意的问题。</strong><br/>
+		答：1.安装<br/>
+			在Win10系统上可以正常安装，与其他系统没有区别。<br/>
+			2.应用<br/>
+			Win10系统默认安装两个微软自带的浏览器，分别是IE11和Edge浏览器。<br/>
+			2.1 IE11浏览器<br/>
+			IE11可以正常使用证书应用环境。<br/>
+			2.2 Edge浏览器<br/>
+			Edge浏览器，证书应用环境2.10.2还不能支持。在用户使用Edge浏览器打开应用页面时会无法正常使用证书。解决方法有两种：<br/>
+			①用户点击Edge浏览器的菜单，选择“使用Internet Explorer打开”菜单，来使用IE打开页面；<br/>
+			②如果用户是通过其他程序跳转过来的，默认使用了Edge浏览器打开，除方法1外，还可以设置默认浏览器为IE浏览器，找到【Internet选项】->【程序】，选择“将Internet Explorer设置为默认浏览器”。<br/>
+		<br/>
+		<strong>问题四：使用林果Key发放RSA证书，导入用户加密证书失败，怎么办？</strong><br/>
+        答：问题原因：发证过程中使用的对称算法是3DES，林果介质不支持。<br/>
+		解决办法：将对称算法由3DES改为SSF33。<br/>
+		<br/>
+		</div>
+        <div>
+        <strong>问题一：系统中安装了证书管理工具V1.2.21，想从V1.2.21升级到V2.X版本，但安装高版本发现系统中有两个证书工具同时存在，新版本的安装能不能默认将旧版本证书管理工具删掉？</strong><br/>
+		答：新版本是独立于老版本的，但是在集成过程中新版本是兼容老版本中Secx COMV1和COMV2的控件，可以删掉，但是需要等待讨论后给出方案。<br/>
+        <br/>
+		</div>
+        <div>
+        <strong>问题一：在使用客户端证书应用环境进行系统登录或业务操作的时候发现错误，对应的日志如何获取？</strong><br/>
+        答：1. 在Windows7及windows7以上系统，日志记录在<br/>
+		系统盘:\Users\当前用户\AppData\LocalLow\BJCA\log目录下，<br/>
+		默认log目录是不存在的，如果需要记录日志，需要手动创建log目录。需注意：其中AppData目录是系统隐藏目录。<br/>
+		2. 在Windows2000或WindowsXP等系统上日志记录在<br/>
+		系统盘:\Documents and Settings\当前用户\Local Settings\Application Data\BJCA\log目录下，默认log目录是不存在的，如果需要记录日志，需要手动创建log目录。需注意：Local Settings目录是系统隐藏目录。<br/>
+		<br/>
+		</div>
+        <div>
+        <strong>问题一：GNU glibc 基于堆的缓冲区溢出漏洞？</strong><br/>
+        答：通过该漏洞，攻击者可以远程获取linux服务器的最高控制权限。glibc是linux系统中最底层的API，几乎其它运行库都会依赖于glibc，因此该漏洞的危害巨大。Redhat在发布的紧急安全通告里，也将该漏洞定义为“高危”。<br/>
+		修复该漏洞需要升级glibc组件，采用离线打补丁方式，事先在升级包中预埋补丁和处理流程，执行升级程序后升级glibc组件，由于glibc属于linux底层CPI，升级后需要重启服务器，否则会导致服务不可用。<br/>
+		<br/>
+		<strong>问题二：Linux kernel B.A.T.M.A.N.实现过程资源管理错误漏洞？</strong><br/>
+		答：漏洞是远程攻击者发起，公司产品都是部署在客户内网或者有防火墙、网关等保护设备的外网环境中，不对外提供访问端口。故该漏洞无影响，待厂商出来补丁包后，会在下一版本中修复。<br/>
+		<br/>
+		<strong>问题三：Linux Kernel 资源管理错误漏洞？</strong><br/>
+		答：漏洞是本地攻击者发起，公司产品都是部署在客户内网或者有防火墙、网关等保护设备的外网环境中，不对外提供访问端口。故该漏洞无影响，待厂商出来补丁包后，会在下一版本中修复。<br/>
+		<br/>
+		</div>
+
+    </div>
+
+</div>
+
+<script>
+    window.onload = function(){
+	
+        function liclick() {
+                var ouL = document.getElementById("ulList");
+                var aLi = ouL.getElementsByTagName("li");
+
+                var otab = document.getElementById("tab1");
+                var adiv = otab.getElementsByTagName("div");
+
+
+                for(var j=0;j<adiv.length;j++){
+                    adiv[j].style.display = "none"
+                }
+                adiv[0].style.display = "block"
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].index=i;
+                    adiv[i].index=i;
+
+                    aLi[i].onclick = function () {
+ 
+                        for(var u=0;u<aLi.length;u++){
+                            aLi[u].className='';
+                            adiv[u].style.display="none"
+                        }
+                        aLi[this.index].className="addli";
+                        adiv[this.index].style.display="block";
+                    }
+
+                }
+        }
+        liclick();
+
+    }
+</script>
+</body>
+</html>

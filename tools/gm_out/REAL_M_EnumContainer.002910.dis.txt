@@ -1,0 +1,63 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; rva=0x2910 len=0x70 file_off=0x1D10
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10002910 <.text+0x1910>:
+10002910:	55                   	push   ebp
+10002911:	8b ec                	mov    ebp,esp
+10002913:	83 e4 f8             	and    esp,0xfffffff8
+10002916:	56                   	push   esi
+10002917:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000291d:	57                   	push   edi
+1000291e:	85 f6                	test   esi,esi
+10002920:	74 0a                	je     0x1000292c
+10002922:	56                   	push   esi
+10002923:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002929:	83 c4 04             	add    esp,0x4
+1000292c:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+1000292f:	8b 4d 0c             	mov    ecx,DWORD PTR [ebp+0xc]
+10002932:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+10002935:	50                   	push   eax
+10002936:	51                   	push   ecx
+10002937:	e8 14 2b 00 00       	call   0x10005450
+1000293c:	8b f8                	mov    edi,eax
+1000293e:	85 f6                	test   esi,esi
+10002940:	74 0a                	je     0x1000294c
+10002942:	56                   	push   esi
+10002943:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+10002949:	83 c4 04             	add    esp,0x4
+1000294c:	8b c7                	mov    eax,edi
+1000294e:	5f                   	pop    edi
+1000294f:	5e                   	pop    esi
+10002950:	8b e5                	mov    esp,ebp
+10002952:	5d                   	pop    ebp
+10002953:	c3                   	ret
+10002954:	cc                   	int3
+10002955:	cc                   	int3
+10002956:	cc                   	int3
+10002957:	cc                   	int3
+10002958:	cc                   	int3
+10002959:	cc                   	int3
+1000295a:	cc                   	int3
+1000295b:	cc                   	int3
+1000295c:	cc                   	int3
+1000295d:	cc                   	int3
+1000295e:	cc                   	int3
+1000295f:	cc                   	int3
+10002960:	55                   	push   ebp
+10002961:	8b ec                	mov    ebp,esp
+10002963:	83 e4 f8             	and    esp,0xfffffff8
+10002966:	56                   	push   esi
+10002967:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000296d:	57                   	push   edi
+1000296e:	85 f6                	test   esi,esi
+10002970:	74 0a                	je     0x1000297c
+10002972:	56                   	push   esi
+10002973:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002979:	83 c4 04             	add    esp,0x4
+1000297c:	8b 45 20             	mov    eax,DWORD PTR [ebp+0x20]
+1000297f:	8b                   	.byte 0x8b

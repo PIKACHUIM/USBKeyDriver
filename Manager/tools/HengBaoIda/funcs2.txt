@@ -1,0 +1,9 @@
+0x10028DE9 BotReadWrite_SCSI_STPD
+0x10028FC1 EnumDevicesByGuid
+0x10028BFA CTSPBot_EnumDevice
+0x10028C60 CTSPBot_OpenDevice
+0x1002855E THidTSP_EnumDevice
+0x100287E5 THidTSP_SendData
+0x1002156A EnumSlots_impl
+0x100012E9 GetDeviceBySlot
+0x1002161D KOpenDevice

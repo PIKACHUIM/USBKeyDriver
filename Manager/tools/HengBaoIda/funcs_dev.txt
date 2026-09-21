@@ -1,0 +1,4 @@
+0x1002156A EnumDevices
+0x1002161D KOpenDevice
+0x10021817 KCloseDevice
+0x10021833 KGetDeviceInfo

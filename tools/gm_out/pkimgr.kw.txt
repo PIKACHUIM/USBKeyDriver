@@ -1,0 +1,395 @@
+0x00409EAA	tagEXCEPINFO 
+0x00415204	VariantChangeTypeEx
+0x004267AD	TPropIntfFixup
+0x0042E0C9	HelpIntfs
+0x00432ACA	IChangeNotifier
+0x004424BF	OnChange
+0x0044FDE3	AllowChange
+0x004515AA	TTVChangedEvent
+0x00452039	ChangeDelay
+0x004525EA	OnChangeH
+0x00453FC6	TItemChange
+0x00454212	TLVChangeEvent
+0x00454244	Change
+0x00454A5A	TLVOwnerDataStateChangeEvent
+0x004559AA	OnChangedBE
+0x00455BF7	OnDataStateChange
+0x004687AF	ofNoChangeDir
+0x00468B9B	InitialDir
+0x00468C4B	OnFolderChange
+0x00468C74	OnSelectionChange
+0x00468CA0	OnTypeChange
+0x00468E6F	fdoNoChangeDir
+0x00468F51	fdoHidePinnedPlaces
+0x00469128	CanChange
+0x00469C04	OnTypeChangeh
+0x0046DA1A	TMenuChangeEvent
+0x0046DFC8	GroupIndex
+0x0048D579	TChangeLink
+0x0048F285	OnStateChange
+0x004AE182	TSpinDirection
+0x004AE1C2	TSpinButtonType
+0x004AE1FA	TSpinChangingEvent
+0x004AE25A	TSpinButtonEvent
+0x004AE445	TRzSpinButtons
+0x004AE5D3	InitialDelayXEJ
+0x004AECC1	TRzSpinEdit
+0x004AECD2	TRzSpinEdith
+0x004B8FA5	InitialDelay
+0x004BCF32	TRzTabOrderChangeEvent
+0x004BEF94	OnPageChange4
+0x004BF0B7	OnTabOrderChange
+0x004E8C99	edtpwdChange
+0x004E8CFC	edtContnameChange
+0x004F4702	TNodeChange
+0x004F4B92	TNodeChangeEvent
+0x004F4BB5	ChangeType
+0x004F525F	BeforeNodeChange
+0x004F528A	AfterNodeChange`-O
+0x004FFD5F	edtOldUPin$
+0x004FFD70	edtNewUPin1(
+0x004FFD82	edtNewUPin2,
+0x004FFFC5	AcSetUserPIN
+0x005000CE	LAdmin_UPIN
+0x005000E0	LAdmin_ISOPath
+0x005000F5	edtUPINForDownISO
+0x0050011B	LAdmin_Old_SOPIN
+0x00500132	LAdmin_New_SOPIN1 
+0x0050014A	LAdmin_new_SOPIN2$
+0x00500162	edtSPIN(
+0x00500170	edtNewSPIN1,
+0x00500182	edtNewSPIN20
+0x00500194	LAdmin_SOPIN4
+0x005001A7	LAdmin_New_UPIN18
+0x005001BE	LAdmin_New_UPIN2<
+0x005001D5	edtSPINForUnLock@
+0x005001EC	edtUPINForUnlock1D
+0x00500204	edtUPINForUnlock2H
+0x0050021C	AcInitL
+0x00500229	AcSetSOPINP
+0x0050023A	AcUnlockT
+0x00500285	edtUPINh
+0x005002F3	PCInit
+0x00500311	lInit_keyname
+0x00500325	lInit_gs
+0x00500334	LInit_Model
+0x00500346	edtInit_KeyName
+0x0050035C	edtInit_GS
+0x0050036D	edtInit_UnLockPIN
+0x00500396	LInit_SOPIN
+0x005003A8	lInit_SOPINLenMax
+0x005003C0	LInit_TryCount_SOPIN
+0x005003F7	lInit_SOPINLenMin
+0x0050041D	edtInit_SPIN
+0x00500430	edtInit_SOPINlenMax
+0x0050044A	edtInit_MaxCount_SOPIN
+0x00500467	edtInit_SOPINlenMin
+0x00500492	lInit_UPIN
+0x005004A3	lINit_PINLenMax
+0x005004B9	LInit_TryCount
+0x005004EA	lInit_PINLenMin
+0x0050050E	edtInit_UPIN
+0x00500521	edtInit_PINLenMax
+0x00500539	edtInit_MaxCount
+0x00500550	edtInit_PINlenMin
+0x005005BB	TCheckInit
+0x005006EC	tvChange
+0x005007A2	edtUPinKeyPress
+0x005007CE	tvCertChange
+0x005007F6	edtUPinChange
+0x00500834	AcSetUserPINExecute
+0x0050084E	AcSetUserPINUpdate
+0x005008F4	AcUnlockExecute
+0x0050090A	AcSetSOPINExecute
+0x00500922	AcInitExecute
+0x00500936	AcInitUpdate
+0x00500949	AcSetSOPINUpdate
+0x00500960	AcUnlockUpdate
+0x0050098B	edtUPINEnter
+0x0050099E	edtUPINExit
+0x00500A64	TCheckInitTimer
+0x00500A7A	edtNewSPIN2KeyPress
+0x00500A94	edtNewUPin2KeyPress 
+0x00500AAE	edtUPINForUnlock2KeyPress
+0x00504860	mToken_Setup.exe
+0x0051B270	oleaut32.dll
+0x0051B2B8	advapi32.dll
+0x0051B2F8	user32.dll
+0x0051B33E	kernel32.dll
+0x0051B454	GetStartupInfoA
+0x0051B5E0	CreateFileW
+0x0051C224	msimg32.dll
+0x0051C23E	gdi32.dll
+0x0051C778	version.dll
+0x0051C94E	ResetEvent
+0x0051C968	OpenFileMappingW
+0x0051C9F4	InitializeCriticalSection
+0x0051CA10	GlobalUnlock
+0x0051CC22	GetCPInfo
+0x0051CC56	InterlockedExchangeAdd
+0x0051CC70	InterlockedExchange
+0x0051CC9E	InterlockedCompareExchange
+0x0051CD6C	CreateFileMappingW
+0x0051CE82	ole32.dll
+0x0051CE8E	OleUninitialize
+0x0051CEA0	OleInitialize
+0x0051CEF6	CoUninitialize
+0x0051CF08	CoInitialize
+0x0051CFCE	VariantChangeType
+0x0051D000	VariantInit
+0x0051D00C	comctl32.dll
+0x0051D01C	InitializeFlatSB
+0x0051D284	InitCommonControls
+0x0051D298	URLMON.DLL
+0x0051D2BA	wininet.dll
+0x0051D2DE	shell32.dll
+0x0051D32C	comdlg32.dll
+0x0051D362	TokenMgr.dll
+0x0051D502	token_set_upin
+0x0051D514	token_change_sopin
+0x0051D53C	token_change_upin
+0x0051D560	token_get_pin_state
+0x0051D64C	uninit_pkcs11
+0x0051D65C	init_pkcs11_ex
+0x0051D66E	init_pkcs11
+0x0054A97E	GM3000PKIMgr
+0x0054A9A1	SysInit
+0x0054AA5F	QTypInfo
+0x0054ABF5	RHelpIntfs
+0x0054ADBC	Zupinsetfrm
+0x0054E57D	" id="W5M0MpCehiHzreSzNTczkc9d"?> <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        "> <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#" xmp:CreatorTool="Adobe Photoshop CS6 (Windows)" xmp:CreateDate="2013-10-24T11:10:45+08:00" xmp:MetadataDate="2013-11-07T10:16:50+08:00" xmp:ModifyDate="2013-11-07T10:16:50+08:00" photoshop:ColorMode="3" photoshop:ICCProfile="sRGB IEC61966-2.1" dc:format="image/jpeg" xmpMM:InstanceID="xmp.iid:58D153A95247E31198469B650417B688" xmpMM:DocumentID="xmp.did:4E1DDEDF593CE311A7A4F290B589B16F" xmpMM:OriginalDocumentID="xmp.did:4E1DDEDF593CE311A7A4F290B589B16F"> <photoshop:DocumentAncestors> <rdf:Bag> <rdf:li>D93C2BD6B473B62307DE5F84BADA2786</rdf:li> <rdf:li>xmp.did:06E71692003BE311AEEEEE27202A91E8</rdf:li> <rdf:li>xmp.did:37E6DA161769E2118A18BF22F8DDCFE5</rdf:li> <rdf:li>xmp.did:38E6DA161769E2118A18BF22F8DDCFE5</rdf:li> </rdf:Bag> </photoshop:DocumentAncestors> <xmpMM:History> <rdf:Seq> <rdf:li stEvt:action="created" stEvt:instanceID="xmp.iid:4E1DDEDF593CE311A7A4F290B589B16F" stEvt:when="2013-10-24T11:10:45+08:00" stEvt:softwareAgent="Adobe Photoshop CS6 (Windows)"/> <rdf:li stEvt:action="saved" stEvt:instanceID="xmp.iid:57D153A95247E31198469B650417B688" stEvt:when="2013-11-07T10:16:50+08:00" stEvt:softwareAgent="Adobe Photoshop CS6 (Windows)" stEvt:changed="/"/> <rdf:li stEvt:action="converted" stEvt:parameters="from application/vnd.adobe.photoshop to image/jpeg"/> <rdf:li stEvt:action="derived" stEvt:parameters="converted from application/vnd.adobe.photoshop to image/jpeg"/> <rdf:li stEvt:action="saved" stEvt:instanceID="xmp.iid:58D153A95247E31198469B650417B688" stEvt:when="2013-11-07T10:16:50+08:00" stEvt:softwareAgent="Adobe Photoshop CS6 (Windows)" stEvt:changed="/"/> </rdf:Seq> </xmpMM:History> <xmpMM:DerivedFrom stRef:instanceID="xmp.iid:57D153A95247E31198469B650417B688" stRef:documentID="xmp.did:4E1DDEDF593CE311A7A4F290B589B16F" stRef:originalDocumentID="xmp.did:4E1DDEDF593CE311A7A4F290B589B16F"/> </rdf:Description> </rdf:RDF> </x:xmpmeta>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <?xpacket end="w"?>
+0x00555D11	edtOldUPin
+0x00555D6D	edtNewUPin1
+0x00555DCA	edtNewUPin2
+0x00555E2A	edtNewUPin2KeyPress
+0x00558A31	edtUPIN
+0x00558AAD	edtUPinEnter
+0x00559521	support@longmai.com.cn
+0x00559612	http://www.longmai.com.cn
+0x0055984A	init
+0x005598B8	AcInit
+0x00559B88	GM3000
+0x00559BDF	Longmai
+0x00559C68	SO PIN
+0x0055A03C	admin
+0x0055A205	User PIN
+0x0055A796	setsopin
+0x0055A930	Old SO PIN:
+0x0055A945	LAdmin_New_SOPIN1
+0x0055A999	New SO PIN:
+0x0055A9AE	LAdmin_new_SOPIN2
+0x0055AA02	Comfirm SO PIN:
+0x0055AA1A	edtSPIN
+0x0055AA71	edtNewSPIN1
+0x0055AACD	edtNewSPIN2
+0x0055AB7C	AcSetSOPIN
+0x0055ABB6	Unlock
+0x0055ACFC	LAdmin_SOPIN
+0x0055AD4A	SO PIN:
+0x0055AD5B	LAdmin_New_UPIN1
+0x0055ADAE	New User PIN:
+0x0055ADC5	LAdmin_New_UPIN2
+0x0055AE18	Comfirm User PIN:
+0x0055AE32	edtSPINForUnLock
+0x0055AE92	edtUPINForUnlock1
+0x0055AEF4	edtUPINForUnlock2
+0x0055AFAF	AcUnlock
+0x0055B15C	User PIN:
+0x0055BA40	Admin
+0x0055BA4F	Initialize
+0x0056467B	LstControlsChange
+0x00564921	TUPinSetForm
+0x0056492E	UPinSetForm
+0x00564C69	edtUPin
+0x00564CEE	edtUPinExit
+0x00564D77	edtNewUPin1Change
+0x00564DAC	edtNewUPin1Exit
+0x00564E39	edtNewUPin2Change
+0x00564E6E	edtNewUPin2Exit
+0x00564E89	edtNewUPin2KeyDown
+0x00565139	cbDefaultPIN
+0x00405BB0	u%S媂
+0x004267AD	TPropIntfFixup怳嬱SV勔t
+0x004424BF	OnChange勲A
+0x00450E69	OnChange庚D
+0x00455BF7	OnDataStateChange勲A
+0x00468B9B	InitialDir鴪F
+0x00468C4B	OnFolderChange勲A
+0x00468C74	OnSelectionChange勲A
+0x00468CA0	OnTypeChange垑F
+0x00469B59	OnFolderChange饜F
+0x00469C04	OnTypeChangeh淔
+0x0046A09A	OnTypeChange嬂
+0x0048D579	TChangeLink堈H
+0x0048F23E	OnChange橈H
+0x0048F285	OnStateChange橈H
+0x004AE445	TRzSpinButtons怷銳
+0x004AECC1	TRzSpinEdit徐J
+0x004AECD2	TRzSpinEdith闖
+0x004BECB0	OnChange韵K
+0x004BEF94	OnPageChange4蠯
+0x004BF0B7	OnTabOrderChange勲A
+0x004F525F	BeforeNodeChange孠O
+0x0054A9A0	丼ysInit
+0x00559D2A	SO PIN锛
+0x00559DBC	SO PIN鏈
+0x004235F4	%s[%d]
+0x004289E4	%s_%d
+0x004300FC	USER32.DLL
+0x004301A0	InitCommonControlsEx
+0x0043DB4C	InitializeConditionVariable
+0x0043E430	uxtheme.dll
+0x0043EC2C	DWMAPI.DLL
+0x0044008C	clWebDeepPink
+0x004400B4	clWebLightPink
+0x00440170	clWebHotPink
+0x00440198	clWebPink
+0x0046D75C	UninitializeFlatSB
+0x0047B244	%s (%s)
+0x0048A9C4	imm32.dll
+0x0048C480	spin
+0x004E1B04	K3ProCSP11.dll
+0x004E1B30	k3pro_pkcs11.dll
+0x004E1B60	Longmai mToken K3Pro CSP V1.1
+0x004E2A20	GM3000Mon.exe
+0x004E4F6C	K_PIN_Error
+0x004E559C	K_Info_maxPinLen
+0x004E55CC	K_Info_minPinLen
+0x004E5964	I_InputPIN
+0x004E5988	I_CertPINError
+0x004E5A44	S_PIN_equal
+0x004E5B24	K_DefaultUPINInfo
+0x004E5CE4	Main_Form_btn_SetUPIN
+0x004E5F20	UPINSet_Form_NewPIN1
+0x004E5F58	UPINSet_Form_NewPIN2
+0x004E6560	UPINSet_Form_OldPIN
+0x004E6708	SOPIN_Error
+0x004E672C	Change_No
+0x004E674C	Change_Yes
+0x004E6770	SOPIN_E2
+0x004E6790	UPIN_E2
+0x004E67AC	K_Init_Info
+0x004E67D0	K_Init_try
+0x004E6890	Admin_btn_Init
+0x004E68BC	Admin_btn_SOPIN
+0x004E68E8	Admin_btn_Unlock
+0x004E6918	Admin_btn_DownISO
+0x004E6948	Admin_label_TryCount
+0x004E6980	Admin_label_SOPIN
+0x004E69B0	Admin_label_UPIN
+0x004E6A08	Admin_Name
+0x004E6A4C	Admin_label_OldSOPIN
+0x004E6A84	Admin_label_NewSOPIN1
+0x004E6ABC	Admin_label_NewSOPIN2
+0x004E6AF4	Admin_label_NewUPIN1
+0x004E6B2C	Admin_label_NewUPIN2
+0x004E6B64	Admin_label_ISOPath
+0x004E6BC0	K_Info_SOPIN_maxPinLen
+0x004E6BFC	K_Info_SOPIN_minPinLen
+0x004E6C38	K_Info_SOPIN_TryCount
+0x004E6C94	K_pkcs11Init_Error
+0x004E6D98	Config_Form_DefaultPIN
+0x004E6DD4	Init_Info
+0x004E6EF4	K_InputSOPIN
+0x004E72BC	P_DefaultPIN_Info
+0x004EA284	CoInitializeEx
+0x004F3D7C	NMTOKEN
+0x004F3D98	NMTOKENS
+0x004F5EE0	%s="%s"
+0x004FA394	%s%s%s: %d%s%s
+0x004FC808	%d KB
+0x004FCC24	%20s : %s
+0x004FD370	DefaultPIN
+0x004FD798	InitData
+0x004FD7F8	default_sopin
+0x004FD820	default_upin
+0x004FD848	uPinRetryTimes
+0x004FD874	soPinRetryTimes
+0x004FD8A0	minUPINLen
+0x004FD8C4	maxUPINLen
+0x004FD8E8	minSOPINLen
+0x004FD90C	maxSOPINLen
+0x004FF184	KERNEL32.DLL
+0x005015E8	%s(ErrorCode = 0x%s)
+0x00502058	Initconfig.ini
+0x00503EB0	%s(%d--%d)
+0x00504810	Server Ver = %s  Client Ver = %s
+0x0050637C	(RSA%d)
+0x00506398	(ECC%d)
+0x00507284	\system32\mTokenMiniDrv.dll
+0x005072C8	\system32\mTokenMiniDrv.x64.dll
+0x00507FD4	\System32\mTokenMiniDrv.x64.dll
+0x00508020	\sysWOW64\mTokenMiniDrv.dll
+0x005080A8	%d.%.2d
+0x005325C0	TUPINSETFORM
+0x0053E7CA	OLE error %.8x.Method '%s' not supported by automation object/Variant does not reference an automation object7Dispatch methods do not support more than 64 parameters+{GM3000HZTWMgr-94AD-4211-B821-1CD5AC3F08E1}
+0x0053E976	TGM3000HZTW_Mgr
+0x0053E996	gm3000HZTW_TrayIcon*gm3000,vid_055c&pid_db08,vid_055c&pid_e618
+0x0053EA26	GM3000APP)"%s" DOMImplementation already registered
+0x0053EA8E	No matching DOM Vendor: "%s"<Selected DOM Vendor does not support this property or method;Property or Method "%s" is not supported by DOM Vendor "%s"
+0x0053EC4A	Node "%s" not found
+0x0053EE18	SCardSvr
+0x0053EEA2	GM3000HZTW
+0x0053F082	Error creating regionD%d is an invalid PageIndex value. PageIndex must be between 0 and %d0You cannot change the Visible property of a page&Cannot change the size of a JPEG image
+0x0053F1E8	JPEG error #%d
+0x0053F5B0	Pink
+0x0053F61C	=This control requires version 4.70 or greater of COMCTL32.DLL
+0x0053F7C8	UTF-7"PageControl must first be assigned"%s requires Windows Vista or later
+0x0053F860	Failed to clear tab control Failed to delete tab at index %d"Failed to retrieve tab at index %d Failed to get object at index %d"Failed to set tab "%s" at index %d Failed to set object at index %d<MultiLine must be True when TabPosition is tpLeft or tpRight
+0x0053FAB2	Invalid ownerE%d is an invalid PageIndex value.  PageIndex must be between 0 and %d
+0x0053FB5A	Value must be between %d and %d
+0x0053FC3E	Cannot open clipboard: %s/Menu '%s' is already being used by another form
+0x0053FD8C	 - Dock zone has no controlLError loading dock zone from the stream. Expecting version %d, but found %d.,Multiselect mode must be on for this feature#No OnGetItem event handler assigned
+0x00540178	Invalid input value7Invalid input value.  Use escape key to abandon changes
+0x0054022C	!Control '%s' has no parent window$Parent given is not a parent of '%s'
+0x005402BC	Cannot hide an MDI Child Form)Cannot change Visible in OnShow or OnHide"Cannot make a visible window modal
+0x00540392	%s property out of range
+0x0054044C	Not enough timers available@GroupIndex cannot be less than a previous menu item's GroupIndex5Cannot create form. No MDI forms are currently active*A control cannot have itself as its parent
+0x0054063C	Scan line index out of range!Cannot change the size of an icon$Unknown picture file extension (.%s)
+0x005409A6	''%s'' is not a valid date#''%s'' is not a valid date and time#''%s'' is not a valid integer value
+0x00540A6C	''%s'' is not a valid time
+0x00540C44	No help found for %s0Tab position incompatible with current tab style0Tab style incompatible with current tab position
+0x00540DEE	Error reading %s%s%s: %s
+0x00540E70	Failed to get data for '%s'
+0x00540EA8	Resource %s not found
+0x00540ED4	%s.Seek not implemented$Operation not allowed on sorted list$%s not in a class registration group
+0x00540F98	Property %s does not exist
+0x00540FF4	Thread creation error: %s
+0x00541028	Thread Error: %s (%d)-Cannot terminate an externally created thread,Cannot wait for an externally created thread$No help viewer that supports filters
+0x00541154	#A component named %s already exists%String list does not allow duplicates
+0x005411EA	Cannot create file "%s". %s
+0x00541222	Cannot open file "%s". %s
+0x00541256	Unable to write to %s
+0x00541282	Invalid file name - %s
+0x005412B0	Invalid stream format$''%s'' is not a valid component name
+0x00541354	Invalid property element: %s
+0x005413E8	Invalid data type for '%s' List capacity out of bounds (%d)
+0x00541460	List count out of bounds (%d)
+0x0054149C	List index out of bounds (%d)
+0x0054153A	Invalid destination array"Character index out of bounds (%d)
+0x005415B4	Start index out of bounds (%d)
+0x005415F2	Invalid count (%d)
+0x00541618	Invalid destination index (%d)
+0x0054167A	Ancestor for '%s' not found
+0x005416B2	Cannot assign a %s to a %s
+0x005416E8	Bits index out of range*Can't write to a read-only resource streamECheckSynchronize called from thread $%x, which is NOT the main thread
+0x005417FA	Class %s not found
+0x00541820	A class named %s already exists%List does not allow duplicates ($0%x)
+0x00541AC2	Object lock not owned(Monitor support function not initialized
+0x00541B40	%s (%s, line %d)
+0x00541B62	Abstract Error?Access violation at address %p in module '%s'. %s of address %p
+0x00541C00	System Error.  Code: %d.
+0x00541E08	Invalid NULL variant operation%Invalid variant operation (%s%.8x)
+0x00541E8C	%s5Could not convert variant of type (%s) into type (%s)=Overflow while converting variant of type (%s) into type (%s)
+0x0054204A	External exception %x
+0x0054210C	Invalid class typecast0Access violation at address %p. %s of address %p
+0x00542226	Operation aborted(Exception %s in module %s at %p.
+0x0054228E	%s%s
+0x0054229C	Application Error1Format '%s' invalid or incompatible with argument
+0x00542324	No argument for format '%s'"Variant method calls not supported
+0x005423AC	('%s' is not a valid floating point value
+0x00542400	'%s' is not a valid GUID value
+0x0054249A	I/O error %d
+0x0054D019	mToken
+0x005653EC	Longmai Technology
+0x0056543C	GM3000 PKI Mgr

@@ -1,0 +1,54 @@
+﻿
+ZJK_LgKit.exe:     file format pei-i386
+
+
+Disassembly of section .text:
+
+00404e10 <.text+0x3e10>:
+  404e10:	81 ec 60 04 00 00    	sub    esp,0x460
+  404e16:	a1 40 26 47 00       	mov    eax,ds:0x472640
+  404e1b:	33 c4                	xor    eax,esp
+  404e1d:	89 84 24 5c 04 00 00 	mov    DWORD PTR [esp+0x45c],eax
+  404e24:	8b 84 24 70 04 00 00 	mov    eax,DWORD PTR [esp+0x470]
+  404e2b:	8b 8c 24 74 04 00 00 	mov    ecx,DWORD PTR [esp+0x474]
+  404e32:	53                   	push   ebx
+  404e33:	8b 9c 24 70 04 00 00 	mov    ebx,DWORD PTR [esp+0x470]
+  404e3a:	56                   	push   esi
+  404e3b:	8b b4 24 70 04 00 00 	mov    esi,DWORD PTR [esp+0x470]
+  404e42:	57                   	push   edi
+  404e43:	8b bc 24 70 04 00 00 	mov    edi,DWORD PTR [esp+0x470]
+  404e4a:	89 44 24 0c          	mov    DWORD PTR [esp+0xc],eax
+  404e4e:	89 4c 24 14          	mov    DWORD PTR [esp+0x14],ecx
+  404e52:	81 fb 00 04 00 00    	cmp    ebx,0x400
+  404e58:	76 05                	jbe    0x404e5f
+  404e5a:	bb 00 04 00 00       	mov    ebx,0x400
+  404e5f:	68 00 04 00 00       	push   0x400
+  404e64:	8d 54 24 6c          	lea    edx,[esp+0x6c]
+  404e68:	6a 00                	push   0x0
+  404e6a:	52                   	push   edx
+  404e6b:	e8 a0 6a 03 00       	call   0x43b910
+  404e70:	53                   	push   ebx
+  404e71:	8d 44 24 78          	lea    eax,[esp+0x78]
+  404e75:	56                   	push   esi
+  404e76:	50                   	push   eax
+  404e77:	e8 84 65 03 00       	call   0x43b400
+  404e7c:	6a 50                	push   0x50
+  404e7e:	8d 4c 24 34          	lea    ecx,[esp+0x34]
+  404e82:	6a 00                	push   0x0
+  404e84:	51                   	push   ecx
+  404e85:	e8 86 6a 03 00       	call   0x43b910
+  404e8a:	83 c4 24             	add    esp,0x24
+  404e8d:	80 7c 24 68 80       	cmp    BYTE PTR [esp+0x68],0x80
+  404e92:	ba 2c 00 00 00       	mov    edx,0x2c
+  404e97:	66 89 54 24 18       	mov    WORD PTR [esp+0x18],dx
+  404e9c:	c6 44 24 1c 01       	mov    BYTE PTR [esp+0x1c],0x1
+  404ea1:	c6 44 24 1e 0c       	mov    BYTE PTR [esp+0x1e],0xc
+  404ea6:	c6 44 24 1f 18       	mov    BYTE PTR [esp+0x1f],0x18
+  404eab:	c6 44 24 20 00       	mov    BYTE PTR [esp+0x20],0x0
+  404eb0:	89 5c 24 24          	mov    DWORD PTR [esp+0x24],ebx
+  404eb4:	75 18                	jne    0x404ece
+  404eb6:	8a 44 24 69          	mov    al,BYTE PTR [esp+0x69]
+  404eba:	3c ce                	cmp    al,0xce
+  404ebc:	74 10                	je     0x404ece
+  404ebe:	c7                   	.byte 0xc7
+  404ebf:	44                   	inc    esp

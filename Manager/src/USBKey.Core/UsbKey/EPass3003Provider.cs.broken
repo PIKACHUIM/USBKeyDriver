@@ -1,0 +1,1078 @@
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using USBKey.Core.Native;
+using static USBKey.Core.Native.EPass3003Native;
+
+namespace USBKey.Core.UsbKey;
+
+/// <summary>
+/// ePass3003 (HZCA) USB Key Provider
+/// 使用 PKCS#11 标准接口管理 HZCA 定制版 ePass3003 设备
+/// </summary>
+public sealed class EPass3003Provider : IKeyProvider, IDisposable
+{
+    private const string DLL_NAME_32 = "HCCBCSP11.dll";
+    private const string DLL_NAME_64 = "HCCBCSP11.dll";
+    
+    private NativeDll.Module? _module;
+    private bool _initialized;
+    private readonly Dictionary<uint, uint> _sessionCache = new();
+    
+    // PKCS#11 函数委托
+    private C_Initialize_t? _C_Initialize;
+    private C_Finalize_t? _C_Finalize;
+    private C_GetInfo_t? _C_GetInfo;
+    private C_GetSlotList_t? _C_GetSlotList;
+    private C_GetSlotInfo_t? _C_GetSlotInfo;
+    private C_GetTokenInfo_t? _C_GetTokenInfo;
+    private C_OpenSession_t? _C_OpenSession;
+    private C_CloseSession_t? _C_CloseSession;
+    private C_CloseAllSessions_t? _C_CloseAllSessions;
+    private C_GetSessionInfo_t? _C_GetSessionInfo;
+    private C_Login_t? _C_Login;
+    private C_Logout_t? _C_Logout;
+    private C_CreateObject_t? _C_CreateObject;
+    private C_DestroyObject_t? _C_DestroyObject;
+    private C_GetAttributeValue_t? _C_GetAttributeValue;
+    private C_SetAttributeValue_t? _C_SetAttributeValue;
+    private C_FindObjectsInit_t? _C_FindObjectsInit;
+    private C_FindObjects_t? _C_FindObjects;
+    private C_FindObjectsFinal_t? _C_FindObjectsFinal;
+    private C_EncryptInit_t? _C_EncryptInit;
+    private C_Encrypt_t? _C_Encrypt;
+    private C_DecryptInit_t? _C_DecryptInit;
+    private C_Decrypt_t? _C_Decrypt;
+    private C_SignInit_t? _C_SignInit;
+    private C_Sign_t? _C_Sign;
+    private C_VerifyInit_t? _C_VerifyInit;
+    private C_Verify_t? _C_Verify;
+    private C_GenerateKeyPair_t? _C_GenerateKeyPair;
+    private C_GenerateRandom_t? _C_GenerateRandom;
+    private C_InitToken_t? _C_InitToken;
+    private C_InitPIN_t? _C_InitPIN;
+    private C_SetPIN_t? _C_SetPIN;
+
+    public string PlatformName => "epass3003";
+
+    public bool IsAvailable
+    {
+        get
+        {
+            try
+            {
+                return LoadDll();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+
+    public void Initialize()
+    {
+        if (_initialized) return;
+        
+        if (!LoadDll())
+            throw new InvalidOperationException("无法加载 HCCBCSP11.dll，请确保 HZCA ePass3003 驱动已正确安装");
+        
+        LoadFunctions();
+        
+        // 初始化 PKCS#11 库
+        var rv = _C_Initialize!(IntPtr.Zero);
+        if (rv != CKR_OK && rv != CKR_CRYPTOKI_ALREADY_INITIALIZED)
+            throw new CryptographicException($"PKCS#11 初始化失败: {GetErrorMessage(rv)}");
+        
+        _initialized = true;
+        Console.WriteLine("[ePass3003] PKCS#11 初始化成功");
+    }
+
+    private bool LoadDll()
+    {
+        if (_module != null) return true;
+        
+        // 根据进程位数选择DLL路径
+        string[] dllPaths;
+        if (Environment.Is64BitProcess)
+        {
+            dllPaths = new[]
+            {
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), DLL_NAME_64),
+                DLL_NAME_64
+            };
+        }
+        else
+        {
+            dllPaths = new[]
+            {
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.SystemX86), DLL_NAME_32),
+                DLL_NAME_32
+            };
+        }
+        
+        foreach (var path in dllPaths)
+        {
+            try
+            {
+                _module = NativeDll.Load(path);
+                if (_module != null)
+                {
+                    Console.WriteLine($"[ePass3003] 成功加载 DLL: {path}");
+                    return true;
+                }
+            }
+            catch
+            {
+                // 继续尝试下一个路径
+            }
+        }
+        
+        return false;
+    }
+
+    private void LoadFunctions()
+    {
+        if (_module == null)
+            throw new InvalidOperationException("DLL未加载");
+        
+        Console.WriteLine("[ePass3003] 直接加载PKCS#11导出函数...");
+        
+        // HCCBCSP11.dll 直接导出所有PKCS#11函数，不需要通过C_GetFunctionList
+        _C_Initialize = _module.GetDelegate<C_Initialize_t>("C_Initialize");
+        _C_Finalize = _module.GetDelegate<C_Finalize_t>("C_Finalize");
+        _C_GetInfo = _module.GetDelegate<C_GetInfo_t>("C_GetInfo");
+        _C_GetSlotList = _module.GetDelegate<C_GetSlotList_t>("C_GetSlotList");
+        _C_GetSlotInfo = _module.GetDelegate<C_GetSlotInfo_t>("C_GetSlotInfo");
+        _C_GetTokenInfo = _module.GetDelegate<C_GetTokenInfo_t>("C_GetTokenInfo");
+        _C_InitToken = _module.GetDelegate<C_InitToken_t>("C_InitToken");
+        _C_InitPIN = _module.GetDelegate<C_InitPIN_t>("C_InitPIN");
+        _C_SetPIN = _module.GetDelegate<C_SetPIN_t>("C_SetPIN");
+        _C_OpenSession = _module.GetDelegate<C_OpenSession_t>("C_OpenSession");
+        _C_CloseSession = _module.GetDelegate<C_CloseSession_t>("C_CloseSession");
+        _C_CloseAllSessions = _module.GetDelegate<C_CloseAllSessions_t>("C_CloseAllSessions");
+        _C_GetSessionInfo = _module.GetDelegate<C_GetSessionInfo_t>("C_GetSessionInfo");
+        _C_Login = _module.GetDelegate<C_Login_t>("C_Login");
+        _C_Logout = _module.GetDelegate<C_Logout_t>("C_Logout");
+        _C_CreateObject = _module.GetDelegate<C_CreateObject_t>("C_CreateObject");
+        _C_DestroyObject = _module.GetDelegate<C_DestroyObject_t>("C_DestroyObject");
+        _C_GetAttributeValue = _module.GetDelegate<C_GetAttributeValue_t>("C_GetAttributeValue");
+        _C_SetAttributeValue = _module.GetDelegate<C_SetAttributeValue_t>("C_SetAttributeValue");
+        _C_FindObjectsInit = _module.GetDelegate<C_FindObjectsInit_t>("C_FindObjectsInit");
+        _C_FindObjects = _module.GetDelegate<C_FindObjects_t>("C_FindObjects");
+        _C_FindObjectsFinal = _module.GetDelegate<C_FindObjectsFinal_t>("C_FindObjectsFinal");
+        _C_GenerateKeyPair = _module.GetDelegate<C_GenerateKeyPair_t>("C_GenerateKeyPair");
+        _C_SignInit = _module.GetDelegate<C_SignInit_t>("C_SignInit");
+        _C_Sign = _module.GetDelegate<C_Sign_t>("C_Sign");
+        _C_VerifyInit = _module.GetDelegate<C_VerifyInit_t>("C_VerifyInit");
+        _C_Verify = _module.GetDelegate<C_Verify_t>("C_Verify");
+        _C_EncryptInit = _module.GetDelegate<C_EncryptInit_t>("C_EncryptInit");
+        _C_Encrypt = _module.GetDelegate<C_Encrypt_t>("C_Encrypt");
+        _C_DecryptInit = _module.GetDelegate<C_DecryptInit_t>("C_DecryptInit");
+        _C_Decrypt = _module.GetDelegate<C_Decrypt_t>("C_Decrypt");
+        
+        Console.WriteLine("[ePass3003] PKCS#11 函数加载成功");
+    }
+    
+    public void Initialize()
+    {
+        if (_initialized)
+            return;
+        
+        if (!LoadDll())
+            throw new InvalidOperationException("无法加载 HCCBCSP11.dll");
+        
+        LoadFunctions();
+        
+        CheckRv(_C_Initialize!(IntPtr.Zero), "初始化PKCS#11");
+        _initialized = true;
+        
+        Console.WriteLine("[ePass3003] PKCS#11 初始化成功");
+    }
+
+    private void CheckRv(uint rv, string? operation = null)
+        
+
+    private void CheckRv(uint rv, string? operation = null)
+            throw new InvalidOperationException("无法找到 C_GetFunctionList 函数");
+        
+        // 获取函数表指针
+        IntPtr pFunctionList;
+        var rv = getFunctionList(out pFunctionList);
+        if (rv != CKR_OK)
+            throw new CryptographicException($"C_GetFunctionList 失败: {GetErrorMessage(rv)}");
+        
+        if (pFunctionList == IntPtr.Zero)
+            throw new InvalidOperationException("函数表指针为空");
+        
+        // 读取函数表 - PKCS#11 标准布局
+        // struct CK_FUNCTION_LIST {
+        //   CK_VERSION version;           // 2 bytes
+        //   CK_C_Initialize C_Initialize; // IntPtr
+        //   ...
+        // }
+        
+        IntPtr ptr = pFunctionList;
+        
+        Console.WriteLine($"[DEBUG] 函数表基址: 0x{pFunctionList.ToInt64():X}");
+        
+        // 打印函数表的原始字节（前32字节）
+        Console.Write("[DEBUG] 内存dump (前32字节): ");
+        for (int i = 0; i < 32; i++)
+        {
+            byte b = Marshal.ReadByte(pFunctionList, i);
+            Console.Write($"{b:X2} ");
+        }
+        Console.WriteLine();
+        
+        // 尝试不同的偏移
+        Console.WriteLine("\n[DEBUG] 测试不同偏移:");
+        for (int offset = 0; offset <= 8; offset++)
+        {
+            IntPtr testPtr = pFunctionList + offset;
+            IntPtr addr = Marshal.ReadIntPtr(testPtr);
+            Console.WriteLine($"  偏移 {offset}: 0x{addr.ToInt64():X}");
+        }
+        
+        // 跳过 version (2 bytes: major + minor)
+        // HCCBCSP11.dll使用紧凑布局，无padding
+        ptr += 2;
+        
+        Console.WriteLine($"[DEBUG] 使用偏移+2，函数指针起始: 0x{ptr.ToInt64():X}");
+        
+        // 读取前4个函数指针原始地址
+        IntPtr pInit = Marshal.ReadIntPtr(ptr);
+        IntPtr pFini = Marshal.ReadIntPtr(ptr + IntPtr.Size);
+        IntPtr pInfo = Marshal.ReadIntPtr(ptr + IntPtr.Size * 2);
+        IntPtr pSlot = Marshal.ReadIntPtr(ptr + IntPtr.Size * 3);
+        
+        Console.WriteLine($"[DEBUG] C_Initialize原始地址: 0x{pInit.ToInt64():X}");
+        Console.WriteLine($"[DEBUG] C_Finalize原始地址: 0x{pFini.ToInt64():X}");
+        Console.WriteLine($"[DEBUG] C_GetInfo原始地址: 0x{pInfo.ToInt64():X}");
+        Console.WriteLine($"[DEBUG] C_GetSlotList原始地址: 0x{pSlot.ToInt64():X}");
+        
+        // 按照 PKCS#11 v2.40 标准顺序读取函数指针
+        // 注意：每个函数指针占用 IntPtr.Size 字节
+        
+        _C_Initialize = ReadFunctionPointer<C_Initialize_t>(ref ptr);
+        _C_Finalize = ReadFunctionPointer<C_Finalize_t>(ref ptr);
+        _C_GetInfo = ReadFunctionPointer<C_GetInfo_t>(ref ptr);
+        _C_GetSlotList = ReadFunctionPointer<C_GetSlotList_t>(ref ptr);
+        _C_GetSlotInfo = ReadFunctionPointer<C_GetSlotInfo_t>(ref ptr);
+        _C_GetTokenInfo = ReadFunctionPointer<C_GetTokenInfo_t>(ref ptr);
+        
+        // 跳过 C_GetMechanismList, C_GetMechanismInfo
+        ptr += IntPtr.Size * 2;
+        
+        _C_InitToken = ReadFunctionPointer<C_InitToken_t>(ref ptr);
+        _C_InitPIN = ReadFunctionPointer<C_InitPIN_t>(ref ptr);
+        _C_SetPIN = ReadFunctionPointer<C_SetPIN_t>(ref ptr);
+        
+        _C_OpenSession = ReadFunctionPointer<C_OpenSession_t>(ref ptr);
+        _C_CloseSession = ReadFunctionPointer<C_CloseSession_t>(ref ptr);
+        _C_CloseAllSessions = ReadFunctionPointer<C_CloseAllSessions_t>(ref ptr);
+        _C_GetSessionInfo = ReadFunctionPointer<C_GetSessionInfo_t>(ref ptr);
+        
+        // 跳过 C_GetOperationState, C_SetOperationState
+        ptr += IntPtr.Size * 2;
+        
+        _C_Login = ReadFunctionPointer<C_Login_t>(ref ptr);
+        _C_Logout = ReadFunctionPointer<C_Logout_t>(ref ptr);
+        
+        _C_CreateObject = ReadFunctionPointer<C_CreateObject_t>(ref ptr);
+        
+        // 跳过 C_CopyObject
+        ptr += IntPtr.Size;
+        
+        _C_DestroyObject = ReadFunctionPointer<C_DestroyObject_t>(ref ptr);
+        
+        // 跳过 C_GetObjectSize
+        ptr += IntPtr.Size;
+        
+        _C_GetAttributeValue = ReadFunctionPointer<C_GetAttributeValue_t>(ref ptr);
+        _C_SetAttributeValue = ReadFunctionPointer<C_SetAttributeValue_t>(ref ptr);
+        _C_FindObjectsInit = ReadFunctionPointer<C_FindObjectsInit_t>(ref ptr);
+        _C_FindObjects = ReadFunctionPointer<C_FindObjects_t>(ref ptr);
+        _C_FindObjectsFinal = ReadFunctionPointer<C_FindObjectsFinal_t>(ref ptr);
+        
+        _C_EncryptInit = ReadFunctionPointer<C_EncryptInit_t>(ref ptr);
+        _C_Encrypt = ReadFunctionPointer<C_Encrypt_t>(ref ptr);
+        
+        // 跳过 C_EncryptUpdate, C_EncryptFinal
+        ptr += IntPtr.Size * 2;
+        
+        _C_DecryptInit = ReadFunctionPointer<C_DecryptInit_t>(ref ptr);
+        _C_Decrypt = ReadFunctionPointer<C_Decrypt_t>(ref ptr);
+        
+        // 跳过 C_DecryptUpdate, C_DecryptFinal
+        ptr += IntPtr.Size * 2;
+        
+        // 跳过 Digest 系列 (C_DigestInit, C_Digest, C_DigestUpdate, C_DigestKey, C_DigestFinal)
+        ptr += IntPtr.Size * 5;
+        
+        _C_SignInit = ReadFunctionPointer<C_SignInit_t>(ref ptr);
+        _C_Sign = ReadFunctionPointer<C_Sign_t>(ref ptr);
+        
+        // 跳过 C_SignUpdate, C_SignFinal, C_SignRecoverInit, C_SignRecover
+        ptr += IntPtr.Size * 4;
+        
+        _C_VerifyInit = ReadFunctionPointer<C_VerifyInit_t>(ref ptr);
+        _C_Verify = ReadFunctionPointer<C_Verify_t>(ref ptr);
+        
+        // 跳过很多函数到 C_GenerateKeyPair
+        // C_VerifyUpdate, C_VerifyFinal, C_VerifyRecoverInit, C_VerifyRecover
+        ptr += IntPtr.Size * 4;
+        
+        // C_DigestEncryptUpdate, C_DecryptDigestUpdate, C_SignEncryptUpdate, 
+        // C_DecryptVerifyUpdate, C_GenerateKey
+        ptr += IntPtr.Size * 5;
+        
+        _C_GenerateKeyPair = ReadFunctionPointer<C_GenerateKeyPair_t>(ref ptr);
+        
+        // 跳过到 C_GenerateRandom
+        // C_WrapKey, C_UnwrapKey, C_DeriveKey, C_SeedRandom
+        ptr += IntPtr.Size * 4;
+        
+        _C_GenerateRandom = ReadFunctionPointer<C_GenerateRandom_t>(ref ptr);
+        
+        // 验证关键函数已加载
+        if (_C_Initialize == null || _C_GetSlotList == null || _C_OpenSession == null)
+            throw new InvalidOperationException("关键 PKCS#11 函数加载失败");
+        
+        Console.WriteLine("[ePass3003] PKCS#11 函数表加载成功");
+    }
+
+    private T? ReadFunctionPointer<T>(ref IntPtr ptr) where T : Delegate
+    {
+        var funcPtr = Marshal.ReadIntPtr(ptr);
+        ptr += IntPtr.Size;
+        
+        if (funcPtr == IntPtr.Zero)
+            return null;
+        
+        return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
+    }
+
+    private void CheckRv(uint rv, string? operation = null)
+    {
+        if (rv != CKR_OK)
+        {
+            var message = operation != null
+                ? $"{operation} 失败: {GetErrorMessage(rv)}"
+                : GetErrorMessage(rv);
+            throw new CryptographicException(message);
+        }
+    }
+
+    public IReadOnlyList<UsbKeyDevice> Enumerate()
+    {
+        Initialize();
+        
+        Console.WriteLine("[ePass3003] 开始枚举设备");
+        
+        // 获取插槽数量
+        Console.WriteLine("[ePass3003] 调用 C_GetSlotList 获取插槽数量...");
+        uint slotCount = 0;
+        CheckRv(_C_GetSlotList!(1, IntPtr.Zero, ref slotCount), "获取插槽数量");  // 使用1代替true
+        Console.WriteLine($"[ePass3003] 插槽数量: {slotCount}");
+        
+        if (slotCount == 0)
+            return Array.Empty<UsbKeyDevice>();
+        
+        // 获取插槽列表
+        Console.WriteLine($"[ePass3003] 分配内存: {slotCount * sizeof(uint)} 字节");
+        var slotIds = new uint[slotCount];
+        var slotIdsPtr = Marshal.AllocHGlobal((int)(slotCount * sizeof(uint)));
+        try
+        {
+            Console.WriteLine("[ePass3003] 再次调用 C_GetSlotList 获取插槽列表...");
+            CheckRv(_C_GetSlotList!(1, slotIdsPtr, ref slotCount), "获取插槽列表");  // 使用1代替true
+            Console.WriteLine("[ePass3003] C_GetSlotList 调用成功");
+            
+            for (int i = 0; i < slotCount; i++)
+            {
+                slotIds[i] = (uint)Marshal.ReadInt32(slotIdsPtr, i * sizeof(uint));
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(slotIdsPtr);
+        }
+        
+        var devices = new List<UsbKeyDevice>();
+        
+        foreach (var slotId in slotIds)
+        {
+            try
+            {
+                var tokenInfo = GetTokenInfo(slotId);
+                if (tokenInfo != null)
+                {
+                    devices.Add(CreateDeviceFromToken(slotId, tokenInfo.Value));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ePass3003] 读取插槽 {slotId} 信息失败: {ex.Message}");
+            }
+        }
+        
+        Console.WriteLine($"[ePass3003] 枚举完成，找到 {devices.Count} 个设备");
+        return devices;
+    }
+
+    private CK_TOKEN_INFO? GetTokenInfo(uint slotId)
+    {
+        var infoPtr = Marshal.AllocHGlobal(Marshal.SizeOf<CK_TOKEN_INFO>());
+        try
+        {
+            var rv = _C_GetTokenInfo!(slotId, infoPtr);
+            if (rv == CKR_TOKEN_NOT_PRESENT)
+                return null;
+            
+            CheckRv(rv, "获取Token信息");
+            
+            return Marshal.PtrToStructure<CK_TOKEN_INFO>(infoPtr);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(infoPtr);
+        }
+    }
+
+    private UsbKeyDevice CreateDeviceFromToken(uint slotId, CK_TOKEN_INFO tokenInfo)
+    {
+        var serialNumber = Encoding.UTF8.GetString(tokenInfo.serialNumber).Trim('\0', ' ');
+        var label = Encoding.UTF8.GetString(tokenInfo.label).Trim('\0', ' ');
+        var model = Encoding.UTF8.GetString(tokenInfo.model).Trim('\0', ' ');
+        
+        var firmwareVersion = $"{tokenInfo.firmwareVersion.major}.{tokenInfo.firmwareVersion.minor}";
+        
+        // 计算容量（KB）
+        var totalMemory = tokenInfo.ulTotalPublicMemory + tokenInfo.ulTotalPrivateMemory;
+        var capacityKb = totalMemory / 1024;
+        
+        return new UsbKeyDevice
+        {
+            Platform = PlatformName,
+            VendorName = "EnterSafe",
+            Model = model.Contains("HZCA") || model.Contains("HCCB") ? "ePass3003 (HZCA)" : "ePass3003",
+            SerialNumber = serialNumber,
+            Handle = (int)slotId, // 存储slotId到Handle
+            FirmwareVersion = firmwareVersion,
+            CapacityKb = (int)capacityKb,
+            Vid = 0x096E,
+            Pid = 0x0303,
+            IsLoggedIn = (tokenInfo.flags & CKF_USER_PIN_INITIALIZED) != 0
+        };
+    }
+
+    public UsbKeyDevice Open(int index)
+    {
+        var devices = Enumerate();
+        if (index < 0 || index >= devices.Count)
+            throw new ArgumentOutOfRangeException(nameof(index), "设备索引超出范围");
+        
+        return devices[index];
+    }
+
+    public void Login(UsbKeyDevice device, string pin)
+    {
+        var slotId = (uint)device.Handle;
+        var session = GetOrCreateSession(slotId);
+        
+        var pinBytes = Encoding.UTF8.GetBytes(pin);
+        var rv = _C_Login!(session, CKU_USER, pinBytes, (uint)pinBytes.Length);
+        
+        if (rv == CKR_USER_ALREADY_LOGGED_IN)
+            return; // 已登录，忽略
+        
+        CheckRv(rv, "用户登录");
+        device.IsLoggedIn = true;
+        
+        Console.WriteLine($"[ePass3003] 设备 {device.SerialNumber} 登录成功");
+    }
+
+    public void Logout(UsbKeyDevice device)
+    {
+        var slotId = (uint)device.Handle;
+        if (!_sessionCache.TryGetValue(slotId, out var session))
+            return;
+        
+        var rv = _C_Logout!(session);
+        if (rv != CKR_OK && rv != CKR_USER_NOT_LOGGED_IN)
+            Console.WriteLine($"[ePass3003] 登出警告: {GetErrorMessage(rv)}");
+        
+        device.IsLoggedIn = false;
+        Console.WriteLine($"[ePass3003] 设备 {device.SerialNumber} 已登出");
+    }
+
+    private uint GetOrCreateSession(uint slotId)
+    {
+        if (_sessionCache.TryGetValue(slotId, out var existingSession))
+            return existingSession;
+        
+        uint session = 0;
+        var flags = CKF_SERIAL_SESSION | CKF_RW_SESSION;
+        CheckRv(_C_OpenSession!(slotId, flags, IntPtr.Zero, IntPtr.Zero, ref session), "打开会话");
+        
+        _sessionCache[slotId] = session;
+        return session;
+    }
+
+    private void CloseSession(uint slotId)
+    {
+        if (_sessionCache.TryGetValue(slotId, out var session))
+        {
+            _C_CloseSession!(session);
+            _sessionCache.Remove(slotId);
+        }
+    }
+
+    public UsbKeyDevice GetDetail(UsbKeyDevice device)
+    {
+        // 设备信息已在 Enumerate 时填充
+        return device;
+    }
+
+    public IReadOnlyList<KeyContainer> ListContainers(UsbKeyDevice device)
+    {
+        if (!device.IsLoggedIn)
+            Login(device, ""); // 尝试无PIN登录，触发PIN输入
+        
+        var slotId = (uint)device.Handle;
+        var session = GetOrCreateSession(slotId);
+        
+        var containers = new List<KeyContainer>();
+        
+        // 查找所有证书对象
+        var certTemplate = new[]
+        {
+            new CK_ATTRIBUTE { type = CKA_CLASS, pValue = Marshal.AllocHGlobal(sizeof(uint)), ulValueLen = sizeof(uint) }
+        };
+        Marshal.WriteInt32(certTemplate[0].pValue, (int)CKO_CERTIFICATE);
+        
+        var templatePtr = Marshal.AllocHGlobal(Marshal.SizeOf<CK_ATTRIBUTE>());
+        Marshal.StructureToPtr(certTemplate[0], templatePtr, false);
+        
+        try
+        {
+            CheckRv(_C_FindObjectsInit!(session, templatePtr, 1), "初始化证书查找");
+            
+            const int MAX_OBJECTS = 100;
+            var objectHandles = new uint[MAX_OBJECTS];
+            var objectsPtr = Marshal.AllocHGlobal(MAX_OBJECTS * sizeof(uint));
+            
+            try
+            {
+                uint foundCount = 0;
+                CheckRv(_C_FindObjects!(session, objectsPtr, MAX_OBJECTS, ref foundCount), "查找证书");
+                
+                for (int i = 0; i < foundCount; i++)
+                {
+                    objectHandles[i] = (uint)Marshal.ReadInt32(objectsPtr, i * sizeof(uint));
+                }
+                
+                // 读取每个证书的详细信息
+                for (int i = 0; i < foundCount; i++)
+                {
+                    try
+                    {
+                        var cert = ReadCertificate(session, objectHandles[i]);
+                        if (cert != null)
+                        {
+                            containers.Add(CreateContainerFromCert(cert, objectHandles[i]));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[ePass3003] 读取证书 {i} 失败: {ex.Message}");
+                    }
+                }
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(objectsPtr);
+                _C_FindObjectsFinal!(session);
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(certTemplate[0].pValue);
+            Marshal.FreeHGlobal(templatePtr);
+        }
+        
+        Console.WriteLine($"[ePass3003] 设备 {device.SerialNumber} 有 {containers.Count} 个证书");
+        return containers;
+    }
+
+    private X509Certificate2? ReadCertificate(uint session, uint certHandle)
+    {
+        // 首先获取证书数据长度
+        var attrs = new[]
+        {
+            new CK_ATTRIBUTE { type = CKA_VALUE, pValue = IntPtr.Zero, ulValueLen = 0 }
+        };
+        
+        var attrsPtr = Marshal.AllocHGlobal(Marshal.SizeOf<CK_ATTRIBUTE>());
+        Marshal.StructureToPtr(attrs[0], attrsPtr, false);
+        
+        try
+        {
+            // 第一次调用获取长度
+            var rv = _C_GetAttributeValue!(session, certHandle, attrsPtr, 1);
+            if (rv != CKR_OK && rv != CKR_BUFFER_TOO_SMALL)
+                return null;
+            
+            var attr = Marshal.PtrToStructure<CK_ATTRIBUTE>(attrsPtr);
+            if (attr.ulValueLen == 0)
+                return null;
+            
+            // 分配缓冲区并第二次调用获取数据
+            attr.pValue = Marshal.AllocHGlobal((int)attr.ulValueLen);
+            Marshal.StructureToPtr(attr, attrsPtr, false);
+            
+            CheckRv(_C_GetAttributeValue!(session, certHandle, attrsPtr, 1), "读取证书数据");
+            
+            attr = Marshal.PtrToStructure<CK_ATTRIBUTE>(attrsPtr);
+            var certData = new byte[attr.ulValueLen];
+            Marshal.Copy(attr.pValue, certData, 0, (int)attr.ulValueLen);
+            Marshal.FreeHGlobal(attr.pValue);
+            
+            return new X509Certificate2(certData);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(attrsPtr);
+        }
+    }
+
+    private KeyContainer CreateContainerFromCert(X509Certificate2 cert, uint objectHandle)
+    {
+        var subject = cert.Subject;
+        var cnMatch = System.Text.RegularExpressions.Regex.Match(subject, @"CN=([^,]+)");
+        var name = cnMatch.Success ? cnMatch.Groups[1].Value : "Unknown";
+        
+        return new KeyContainer
+        {
+            Name = name,
+            ContainerName = $"Handle-{objectHandle}",
+            ContainerUuid = objectHandle.ToString(),
+            Algorithm = $"{cert.GetKeyAlgorithm()} {cert.GetRSAPublicKey()?.KeySize ?? 0}",
+            Subject = cert.Subject,
+            Issuer = cert.Issuer,
+            NotBefore = cert.NotBefore,
+            NotAfter = cert.NotAfter,
+            SerialNumber = cert.SerialNumber,
+            Thumbprint = cert.Thumbprint,
+            KeyUsage = ParseKeyUsage(cert),
+            ExtendedKeyUsage = ParseExtendedKeyUsage(cert),
+            IsRegisteredInCsp = true,
+            CertRaw = cert.Export(X509ContentType.Cert)
+        };
+    }
+
+    private string ParseKeyUsage(X509Certificate2 cert)
+    {
+        try
+        {
+            foreach (var ext in cert.Extensions)
+            {
+                if (ext is X509KeyUsageExtension keyUsageExt)
+                {
+                    var usages = new List<string>();
+                    if (keyUsageExt.KeyUsages.HasFlag(X509KeyUsageFlags.DigitalSignature))
+                        usages.Add("数字签名");
+                    if (keyUsageExt.KeyUsages.HasFlag(X509KeyUsageFlags.DataEncipherment))
+                        usages.Add("数据加密");
+                    if (keyUsageExt.KeyUsages.HasFlag(X509KeyUsageFlags.KeyEncipherment))
+                        usages.Add("密钥加密");
+                    if (keyUsageExt.KeyUsages.HasFlag(X509KeyUsageFlags.NonRepudiation))
+                        usages.Add("不可否认");
+                    return string.Join(", ", usages);
+                }
+            }
+        }
+        catch { }
+        return "未知";
+    }
+
+    private string ParseExtendedKeyUsage(X509Certificate2 cert)
+    {
+        try
+        {
+            foreach (var ext in cert.Extensions)
+            {
+                if (ext is X509EnhancedKeyUsageExtension ekuExt)
+                {
+                    var usages = ekuExt.EnhancedKeyUsages.Cast<System.Security.Cryptography.Oid>()
+                        .Select(oid => oid.FriendlyName ?? oid.Value ?? "Unknown")
+                        .ToList();
+                    return string.Join(", ", usages);
+                }
+            }
+        }
+        catch { }
+        return "—";
+    }
+
+    public void ImportPfx(UsbKeyDevice device, string pfxPath, string pfxPassword)
+    {
+        if (!device.IsLoggedIn)
+            throw new InvalidOperationException("请先登录设备");
+        
+        // 加载 PFX
+        var cert = new X509Certificate2(pfxPath, pfxPassword, X509KeyStorageFlags.Exportable);
+        var rsa = cert.GetRSAPrivateKey();
+        if (rsa == null)
+            throw new NotSupportedException("仅支持 RSA 密钥");
+        
+        var rsaParams = rsa.ExportParameters(true);
+        
+        var slotId = (uint)device.Handle;
+        var session = GetOrCreateSession(slotId);
+        
+        // 导入证书
+        var certDer = cert.Export(X509ContentType.Cert);
+        ImportCertificateObject(session, cert.Subject, certDer);
+        
+        // 导入私钥
+        ImportPrivateKeyObject(session, cert.Subject, rsaParams);
+        
+        Console.WriteLine($"[ePass3003] PFX 导入成功: {cert.Subject}");
+    }
+
+    private void ImportCertificateObject(uint session, string label, byte[] certDer)
+    {
+        var labelBytes = Encoding.UTF8.GetBytes(label);
+        var certType = CKC_X_509;
+        var objClass = CKO_CERTIFICATE;
+        var trueValue = new byte[] { 1 };
+        
+        var attrs = new[]
+        {
+            CreateAttribute(CKA_CLASS, BitConverter.GetBytes(objClass)),
+            CreateAttribute(CKA_CERTIFICATE_TYPE, BitConverter.GetBytes(certType)),
+            CreateAttribute(CKA_TOKEN, trueValue),
+            CreateAttribute(CKA_LABEL, labelBytes),
+            CreateAttribute(CKA_VALUE, certDer)
+        };
+        
+        var attrsPtr = MarshalAttributes(attrs);
+        try
+        {
+            uint certHandle = 0;
+            CheckRv(_C_CreateObject!(session, attrsPtr, (uint)attrs.Length, ref certHandle), "导入证书");
+        }
+        finally
+        {
+            FreeAttributes(attrs, attrsPtr);
+        }
+    }
+
+    private void ImportPrivateKeyObject(uint session, string label, RSAParameters rsaParams)
+    {
+        var labelBytes = Encoding.UTF8.GetBytes(label);
+        var keyType = CKK_RSA;
+        var objClass = CKO_PRIVATE_KEY;
+        var trueValue = new byte[] { 1 };
+        
+        var attrs = new[]
+        {
+            CreateAttribute(CKA_CLASS, BitConverter.GetBytes(objClass)),
+            CreateAttribute(CKA_KEY_TYPE, BitConverter.GetBytes(keyType)),
+            CreateAttribute(CKA_TOKEN, trueValue),
+            CreateAttribute(CKA_PRIVATE, trueValue),
+            CreateAttribute(CKA_SENSITIVE, trueValue),
+            CreateAttribute(CKA_LABEL, labelBytes),
+            CreateAttribute(CKA_SIGN, trueValue),
+            CreateAttribute(CKA_DECRYPT, trueValue),
+            CreateAttribute(CKA_MODULUS, rsaParams.Modulus!),
+            CreateAttribute(CKA_PUBLIC_EXPONENT, rsaParams.Exponent!),
+            CreateAttribute(CKA_PRIVATE_EXPONENT, rsaParams.D!),
+            CreateAttribute(CKA_PRIME_1, rsaParams.P!),
+            CreateAttribute(CKA_PRIME_2, rsaParams.Q!),
+            CreateAttribute(CKA_EXPONENT_1, rsaParams.DP!),
+            CreateAttribute(CKA_EXPONENT_2, rsaParams.DQ!),
+            CreateAttribute(CKA_COEFFICIENT, rsaParams.InverseQ!)
+        };
+        
+        var attrsPtr = MarshalAttributes(attrs);
+        try
+        {
+            uint keyHandle = 0;
+            CheckRv(_C_CreateObject!(session, attrsPtr, (uint)attrs.Length, ref keyHandle), "导入私钥");
+        }
+        finally
+        {
+            FreeAttributes(attrs, attrsPtr);
+        }
+    }
+
+    private CK_ATTRIBUTE CreateAttribute(uint type, byte[] value)
+    {
+        var ptr = Marshal.AllocHGlobal(value.Length);
+        Marshal.Copy(value, 0, ptr, value.Length);
+        
+        return new CK_ATTRIBUTE
+        {
+            type = type,
+            pValue = ptr,
+            ulValueLen = (uint)value.Length
+        };
+    }
+
+    private IntPtr MarshalAttributes(CK_ATTRIBUTE[] attrs)
+    {
+        var size = Marshal.SizeOf<CK_ATTRIBUTE>();
+        var ptr = Marshal.AllocHGlobal(size * attrs.Length);
+        
+        for (int i = 0; i < attrs.Length; i++)
+        {
+            Marshal.StructureToPtr(attrs[i], ptr + i * size, false);
+        }
+        
+        return ptr;
+    }
+
+    private void FreeAttributes(CK_ATTRIBUTE[] attrs, IntPtr attrsPtr)
+    {
+        foreach (var attr in attrs)
+        {
+            if (attr.pValue != IntPtr.Zero)
+                Marshal.FreeHGlobal(attr.pValue);
+        }
+        
+        if (attrsPtr != IntPtr.Zero)
+            Marshal.FreeHGlobal(attrsPtr);
+    }
+
+    public void ExportCertificate(UsbKeyDevice device, KeyContainer container, string outputPath)
+    {
+        if (container.CertRaw == null || container.CertRaw.Length == 0)
+            throw new InvalidOperationException("证书数据为空");
+        
+        File.WriteAllBytes(outputPath, container.CertRaw);
+        Console.WriteLine($"[ePass3003] 证书已导出到: {outputPath}");
+    }
+
+    public void ViewCertificate(KeyContainer container)
+    {
+        if (container.CertRaw == null || container.CertRaw.Length == 0)
+            throw new InvalidOperationException("证书数据为空");
+        
+        // 导出为临时文件并调用系统默认程序打开
+        var tempFile = Path.Combine(Path.GetTempPath(), $"cert_{container.Thumbprint}.cer");
+        File.WriteAllBytes(tempFile, container.CertRaw);
+        
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = tempFile,
+            UseShellExecute = true
+        });
+    }
+
+    public void DeleteContainer(UsbKeyDevice device, KeyContainer container)
+    {
+        if (!device.IsLoggedIn)
+            throw new InvalidOperationException("请先登录设备");
+        
+        var slotId = (uint)device.Handle;
+        var session = GetOrCreateSession(slotId);
+        var objectHandle = uint.Parse(container.ContainerUuid);
+        
+        // 删除证书对象
+        CheckRv(_C_DestroyObject!(session, objectHandle), "删除证书");
+        
+        // 尝试查找并删除对应的私钥（通过 label 匹配）
+        try
+        {
+            DeletePrivateKeyByLabel(session, container.Name);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[ePass3003] 删除私钥警告: {ex.Message}");
+        }
+        
+        Console.WriteLine($"[ePass3003] 证书已删除: {container.Name}");
+    }
+
+    private void DeletePrivateKeyByLabel(uint session, string label)
+    {
+        var labelBytes = Encoding.UTF8.GetBytes(label);
+        var keyClass = CKO_PRIVATE_KEY;
+        
+        var attrs = new[]
+        {
+            CreateAttribute(CKA_CLASS, BitConverter.GetBytes(keyClass)),
+            CreateAttribute(CKA_LABEL, labelBytes)
+        };
+        
+        var attrsPtr = MarshalAttributes(attrs);
+        try
+        {
+            CheckRv(_C_FindObjectsInit!(session, attrsPtr, (uint)attrs.Length), "查找私钥");
+            
+            var objPtr = Marshal.AllocHGlobal(sizeof(uint));
+            try
+            {
+                uint count = 0;
+                CheckRv(_C_FindObjects!(session, objPtr, 1, ref count), "查找私钥");
+                
+                if (count > 0)
+                {
+                    var keyHandle = (uint)Marshal.ReadInt32(objPtr);
+                    CheckRv(_C_DestroyObject!(session, keyHandle), "删除私钥");
+                }
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(objPtr);
+                _C_FindObjectsFinal!(session);
+            }
+        }
+        finally
+        {
+            FreeAttributes(attrs, attrsPtr);
+        }
+    }
+
+    public void RegisterToCsp(KeyContainer container)
+    {
+        Console.WriteLine($"[ePass3003] 证书已在 CSP 中注册: {container.Name}");
+        container.IsRegisteredInCsp = true;
+    }
+
+    public void UnregisterFromCsp(KeyContainer container)
+    {
+        var store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+        try
+        {
+            store.Open(OpenFlags.ReadWrite);
+            var cert = store.Certificates.Cast<X509Certificate2>()
+                .FirstOrDefault(c => c.Thumbprint == container.Thumbprint);
+            
+            if (cert != null)
+            {
+                store.Remove(cert);
+                Console.WriteLine($"[ePass3003] 证书已从 CSP 注销: {container.Name}");
+                container.IsRegisteredInCsp = false;
+            }
+        }
+        finally
+        {
+            store.Close();
+        }
+    }
+
+    public void ChangePin(UsbKeyDevice device, string oldPin, string newPin)
+    {
+        var slotId = (uint)device.Handle;
+        var session = GetOrCreateSession(slotId);
+        
+        // 先登录
+        Login(device, oldPin);
+        
+        var oldPinBytes = Encoding.UTF8.GetBytes(oldPin);
+        var newPinBytes = Encoding.UTF8.GetBytes(newPin);
+        
+        CheckRv(_C_SetPIN!(session, oldPinBytes, (uint)oldPinBytes.Length, 
+            newPinBytes, (uint)newPinBytes.Length), "修改 PIN");
+        
+        Console.WriteLine($"[ePass3003] PIN 修改成功");
+    }
+
+    public void Unlock(UsbKeyDevice device, UnlockMethod method, string credential, string newPin)
+    {
+        if (method != UnlockMethod.Puk)
+            throw new NotSupportedException("ePass3003 仅支持 PUK 解锁");
+        
+        var slotId = (uint)device.Handle;
+        var session = GetOrCreateSession(slotId);
+        
+        // 使用 SO (Security Officer) PIN 登录
+        var pukBytes = Encoding.UTF8.GetBytes(credential);
+        CheckRv(_C_Login!(session, CKU_SO, pukBytes, (uint)pukBytes.Length), "SO 登录");
+        
+        // 初始化用户 PIN
+        var newPinBytes = Encoding.UTF8.GetBytes(newPin);
+        CheckRv(_C_InitPIN!(session, newPinBytes, (uint)newPinBytes.Length), "初始化 PIN");
+        
+        // 登出 SO
+        _C_Logout!(session);
+        
+        Console.WriteLine($"[ePass3003] 设备已解锁，用户 PIN 已重置");
+    }
+
+    public string GenerateChallenge(UsbKeyDevice device)
+    {
+        throw new NotSupportedException("ePass3003 不支持挑战码解锁");
+    }
+
+    public void UnlockByChallenge(UsbKeyDevice device, string challenge, string response, string newPin)
+    {
+        throw new NotSupportedException("ePass3003 不支持挑战码解锁");
+    }
+
+    public void ResetDevice(UsbKeyDevice device, string newPin, string? puk = null, string? adminKey = null)
+    {
+        var slotId = (uint)device.Handle;
+        
+        // 使用 SO PIN (PUK) 初始化设备
+        var soPinBytes = Encoding.UTF8.GetBytes(puk ?? "12345678");
+        var labelBytes = Encoding.UTF8.GetBytes("ePass3003");
+        
+        CheckRv(_C_InitToken!(slotId, soPinBytes, (uint)soPinBytes.Length, labelBytes), "初始化设备");
+        
+        // 打开会话并设置用户 PIN
+        CloseSession(slotId); // 关闭旧会话
+        var session = GetOrCreateSession(slotId);
+        
+        // 使用 SO PIN 登录
+        CheckRv(_C_Login!(session, CKU_SO, soPinBytes, (uint)soPinBytes.Length), "SO 登录");
+        
+        // 初始化用户 PIN
+        var userPinBytes = Encoding.UTF8.GetBytes(newPin);
+        CheckRv(_C_InitPIN!(session, userPinBytes, (uint)userPinBytes.Length), "初始化用户 PIN");
+        
+        _C_Logout!(session);
+        
+        Console.WriteLine($"[ePass3003] 设备已重置，SO PIN: {puk ?? "12345678"}, 用户 PIN: {newPin}");
+    }
+
+    public void Dispose()
+    {
+        // 关闭所有会话
+        foreach (var session in _sessionCache.Values)
+        {
+            try
+            {
+                _C_Logout?.Invoke(session);
+                _C_CloseSession?.Invoke(session);
+            }
+            catch
+            {
+                // 忽略错误
+            }
+        }
+        _sessionCache.Clear();
+        
+        // 清理 PKCS#11
+        if (_initialized && _C_Finalize != null)
+        {
+            try
+            {
+                _C_Finalize(IntPtr.Zero);
+                Console.WriteLine("[ePass3003] PKCS#11 已清理");
+            }
+            catch
+            {
+                // 忽略错误
+            }
+        }
+        
+        _module?.Dispose();
+        _initialized = false;
+    }
+}

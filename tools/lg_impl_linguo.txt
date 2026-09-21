@@ -1,0 +1,10 @@
+Linguo_APDU_Mutex_LOG_{34ACF644-6F92-4e37-A9C7-D70E05930905}
+d:\LinguoAPDU.log
+Linguo_CSP_APDU_Mutex_LOG_{34ACF644-6F92-4e37-A9C7-D70E05930905}
+d:\LinguoCSP.log
+LinguoContainerKeyIDHeader
+Linguo Cryptographic Provider v2.0
+cjx@linguo.cn1-0+
+Linguo Corporation
+Linguo Csp Implementation
+Copyright (C) Linguo Corp. 2015

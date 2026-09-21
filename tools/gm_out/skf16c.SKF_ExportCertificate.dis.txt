@@ -1,0 +1,165 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; SKF_ExportCertificate rva=0x11DD0 va=0x10011DD0 stop=0x10011FB0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10011dd0 <.text+0x10dd0>:
+10011dd0:	b8 20 48 00 00       	mov    eax,0x4820
+10011dd5:	e8 46 3e 02 00       	call   0x10035c20
+10011dda:	a1 00 40 04 10       	mov    eax,ds:0x10044000
+10011ddf:	33 c4                	xor    eax,esp
+10011de1:	89 84 24 1c 48 00 00 	mov    DWORD PTR [esp+0x481c],eax
+10011de8:	8b 84 24 2c 48 00 00 	mov    eax,DWORD PTR [esp+0x482c]
+10011def:	8b 8c 24 30 48 00 00 	mov    ecx,DWORD PTR [esp+0x4830]
+10011df6:	53                   	push   ebx
+10011df7:	55                   	push   ebp
+10011df8:	56                   	push   esi
+10011df9:	57                   	push   edi
+10011dfa:	8d 54 24 24          	lea    edx,[esp+0x24]
+10011dfe:	52                   	push   edx
+10011dff:	89 44 24 24          	mov    DWORD PTR [esp+0x24],eax
+10011e03:	89 4c 24 1c          	mov    DWORD PTR [esp+0x1c],ecx
+10011e07:	c7 44 24 28 f4 04 04 	mov    DWORD PTR [esp+0x28],0x100404f4
+10011e0e:	10 
+10011e0f:	e8 ac 10 01 00       	call   0x10022ec0
+10011e14:	33 db                	xor    ebx,ebx
+10011e16:	68 ff 3f 00 00       	push   0x3fff
+10011e1b:	8d 84 24 31 08 00 00 	lea    eax,[esp+0x831]
+10011e22:	53                   	push   ebx
+10011e23:	50                   	push   eax
+10011e24:	88 9c 24 38 08 00 00 	mov    BYTE PTR [esp+0x838],bl
+10011e2b:	e8 10 25 02 00       	call   0x10034340
+10011e30:	8b 84 24 40 48 00 00 	mov    eax,DWORD PTR [esp+0x4840]
+10011e37:	83 c4 0c             	add    esp,0xc
+10011e3a:	8d 4c 24 10          	lea    ecx,[esp+0x10]
+10011e3e:	51                   	push   ecx
+10011e3f:	8d 54 24 18          	lea    edx,[esp+0x18]
+10011e43:	89 5c 24 18          	mov    DWORD PTR [esp+0x18],ebx
+10011e47:	89 5c 24 14          	mov    DWORD PTR [esp+0x14],ebx
+10011e4b:	52                   	push   edx
+10011e4c:	bb b8 55 04 10       	mov    ebx,0x100455b8
+10011e51:	33 f6                	xor    esi,esi
+10011e53:	e8 d8 9f 00 00       	call   0x1001be30
+10011e58:	8b e8                	mov    ebp,eax
+10011e5a:	85 ed                	test   ebp,ebp
+10011e5c:	75 0a                	jne    0x10011e68
+10011e5e:	bf 05 00 00 0a       	mov    edi,0xa000005
+10011e63:	e9 f0 00 00 00       	jmp    0x10011f58
+10011e68:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+10011e6c:	8b 98 04 01 00 00    	mov    ebx,DWORD PTR [eax+0x104]
+10011e72:	8b 4c 24 10          	mov    ecx,DWORD PTR [esp+0x10]
+10011e76:	8b 51 20             	mov    edx,DWORD PTR [ecx+0x20]
+10011e79:	53                   	push   ebx
+10011e7a:	89 5c 24 20          	mov    DWORD PTR [esp+0x20],ebx
+10011e7e:	89 54 24 18          	mov    DWORD PTR [esp+0x18],edx
+10011e82:	e8 d9 dd 00 00       	call   0x1001fc60
+10011e87:	83 c4 04             	add    esp,0x4
+10011e8a:	8d 9b 00 00 00 00    	lea    ebx,[ebx+0x0]
+10011e90:	33 c0                	xor    eax,eax
+10011e92:	85 f6                	test   esi,esi
+10011e94:	0f 94 c0             	sete   al
+10011e97:	68 00 08 00 00       	push   0x800
+10011e9c:	8d 4c 24 30          	lea    ecx,[esp+0x30]
+10011ea0:	6a 00                	push   0x0
+10011ea2:	51                   	push   ecx
+10011ea3:	8b f8                	mov    edi,eax
+10011ea5:	e8 96 24 02 00       	call   0x10034340
+10011eaa:	8b 44 24 20          	mov    eax,DWORD PTR [esp+0x20]
+10011eae:	8b 8d 80 00 00 00    	mov    ecx,DWORD PTR [ebp+0x80]
+10011eb4:	8d 54 24 1c          	lea    edx,[esp+0x1c]
+10011eb8:	52                   	push   edx
+10011eb9:	50                   	push   eax
+10011eba:	8b 84 24 4c 48 00 00 	mov    eax,DWORD PTR [esp+0x484c]
+10011ec1:	57                   	push   edi
+10011ec2:	53                   	push   ebx
+10011ec3:	8d 5c 24 48          	lea    ebx,[esp+0x48]
+10011ec7:	c7 44 24 2c 00 08 00 	mov    DWORD PTR [esp+0x2c],0x800
+10011ece:	00 
+10011ecf:	e8 3c d3 00 00       	call   0x1001f210
+10011ed4:	8b f8                	mov    edi,eax
+10011ed6:	83 c4 1c             	add    esp,0x1c
+10011ed9:	85 ff                	test   edi,edi
+10011edb:	75 3c                	jne    0x10011f19
+10011edd:	8b 44 24 10          	mov    eax,DWORD PTR [esp+0x10]
+10011ee1:	8d 1c 06             	lea    ebx,[esi+eax*1]
+10011ee4:	81 fb 00 40 00 00    	cmp    ebx,0x4000
+10011eea:	7f 36                	jg     0x10011f22
+10011eec:	50                   	push   eax
+10011eed:	8d 4c 24 30          	lea    ecx,[esp+0x30]
+10011ef1:	51                   	push   ecx
+10011ef2:	8d 94 34 34 08 00 00 	lea    edx,[esp+esi*1+0x834]
+10011ef9:	52                   	push   edx
+10011efa:	e8 81 1b 02 00       	call   0x10033a80
+10011eff:	83 c4 0c             	add    esp,0xc
+10011f02:	81 3d 50 50 04 10 9e 	cmp    DWORD PTR ds:0x10045050,0x6a9e
+10011f09:	6a 00 00 
+10011f0c:	8b f3                	mov    esi,ebx
+10011f0e:	75 19                	jne    0x10011f29
+10011f10:	8b 5c 24 1c          	mov    ebx,DWORD PTR [esp+0x1c]
+10011f14:	e9 77 ff ff ff       	jmp    0x10011e90
+10011f19:	e8 72 8e 00 00       	call   0x1001ad90
+10011f1e:	8b f8                	mov    edi,eax
+10011f20:	eb 36                	jmp    0x10011f58
+10011f22:	bf 01 00 00 0a       	mov    edi,0xa000001
+10011f27:	eb 2f                	jmp    0x10011f58
+10011f29:	8b 4c 24 20          	mov    ecx,DWORD PTR [esp+0x20]
+10011f2d:	8b 44 24 18          	mov    eax,DWORD PTR [esp+0x18]
+10011f31:	85 c9                	test   ecx,ecx
+10011f33:	75 04                	jne    0x10011f39
+10011f35:	89 30                	mov    DWORD PTR [eax],esi
+10011f37:	eb 1f                	jmp    0x10011f58
+10011f39:	39 30                	cmp    DWORD PTR [eax],esi
+10011f3b:	89 30                	mov    DWORD PTR [eax],esi
+10011f3d:	73 07                	jae    0x10011f46
+10011f3f:	bf 20 00 00 0a       	mov    edi,0xa000020
+10011f44:	eb 12                	jmp    0x10011f58
+10011f46:	56                   	push   esi
+10011f47:	8d 94 24 30 08 00 00 	lea    edx,[esp+0x830]
+10011f4e:	52                   	push   edx
+10011f4f:	51                   	push   ecx
+10011f50:	e8 2b 1b 02 00       	call   0x10033a80
+10011f55:	83 c4 0c             	add    esp,0xc
+10011f58:	8b 44 24 28          	mov    eax,DWORD PTR [esp+0x28]
+10011f5c:	85 c0                	test   eax,eax
+10011f5e:	74 24                	je     0x10011f84
+10011f60:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+10011f63:	85 c0                	test   eax,eax
+10011f65:	74 1d                	je     0x10011f84
+10011f67:	8b 08                	mov    ecx,DWORD PTR [eax]
+10011f69:	85 c9                	test   ecx,ecx
+10011f6b:	74 17                	je     0x10011f84
+10011f6d:	83 78 08 00          	cmp    DWORD PTR [eax+0x8],0x0
+10011f71:	8d 70 08             	lea    esi,[eax+0x8]
+10011f74:	7e 0e                	jle    0x10011f84
+10011f76:	51                   	push   ecx
+10011f77:	ff 15 04 d1 03 10    	call   DWORD PTR ds:0x1003d104
+10011f7d:	56                   	push   esi
+10011f7e:	ff 15 48 d0 03 10    	call   DWORD PTR ds:0x1003d048
+10011f84:	8b 8c 24 2c 48 00 00 	mov    ecx,DWORD PTR [esp+0x482c]
+10011f8b:	8b c7                	mov    eax,edi
+10011f8d:	5f                   	pop    edi
+10011f8e:	5e                   	pop    esi
+10011f8f:	5d                   	pop    ebp
+10011f90:	5b                   	pop    ebx
+10011f91:	33 cc                	xor    ecx,esp
+10011f93:	e8 49 da 01 00       	call   0x1002f9e1
+10011f98:	81 c4 20 48 00 00    	add    esp,0x4820
+10011f9e:	c2 10 00             	ret    0x10
+10011fa1:	cc                   	int3
+10011fa2:	cc                   	int3
+10011fa3:	cc                   	int3
+10011fa4:	cc                   	int3
+10011fa5:	cc                   	int3
+10011fa6:	cc                   	int3
+10011fa7:	cc                   	int3
+10011fa8:	cc                   	int3
+10011fa9:	cc                   	int3
+10011faa:	cc                   	int3
+10011fab:	cc                   	int3
+10011fac:	cc                   	int3
+10011fad:	cc                   	int3
+10011fae:	cc                   	int3
+10011faf:	cc                   	int3

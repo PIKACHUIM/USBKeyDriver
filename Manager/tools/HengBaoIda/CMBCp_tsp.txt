@@ -1,0 +1,515 @@
+FILE: G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCp.dll
+IMAGEBASE: 0x10000000
+
+=== WAITING FOR AUTOANALYSIS ===
+done
+=== IMPORTS ===
+  KERNEL32                 1004A3F0 GetCurrentProcessId
+  KERNEL32                 1004A3F4 GetLocalTime
+  KERNEL32                 1004A3F8 GetVersion
+  KERNEL32                 1004A3FC LoadLibraryA
+  KERNEL32                 1004A400 GetProcAddress
+  KERNEL32                 1004A404 WideCharToMultiByte
+  KERNEL32                 1004A408 GetVersionExA
+  KERNEL32                 1004A40C DeviceIoControl
+  KERNEL32                 1004A410 WriteFile
+  KERNEL32                 1004A414 ReadFile
+  KERNEL32                 1004A418 CreateFileA
+  KERNEL32                 1004A41C GetCurrentThreadId
+  KERNEL32                 1004A420 OutputDebugStringA
+  KERNEL32                 1004A424 ReleaseMutex
+  KERNEL32                 1004A428 SetLastError
+  KERNEL32                 1004A42C CreateMutexA
+  KERNEL32                 1004A430 Sleep
+  KERNEL32                 1004A434 CreateThread
+  KERNEL32                 1004A438 GetProcessHeap
+  KERNEL32                 1004A43C HeapAlloc
+  KERNEL32                 1004A440 FreeLibrary
+  KERNEL32                 1004A444 HeapFree
+  KERNEL32                 1004A448 CloseHandle
+  KERNEL32                 1004A44C WaitForSingleObject
+  KERNEL32                 1004A450 GetLastError
+  USER32                   1004A5B4 GetForegroundWindow
+  USER32                   1004A5B8 EndDialog
+  USER32                   1004A5BC SendDlgItemMessageA
+  USER32                   1004A5C0 GetDlgItemTextA
+  USER32                   1004A5C4 SetDlgItemTextA
+  USER32                   1004A5C8 GetActiveWindow
+  USER32                   1004A5CC MessageBoxA
+  USER32                   1004A5D0 GetFocus
+  USER32                   1004A5D4 GetParent
+  USER32                   1004A5D8 DialogBoxParamA
+  USER32                   1004A5DC SetTimer
+  USER32                   1004A5E0 PostMessageA
+  USER32                   1004A5E4 LoadStringA
+  ole32                    1004A61C StringFromGUID2
+  ole32                    1004A620 CoCreateGuid
+  HID                      1004A3AC HidD_GetAttributes
+  HID                      1004A3B0 HidD_GetPreparsedData
+  HID                      1004A3B4 HidD_GetFeature
+  HID                      1004A3B8 HidD_SetFeature
+  HID                      1004A3BC HidP_GetCaps
+  MSVCRT                   1004A494 malloc
+  MSVCRT                   1004A498 sprintf
+  MSVCRT                   1004A49C realloc
+  MSVCRT                   1004A4A0 printf
+  MSVCRT                   1004A4A4 ??2@YAPAXI@Z
+  MSVCRT                   1004A4A8 ??3@YAXPAX@Z
+  MSVCRT                   1004A4AC memmove
+  MSVCRT                   1004A4B0 localtime
+  MSVCRT                   1004A4B4 time
+  MSVCRT                   1004A4B8 srand
+  MSVCRT                   1004A4BC fclose
+  MSVCRT                   1004A4C0 fprintf
+  MSVCRT                   1004A4C4 fopen
+  MSVCRT                   1004A4C8 _access
+  MSVCRT                   1004A4CC strcmp
+  MSVCRT                   1004A4D0 strcpy
+  MSVCRT                   1004A4D4 memcpy
+  MSVCRT                   1004A4D8 strlen
+  MSVCRT                   1004A4DC memcmp
+  MSVCRT                   1004A4E0 memset
+  MSVCRT                   1004A4E4 strtol
+  MSVCRT                   1004A4E8 strtoul
+  MSVCRT                   1004A4EC strcat
+  MSVCRT                   1004A4F0 strstr
+  MSVCRT                   1004A4F4 _vsnprintf
+  MSVCRT                   1004A4F8 vfprintf
+  MSVCRT                   1004A4FC __CxxFrameHandler
+  MSVCRT                   1004A500 _EH_prolog
+  MSVCRT                   1004A504 isxdigit
+  MSVCRT                   1004A508 _purecall
+  MSVCRT                   1004A50C strncmp
+  MSVCRT                   1004A510 _initterm
+  MSVCRT                   1004A514 _adjust_fdiv
+  MSVCRT                   1004A518 __dllonexit
+  MSVCRT                   1004A51C _onexit
+  MSVCRT                   1004A520 free
+  MSVCRT                   1004A524 rand
+  MSVCRT                   1004A528 atoi
+  MSVCRT                   1004A52C _strupr
+  SETUPAPI                 1004A578 SetupDiEnumDeviceInterfaces
+  SETUPAPI                 1004A57C SetupDiGetDeviceInterfaceDetailA
+  SETUPAPI                 1004A580 SetupDiDestroyDeviceInfoList
+  SETUPAPI                 1004A584 SetupDiGetClassDevsA
+  ADVAPI32                 1004A378 AllocateAndInitializeSid
+  ADVAPI32                 1004A37C FreeSid
+
+=== EXPORTS ===
+ord=1      ea=100011EF name=C_CancelFunction
+ord=2      ea=100012B2 name=C_CloseAllSessions
+ord=3      ea=10001217 name=C_CloseSession
+ord=4      ea=1000147E name=C_CopyObject
+ord=5      ea=10001014 name=C_CreateObject
+ord=6      ea=100016BD name=C_Decrypt
+ord=7      ea=1000152D name=C_DecryptDigestUpdate
+ord=8      ea=1000123F name=C_DecryptFinal
+ord=9      ea=100015FA name=C_DecryptInit
+ord=10     ea=100014EC name=C_DecryptUpdate
+ord=11     ea=100013BB name=C_DecryptVerifyUpdate
+ord=12     ea=10001311 name=C_DeriveKey
+ord=13     ea=10001712 name=C_DestroyObject
+ord=14     ea=1000105A name=C_Digest
+ord=15     ea=100013C0 name=C_DigestEncryptUpdate
+ord=16     ea=10001343 name=C_DigestFinal
+ord=17     ea=1000154B name=C_DigestInit
+ord=18     ea=10001663 name=C_DigestKey
+ord=19     ea=100011C7 name=C_DigestUpdate
+ord=20     ea=10001668 name=C_Encrypt
+ord=21     ea=10001442 name=C_EncryptFinal
+ord=22     ea=1000156E name=C_EncryptInit
+ord=23     ea=1000166D name=C_EncryptUpdate
+ord=24     ea=10001028 name=C_Finalize
+ord=25     ea=10001186 name=C_FindObjects
+ord=26     ea=1000102D name=C_FindObjectsFinal
+ord=27     ea=100011EA name=C_FindObjectsInit
+ord=28     ea=1000112C name=C_GenerateKey
+ord=29     ea=1000126C name=C_GenerateKeyPair
+ord=30     ea=10001609 name=C_GenerateRandom
+ord=31     ea=100015A5 name=C_GetAttributeValue
+ord=32     ea=1000116D name=C_GetFunctionList
+ord=33     ea=10001438 name=C_GetFunctionStatus
+ord=34     ea=1000131B name=C_GetInfo
+ord=35     ea=10001686 name=C_GetMechanismInfo
+ord=36     ea=1000168B name=C_GetMechanismList
+ord=37     ea=100011DB name=C_GetObjectSize
+ord=38     ea=100010B9 name=C_GetOperationState
+ord=39     ea=100011D6 name=C_GetSessionInfo
+ord=40     ea=100013F2 name=C_GetSlotInfo
+ord=41     ea=1000141F name=C_GetSlotList
+ord=42     ea=10001159 name=C_GetTokenInfo
+ord=43     ea=1000139D name=C_InitPIN
+ord=44     ea=10001550 name=C_InitToken
+ord=45     ea=100011B3 name=C_Initialize
+ord=46     ea=10001447 name=C_Login
+ord=47     ea=1000172B name=C_Logout
+ord=48     ea=10001717 name=C_OpenSession
+ord=49     ea=1000103C name=C_SeedRandom
+ord=50     ea=1000169A name=C_SetAttributeValue
+ord=51     ea=100016A9 name=C_SetOperationState
+ord=52     ea=10001127 name=C_SetPIN
+ord=53     ea=1000104B name=C_Sign
+ord=54     ea=100013E8 name=C_SignEncryptUpdate
+ord=55     ea=10001384 name=C_SignFinal
+ord=56     ea=1000136B name=C_SignInit
+ord=57     ea=100010A5 name=C_SignRecover
+ord=58     ea=10001226 name=C_SignRecoverInit
+ord=59     ea=10001140 name=C_SignUpdate
+ord=60     ea=1000164F name=C_UnwrapKey
+ord=61     ea=10001735 name=C_Verify
+ord=62     ea=10001294 name=C_VerifyFinal
+ord=63     ea=1000135C name=C_VerifyInit
+ord=64     ea=10001046 name=C_VerifyRecover
+ord=65     ea=10001230 name=C_VerifyRecoverInit
+ord=66     ea=100016B8 name=C_VerifyUpdate
+ord=67     ea=10001375 name=C_WaitForSlotEvent
+ord=68     ea=100013AC name=C_WrapKey
+ord=268605525 ea=10029855 name=DllEntryPoint
+
+=== NAMED FUNCTIONS (interesting) ===
+10001046  C_VerifyRecover
+10001127  C_SetPIN
+10001159  C_GetTokenInfo
+100011B3  C_Initialize
+100011EA  C_FindObjectsInit
+10001217  C_CloseSession
+10001226  C_SignRecoverInit
+10001230  C_VerifyRecoverInit
+10001294  C_VerifyFinal
+100012B2  C_CloseAllSessions
+1000135C  C_VerifyInit
+1000136B  C_SignInit
+10001375  C_WaitForSlotEvent
+1000139D  C_InitPIN
+100013BB  C_DecryptVerifyUpdate
+100013F2  C_GetSlotInfo
+1000141F  C_GetSlotList
+1000154B  C_DigestInit
+10001550  C_InitToken
+1000156E  C_EncryptInit
+100015FA  C_DecryptInit
+100016B8  C_VerifyUpdate
+10001717  C_OpenSession
+10001735  C_Verify
+1001B2D0  C_Initialize_0
+1001B480  C_GetSlotList_0
+1001B560  C_GetTokenInfo_0
+1001B990  C_OpenSession_0
+1001BB50  C_CloseSession_0
+1001BC10  C_CloseAllSessions_0
+1001BE50  C_DigestInit_0
+1001CCA0  C_SignInit_0
+1001D290  C_VerifyInit_0
+1001D2D0  C_VerifyUpdate_0
+1001D310  C_VerifyFinal_0
+1001D450  C_Verify_0
+1001DD60  C_FindObjectsInit_0
+1001E350  C_EncryptInit_0
+1001E8C0  C_DecryptInit_0
+1001F280  C_WaitForSlotEvent_0
+1001F2A0  C_InitToken_0
+1001F2C0  C_InitPIN_0
+1001F2E0  C_SetPIN_0
+1001F3E0  C_SignRecoverInit_0
+1001F460  C_VerifyRecoverInit_0
+1001F4A0  C_VerifyRecover_0
+1001F520  C_DecryptVerifyUpdate_0
+1001F580  C_GetSlotInfo_0
+1001FD80  SendDlgItemMessageA
+100299A2  SetupDiDestroyDeviceInfoList
+100299A8  SetupDiGetDeviceInterfaceDetailA
+100299AE  SetupDiEnumDeviceInterfaces
+100299C0  CloseHandle
+100299FC  DeviceIoControl
+10029A26  AllocateAndInitializeSid
+10039C2F  aCCloseallsessi
+10039C42  aCClosesession
+10039EB1  aCInitpin
+10039EBB  aCInittoken
+10039EC7  aCInitialize
+10039EE5  aCOpensession
+10039F9C  aCVerify
+10039FA5  aCVerifyfinal
+10039FB3  aCVerifyinit
+10039FC0  aCVerifyrecover
+10039FD0  aCVerifyrecover_0
+10039FE4  aCVerifyupdate
+1003C774  aCInitializeOut
+1003C7E4  aCInitializeIn
+1003C8A4  Format
+1003C8C8  aCOpensessionOu
+1003C8E0  aCOpensessionIn
+1003C8F4  aCClosesessionO
+1003C90C  aCClosesessionI
+1003C924  aCCloseallsessi_1
+1003C940  aCCloseallsessi_0
+1003CBB0  aCVerifyinitIn
+1003CBC4  aCVerifyupdateI
+1003CBDC  aCVerifyfinalOu
+1003CBF4  aCVerifyfinalIn
+1003CC08  aCVerifyOut
+1003CC18  aCVerifyIn
+1003CD00  aEnumtokenobjOu
+1003CD14  aEnumtokenobjIn
+1003D738  aThidtspEnumdev_0
+1003D790  aThidtspEnumdev
+1003D7A8  aThidtspOpendev_0
+1003D7F8  aThidtspOpendev
+1003D810  aThidtspClosede_0
+1003D828  aThidtspClosede
+1003D840  aThidtspSenddat_0
+1003D894  aThidtspSenddat
+1003D980  aCtspbotEnumdev_0
+1003D998  aCtspbotEnumdev
+1003D9B0  aCtspbotOpendev_0
+1003D9EC  aCtspbotOpendev
+1003DA04  aTbotutspClosed_0
+1003DA1C  aTbotutspClosed
+1003DA34  aSendcmdBotuRea
+1003DA54  aSendcmdBotuWri
+1003DB00  aSenddata0x08x
+1004A378  __imp_AllocateAndInitializeSid
+1004A40C  __imp_DeviceIoControl
+1004A448  __imp_CloseHandle
+1004A578  __imp_SetupDiEnumDeviceInterfaces
+1004A57C  __imp_SetupDiGetDeviceInterfaceDetailA
+1004A580  __imp_SetupDiDestroyDeviceInfoList
+1004A5BC  __imp_SendDlgItemMessageA
+
+=== KEYWORD HITS ===
+
+#### keyword: THidTSP::EnumDevice
+   raw hits: 2
+   hit @1003D738 (utf16=False) -> THidTSP::EnumDevice]
+      data xrefs: 100286ED
+
+======================================================================
+### FUNC @1002855E  (refs string THidTSP::EnumDevice)
+======================================================================
+int __stdcall sub_1002855E(void *a1)
+{
+  DWORD v1; // eax
+  struct _SP_DEVICE_INTERFACE_DETAIL_DATA_A *v2; // esi
+  const CHAR *DevicePath; // esi
+  HANDLE FileA; // eax
+  size_t v5; // edi
+  _BYTE *v6; // esi
+  DWORD v8; // [esp-14h] [ebp-5Ch]
+  const CHAR *v9; // [esp-14h] [ebp-5Ch]
+  char v10; // [esp-Ch] [ebp-54h]
+  char v11; // [esp+0h] [ebp-48h]
+  struct _SP_DEVICE_INTERFACE_DATA DeviceInterfaceData; // [esp+4h] [ebp-44h] BYREF
+  struct _HIDD_ATTRIBUTES Attributes; // [esp+20h] [ebp-28h] BYREF
+  DWORD DeviceInterfaceDetailDataSize; // [esp+2Ch] [ebp-1Ch]
+  int v15; // [esp+30h] [ebp-18h]
+  void *v16; // [esp+34h] [ebp-14h]
+  DWORD MemberIndex; // [esp+38h] [ebp-10h]
+  char ArgList[4]; // [esp+3Ch] [ebp-Ch]
+  HDEVINFO DeviceInfoSet; // [esp+40h] [ebp-8h]
+  DWORD RequiredSize; // [esp+44h] [ebp-4h] BYREF
+  DWORD LastError; // [esp+50h] [ebp+8h]
+
+  sub_10029365(2, aThidtspEnumdev, v11);
+  v16 = a1;
+  *(_DWORD *)ArgList = 0;
+  DeviceInfoSet = SetupDiGetClassDevsA(&InterfaceClassGuid, 0, 0, 0x12u);
+  if ( !DeviceInfoSet )
+    return 0;
+  MemberIndex = 0;
+  v15 = 0;
+  LastError = 0;
+  do
+  {
+    if ( LastError )
+      break;
+    DeviceInterfaceData.cbSize = 28;
+    if ( SetupDiEnumDeviceInterfaces(DeviceInfoSet, 0, &InterfaceClassGuid, MemberIndex, &DeviceInterfaceData) )
+    {
+      if ( ((RequiredSize = 0,
+             SetupDiGetDeviceInterfaceDetailA(DeviceInfoSet, &DeviceInterfaceData, 0, 0, &RequiredSize, 0))
+         || GetLastError() == 122)
+        && (DeviceInterfaceDetailDataSize = RequiredSize,
+            (v2 = (struct _SP_DEVICE_INTERFACE_DETAIL_DATA_A *)operator new(RequiredSize)) != 0)
+        && (v8 = DeviceInterfaceDetailDataSize,
+            v2->cbSize = 5,
+            RequiredSize = 0,
+            SetupDiGetDeviceInterfaceDetailA(DeviceInfoSet, &DeviceInterfaceData, v2, v8, &RequiredSize, 0)) )
+      {
+        DevicePath = v2->DevicePath;
+        FileA = CreateFileA(DevicePath, 0xC0000000, 3u, 0, 3u, 0, 0);
+        DeviceInterfaceDetailDataSize = (DWORD)FileA;
+        if ( FileA != (HANDLE)-1 )
+        {
+          HidD_GetAttributes(FileA, &Attributes);
+          if ( Attributes.VendorID == 5334 )
+          {
+            v5 = strlen(DevicePath);
+            v9 = DevicePath;
+            v6 = v16;
+            memcpy(v16, v9, v5);
+            v6[v5] = 0;
+            ++*(_DWORD *)ArgList;
+            v16 = &v6[v5 + 1];
+          }
+          CloseHandle((HANDLE)DeviceInterfaceDetailDataSize);
+        }
+      }
+      else
+      {
+        LastError = GetLastError();
+      }
+    }
+    else
+    {
+      v1 = GetLastError();
+      LastError = v1;
+      if ( v1 == 259 )
+        v15 = 1;
+      sub_10029365(2, aSetupdienumdev, v1);
+    }
+    ++MemberIndex;
+  }
+  while ( !v15 );
+  if ( !SetupDiDestroyDeviceInfoList(DeviceInfoSet) )
+    return 0;
+  sub_10029365(2, aReturnValue0x0, ArgList[0]);
+  sub_10029365(2, aThidtspEnumdev_0, v10);
+  return *(_DWORD *)ArgList;
+}
+
+   hit @1003D791 (utf16=False) -> THidTSP::EnumDevice
+      data xrefs: 
+
+#### keyword: THidTSP::OpenDevice
+   raw hits: 2
+   hit @1003D7A8 (utf16=False) -> THidTSP::OpenDevice]
+      data xrefs: 10028797
+
+======================================================================
+### FUNC @10028704  (refs string THidTSP::OpenDevice)
+======================================================================
+_WORD *__thiscall sub_10028704(void *this, const CHAR *lpFileName)
+{
+  HANDLE FileA; // edi
+  _WORD *v3; // esi
+  USHORT FeatureReportByteLength; // ax
+  char v6; // [esp+0h] [ebp-4Ch]
+  char v7; // [esp+0h] [ebp-4Ch]
+  struct _HIDP_CAPS Capabilities; // [esp+8h] [ebp-44h] BYREF
+  void *v9; // [esp+48h] [ebp-4h]
+
+  v9 = this;
+  sub_10029365(2, aThidtspOpendev, v6);
+  FileA = CreateFileA(lpFileName, 0xC0000000, 3u, 0, 3u, 0x80u, 0);
+  if ( FileA == (HANDLE)-1 )
+  {
+    sub_10029365(2, aCreatefileFals, v7);
+    return 0;
+  }
+  v3 = operator new(0xCu);
+  *(_DWORD *)v3 = FileA;
+  if ( !(unsigned __int8)sub_10028B8C(FileA, &Capabilities) )
+  {
+    sub_10029365(2, aGethidcapHhand, v7);
+    return 0;
+  }
+  if ( Capabilities.InputReportByteLength )
+  {
+    v3[2] = Capabilities.InputReportByteLength;
+    *((_DWORD *)v3 + 2) = 1;
+  }
+  else
+  {
+    FeatureReportByteLength = Capabilities.FeatureReportByteLength;
+    *((_DWORD *)v3 + 2) = 0;
+    v3[2] = FeatureReportByteLength;
+  }
+  sub_10029365(2, aThidtspOpendev_0, v7);
+  return v3;
+}
+
+   hit @1003D7F9 (utf16=False) -> THidTSP::OpenDevice
+      data xrefs: 
+
+#### keyword: CTSPBot::EnumDevice
+   raw hits: 2
+   hit @1003D980 (utf16=False) -> CTSPBot::EnumDevice]
+      data xrefs: 10028C46
+
+======================================================================
+### FUNC @10028BFA  (refs string CTSPBot::EnumDevice)
+======================================================================
+int __stdcall sub_10028BFA(char *Str)
+{
+  char *v1; // edi
+  int v2; // eax
+  int v3; // esi
+  size_t v4; // eax
+  bool v5; // zf
+  int v6; // edi
+  char v8; // [esp+0h] [ebp-Ch]
+  char v9; // [esp+0h] [ebp-Ch]
+  char *Stra; // [esp+14h] [ebp+8h]
+
+  sub_10029365(2, aCtspbotEnumdev, v8);
+  v1 = Str;
+  v2 = sub_10028FC1(Str, (GUID *)&ClassGuid);
+  v3 = v2;
+  if ( v2 > 0 )
+  {
+    Stra = (char *)v2;
+    do
+    {
+      v4 = strlen(v1);
+      v5 = Stra-- == (char *)1;
+      v1 += v4 + 1;
+    }
+    while ( !v5 );
+  }
+  v6 = sub_10028FC1(v1, (GUID *)&stru_10039508);
+  sub_10029365(2, aCtspbotEnumdev_0, v9);
+  return v6 + v3;
+}
+
+   hit @1003D999 (utf16=False) -> CTSPBot::EnumDevice
+      data xrefs: 
+
+#### keyword: CTSPBot::OpenDevice
+   raw hits: 2
+   hit @1003D9B0 (utf16=False) -> CTSPBot::OpenDevice]
+      data xrefs: 10028CAE
+
+======================================================================
+### FUNC @10028C60  (refs string CTSPBot::OpenDevice)
+======================================================================
+_DWORD *__userpurge sub_10028C60@<eax>(char a1@<sil>, const CHAR *lpFileName)
+{
+  HANDLE FileA; // edi
+  _DWORD *v4; // esi
+  char v6; // [esp+8h] [ebp-4h]
+  char v7; // [esp+8h] [ebp-4h]
+
+  sub_10029365(2, aCtspbotOpendev, v6);
+  FileA = CreateFileA(lpFileName, 0xC0000000, 3u, 0, 1u, 0x80u, 0);
+  if ( FileA == (HANDLE)-1 )
+  {
+    sub_10029365(2, aCreatefileInva, v7);
+    return 0;
+  }
+  else
+  {
+    v4 = operator new(4u);
+    *v4 = FileA;
+    sub_10029365(2, aCtspbotOpendev_0, a1);
+    return v4;
+  }
+}
+
+   hit @1003D9ED (utf16=False) -> CTSPBot::OpenDevice
+      data xrefs: 
+
+#### keyword: * SetupDiEnumDeviceInterfaces dwReturn=0x%x
+   raw hits: 1
+   hit @1003D764 (utf16=False) -> * SetupDiEnumDeviceInterfaces dwReturn=0x%x
+      data xrefs: 100285E5
+      (func 1002855E already dumped)

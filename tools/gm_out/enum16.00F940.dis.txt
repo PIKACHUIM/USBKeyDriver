@@ -1,0 +1,103 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; rva=0xF940 len=0x110 file_off=0xED40
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+1000f940 <.text+0xe940>:
+1000f940:	55                   	push   ebp
+1000f941:	8b ec                	mov    ebp,esp
+1000f943:	83 e4 f8             	and    esp,0xfffffff8
+1000f946:	b8 14 10 00 00       	mov    eax,0x1014
+1000f94b:	e8 d0 62 02 00       	call   0x10035c20
+1000f950:	a1 00 40 04 10       	mov    eax,ds:0x10044000
+1000f955:	33 c4                	xor    eax,esp
+1000f957:	89 84 24 10 10 00 00 	mov    DWORD PTR [esp+0x1010],eax
+1000f95e:	53                   	push   ebx
+1000f95f:	8b 5d 0c             	mov    ebx,DWORD PTR [ebp+0xc]
+1000f962:	56                   	push   esi
+1000f963:	57                   	push   edi
+1000f964:	8b 7d 10             	mov    edi,DWORD PTR [ebp+0x10]
+1000f967:	8d 44 24 10          	lea    eax,[esp+0x10]
+1000f96b:	50                   	push   eax
+1000f96c:	c7 44 24 14 f4 04 04 	mov    DWORD PTR [esp+0x14],0x100404f4
+1000f973:	10 
+1000f974:	e8 47 35 01 00       	call   0x10022ec0
+1000f979:	68 ff 0f 00 00       	push   0xfff
+1000f97e:	8d 4c 24 1d          	lea    ecx,[esp+0x1d]
+1000f982:	6a 00                	push   0x0
+1000f984:	51                   	push   ecx
+1000f985:	c7 44 24 18 00 00 00 	mov    DWORD PTR [esp+0x18],0x0
+1000f98c:	00 
+1000f98d:	c6 44 24 24 00       	mov    BYTE PTR [esp+0x24],0x0
+1000f992:	e8 a9 49 02 00       	call   0x10034340
+1000f997:	8b 0d c4 55 04 10    	mov    ecx,DWORD PTR ds:0x100455c4
+1000f99d:	8b 11                	mov    edx,DWORD PTR [ecx]
+1000f99f:	8b 42 04             	mov    eax,DWORD PTR [edx+0x4]
+1000f9a2:	83 c4 0c             	add    esp,0xc
+1000f9a5:	68 68 51 04 10       	push   0x10045168
+1000f9aa:	ff d0                	call   eax
+1000f9ac:	8b 0d c4 55 04 10    	mov    ecx,DWORD PTR ds:0x100455c4
+1000f9b2:	8b 11                	mov    edx,DWORD PTR [ecx]
+1000f9b4:	8b f0                	mov    esi,eax
+1000f9b6:	8b 42 20             	mov    eax,DWORD PTR [edx+0x20]
+1000f9b9:	ff d0                	call   eax
+1000f9bb:	85 f6                	test   esi,esi
+1000f9bd:	75 04                	jne    0x1000f9c3
+1000f9bf:	89 37                	mov    DWORD PTR [edi],esi
+1000f9c1:	eb 42                	jmp    0x1000fa05
+1000f9c3:	85 db                	test   ebx,ebx
+1000f9c5:	75 0a                	jne    0x1000f9d1
+1000f9c7:	c1 e6 05             	shl    esi,0x5
+1000f9ca:	83 c6 02             	add    esi,0x2
+1000f9cd:	89 37                	mov    DWORD PTR [edi],esi
+1000f9cf:	eb 34                	jmp    0x1000fa05
+1000f9d1:	8d 4c 24 18          	lea    ecx,[esp+0x18]
+1000f9d5:	51                   	push   ecx
+1000f9d6:	b9 03 00 00 00       	mov    ecx,0x3
+1000f9db:	e8 d0 f9 ff ff       	call   0x1000f3b0
+1000f9e0:	c6 44 04 1c 00       	mov    BYTE PTR [esp+eax*1+0x1c],0x0
+1000f9e5:	40                   	inc    eax
+1000f9e6:	83 c4 04             	add    esp,0x4
+1000f9e9:	39 07                	cmp    DWORD PTR [edi],eax
+1000f9eb:	89 07                	mov    DWORD PTR [edi],eax
+1000f9ed:	73 07                	jae    0x1000f9f6
+1000f9ef:	bf 20 00 00 0a       	mov    edi,0xa000020
+1000f9f4:	eb 13                	jmp    0x1000fa09
+1000f9f6:	50                   	push   eax
+1000f9f7:	8d 54 24 1c          	lea    edx,[esp+0x1c]
+1000f9fb:	52                   	push   edx
+1000f9fc:	53                   	push   ebx
+1000f9fd:	e8 7e 40 02 00       	call   0x10033a80
+1000fa02:	83 c4 0c             	add    esp,0xc
+1000fa05:	8b 7c 24 0c          	mov    edi,DWORD PTR [esp+0xc]
+1000fa09:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+1000fa0d:	85 c0                	test   eax,eax
+1000fa0f:	74 24                	je     0x1000fa35
+1000fa11:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+1000fa14:	85 c0                	test   eax,eax
+1000fa16:	74 1d                	je     0x1000fa35
+1000fa18:	8b 08                	mov    ecx,DWORD PTR [eax]
+1000fa1a:	85 c9                	test   ecx,ecx
+1000fa1c:	74 17                	je     0x1000fa35
+1000fa1e:	83 78 08 00          	cmp    DWORD PTR [eax+0x8],0x0
+1000fa22:	8d 70 08             	lea    esi,[eax+0x8]
+1000fa25:	7e 0e                	jle    0x1000fa35
+1000fa27:	51                   	push   ecx
+1000fa28:	ff 15 04 d1 03 10    	call   DWORD PTR ds:0x1003d104
+1000fa2e:	56                   	push   esi
+1000fa2f:	ff 15 48 d0 03 10    	call   DWORD PTR ds:0x1003d048
+1000fa35:	8b 8c 24 1c 10 00 00 	mov    ecx,DWORD PTR [esp+0x101c]
+1000fa3c:	8b c7                	mov    eax,edi
+1000fa3e:	5f                   	pop    edi
+1000fa3f:	5e                   	pop    esi
+1000fa40:	5b                   	pop    ebx
+1000fa41:	33 cc                	xor    ecx,esp
+1000fa43:	e8 99 ff 01 00       	call   0x1002f9e1
+1000fa48:	8b e5                	mov    esp,ebp
+1000fa4a:	5d                   	pop    ebp
+1000fa4b:	c2 0c 00             	ret    0xc
+1000fa4e:	cc                   	int3
+1000fa4f:	cc                   	int3

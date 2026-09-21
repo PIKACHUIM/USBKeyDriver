@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+
+<script src="js/jquery.js"></script>
+<style>
+.loading{height:200px;width:600px;background:rgba(221,236,247,0.8);position:absolute;top:100px;left:100px;display:none;}
+
+</style>
+
+<meta charset="utf-8">
+<title>signId2</title>
+</head>
+
+<body>
+<div class="bd">
+	
+	<div class="h01"></div>
+	<div class="middle_1">
+    	
+        <p class="left_p">年检受理中。</p>
+    	<div class="clear"></div>
+    </div>
+    
+	<div class="down_1">
+    <div class="h01"></div>
+    <div class="h01"></div>
+    <div class="h01"></div>
+		<div class="middle_2">
+    		
+            <ul class="p4">
+        		<li class="only_line">
+                <span id="a3">数字证书中心处理中,请稍候重新查询。</span>
+                </li>
+           
+               
+        	</ul>
+             <div class="loading" id="loadinga"><div style="margin:80px auto;width:39px;"><img src="images/loading.gif" ></div></div>
+  
+             
+         </div>
+   	</div>
+        <div class="down_2">
+		<div class="bg_index_2">	
+    		<div class="left"><!--img src="images/jdtd.png"--> </div>
+        	<a href="javascript:obj_web_view.QueryStatus()" class="right"   id="a1">
+            	<div class="po"><img class="btn_2" src="images/btn8.png"><img id="button" src="images/button.png"><span>刷新</span></div>
+            </a>
+            
+    	</div>
+        </div>
+	</div>
+</div> 
+
+<script type="text/javascript">
+	$("#a3").fadeIn(1000);
+ 	$("#a1").click(function(){
+		$("#a3").fadeOut(1000);
+		//$(".loading").show();
+		$(".po #button").attr("src","images/button1.png");
+		$(".po span").css("color","#ff0000");
+		
+		})
+
+</script>
+
+</body>
+</html>

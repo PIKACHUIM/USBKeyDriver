@@ -10,6 +10,24 @@ public class KeyAlgorithm
         string.IsNullOrEmpty(PublicKey) ? SignAlgorithm : $"{PublicKey}/{SignAlgorithm} ({KeyBits})";
 }
 
+/// <summary>
+/// 容器内容类型。卡上条目并不都是「证书」——导入失败会留下空容器，
+/// 只建了密钥还没导证书的则只有密钥。界面必须如实区分，否则用户会误以为删的是证书。
+/// </summary>
+public enum KeyContainerContent
+{
+    /// <summary>无法判定（平台未提供探测手段）。</summary>
+    Unknown,
+    /// <summary>含证书（必然同时含密钥对）。</summary>
+    Certificate,
+    /// <summary>仅含密钥对，尚未导入证书。</summary>
+    KeyOnly,
+    /// <summary>空容器：既无密钥也无证书（多为失败操作残留）。</summary>
+    Empty,
+    /// <summary>读取失败。</summary>
+    Unreadable,
+}
+
 /// <summary>USB Key 上的一个证书/容器。</summary>
 public class KeyContainer
 {
@@ -31,8 +49,25 @@ public class KeyContainer
     public string KeyUsage { get; set; } = "";
     /// <summary>扩展用途（如 客户端身份验证）。</summary>
     public string ExtendedKeyUsage { get; set; } = "";
-    /// <summary>是否已注册到系统 CSP 证书库。</summary>
+    /// <summary>
+    /// 是否已注册到系统证书库（按指纹判定）。
+    /// <para>
+    /// 卡上的证书必然带着卡内私钥，注册时会把私钥容器一并写入证书属性，
+    /// 因此"已注册"即代表证书与私钥在系统侧都可用了，不需要再区分别的状态。
+    /// </para>
+    /// </summary>
     public bool IsRegisteredInCsp { get; set; }
+
+    /// <summary>
+    /// 私钥容器绑定（本次注册解析到的 CSP/KSP + 容器）。
+    /// <para>
+    /// 由 <c>IKeyProvider.RegisterToCsp(container, binding)</c> 写入、各平台既有的
+    /// <c>RegisterToCsp(container)</c> 读取，最终落到证书的 CERT_KEY_PROV_INFO 属性上。
+    /// 为空表示只注册证书本体（系统里不会有私钥）。
+    /// </para>
+    /// </summary>
+    [System.Text.Json.Serialization.JsonIgnore]
+    public Crypto.CertKeyBinding? KeyBinding { get; set; }
     /// <summary>证书序列号。</summary>
     public string SerialNumber { get; set; } = "";
     /// <summary>证书指纹(SHA1)。</summary>
@@ -40,6 +75,28 @@ public class KeyContainer
     /// <summary>底层证书字节（仅内存，不用于导出私钥）。</summary>
     [field: System.Text.Json.Serialization.JsonIgnore]
     public byte[]? CertRaw { get; set; }
+
+    /// <summary>容器内容类型（证书 / 仅密钥 / 空容器）。</summary>
+    public KeyContainerContent Content { get; set; } = KeyContainerContent.Unknown;
+
+    /// <summary>内容类型的显示文本。</summary>
+    [System.Text.Json.Serialization.JsonIgnore]
+    public string ContentText => Content switch
+    {
+        KeyContainerContent.Certificate => "证书",
+        KeyContainerContent.KeyOnly => "仅密钥",
+        KeyContainerContent.Empty => "空容器",
+        KeyContainerContent.Unreadable => "读取失败",
+        _ => "未知",
+    };
+
+    /// <summary>是否含证书（可查看/导出/注册到证书库）。</summary>
+    [System.Text.Json.Serialization.JsonIgnore]
+    public bool HasCertificate => Content == KeyContainerContent.Certificate;
+
+    /// <summary>是否可以删除（任何已定位到实体的条目都可删，含空容器）。</summary>
+    [System.Text.Json.Serialization.JsonIgnore]
+    public bool CanDelete => Content != KeyContainerContent.Unknown || !string.IsNullOrEmpty(ContainerName);
 
     /// <summary>有效期显示。</summary>
     public string ValidityText =>

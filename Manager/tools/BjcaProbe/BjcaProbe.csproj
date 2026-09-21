@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <!-- 管理器为 x86 宿主（LNCA 驱动为 32 位），BJCA 需加载 32 位 XTXAppCOM.dll -->
+    <PlatformTarget>x86</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>BjcaProbe</AssemblyName>
+    <RootNamespace>BjcaProbe</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 直接联调生产实现 BjcaProvider / BjcaNative -->
+    <ProjectReference Include="..\..\src\USBKey.Core\USBKey.Core.csproj" />
+  </ItemGroup>
+
+</Project>

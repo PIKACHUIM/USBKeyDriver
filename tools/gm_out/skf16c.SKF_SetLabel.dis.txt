@@ -1,0 +1,89 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; SKF_SetLabel rva=0xFD10 va=0x1000FD10 stop=0x1000FDE0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+1000fd10 <.text+0xed10>:
+1000fd10:	83 ec 08             	sub    esp,0x8
+1000fd13:	56                   	push   esi
+1000fd14:	8d 44 24 04          	lea    eax,[esp+0x4]
+1000fd18:	50                   	push   eax
+1000fd19:	c7 44 24 08 f4 04 04 	mov    DWORD PTR [esp+0x8],0x100404f4
+1000fd20:	10 
+1000fd21:	e8 9a 31 01 00       	call   0x10022ec0
+1000fd26:	a1 bc 55 04 10       	mov    eax,ds:0x100455bc
+1000fd2b:	85 c0                	test   eax,eax
+1000fd2d:	74 28                	je     0x1000fd57
+1000fd2f:	8b 50 08             	mov    edx,DWORD PTR [eax+0x8]
+1000fd32:	8b 4c 24 10          	mov    ecx,DWORD PTR [esp+0x10]
+1000fd36:	39 8a 00 01 00 00    	cmp    DWORD PTR [edx+0x100],ecx
+1000fd3c:	74 20                	je     0x1000fd5e
+1000fd3e:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+1000fd41:	85 c0                	test   eax,eax
+1000fd43:	74 12                	je     0x1000fd57
+1000fd45:	8b 50 08             	mov    edx,DWORD PTR [eax+0x8]
+1000fd48:	39 8a 00 01 00 00    	cmp    DWORD PTR [edx+0x100],ecx
+1000fd4e:	74 0e                	je     0x1000fd5e
+1000fd50:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+1000fd53:	85 c0                	test   eax,eax
+1000fd55:	75 ee                	jne    0x1000fd45
+1000fd57:	be 06 00 00 0a       	mov    esi,0xa000006
+1000fd5c:	eb 3c                	jmp    0x1000fd9a
+1000fd5e:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+1000fd62:	8b c8                	mov    ecx,eax
+1000fd64:	8d 71 01             	lea    esi,[ecx+0x1]
+1000fd67:	53                   	push   ebx
+1000fd68:	8a 19                	mov    bl,BYTE PTR [ecx]
+1000fd6a:	41                   	inc    ecx
+1000fd6b:	84 db                	test   bl,bl
+1000fd6d:	75 f9                	jne    0x1000fd68
+1000fd6f:	2b ce                	sub    ecx,esi
+1000fd71:	5b                   	pop    ebx
+1000fd72:	83 f9 20             	cmp    ecx,0x20
+1000fd75:	72 07                	jb     0x1000fd7e
+1000fd77:	be 06 00 00 0a       	mov    esi,0xa000006
+1000fd7c:	eb 1c                	jmp    0x1000fd9a
+1000fd7e:	8b 92 04 01 00 00    	mov    edx,DWORD PTR [edx+0x104]
+1000fd84:	52                   	push   edx
+1000fd85:	e8 a6 dc 00 00       	call   0x1001da30
+1000fd8a:	8b f0                	mov    esi,eax
+1000fd8c:	83 c4 04             	add    esp,0x4
+1000fd8f:	85 f6                	test   esi,esi
+1000fd91:	74 07                	je     0x1000fd9a
+1000fd93:	e8 f8 af 00 00       	call   0x1001ad90
+1000fd98:	8b f0                	mov    esi,eax
+1000fd9a:	8b 44 24 08          	mov    eax,DWORD PTR [esp+0x8]
+1000fd9e:	85 c0                	test   eax,eax
+1000fda0:	74 2f                	je     0x1000fdd1
+1000fda2:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+1000fda5:	85 c0                	test   eax,eax
+1000fda7:	74 28                	je     0x1000fdd1
+1000fda9:	8b 08                	mov    ecx,DWORD PTR [eax]
+1000fdab:	85 c9                	test   ecx,ecx
+1000fdad:	74 22                	je     0x1000fdd1
+1000fdaf:	83 78 08 00          	cmp    DWORD PTR [eax+0x8],0x0
+1000fdb3:	57                   	push   edi
+1000fdb4:	8d 78 08             	lea    edi,[eax+0x8]
+1000fdb7:	7e 0e                	jle    0x1000fdc7
+1000fdb9:	51                   	push   ecx
+1000fdba:	ff 15 04 d1 03 10    	call   DWORD PTR ds:0x1003d104
+1000fdc0:	57                   	push   edi
+1000fdc1:	ff 15 48 d0 03 10    	call   DWORD PTR ds:0x1003d048
+1000fdc7:	5f                   	pop    edi
+1000fdc8:	8b c6                	mov    eax,esi
+1000fdca:	5e                   	pop    esi
+1000fdcb:	83 c4 08             	add    esp,0x8
+1000fdce:	c2 08 00             	ret    0x8
+1000fdd1:	8b c6                	mov    eax,esi
+1000fdd3:	5e                   	pop    esi
+1000fdd4:	83 c4 08             	add    esp,0x8
+1000fdd7:	c2 08 00             	ret    0x8
+1000fdda:	cc                   	int3
+1000fddb:	cc                   	int3
+1000fddc:	cc                   	int3
+1000fddd:	cc                   	int3
+1000fdde:	cc                   	int3
+1000fddf:	cc                   	int3

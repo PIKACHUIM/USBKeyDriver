@@ -1,0 +1,596 @@
+0x00401285	%D[U
+0x004013BD	%xZU
+0x00408721	%X[U
+0x00408DA9	%x`U
+0x00408DD1	%d`U
+0x00408E5D	%X`U
+0x00408E85	%D`U
+0x00409015	%x_U
+0x0040903D	%d_U
+0x00409055	%X_U
+0x0040907D	%D_U
+0x00409215	%x^U
+0x0040923D	%d^U
+0x00409255	%X^U
+0x0040927D	%D^U
+0x0040940D	%x]U
+0x00409435	%d]U
+0x0040944D	%X]U
+0x00409475	%D]U
+0x00409635	%x\U
+0x0040965D	%d\U
+0x00409675	%X\U
+0x0040969D	%D\U
+0x0040985D	%x[U
+0x004098B1	%d[U
+0x0040B8C9	%DaU
+0x00415139	%daU
+0x00415599	%XaU
+0x004157F0	VariantChangeTypeEx
+0x00425C95	TPropIntfFixup
+0x0042D5B1	HelpIntfs
+0x0042FA3D	%xaU
+0x00431FD2	IChangeNotifier
+0x0044885F	OnChangel
+0x00457737	AllowChange
+0x004587BD	OnChange
+0x00458EFE	TTVChangedEvent
+0x0045998D	ChangeDelay
+0x0045B91A	TItemChange
+0x0045BB66	TLVChangeEvent
+0x0045BB98	Change
+0x0045C3AE	TLVOwnerDataStateChangeEvent
+0x0045D54B	OnDataStateChangel
+0x00470103	ofNoChangeDir
+0x004704EF	InitialDirL
+0x0047059F	OnFolderChangel
+0x004705C8	OnSelectionChangel
+0x004705F4	OnTypeChange
+0x004707C3	fdoNoChangeDir
+0x004708A5	fdoHidePinnedPlaces
+0x00470A7C	CanChange
+0x004714AD	OnFolderChangeD
+0x00471501	OnSelectionChange
+0x0047536E	TMenuChangeEvent
+0x0047591C	GroupIndex
+0x00494FFD	TChangeLink
+0x004971DD	OnStateChange
+0x004B57CA	Uh%XK
+0x004B8DDE	TSpinDirection
+0x004B8E1E	TSpinButtonType
+0x004B8E56	TSpinChangingEvent
+0x004B8EB6	TSpinButtonEvent
+0x004B90A1	TRzSpinButtons
+0x004B90B6	TRzSpinButtonsT
+0x004B922F	InitialDelay
+0x004B991D	TRzSpinEdit,
+0x004B992E	TRzSpinEdit
+0x004D908D	EIdStackInitializationFailed
+0x004DD6AA	TRzTabOrderChangeEvent
+0x004DF428	OnChangeL
+0x004DF70C	OnPageChange
+0x004DF82F	OnTabOrderChangel
+0x005226E9	%xbU
+0x00522711	%dbU
+0x00522729	%XbU
+0x00522751	%DbU
+0x005262AD	edtpwdChange
+0x00526310	edtContnameChange
+0x0052723E	TK3ProBaseInfo_Init@
+0x0052A9B2	:TGM_APPInfo.:1$
+0x0052A9D6	TGM_APPInfoL
+0x0052C360	edtRSPIN
+0x0052C36F	edtRUPIN
+0x0052C3B9	edtRUnlockCode
+0x0052C3FD	edtRUnlockCodeChange
+0x0052D3CA	TAPPInfoP
+0x0052E82B	edtOldUPin$
+0x0052E83C	edtNewUPin1(
+0x0052E84E	edtNewUPin2,
+0x0052EA91	AcSetUserPIN
+0x0052EB9A	LAdmin_UPIN
+0x0052EBAC	LAdmin_ISOPath
+0x0052EBC1	edtUPINForDownISO
+0x0052EBE7	LAdmin_Old_SOPIN
+0x0052EBFE	LAdmin_New_SOPIN1 
+0x0052EC16	LAdmin_new_SOPIN2$
+0x0052EC2E	edtSPIN(
+0x0052EC3C	edtNewSPIN1,
+0x0052EC4E	edtNewSPIN20
+0x0052EC60	LAdmin_SOPIN4
+0x0052EC73	LAdmin_New_UPIN18
+0x0052EC8A	LAdmin_New_UPIN2<
+0x0052ECA1	edtSPINForUnLock@
+0x0052ECB8	edtUPINForUnlock1D
+0x0052ECD0	edtUPINForUnlock2H
+0x0052ECE8	AcInitL
+0x0052ECF5	AcSetSOPINP
+0x0052ED06	AcUnlockT
+0x0052ED51	edtUPINh
+0x0052EDBF	PCInit
+0x0052EDDD	lInit_keyname
+0x0052EDF1	lInit_gs
+0x0052EE00	LInit_Model
+0x0052EE12	edtInit_KeyName
+0x0052EE28	edtInit_GS
+0x0052EE39	edtInit_UnLockPIN
+0x0052EE62	LInit_SOPIN
+0x0052EE74	lInit_SOPINLenMax
+0x0052EE8C	LInit_TryCount_SOPIN
+0x0052EEC3	lInit_SOPINLenMin
+0x0052EEE9	edtInit_SPIN
+0x0052EEFC	edtInit_SOPINlenMax
+0x0052EF16	edtInit_MaxCount_SOPIN
+0x0052EF33	edtInit_SOPINlenMin
+0x0052EF5E	lInit_UPIN
+0x0052EF6F	lINit_PINLenMax
+0x0052EF85	LInit_TryCount
+0x0052EFB6	lInit_PINLenMin
+0x0052EFDA	edtInit_UPIN
+0x0052EFED	edtInit_PINLenMax
+0x0052F005	edtInit_MaxCount
+0x0052F01C	edtInit_PINlenMin
+0x0052F087	TCheckInit
+0x0052F2BE	AcFingerUnlock
+0x0052F341	TSetFocusUPIN
+0x0052F3F4	edtFingerSPIN
+0x0052F498	edtInit_SOPINTry
+0x0052F4AF	edtInit_SOPINLeve 
+0x0052F4C7	edtInit_UPINTry$
+0x0052F4DD	edtInit_UPINLeve(
+0x0052F50E	AcFinger_SOPIN_Login0
+0x0052F529	AcFinger_SOPINFinger_Login4
+0x0052F56B	AcRemoteUnLock@
+0x0052F580	AcGenUnlockCodeD
+0x0052F61F	Panel_Adminl
+0x0052F640	edtUnlockCodet
+0x0052F6F2	tvChange
+0x0052F7A8	edtUPinKeyPress
+0x0052F7D4	tvCertChange
+0x0052F7FC	edtUPinChange
+0x0052F83A	AcSetUserPINExecute
+0x0052F854	AcSetUserPINUpdate
+0x0052F8FA	AcUnlockExecute
+0x0052F910	AcSetSOPINExecute
+0x0052F928	AcInitExecute
+0x0052F93C	AcInitUpdate
+0x0052F94F	AcSetSOPINUpdate
+0x0052F966	AcUnlockUpdate
+0x0052F991	edtUPINEnter
+0x0052F9A4	edtUPINExit
+0x0052FA6A	TCheckInitTimer
+0x0052FA80	edtNewSPIN2KeyPress
+0x0052FA9A	edtNewUPin2KeyPress 
+0x0052FAB4	edtUPINForUnlock2KeyPress
+0x0052FBA2	AcFingerUnlockExecute
+0x0052FBF3	TSetFocusUPINTimer!
+0x0052FC2C	!AcFinger_SOPINFinger_LoginExecute"
+0x0052FC55	AcFinger_SOPIN_LoginExecute
+0x0052FC77	edtFingerSPINChange
+0x0052FC91	edtFingerSPINKeyPress!
+0x0052FCAD	AcFinger_SOPIN_LoginUpdate'
+0x0052FCCD	 AcFinger_SOPINFinger_LoginUpdate
+0x0052FD0C	AcRemoteUnLockExecute
+0x0052FD28	AcGenUnlockCodeExecute
+0x00534D88	mToken_Setup.exe
+0x005562EC	oleaut32.dll
+0x00556334	advapi32.dll
+0x00556374	user32.dll
+0x005563BA	kernel32.dll
+0x005564D0	GetStartupInfoA
+0x0055665C	CreateFileW
+0x005572BE	msimg32.dll
+0x005572D8	gdi32.dll
+0x0055784C	version.dll
+0x00557A22	ResetEvent
+0x00557A3C	OpenFileMappingW
+0x00557AC8	InitializeCriticalSection
+0x00557AE4	GlobalUnlock
+0x00557D4E	GetCPInfo
+0x00557D82	InterlockedExchangeAdd
+0x00557D9C	InterlockedExchange
+0x00557DCA	InterlockedCompareExchange
+0x00557E98	CreateFileMappingW
+0x00557F5E	ole32.dll
+0x00557F6A	OleUninitialize
+0x00557F7C	OleInitialize
+0x00558088	VariantChangeType
+0x005580BA	VariantInit
+0x005580C6	comctl32.dll
+0x005580D6	InitializeFlatSB
+0x00558364	InitCommonControls
+0x00558378	URLMON.DLL
+0x0055839A	wininet.dll
+0x005583BE	shell32.dll
+0x0055840C	comdlg32.dll
+0x00558442	winmm.dll
+0x0055845A	TokenMgr.dll
+0x005585FA	token_set_upin
+0x0055860C	token_change_sopin
+0x00558634	token_change_upin
+0x00558658	token_get_pin_state
+0x00558728	uninit_pkcs11
+0x00558738	init_pkcs11_ex
+0x0055874A	init_pkcs11
+0x00558756	crypt32.dll
+0x0058B49A	GM3000Admin
+0x0058B4B9	SysInit
+0x0058B586	QTypInfo
+0x0058B6D6	RHelpIntfs
+0x0058B97F	Call_GMAPIs_Admin
+0x0058B9E7	APPInfoAPI
+0x0058BAC8	Zupinsetfrm
+0x0058D2AF	SO PIN
+0x0058E4A7	edtOldUPin
+0x0058E503	edtNewUPin1
+0x0058E560	edtNewUPin2
+0x0058E5C0	edtNewUPin2KeyPress
+0x00591169	edtUPIN
+0x005911E5	edtUPinEnter
+0x00591C4E	support@longmai.com.cn
+0x00591D3F	http://www.longmai.com.cn
+0x00591F77	init
+0x00591FB6	AcInit
+0x00592248	GM3000
+0x0059229F	Longmai
+0x005926BE	admin
+0x00592887	User PIN
+0x00593126	edtInit_SOPINLeve
+0x005931AE	edtInit_UPINTry
+0x00593235	edtInit_UPINLeve
+0x005932D3	setsopin
+0x0059343E	Old SO PIN:
+0x00593453	LAdmin_New_SOPIN1
+0x005934A7	New SO PIN:
+0x005934BC	LAdmin_new_SOPIN2
+0x00593510	Comfirm SO PIN:
+0x00593528	edtSPIN
+0x0059357F	edtNewSPIN1
+0x005935DB	edtNewSPIN2
+0x0059368A	AcSetSOPIN
+0x005936C4	Unlock
+0x005937DB	LAdmin_SOPIN
+0x00593829	SO PIN:
+0x0059383A	LAdmin_New_UPIN1
+0x0059388D	New User PIN:
+0x005938A4	LAdmin_New_UPIN2
+0x005938F7	Comfirm User PIN:
+0x00593911	edtSPINForUnLock
+0x00593971	edtUPINForUnlock1
+0x005939D3	edtUPINForUnlock2
+0x00593A8E	AcUnlock
+0x00593C0C	User PIN:
+0x00594742	SOPINLogin
+0x005956B5	AcFinger_SOPIN_Login
+0x0059582D	edtFingerSPINKeyPress
+0x0059587D	AcFinger_SOPINFinger_Login
+0x005958C7	RemoteUnlock
+0x00595B8E	AcRemoteUnLock
+0x00595BB0	edtUnlockCode
+0x00595D65	Panel_Admin
+0x00595DE5	AcGenUnlockCode
+0x005963B7	Admin
+0x005963C6	Initialize
+0x00596A22	AcFinger_SOPIN_LoginUpdate
+0x00596A92	!AcFinger_SOPINFinger_LoginExecute
+0x005A062D	TSetFocusUPINTimer
+0x005A16CB	LstControlsChange
+0x005A1971	TUPinSetForm
+0x005A197E	UPinSetForm
+0x005A1CB9	edtUPin
+0x005A1D3E	edtUPinExit
+0x005A1DC7	edtNewUPin1Change
+0x005A1DFC	edtNewUPin1Exit
+0x005A1E89	edtNewUPin2Change
+0x005A1EBE	edtNewUPin2Exit
+0x005A1ED9	edtNewUPin2KeyDown
+0x005A2189	cbDefaultPIN
+0x00000000	8DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA10
+0x00000000	Qhttp://cacerts.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crt0_
+0x00000000	Nhttp://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl0 
+0x00000000	8DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1
+0x00405A1C	u%S媂
+0x00425C95	TPropIntfFixup怳嬱SV勔t
+0x0044885F	OnChangel鞟
+0x00459F3E	OnChange湈E
+0x0045D2FE	OnChange富E
+0x0045D54B	OnDataStateChangel鞟
+0x0047059F	OnFolderChangel鞟
+0x004705C8	OnSelectionChangel鞟
+0x00475D83	OnChange悙]G
+0x00497196	OnChange餹I
+0x004971DD	OnStateChange餹I
+0x004B57C5	S嬝3繳h%XK
+0x004B90A1	TRzSpinButtons惔怟
+0x004B90B6	TRzSpinButtonsT廗
+0x004B991D	TRzSpinEdit,橩
+0x004B992E	TRzSpinEdit臇K
+0x004D908D	EIdStackInitializationFailed岪
+0x004DF428	OnChangeL譓
+0x004DF82F	OnTabOrderChangel鞟
+0x0058B4B8	丼ysInit
+0x0058B97E	薈all_GMAPIs_Admin
+0x0058B9E6	傾PPInfoAPI
+0x0058D2AF	SO PIN锛
+0x0059243E	SO PIN鏈
+0x00000000	哘http://cacerts.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crt0_
+0x00000000	X0V0T燫燩哊http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl0 
+0x00422DDC	%s[%d]
+0x00427ECC	%s_%d
+0x0042F5E4	USER32.DLL
+0x0042F688	InitCommonControlsEx
+0x0043D160	InitializeConditionVariable
+0x0043DA44	uxtheme.dll
+0x0043E240	DWMAPI.DLL
+0x0044642C	clWebDeepPink
+0x00446454	clWebLightPink
+0x00446510	clWebHotPink
+0x00446538	clWebPink
+0x004750B0	UninitializeFlatSB
+0x00482B98	%s (%s)
+0x00492318	imm32.dll
+0x00493DD4	spin
+0x004CFE40	WS2_32.DLL
+0x004D4FE4	WSAResetEvent
+0x004D7E4C	WSAProviderConfigChange
+0x004D8104	MSWSOCK.DLL
+0x004D8C2C	Wship6.dll
+0x004D8D10	Fwpuclnt.dll
+0x0051900C	WINSCARD.DLL
+0x00519028	SCardBeginTransaction
+0x00519054	SCardCancel
+0x0051906C	SCardConnectA
+0x00519088	SCardControl
+0x005190A4	SCardDisconnect
+0x005190C4	SCardEndTransaction
+0x005190EC	SCardEstablishContext
+0x00519118	SCardFreeMemory
+0x00519138	SCardGetAttrib
+0x00519158	SCardGetProviderIdA
+0x00519180	SCardGetStatusChangeA
+0x005191AC	SCardListReadersA
+0x005191D0	SCardListCardsA
+0x005191F0	SCardListInterfacesA
+0x0051921C	SCardListReaderGroupsA
+0x0051924C	SCardLocateCardsA
+0x00519270	SCardReconnect
+0x00519290	SCardReleaseContext
+0x005192B8	SCardTransmit
+0x005192D4	SCardSetAttrib
+0x005192F4	SCardStatusA
+0x0051B844	 = %d
+0x0051E410	K_PIN_Error
+0x0051EA40	K_Info_maxPinLen
+0x0051EA70	K_Info_minPinLen
+0x0051EE08	I_InputPIN
+0x0051EE2C	I_CertPINError
+0x0051EEE8	S_PIN_equal
+0x0051EF5C	K_DefaultUPINInfo
+0x0051F11C	Main_Form_btn_SetUPIN
+0x0051F358	UPINSet_Form_NewPIN1
+0x0051F390	UPINSet_Form_NewPIN2
+0x0051F998	UPINSet_Form_OldPIN
+0x0051FB14	SOPIN_Error
+0x0051FB38	Change_No
+0x0051FB58	Change_Yes
+0x0051FB7C	SOPIN_E2
+0x0051FB9C	UPIN_E2
+0x0051FBB8	K_Init_Info
+0x0051FBDC	K_Init_try
+0x0051FC9C	Admin_btn_Init
+0x0051FCC8	Admin_btn_SOPIN
+0x0051FCF4	Admin_btn_Unlock
+0x0051FD24	Admin_btn_DownISO
+0x0051FD54	Admin_label_TryCount
+0x0051FD8C	Admin_label_SOPIN
+0x0051FDBC	Admin_label_UPIN
+0x0051FE14	Admin_Name
+0x0051FE58	Admin_label_OldSOPIN
+0x0051FE90	Admin_label_NewSOPIN1
+0x0051FEC8	Admin_label_NewSOPIN2
+0x0051FF00	Admin_label_NewUPIN1
+0x0051FF38	Admin_label_NewUPIN2
+0x0051FF70	Admin_label_ISOPath
+0x0051FFCC	K_Info_SOPIN_maxPinLen
+0x00520008	K_Info_SOPIN_minPinLen
+0x00520044	K_Info_SOPIN_TryCount
+0x005200A0	K_pkcs11Init_Error
+0x005201A4	Config_Form_DefaultPIN
+0x005201E0	Init_Info
+0x00520300	K_InputSOPIN
+0x005206AC	P_DefaultPIN_Info
+0x0052072C	F_Admin_Finger
+0x00520758	F_Admin_Longin
+0x005207A8	F_Admin_Test
+0x005207F4	F_Admin_Unlock
+0x00520820	F_User_Unlock
+0x0052092C	F_Admin_Try
+0x00520978	F_Admin_Count
+0x005209CC	F_Admin_MAXTry
+0x005209F8	F_Admin_Level
+0x00520B48	P_SAR_PIN_LOCKED
+0x00520CBC	F_Input_Reset
+0x00520D58	F_Test_Reset
+0x00520EE8	P_Remoteunlock
+0x00520F2C	P_Unlock
+0x00520FD0	P_UnlockOK
+0x00520FF4	P_UnlockError
+0x00522BC0	init_pkcs11 begin pName=%s
+0x00522C04	init_pkcs11 end rtn=%d
+0x00522DE4	token_find begin kn=%d
+0x00522E20	token_find end rtn=%d
+0x00522E58	token_connect begin keyindex=%d
+0x00522EA4	token_connect end rtn=%d
+0x00522F58	uninit_pkcs11 begin
+0x00522F8C	uninit_pkcs11 end rtn=%d
+0x00523088	token_login begin UPIN=%s
+0x005230C8	token_login end rtn=%d
+0x0052319C	token_logout begin KID=%d
+0x005231DC	token_logout end rtn=%d
+0x0052330C	token_get_info_ex begin KID=%d
+0x00523358	token_get_info_ex end rtn=%d
+0x005235C8	container_load_all begin buff_len=%d
+0x00523620	container_load_all end rtn=%d
+0x00523724	token_reload_all_objects begin slot_id=%d
+0x00523784	token_reload_all_objects end rtn=%d
+0x00523BA8	container_get_cert begin cont_id=%s
+0x00523BFC	container_get_cert end rtn=%d
+0x00523C44	container_get_pubkey begin cont_id=%s
+0x00523C9C	container_get_pubkey end rtn=%d
+0x00523CE8	helper_get_cert_info2 begin Name=%s
+0x00523D3C	helper_get_cert_info2 end rtn=%d
+0x00524034	container_get_pubkey begin container_id=%s
+0x005241AC	container_get_prikey begin container_id=%s
+0x00524210	container_get_prikey end rtn=%d
+0x00524338	container_addcert_to_store begin containerName=%s
+0x005243A8	container_addcert_to_store end rtn=%d
+0x005245E0	token_change_upin begin newUPIN=%s
+0x00524634	token_change_upin end rtn=%d
+0x005247BC	token_set_label begin KeyName=%s
+0x0052480C	token_set_label end rtn=%d
+0x00524920	pkcs12_file_parse begin password=%s
+0x00524974	pkcs12_file_parse end rtn=%d
+0x00524A64	pkcs12_file_get_certinfo begin issureName=%s
+0x00524ACC	pkcs12_file_get_certinfo end rtn=%d
+0x00524BE4	pkcs12_import_certificate begin cont_id=%s
+0x00524C48	pkcs12_import_certificate end rtn=%d
+0x00524D60	x509_import_certificate begin certFilePath=%s
+0x00524DC8	x509_import_certificate end rtn=%d
+0x00524ED4	container_create_new begin container_name=%s
+0x00524F3C	container_create_new end rtn=%d
+0x00525040	container_delete begin cont_id=%s
+0x00525090	container_delete end rtn=%d
+0x00525178	helper_show_cert_ui begin certSize=%d
+0x005251D0	helper_show_cert_ui end rtn=%d
+0x005252E0	token_get_pin_state begin KID=%d
+0x00525330	token_get_pin_state end rtn=%d
+0x00525420	token_login_so begin soPin=%s
+0x00525468	token_login_so end rtn=%d
+0x0052554C	token_change_sopin begin newSPIN=%s
+0x005255A0	token_change_sopin end rtn=%d
+0x0052568C	token_set_upin begin soPin=%s
+0x005256D4	token_set_upin end rtn=%d
+0x005257B0	token_format begin slot_id=%d
+0x005257F8	token_format end rtn=%d
+0x005258DC	token_write_sectors begin sectorNumber=%d
+0x0052593C	token_write_sectors end rtn=%d
+0x00525A2C	container_delete_cert begin containerName=%s
+0x00525A94	container_delete_cert end rtn=%d
+0x00525B88	helper_add_root_cert_to_store begin pName=%s
+0x00525BF0	helper_add_root_cert_to_store end rtn=%d
+0x00525CEC	p7b_file_parse begin certFilePath=%s
+0x00525D44	p7b_file_parse end rtn=%d
+0x00525E2C	p7b_import_certificate begin container_name=%s
+0x00525E98	p7b_import_certificate end rtn=%d
+0x00525F90	p7b_file_get_certinfo begin issureName=%s
+0x00525FF0	p7b_file_get_certinfo end rtn=%d
+0x00527218	DefaultPINMode
+0x00527438	%d KB
+0x00527878	%20s : %s
+0x00527C60	InitData
+0x00527CC0	default_sopin
+0x00527CE8	default_upin
+0x00527D10	uPinRetryTimes
+0x00527D3C	soPinRetryTimes
+0x00527D68	minUPINLen
+0x00527D8C	maxUPINLen
+0x00527DB0	minSOPINLen
+0x00527DD4	maxSOPINLen
+0x00527E14	F_AdminRetryTimes
+0x00527E44	F_AdminLevel
+0x0052990C	KERNEL32.DLL
+0x00529A5C	\longmai\GM3000\update\
+0x0052A334	SKF_VerifyPIN
+0x0052A39C	SKF_InitializeFinger
+0x0052A40C	SKF_EnrollFingerInit
+0x0052A4E4	SKF_VerifyFingerInit
+0x0052A83C	SKF_RemoteUnblockPIN
+0x0052A8B4	MKF_GenRemoteUnlockResponseEx
+0x0052B760	%s(%d)
+0x0052D79C	TokenMgrLib
+0x00530874	%s(0--8MB)
+0x005308A8	%s(ErrorCode = 0x%s)
+0x00531478	(%d)
+0x00531490	Initconfig.ini
+0x005343C4	%s(%d--%d)
+0x00534D38	Server Ver = %s  Client Ver = %s
+0x005377BC	(RSA%d)
+0x005377D8	(ECC%d)
+0x00538A6C	\system32\mTokenMiniDrv.dll
+0x00538AB0	\system32\mTokenMiniDrv.x64.dll
+0x005397D0	\System32\mTokenMiniDrv.x64.dll
+0x0053981C	\sysWOW64\mTokenMiniDrv.dll
+0x005398A4	%d.%.2d
+0x0053A58C	APPInfo.ini
+0x0053A950	Longmai mToken GM3000
+0x0053D9FC	Kernel32.dll
+0x00571862	TUPINSETFORM
+0x0057D86A	SCardSvr
+0x0057D8F4	gm3000_TrayIcon){GM3000Admin-94AD-4233-B821-1CD5AC3F08E1}
+0x0057E49C	Invalid extension introducer%Failed to allocate memory for GIF DIB&Cannot change the size of a JPEG image
+0x0057E570	JPEG error #%d
+0x0057F026	%s is not a valid service.
+0x0057F07E	%s is not a valid IPv6 address:The requested IPVersion / Address family is not supported.
+0x0057F298	Error creating regionD%d is an invalid PageIndex value. PageIndex must be between 0 and %d0You cannot change the Visible property of a page
+0x0057F416	Network is unreachable. Net dropped connection or reset.!Software caused connection abort.
+0x0057F4CC	Connection reset by peer.
+0x0057FB98	Menu Bar-Error on call to Winsock2 library function %s&Error on loading Winsock2 library (%s)
+0x0057FC54	Socket Error # %d
+0x005800A2	Pink
+0x005800F2	Invalid ownerE%d is an invalid PageIndex value.  PageIndex must be between 0 and %d=This control requires version 4.70 or greater of COMCTL32.DLL
+0x00580340	UTF-7"PageControl must first be assigned"%s requires Windows Vista or later
+0x005803D8	Failed to clear tab control Failed to delete tab at index %d"Failed to retrieve tab at index %d Failed to get object at index %d"Failed to set tab "%s" at index %d Failed to set object at index %d<MultiLine must be True when TabPosition is tpLeft or tpRight
+0x00580634	Value must be between %d and %d
+0x00580718	Cannot open clipboard: %s
+0x0058074C	Text exceeds memo capacity/Menu '%s' is already being used by another form
+0x0058089C	 - Dock zone has no controlLError loading dock zone from the stream. Expecting version %d, but found %d.,Multiselect mode must be on for this feature#No OnGetItem event handler assigned
+0x00580C7A	Invalid input value7Invalid input value.  Use escape key to abandon changes
+0x00580D12	Warning+Cannot focus a disabled or invisible window!Control '%s' has no parent window$Parent given is not a parent of '%s'
+0x00580E08	Cannot hide an MDI Child Form)Cannot change Visible in OnShow or OnHide"Cannot make a visible window modal
+0x00580EDE	%s property out of range
+0x00580F98	Not enough timers available@GroupIndex cannot be less than a previous menu item's GroupIndex5Cannot create form. No MDI forms are currently active*A control cannot have itself as its parent
+0x00581180	Scan line index out of range!Cannot change the size of an icon$Unknown picture file extension (.%s)
+0x005814C2	''%s'' is not a valid date#''%s'' is not a valid date and time#''%s'' is not a valid integer value
+0x00581588	''%s'' is not a valid time
+0x00581760	No help found for %s0Tab position incompatible with current tab style0Tab style incompatible with current tab position
+0x0058190A	Error reading %s%s%s: %s
+0x0058198C	Failed to get data for '%s'
+0x005819C4	Resource %s not found
+0x005819F0	%s.Seek not implemented$Operation not allowed on sorted list$%s not in a class registration group
+0x00581AB4	Property %s does not exist
+0x00581B10	Thread creation error: %s
+0x00581B44	Thread Error: %s (%d)-Cannot terminate an externally created thread,Cannot wait for an externally created thread$No help viewer that supports filters
+0x00581C70	#A component named %s already exists%String list does not allow duplicates
+0x00581D06	Cannot create file "%s". %s
+0x00581D3E	Cannot open file "%s". %s
+0x00581D72	Unable to write to %s
+0x00581D9E	Invalid file name - %s
+0x00581DCC	Invalid stream format$''%s'' is not a valid component name
+0x00581E70	Invalid property element: %s
+0x00581F04	Invalid data type for '%s' List capacity out of bounds (%d)
+0x00581F7C	List count out of bounds (%d)
+0x00581FB8	List index out of bounds (%d)
+0x00582056	Invalid destination array"Character index out of bounds (%d)
+0x005820D0	Start index out of bounds (%d)
+0x0058210E	Invalid count (%d)
+0x00582134	Invalid destination index (%d)
+0x00582196	Ancestor for '%s' not found
+0x005821CE	Cannot assign a %s to a %s
+0x00582204	Bits index out of range*Can't write to a read-only resource streamECheckSynchronize called from thread $%x, which is NOT the main thread
+0x00582316	Class %s not found
+0x0058233C	A class named %s already exists%List does not allow duplicates ($0%x)
+0x005825DE	Object lock not owned(Monitor support function not initialized
+0x0058265C	%s (%s, line %d)
+0x0058267E	Abstract Error?Access violation at address %p in module '%s'. %s of address %p
+0x0058271C	System Error.  Code: %d.
+0x00582924	Invalid NULL variant operation%Invalid variant operation (%s%.8x)
+0x005829A8	%s5Could not convert variant of type (%s) into type (%s)=Overflow while converting variant of type (%s) into type (%s)
+0x00582B66	External exception %x
+0x00582C28	Invalid class typecast0Access violation at address %p. %s of address %p
+0x00582D42	Operation aborted(Exception %s in module %s at %p.
+0x00582DAA	%s%s
+0x00582DB8	Application Error1Format '%s' invalid or incompatible with argument
+0x00582E40	No argument for format '%s'"Variant method calls not supported
+0x00582EC8	('%s' is not a valid floating point value
+0x00582F1C	'%s' is not a valid GUID value
+0x00582FB6	I/O error %d

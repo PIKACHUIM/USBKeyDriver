@@ -1,0 +1,75 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; rva=0x6B90 len=0xC0 file_off=0x5F90
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10006b90 <.text+0x5b90>:
+10006b90:	44                   	inc    esp
+10006b91:	24 40                	and    al,0x40
+10006b93:	8d 4c 24 13          	lea    ecx,[esp+0x13]
+10006b97:	8b c2                	mov    eax,edx
+10006b99:	89 54 24 58          	mov    DWORD PTR [esp+0x58],edx
+10006b9d:	c7 44 24 3c 02 00 00 	mov    DWORD PTR [esp+0x3c],0x2
+10006ba4:	00 
+10006ba5:	89 6c 24 44          	mov    DWORD PTR [esp+0x44],ebp
+10006ba9:	c7 44 24 48 70 01 00 	mov    DWORD PTR [esp+0x48],0x170
+10006bb0:	00 
+10006bb1:	89 4c 24 4c          	mov    DWORD PTR [esp+0x4c],ecx
+10006bb5:	89 6c 24 50          	mov    DWORD PTR [esp+0x50],ebp
+10006bb9:	c7 44 24 54 10 00 00 	mov    DWORD PTR [esp+0x54],0x10
+10006bc0:	00 
+10006bc1:	8d 50 01             	lea    edx,[eax+0x1]
+10006bc4:	8a 08                	mov    cl,BYTE PTR [eax]
+10006bc6:	40                   	inc    eax
+10006bc7:	3a cb                	cmp    cl,bl
+10006bc9:	75 f9                	jne    0x10006bc4
+10006bcb:	2b c2                	sub    eax,edx
+10006bcd:	40                   	inc    eax
+10006bce:	89 44 24 5c          	mov    DWORD PTR [esp+0x5c],eax
+10006bd2:	8d 44 24 6c          	lea    eax,[esp+0x6c]
+10006bd6:	89 5c 24 68          	mov    DWORD PTR [esp+0x68],ebx
+10006bda:	8d 5e 08             	lea    ebx,[esi+0x8]
+10006bdd:	c7 44 24 60 12 00 00 	mov    DWORD PTR [esp+0x60],0x12
+10006be4:	00 
+10006be5:	89 44 24 64          	mov    DWORD PTR [esp+0x64],eax
+10006be9:	8d 74 24 18          	lea    esi,[esp+0x18]
+10006bed:	bf 07 00 00 00       	mov    edi,0x7
+10006bf2:	53                   	push   ebx
+10006bf3:	8b c6                	mov    eax,esi
+10006bf5:	e8 86 63 00 00       	call   0x1000cf80
+10006bfa:	83 c6 0c             	add    esi,0xc
+10006bfd:	2b fd                	sub    edi,ebp
+10006bff:	75 f1                	jne    0x10006bf2
+10006c01:	8b 8c 24 f4 00 00 00 	mov    ecx,DWORD PTR [esp+0xf4]
+10006c08:	5f                   	pop    edi
+10006c09:	5e                   	pop    esi
+10006c0a:	5d                   	pop    ebp
+10006c0b:	5b                   	pop    ebx
+10006c0c:	33 cc                	xor    ecx,esp
+10006c0e:	33 c0                	xor    eax,eax
+10006c10:	e8 15 e8 03 00       	call   0x1004542a
+10006c15:	81 c4 e8 00 00 00    	add    esp,0xe8
+10006c1b:	c3                   	ret
+10006c1c:	cc                   	int3
+10006c1d:	cc                   	int3
+10006c1e:	cc                   	int3
+10006c1f:	cc                   	int3
+10006c20:	81 ec 34 01 00 00    	sub    esp,0x134
+10006c26:	a1 60 00 06 10       	mov    eax,ds:0x10060060
+10006c2b:	33 c4                	xor    eax,esp
+10006c2d:	89 84 24 2c 01 00 00 	mov    DWORD PTR [esp+0x12c],eax
+10006c34:	a1 74 8d 05 10       	mov    eax,ds:0x10058d74
+10006c39:	8b 15 7c 8d 05 10    	mov    edx,DWORD PTR ds:0x10058d7c
+10006c3f:	53                   	push   ebx
+10006c40:	55                   	push   ebp
+10006c41:	56                   	push   esi
+10006c42:	57                   	push   edi
+10006c43:	8b f9                	mov    edi,ecx
+10006c45:	8b 0d 78 8d 05 10    	mov    ecx,DWORD PTR ds:0x10058d78
+10006c4b:	6a 30                	push   0x30
+10006c4d:	89                   	.byte 0x89
+10006c4e:	8c                   	.byte 0x8c
+10006c4f:	24                   	.byte 0x24

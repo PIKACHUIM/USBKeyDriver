@@ -1,0 +1,28 @@
+<Drivers>
+	<海泰USBKey>
+		<Name>海泰USBKey</Name>
+		<ProviderPath>Haitai CSP</ProviderPath>
+		<DisplayName>Haitai CSP 5.0 (20069)</DisplayName>
+		<UninstallString>uninst20069.exe</UninstallString>
+	</海泰USBKey>
+	<海泰USBKey>
+		<Name>海泰USBKey</Name>
+		<ProviderPath>Haitai CSP</ProviderPath>
+		<DisplayName>Haitai CSP 5.0</DisplayName>
+		<UninstallString>uninst20069.exe</UninstallString>
+	</海泰USBKey>
+			
+	<华大USBKey>
+		<Name>华大USBKey</Name>
+		<ProviderPath></ProviderPath>
+		<DisplayName></DisplayName>
+		<UninstallString></UninstallString>		
+	</华大USBKey>
+	
+	<大明五洲USBKey>
+		<Name>大明五洲USBKey</Name>
+		<ProviderPath>大明五洲 eSafe 运行环境</ProviderPath>
+		<DisplayName>大明五洲 eSafe 运行环境 2.0.0.1</DisplayName>
+		<UninstallString>dmwz\\LNCA_RTE\\uninst.exe</UninstallString>		
+	</大明五洲USBKey>
+</Drivers>

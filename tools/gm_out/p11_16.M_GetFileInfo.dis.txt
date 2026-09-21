@@ -1,0 +1,26 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; M_GetFileInfo rva=0x2750 va=0x10002750 stop=0x10002770
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10002750 <.text+0x1750>:
+10002750:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10002754:	85 c0                	test   eax,eax
+10002756:	75 06                	jne    0x1000275e
+10002758:	b8 07 00 00 00       	mov    eax,0x7
+1000275d:	c3                   	ret
+1000275e:	c7 00 e8 35 06 10    	mov    DWORD PTR [eax],0x100635e8
+10002764:	33 c0                	xor    eax,eax
+10002766:	c3                   	ret
+10002767:	cc                   	int3
+10002768:	cc                   	int3
+10002769:	cc                   	int3
+1000276a:	cc                   	int3
+1000276b:	cc                   	int3
+1000276c:	cc                   	int3
+1000276d:	cc                   	int3
+1000276e:	cc                   	int3
+1000276f:	cc                   	int3

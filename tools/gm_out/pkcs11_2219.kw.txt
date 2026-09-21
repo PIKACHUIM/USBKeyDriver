@@ -1,0 +1,97 @@
+0x1000F339	L$%SQ
+0x1006E517	- Attempt to use MSIL code from this assembly during native code initialization
+0x1006E647	- Attempt to initialize the CRT more than once.
+0x1006E6AB	- CRT not initialized
+0x1006E6CB	- unable to initialize heap
+0x1006E6F3	- not enough space for lowio initialization
+0x1006E72B	- not enough space for stdio initialization
+0x1006EC70	`dynamic initializer for '
+0x1006F2F4	USER32.DLL
+0x1006FD20	%s%s_%d
+0x10070C20	mCOSInit
+0x10070C6C	ChangeDevAuthKey
+0x10070C80	ChangeDevAuthKeyEx
+0x10070C94	GetPinInfo
+0x10070CA0	ChangePin
+0x10070CB8	VerifyPin
+0x10070CC4	ChangePin_ms
+0x10070CD4	VerifyPin_MS
+0x10070CE4	UnblockPin
+0x10070CFC	UnblockPin_MS
+0x10070D0C	ReloadPin
+0x10070D24	RemoteUnblockPin
+0x10070DF0	CreateFile
+0x100713B4	EncryptInit
+0x100713E8	DecryptInit
+0x1007141C	DigestInit
+0x10071478	MacInit
+0x10071604	usbstor
+0x100718DC	%s_trans
+0x10071AE0	Longmai mToken GM3000 CSP V1.1
+0x10071B44	Virtual Slot %d
+0x100733E8	E:\SVN\Software\mPKCS11\4.Development\kernel\prj\MSVC\Release\gm3000_pkcs11.pdb
+0x10075C90	KERNEL32.dll
+0x10075CD0	ADVAPI32.dll
+0x10075E9E	GetStartupInfoA
+0x1007603C	GetCPInfo
+0x100760EA	InitializeCriticalSectionAndSpinCount
+0x10076190	CreateFileA
+0x10076360	USER32.dll
+0x1007638A	InitializeSecurityDescriptor
+0x100763AA	SetupDiDestroyDeviceInfoList
+0x100763CA	SetupDiGetDeviceInterfaceDetailA
+0x100763EE	SetupDiEnumDeviceInterfaces
+0x1007640C	SetupDiGetClassDevsA
+0x10076422	SETUPAPI.dll
+0x100764A8	HID.DLL
+0x100764BE	DeviceIoControl
+0x100768BA	gm3000_pkcs11.dll
+0x1007694A	C_DecryptInit
+0x100769C7	C_DigestInit
+0x10076A08	C_EncryptInit
+0x10076A52	C_FindObjectsInit
+0x10076B5F	C_InitPIN
+0x10076B69	C_InitToken
+0x10076B75	C_Initialize
+0x10076BD6	C_SetPIN
+0x10076C06	C_SignInit
+0x10076C1F	C_SignRecoverInit
+0x10076C61	C_VerifyInit
+0x10076C7E	C_VerifyRecoverInit
+0x10076CE7	M_CreateFile
+0x10076DCE	M_RemoteUnblockUserPin
+0x10076DE5	M_RemoteUnblockUserPinMS
+0x10076E2D	M_UnblockUserPin
+0x10078368	gm3000,vid_055c&pid_db08,vid_055c&pid_e618|vid_055c&pid_f603|vid_055c&pid_2205
+0x10078768	gm3000
+0x10078A28	%s%s
+0x10078A34	%scert. version : %d
+0x10078A4C	%sserial number : 
+0x10078A61	%sissuer name   : 
+0x10078A75	%ssubject name  : 
+0x10078A89	%sissued  on    : %04d-%02d-%02d %02d:%02d:%02d
+0x10078ABD	%sexpires on    : %04d-%02d-%02d %02d:%02d:%02d
+0x10078AF1	%ssigned using  : 
+0x10078B0D	%s%-14s: %d bits
+0x10078E28	id-kp-timeStamping
+0x10078E3C	Time Stamping
+0x10079344	%d.%d
+0x100793E4	%02X%s
+0x100793F4	%s key size
+0x1007A924	CKA_AUTH_PIN_FLAGS
+0x1007AC54	CKA_OTP_PIN_REQUIREMENT
+0x1007AE74	CKA_RESET_ON_INIT
+0x1007AEB8	CKA_HAS_RESET
+0x1007B40A	Longmai Technology
+0x1007B450	gm3000,vid_055c&pid_db08,vid_055c&pid_e618|vid_055c&pid_2205
+0x1007B890	GM3000RSA
+0x1007B970	GM3000
+0x1007B990	Longmai
+0x1007B9D0	admin
+0x1000F338	峀$%SQ圽$,瑭
+0x10010B3C	峀$%SQ塂$
+0x10033C11	3烂3繞脣e鑳%d
+0x1006E2AC	KERNEL32.DLL
+0x1006E314	mscoree.dll
+0x10071950	\\.\pipe\mTokenIOSvr
+0x100719EC	ieframe.dll

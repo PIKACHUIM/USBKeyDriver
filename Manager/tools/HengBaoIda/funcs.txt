@@ -1,0 +1,14 @@
+0x4088F1 DoInitUkey_实际初始化
+0x4083B1 DeviceConfirm_设备按键确认
+0x402225 VerifyPin_校验111111
+0x403BE5
+0x4099C6 OpenDeviceOrMutex
+0x409BD3 CloseDevice
+0x4015B0 ShowMessage
+0x407FCF CheckPinIsDefault
+0x407C87 ChangePin
+0x406EB4 VerifyPinFlow
+0x406541 MenuHandler
+0x405FBF StartAddress_按键等待线程
+0x405A5B
+0x4051FF

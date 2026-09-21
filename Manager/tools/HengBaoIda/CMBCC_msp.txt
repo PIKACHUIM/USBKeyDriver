@@ -1,0 +1,624 @@
+FILE: G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCC.dll
+IMAGEBASE: 0x10000000
+
+=== WAITING FOR AUTOANALYSIS ===
+done
+=== IMPORTS ===
+  KERNEL32                 10023054 WaitForSingleObject
+  KERNEL32                 10023058 SetEvent
+  KERNEL32                 1002305C CreateThread
+  KERNEL32                 10023060 lstrlenA
+  KERNEL32                 10023064 GetPrivateProfileStringA
+  KERNEL32                 10023068 lstrcmpA
+  KERNEL32                 1002306C UnmapViewOfFile
+  KERNEL32                 10023070 OpenEventA
+  KERNEL32                 10023074 lstrcatA
+  KERNEL32                 10023078 GetUserDefaultLangID
+  KERNEL32                 1002307C FreeLibrary
+  KERNEL32                 10023080 CloseHandle
+  KERNEL32                 10023084 Sleep
+  KERNEL32                 10023088 GetCurrentThreadId
+  KERNEL32                 1002308C FileTimeToSystemTime
+  KERNEL32                 10023090 LocalAlloc
+  KERNEL32                 10023094 LocalFree
+  KERNEL32                 10023098 DeviceIoControl
+  KERNEL32                 1002309C WriteFile
+  KERNEL32                 100230A0 ReadFile
+  KERNEL32                 100230A4 CreateFileA
+  KERNEL32                 100230A8 CreateFileMappingA
+  KERNEL32                 100230AC GetLocalTime
+  KERNEL32                 100230B0 GetCurrentProcessId
+  KERNEL32                 100230B4 GetModuleFileNameA
+  KERNEL32                 100230B8 ReleaseMutex
+  KERNEL32                 100230BC CreateMutexA
+  KERNEL32                 100230C0 OpenFileMappingA
+  KERNEL32                 100230C4 MapViewOfFile
+  KERNEL32                 100230C8 LoadLibraryA
+  KERNEL32                 100230CC lstrlenW
+  KERNEL32                 100230D0 lstrcpynA
+  KERNEL32                 100230D4 GetLastError
+  KERNEL32                 100230D8 WideCharToMultiByte
+  KERNEL32                 100230DC SetLastError
+  KERNEL32                 100230E0 InterlockedDecrement
+  KERNEL32                 100230E4 InterlockedIncrement
+  KERNEL32                 100230E8 HeapAlloc
+  KERNEL32                 100230EC EnterCriticalSection
+  KERNEL32                 100230F0 LeaveCriticalSection
+  KERNEL32                 100230F4 GetProcessHeap
+  KERNEL32                 100230F8 HeapFree
+  KERNEL32                 100230FC DeleteCriticalSection
+  KERNEL32                 10023100 InitializeCriticalSection
+  KERNEL32                 10023104 MultiByteToWideChar
+  USER32                   10023128 SetFocus
+  USER32                   1002312C SendDlgItemMessageA
+  USER32                   10023130 GetDesktopWindow
+  USER32                   10023134 GetForegroundWindow
+  USER32                   10023138 GetParent
+  USER32                   1002313C BeginPaint
+  USER32                   10023140 GetDlgItem
+  USER32                   10023144 GetWindowRect
+  USER32                   10023148 LoadBitmapA
+  USER32                   1002314C DialogBoxParamA
+  USER32                   10023150 GetDlgItemTextA
+  USER32                   10023154 FindWindowA
+  USER32                   10023158 EndPaint
+  USER32                   1002315C SetTimer
+  USER32                   10023160 PostMessageA
+  USER32                   10023164 LoadStringA
+  USER32                   10023168 SetDlgItemTextA
+  USER32                   1002316C GetFocus
+  USER32                   10023170 MessageBoxA
+  USER32                   10023174 CallNextHookEx
+  USER32                   10023178 GetKeyState
+  USER32                   1002317C GetAsyncKeyState
+  USER32                   10023180 UnhookWindowsHookEx
+  USER32                   10023184 SetWindowsHookExA
+  USER32                   10023188 DefWindowProcA
+  USER32                   1002318C SetWindowPos
+  USER32                   10023190 EndDialog
+  USER32                   10023194 GetActiveWindow
+  USER32                   10023198 ScreenToClient
+  USER32                   1002319C MessageBoxExA
+  USER32                   100231A0 CreateDialogParamA
+  USER32                   100231A4 DestroyWindow
+  USER32                   100231A8 SendMessageA
+  USER32                   100231AC ShowWindow
+  GDI32                    10023024 GetObjectA
+  GDI32                    10023028 CreateCompatibleDC
+  GDI32                    1002302C SelectObject
+  GDI32                    10023030 DeleteObject
+  GDI32                    10023034 DeleteDC
+  ole32                    10023254 CoCreateGuid
+  ole32                    10023258 StringFromGUID2
+  CRYPT32                  10023010 CertOpenStore
+  CRYPT32                  10023014 CertCreateCertificateContext
+  CRYPT32                  10023018 CertGetNameStringA
+  CRYPT32                  1002301C CertCloseStore
+  msvcrt                   100231B4 strtoul
+  msvcrt                   100231B8 atoi
+  msvcrt                   100231BC strncpy
+  msvcrt                   100231C0 _initterm
+  msvcrt                   100231C4 _adjust_fdiv
+  msvcrt                   100231C8 __dllonexit
+  msvcrt                   100231CC _onexit
+  msvcrt                   100231D0 _beginthread
+  msvcrt                   100231D4 _endthread
+  msvcrt                   100231D8 strcat
+  msvcrt                   100231DC sprintf
+  msvcrt                   100231E0 ??2@YAPAXI@Z
+  msvcrt                   100231E4 fopen
+  msvcrt                   100231E8 fclose
+  msvcrt                   100231EC __CxxFrameHandler
+  msvcrt                   100231F0 strcmp
+  msvcrt                   100231F4 strstr
+  msvcrt                   100231F8 strcpy
+  msvcrt                   100231FC memcmp
+  msvcrt                   10023200 memmove
+  msvcrt                   10023204 strlen
+  msvcrt                   10023208 ??3@YAXPAX@Z
+  msvcrt                   1002320C malloc
+  msvcrt                   10023210 realloc
+  msvcrt                   10023214 free
+  msvcrt                   10023218 memset
+  msvcrt                   1002321C time
+  msvcrt                   10023220 srand
+  msvcrt                   10023224 rand
+  msvcrt                   10023228 memcpy
+  msvcrt                   1002322C _access
+  msvcrt                   10023230 isxdigit
+  msvcrt                   10023234 strncmp
+  msvcrt                   10023238 abs
+  msvcrt                   1002323C _strupr
+  msvcrt                   10023240 strtol
+  msvcrt                   10023244 vfprintf
+  msvcrt                   10023248 fprintf
+  msvcrt                   1002324C _purecall
+  MSIMG32                  1002310C TransparentBlt
+  SETUPAPI                 10023114 SetupDiGetDeviceInterfaceDetailA
+  SETUPAPI                 10023118 SetupDiGetClassDevsA
+  SETUPAPI                 1002311C SetupDiEnumDeviceInterfaces
+  SETUPAPI                 10023120 SetupDiDestroyDeviceInfoList
+  HID                      1002303C HidD_GetAttributes
+  HID                      10023040 HidD_SetFeature
+  HID                      10023044 HidP_GetCaps
+  HID                      10023048 HidD_GetPreparsedData
+  HID                      1002304C HidD_GetFeature
+  ADVAPI32                 10023000 ConvertStringSecurityDescriptorToSecurityDescriptorW
+  ADVAPI32                 10023004 GetSecurityDescriptorSacl
+  ADVAPI32                 10023008 SetSecurityInfo
+
+=== EXPORTS ===
+ord=2      ea=100076DD name=CPAcquireContext
+ord=3      ea=10007BCB name=CPCreateHash
+ord=4      ea=10008A56 name=CPDestroyHash
+ord=5      ea=10008B02 name=CPDestroyKey
+ord=6      ea=10008BAE name=CPDuplicateHash
+ord=7      ea=10008E78 name=CPDuplicateKey
+ord=8      ea=10008FEA name=CPEncrypt
+ord=9      ea=10009649 name=CPDecrypt
+ord=10     ea=10009C1A name=CPExportKey
+ord=11     ea=1000A12B name=CPImportKey
+ord=12     ea=1000A5D0 name=CPGenKey
+ord=13     ea=1000AA78 name=CPGenRandom
+ord=14     ea=1000AB32 name=CPGetHashParam
+ord=15     ea=1000ADD5 name=CPSetKeyParam
+ord=16     ea=1000B109 name=CPGetKeyParam
+ord=17     ea=1000B63E name=CPGetProvParam
+ord=18     ea=1000BFBB name=CPDeriveKey
+ord=19     ea=1000C429 name=CPGetUserKey
+ord=20     ea=1000C691 name=CPHashData
+ord=21     ea=1000C7C1 name=CPHashSessionKey
+ord=22     ea=1000C90F name=CPReleaseContext
+ord=23     ea=1000C9A2 name=CPSetHashParam
+ord=24     ea=1000CC44 name=CPSetProvParam
+ord=25     ea=1000CE08 name=CPSignHash
+ord=26     ea=1000D7E7 name=CPVerifySignature
+ord=27     ea=1000DC0C name=GetCspName
+ord=268534737 ea=100183D1 name=DllEntryPoint
+
+=== NAMED FUNCTIONS (interesting) ===
+1000D7E7  CPVerifySignature
+10023010  CertOpenStore
+1002301C  CertCloseStore
+10023070  OpenEventA
+10023080  CloseHandle
+10023098  DeviceIoControl
+100230C0  OpenFileMappingA
+10023100  InitializeCriticalSection
+10023114  SetupDiGetDeviceInterfaceDetailA
+1002311C  SetupDiEnumDeviceInterfaces
+10023120  SetupDiDestroyDeviceInfoList
+1002312C  SendDlgItemMessageA
+100231A8  SendMessageA
+1002FDB0  Format
+100302FC  aVerifypinDialo
+1003033C  aBspVerifypinEr
+10030370  aBspVerifypinAg
+10030C68  aThidtspEnumdev
+10030C80  aThidtspOpendev_0
+10030CD0  aThidtspOpendev
+10030CE8  aThidtspClosede_0
+10030D00  aThidtspClosede
+10030E48  aCtspbotEnumdev
+10030E60  aCtspbotOpendev_0
+10030E9C  aCtspbotOpendev
+10030EB4  aTbotutspClosed_0
+10030ECC  aTbotutspClosed
+10030EE4  aSendcmdBotuRea
+10030F04  aSendcmdBotuWri
+10030F28  aDeviceiocontro_2
+10030F4C  aDeviceiocontro_1
+10030F78  aDeviceiocontro_0
+10031004  aDeviceiocontro
+
+=== KEYWORD HITS ===
+
+#### keyword: 80F2030001
+   raw hits: 1
+   hit @10030BD8 (utf16=False) -> 80F2030001
+      data xrefs: 1001FE5E
+
+======================================================================
+### FUNC @1001FDDE  (refs string 80F2030001)
+======================================================================
+int __thiscall sub_1001FDDE(void *this, int a2)
+{
+  int result; // eax
+  size_t v3; // eax
+  size_t v4; // [esp-1Ch] [ebp-ABCh]
+  char Buffer[1021]; // [esp+Ch] [ebp-A94h] BYREF
+  __int16 v6; // [esp+409h] [ebp-697h]
+  char v7; // [esp+40Bh] [ebp-695h]
+  char Str[1021]; // [esp+40Ch] [ebp-694h] BYREF
+  __int16 v9; // [esp+809h] [ebp-297h]
+  char v10; // [esp+80Bh] [ebp-295h]
+  char v11[509]; // [esp+80Ch] [ebp-294h] BYREF
+  __int16 v12; // [esp+A09h] [ebp-97h]
+  char v13; // [esp+A0Bh] [ebp-95h]
+  int v14[32]; // [esp+A0Ch] [ebp-94h] BYREF
+  int v15; // [esp+A8Ch] [ebp-14h] BYREF
+  size_t v16; // [esp+A90h] [ebp-10h] BYREF
+  size_t Size; // [esp+A94h] [ebp-Ch] BYREF
+  void *v18; // [esp+A98h] [ebp-8h]
+  int v19; // [esp+A9Ch] [ebp-4h] BYREF
+
+  v18 = this;
+  memset(Str, 0, sizeof(Str));
+  v9 = 0;
+  v10 = 0;
+  memset(v14, 0, sizeof(v14));
+  memset(v11, 0, sizeof(v11));
+  v12 = 0;
+  v13 = 0;
+  memset(Buffer, 0, sizeof(Buffer));
+  v6 = 0;
+  v7 = 0;
+  v19 = 0;
+  Size = 16;
+  v16 = 512;
+  v15 = 0;
+  sub_1001FA64(this, a2, a80f2030001, Str, &v19);
+  if ( v19 == 36864 )
+  {
+    if ( Str[1] != 49 )
+      goto LABEL_19;
+  }
+  else if ( v19 == 27904 )
+  {
+    goto LABEL_9;
+  }
+  sub_1001FA64(v18, a2, a80f4020000, Str, &v19);
+  if ( v19 != 36864 )
+  {
+    if ( v19 != 27904 )
+      goto LABEL_10;
+LABEL_9:
+    *(_DWORD *)(a2 + 268) = 0;
+    return 0;
+  }
+  if ( sub_10020376(a2 + 8, 0, &v15, 0) )
+  {
+    *(_DWORD *)(a2 + 268) = 2;
+    return 2;
+  }
+LABEL_10:
+  sub_1001FA64(v18, a2, a80f4000087, Str, &v19);
+  if ( v19 != 36864 )
+  {
+    if ( v19 != 27266 )
+      goto LABEL_19;
+    sub_1001FA64(v18, a2, a80f6000000, Str, &v19);
+    if ( v19 != 36864 )
+      goto LABEL_19;
+    v3 = strlen(Str);
+    memset(Str, 0, v3);
+    sub_1001FA64(v18, a2, a80f4000087, Str, &v19);
+    if ( v19 != 36864 )
+      goto LABEL_19;
+  }
+  sub_10020747((int)v14, (__time32_t)&Size);
+  if ( sub_100207BB(Str, 1024, v14, Size, v11, &v16) )
+  {
+    sprintf(Buffer, "80F40100%02X%s", v16, v11);
+    sub_1001FA64(v18, a2, Buffer, Str, &v19);
+    if ( v19 == 36864 )
+    {
+      sub_100200EC(a2 + 8, (int)v14, (HANDLE)Size, 0);
+      sub_100205A6((HANDLE)(a2 + 8), 1);
+      v4 = Size;
+      *(_DWORD *)(a2 + 268) = 2;
+      memset(v14, 0, v4);
+      memset(v11, 0, v16);
+      return 2;
+    }
+  }
+  memset(v14, 0, Size);
+  memset(v11, 0, v16);
+LABEL_19:
+  result = 1;
+  *(_DWORD *)(a2 + 268) = 1;
+  return result;
+}
+
+
+#### keyword: 80F4020000
+   raw hits: 1
+   hit @10030BCC (utf16=False) -> 80F4020000
+      data xrefs: 1001FEA9
+      (func 1001FDDE already dumped)
+
+#### keyword: 80F4000087
+   raw hits: 1
+   hit @10030BC0 (utf16=False) -> 80F4000087
+      data xrefs: 1001FF01, 1001FF6B
+      (func 1001FDDE already dumped)
+      (func 1001FDDE already dumped)
+
+#### keyword: 80F40100%02X%s
+   raw hits: 1
+   hit @10030BA4 (utf16=False) -> 80F40100%02X%s
+      data xrefs: 1001FFD0
+      (func 1001FDDE already dumped)
+
+#### keyword: *********MSP::XSendAPDU Decrypt error*********
+   raw hits: 1
+   hit @10030B04 (utf16=False) -> *********MSP::XSendAPDU Decrypt error*********
+      data xrefs: 1001FD09
+
+======================================================================
+### FUNC @1001FA64  (refs string *********MSP::XSendAPDU Decrypt error*********)
+======================================================================
+int __stdcall sub_1001FA64(int *a1, char *Str, char *a3, int *a4)
+{
+  int v4; // edi
+  int v6; // edi
+  size_t v7; // eax
+  int v8; // eax
+  int v9; // edi
+  size_t v10; // edi
+  unsigned __int16 v11; // ax
+  size_t v12; // edi
+  unsigned __int16 v13; // ax
+  char v14; // [esp+0h] [ebp-860h]
+  char v15[2]; // [esp+Ah] [ebp-856h] BYREF
+  char v16[1021]; // [esp+Ch] [ebp-854h] BYREF
+  __int16 v17; // [esp+409h] [ebp-457h]
+  char v18; // [esp+40Bh] [ebp-455h]
+  char Destination[1021]; // [esp+40Ch] [ebp-454h] BYREF
+  __int16 v20; // [esp+809h] [ebp-57h]
+  char v21; // [esp+80Bh] [ebp-55h]
+  char String[61]; // [esp+80Ch] [ebp-54h] BYREF
+  __int16 v23; // [esp+849h] [ebp-17h]
+  char v24; // [esp+84Bh] [ebp-15h]
+  int v25; // [esp+84Ch] [ebp-14h] BYREF
+  size_t v26; // [esp+850h] [ebp-10h] BYREF
+  size_t Size; // [esp+854h] [ebp-Ch]
+  int v28; // [esp+858h] [ebp-8h] BYREF
+  char v29[2]; // [esp+85Eh] [ebp-2h] BYREF
+  char *Stra; // [esp+86Ch] [ebp+Ch]
+
+  memset(String, 0, sizeof(String));
+  v23 = 0;
+  v24 = 0;
+  memset(v16, 0, sizeof(v16));
+  v17 = 0;
+  v18 = 0;
+  memset(Destination, 0, sizeof(Destination));
+  v20 = 0;
+  v25 = 64;
+  v26 = 1024;
+  v21 = 0;
+  v28 = 1024;
+  Size = strlen(Str);
+  v29[0] = 0;
+  v29[1] = 0;
+  if ( a1 && Str && a3 && a4 )
+  {
+    sub_1001ED5D(1, aMspXsendapduSz, (char)Str);
+    if ( a1[67] != 2 || !sub_10020376(a1 + 2, String, &v25, 0) )
+    {
+      v4 = sub_10021532(*a1, Str, a3, a4);
+      sub_1001ED5D(1, aSzreplySReturn, (char)a3);
+      if ( v4 < 0 )
+        *a4 = 0;
+      return v4;
+    }
+    qmemcpy(v16, "01", 2);
+    v29[1] = (int)Size / 2;
+    v29[0] = (unsigned __int16)((int)Size / 2) >> 8;
+    sub_1001EB6C(Destination, v29, 2);
+    memcpy(&Destination[4], Str, Size);
+    sub_1001EC96(Destination, String, 1, &v16[2], (int)&v26);
+    memset(Destination, 0, Size + 4);
+    v4 = sub_10021532(*a1, v16, Destination, a4);
+    if ( v4 < 7 )
+    {
+      sub_1001ED5D(1, aSzreplySReturn, (char)a3);
+      return v4;
+    }
+    memset(v16, 0, v26);
+    v6 = 2 * v4;
+    memcpy(v16, &Destination[2], v6 - 1);
+    v29[0] = BYTE1(*a4);
+    v29[1] = *(_BYTE *)a4;
+    sub_1001EB6C(&v15[v6], v29, 2);
+    v7 = strlen(Destination);
+    memset(Destination, 0, v7);
+    sub_1001EC96(v16, String, 0, Destination, (int)&v28);
+    memset(v29, 0, sizeof(v29));
+    sub_1001EB09(v29, Destination, 4);
+    v8 = strncmp(Str, a00000000, 8u);
+    if ( v8 )
+    {
+      LOBYTE(v11) = 0;
+      HIBYTE(v11) = v29[0];
+      v9 = ((unsigned __int8)v29[1] | v11) - 2;
+      Stra = (char *)v9;
+      if ( v9 <= (int)(((unsigned int)v28 >> 1) - 2) )
+      {
+        v12 = 2 * v9;
+        memcpy(a3, &Destination[4], v12);
+        a3[v12] = 0;
+        memset(v29, 0, sizeof(v29));
+        sub_1001EB09(v29, &Destination[v12 + 4], 4);
+        LOBYTE(v13) = 0;
+        HIBYTE(v13) = v29[0];
+        *a4 = (unsigned __int8)v29[1] | v13;
+        sub_1001ED5D(1, aSzreplySReturn, (char)a3);
+        return (int)Stra;
+      }
+    }
+    else
+    {
+      BYTE1(v8) = v29[0];
+      v9 = (unsigned __int8)v29[1] | (unsigned __int16)v8;
+      Stra = (char *)v9;
+      if ( v9 <= (int)(((unsigned int)v28 >> 1) - 2) )
+      {
+        v10 = 2 * v9;
+        memcpy(a3, &Destination[4], v10);
+        a3[v10] = 0;
+        *a4 = 36864;
+        sub_1001ED5D(1, aSzreplySReturn, (char)a3);
+        return (int)Stra;
+      }
+    }
+    sub_1001ED5D(1, aMspXsendapduDe, v14);
+    sub_1001ED5D(1, aIretXSzbufSUlb, v9);
+    return -1;
+  }
+  return -2147483634;
+}
+
+
+#### keyword: KRSACalPress
+   raw hits: 3
+   hit @10030204 (utf16=False) -> KRSACalPress Out
+      data xrefs: 10015E44
+
+======================================================================
+### FUNC @10015ADD  (refs string KRSACalPress)
+======================================================================
+int __cdecl sub_10015ADD(int a1, void *Src, void *a3, LPARAM a4, int a5)
+{
+  void *v6; // ebx
+  int result; // eax
+  int v8; // eax
+  int v9; // eax
+  int v10; // edi
+  int v11; // eax
+  int v12; // edi
+  int v13; // eax
+  size_t v14; // esi
+  char v15; // [esp+0h] [ebp-1064h]
+  char v16; // [esp+0h] [ebp-1064h]
+  LPARAM dwInitParam[530]; // [esp+Ch] [ebp-1058h] BYREF
+  char v18; // [esp+854h] [ebp-810h]
+  HINSTANCE v19; // [esp+858h] [ebp-80Ch]
+  char v20; // [esp+85Ch] [ebp-808h]
+  char v21[1021]; // [esp+860h] [ebp-804h] BYREF
+  __int16 v22; // [esp+C5Dh] [ebp-407h]
+  char v23; // [esp+C5Fh] [ebp-405h]
+  CHAR Buffer[1021]; // [esp+C60h] [ebp-404h] BYREF
+  __int16 v25; // [esp+105Dh] [ebp-7h]
+  char v26; // [esp+105Fh] [ebp-5h]
+  size_t Size; // [esp+1060h] [ebp-4h]
+  int v28; // [esp+106Ch] [ebp+8h]
+
+  sub_1001ED5D(49, aKrsacalpressIn, v15);
+  v6 = 0;
+  if ( !a1 )
+    return -8;
+  memset(v21, 0, sizeof(v21));
+  Size = 0;
+  v22 = 0;
+  v23 = 0;
+  v28 = 0;
+  if ( !(_BYTE)a5 && *(_BYTE *)(a1 + 12) )
+    sub_10011CFE();
+  result = sub_100175B3(*(_DWORD *)(a1 + 4));
+  if ( !result )
+  {
+    v8 = sub_10015E85(*(_DWORD *)(a1 + 4));
+    if ( a4 == 1 || v8 == 1 || !*(_BYTE *)(a1 + 12) )
+    {
+      v9 = *(_DWORD *)a1;
+      if ( *(_DWORD *)a1 == 1 || v9 == 41984 || v9 == 2 || v9 == 9216 )
+        v10 = sub_10013426(a1) / 8;
+      else
+        v10 = a5;
+      v6 = operator new(v10);
+      memset(v6, 0, v10);
+      Size = v10;
+      memcpy(v6, Src, v10);
+      sub_1001EAD3(v6, v10);
+    }
+    sub_1001265E(dwInitParam);
+    memset(Buffer, 0, sizeof(Buffer));
+    v25 = 0;
+    v26 = 0;
+    dwInitParam[529] = a4;
+    v18 = *(_BYTE *)(a1 + 12);
+    v19 = hInstance;
+    v11 = sub_1001347E(a1);
+    if ( v11 < 0 )
+    {
+      if ( v6 )
+        operator delete(v6);
+      return -1;
+    }
+    if ( v11 == 2 )
+      v20 = 1;
+    v12 = sub_10012697((int)hModule, a1, v6, Size);
+    if ( v6 )
+      operator delete(v6);
+    if ( v12 == -1 )
+      return -1;
+    v13 = sub_10012A56((LPARAM)dwInitParam);
+    if ( v13 )
+    {
+      switch ( v13 )
+      {
+        case 37634:
+          LoadStringA(hInstance, 0xBE5u, Buffer, 1024);
+          sub_10017D2E(*(_DWORD *)(a1 + 4), Buffer, 4);
+          sub_1001ED5D(49, aErrorKrsacalpr, v16);
+          v28 = -17;
+          break;
+        case 25219:
+          LoadStringA(hInstance, 0xBE6u, Buffer, 1024);
+          sub_10017D2E(*(_DWORD *)(a1 + 4), Buffer, 4);
+          sub_1001ED5D(49, aErrorKrsacalpr, v16);
+          v28 = -15;
+          break;
+        case 27013:
+          LoadStringA(hInstance, 0xBE5u, Buffer, 1024);
+          sub_10017D2E(*(_DWORD *)(a1 + 4), Buffer, 4);
+          sub_1001ED5D(49, aErrorKrsacalpr, v16);
+          v28 = -16;
+          break;
+        default:
+          LoadStringA(hInstance, 0xBE5u, Buffer, 1024);
+          sub_10017D2E(*(_DWORD *)(a1 + 4), Buffer, 4);
+          sub_1001ED5D(49, aErrorKrsacalpr, v16);
+          v28 = -1;
+          break;
+      }
+    }
+    else
+    {
+      LoadStringA(hInstance, 0xBE4u, Buffer, 1024);
+      sub_10017D2E(*(_DWORD *)(a1 + 4), Buffer, 4);
+      v14 = sub_10012C42(v21);
+      if ( v20 )
+      {
+        sub_1001EAD3(v21, 32);
+        sub_1001EAD3(&v21[32], 32);
+        if ( v14 == 128 )
+        {
+          sub_1001EAD3(&v21[64], 32);
+          sub_1001EAD3(&v21[96], 32);
+        }
+      }
+      else
+      {
+        sub_1001EAD3(v21, v14);
+      }
+      memcpy(a3, v21, v14);
+    }
+    sub_1001ED5D(49, aKrsacalpressOu, v16);
+    return v28;
+  }
+  return result;
+}
+
+   hit @10030221 (utf16=False) -> KRSACalPress
+      data xrefs: 
+   hit @10030230 (utf16=False) -> KRSACalPress In
+      data xrefs: 10015AED
+      (func 10015ADD already dumped)
+
+#### keyword: rsaenh.cpp
+   raw hits: 1
+   hit @1002EB6C (utf16=False) -> rsaenh.cpp
+      data xrefs: 

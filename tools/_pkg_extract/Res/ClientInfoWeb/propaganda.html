@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<title></title>
+        <style>
+        div{font-family:"微软雅黑", "宋体", Helvetica, Arial;}
+        </style>
+		<link rel="stylesheet" type="text/css" href="css/propaganda.css"/>
+        <script language="javascript">
+            //当拖拽图片时发生，设置图片不支持拖拽
+            function imgdragstart() {
+                return false;
+            }
+        </script>
+	</head>
+	<body onSelectStart="return false">
+		<div class="cont">
+			<div class="left_cont">
+				<div class="lc_title">安信桥</div>
+				<div class="lc_text">安信桥，东北首家一站式企业服务平台，专注为中小型企业提供在线服务，设计工商代办、代理记账、法律咨询、财税服务等业态；以电子凭证、电子合同为特色，整合区域内企业服务市场资源，打造线上线下相结合的企业服务平台，助力创业者实现创业梦想!
+				</div>
+				<a href="http://www.anxinq.com">点击查看更多></a>
+			</div>
+			<div class="right_cont"><img src="images/propaganda_01.png" alt="" /></div>
+		</div>
+        <script>
+            for (i in document.images)
+                document.images[i].ondragstart = imgdragstart;
+        </script>
+	</body>
+</html>

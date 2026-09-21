@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<style>
+
+img{border:none;}
+body { padding:0; margin:0; background:#ffffff; border:0;width:700px;height:160px;}
+a{text-decoration:none;line-height:27.6px;}
+ul,li{margin:0;padding:0; list-style:none;}
+.clear{clear:both;}
+
+.wrap{margin:0 auto;width:804px;font-size:14px; font-family:"微软雅黑", "幼圆", Arial, Harrington;line-height:27.6px;background:url(images/faq_answer_bg.png) no-repeat bottom right;}
+
+
+
+</style>
+<script language="javascript">
+    //当拖拽图片时发生，设置图片不支持拖拽
+    function imgdragstart() {
+        return false;
+    }
+</script>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body onSelectStart="return false">
+<div class="wrap" >
+	<br>
+	<ul>
+		<li>问题：用户在进行网页申报时，输入纳税人识别号和纳税人密码后，以及证书的密码后，出现以下错误提示：</li><br>
+		<li><img src="images/FAQ10_1.png"  style="margin-left:57.5px;"></li>
+		<li>解决办法：是因为用户输入的网站的纳税人密码不正确。输入正确的口令就可解决。</li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果忘记网站的纳税人密码，需要联系地税局解决。</li>
+		
+		
+	</ul>
+<div class="clear"></div>
+</div>
+<script>
+    for (i in document.images)
+        document.images[i].ondragstart = imgdragstart;
+</script>
+</body>
+</html>

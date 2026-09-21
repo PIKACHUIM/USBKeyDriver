@@ -1,0 +1,125 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; rva=0xB020 len=0x150 file_off=0xA420
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+1000b020 <.text+0xa020>:
+1000b020:	55                   	push   ebp
+1000b021:	8b 6c 24 08          	mov    ebp,DWORD PTR [esp+0x8]
+1000b025:	57                   	push   edi
+1000b026:	85 f6                	test   esi,esi
+1000b028:	74 68                	je     0x1000b092
+1000b02a:	8d 44 24 0c          	lea    eax,[esp+0xc]
+1000b02e:	50                   	push   eax
+1000b02f:	8d 7e 04             	lea    edi,[esi+0x4]
+1000b032:	57                   	push   edi
+1000b033:	56                   	push   esi
+1000b034:	55                   	push   ebp
+1000b035:	8b c3                	mov    eax,ebx
+1000b037:	e8 14 fa ff ff       	call   0x1000aa50
+1000b03c:	85 c0                	test   eax,eax
+1000b03e:	75 54                	jne    0x1000b094
+1000b040:	8b 0e                	mov    ecx,DWORD PTR [esi]
+1000b042:	b8 01 00 00 00       	mov    eax,0x1
+1000b047:	3b 0f                	cmp    ecx,DWORD PTR [edi]
+1000b049:	73 1d                	jae    0x1000b068
+1000b04b:	88 46 08             	mov    BYTE PTR [esi+0x8],al
+1000b04e:	3b e8                	cmp    ebp,eax
+1000b050:	75 0c                	jne    0x1000b05e
+1000b052:	81 8b a4 01 00 00 00 	or     DWORD PTR [ebx+0x1a4],0x10000
+1000b059:	00 01 00 
+1000b05c:	eb 0a                	jmp    0x1000b068
+1000b05e:	81 8b a4 01 00 00 00 	or     DWORD PTR [ebx+0x1a4],0x100000
+1000b065:	00 10 00 
+1000b068:	39 06                	cmp    DWORD PTR [esi],eax
+1000b06a:	75 0d                	jne    0x1000b079
+1000b06c:	88 46 09             	mov    BYTE PTR [esi+0x9],al
+1000b06f:	81 8b a4 01 00 00 00 	or     DWORD PTR [ebx+0x1a4],0x20000
+1000b076:	00 02 00 
+1000b079:	83 3e 00             	cmp    DWORD PTR [esi],0x0
+1000b07c:	75 0d                	jne    0x1000b08b
+1000b07e:	88 46 0a             	mov    BYTE PTR [esi+0xa],al
+1000b081:	81 8b a4 01 00 00 00 	or     DWORD PTR [ebx+0x1a4],0x40000
+1000b088:	00 04 00 
+1000b08b:	8a 54 24 0c          	mov    dl,BYTE PTR [esp+0xc]
+1000b08f:	88 56 0b             	mov    BYTE PTR [esi+0xb],dl
+1000b092:	33 c0                	xor    eax,eax
+1000b094:	5f                   	pop    edi
+1000b095:	5d                   	pop    ebp
+1000b096:	c2 04 00             	ret    0x4
+1000b099:	cc                   	int3
+1000b09a:	cc                   	int3
+1000b09b:	cc                   	int3
+1000b09c:	cc                   	int3
+1000b09d:	cc                   	int3
+1000b09e:	cc                   	int3
+1000b09f:	cc                   	int3
+1000b0a0:	55                   	push   ebp
+1000b0a1:	8b 6c 24 0c          	mov    ebp,DWORD PTR [esp+0xc]
+1000b0a5:	56                   	push   esi
+1000b0a6:	8b f0                	mov    esi,eax
+1000b0a8:	57                   	push   edi
+1000b0a9:	8d be a0 02 00 00    	lea    edi,[esi+0x2a0]
+1000b0af:	e8 ac 45 00 00       	call   0x1000f660
+1000b0b4:	84 c0                	test   al,al
+1000b0b6:	74 27                	je     0x1000b0df
+1000b0b8:	8d be 64 02 00 00    	lea    edi,[esi+0x264]
+1000b0be:	e8 9d 3d 00 00       	call   0x1000ee60
+1000b0c3:	c6 86 7d 02 00 00 00 	mov    BYTE PTR [esi+0x27d],0x0
+1000b0ca:	c6 86 7c 02 00 00 00 	mov    BYTE PTR [esi+0x27c],0x0
+1000b0d1:	c6 86 7e 02 00 00 00 	mov    BYTE PTR [esi+0x27e],0x0
+1000b0d8:	c6 86 7f 02 00 00 00 	mov    BYTE PTR [esi+0x27f],0x0
+1000b0df:	33 c0                	xor    eax,eax
+1000b0e1:	85 ed                	test   ebp,ebp
+1000b0e3:	76 18                	jbe    0x1000b0fd
+1000b0e5:	8b 54 24 10          	mov    edx,DWORD PTR [esp+0x10]
+1000b0e9:	8b ca                	mov    ecx,edx
+1000b0eb:	eb 03                	jmp    0x1000b0f0
+1000b0ed:	8d 49 00             	lea    ecx,[ecx+0x0]
+1000b0f0:	83 39 00             	cmp    DWORD PTR [ecx],0x0
+1000b0f3:	74 17                	je     0x1000b10c
+1000b0f5:	40                   	inc    eax
+1000b0f6:	83 c1 0c             	add    ecx,0xc
+1000b0f9:	3b c5                	cmp    eax,ebp
+1000b0fb:	72 f3                	jb     0x1000b0f0
+1000b0fd:	8b c6                	mov    eax,esi
+1000b0ff:	e8 8c 00 00 00       	call   0x1000b190
+1000b104:	33 c0                	xor    eax,eax
+1000b106:	5f                   	pop    edi
+1000b107:	5e                   	pop    esi
+1000b108:	5d                   	pop    ebp
+1000b109:	c2 08 00             	ret    0x8
+1000b10c:	8d 04 40             	lea    eax,[eax+eax*2]
+1000b10f:	83 7c 82 08 04       	cmp    DWORD PTR [edx+eax*4+0x8],0x4
+1000b114:	8d 04 82             	lea    eax,[edx+eax*4]
+1000b117:	75 e4                	jne    0x1000b0fd
+1000b119:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+1000b11c:	8b 01                	mov    eax,DWORD PTR [ecx]
+1000b11e:	85 c0                	test   eax,eax
+1000b120:	74 14                	je     0x1000b136
+1000b122:	76 d9                	jbe    0x1000b0fd
+1000b124:	83 f8 03             	cmp    eax,0x3
+1000b127:	77 d4                	ja     0x1000b0fd
+1000b129:	e8 d2 09 00 00       	call   0x1000bb00
+1000b12e:	33 c0                	xor    eax,eax
+1000b130:	5f                   	pop    edi
+1000b131:	5e                   	pop    esi
+1000b132:	5d                   	pop    ebp
+1000b133:	c2 08 00             	ret    0x8
+1000b136:	80 be 7c 02 00 00 00 	cmp    BYTE PTR [esi+0x27c],0x0
+1000b13d:	75 18                	jne    0x1000b157
+1000b13f:	68 cc 8e 05 10       	push   0x10058ecc
+1000b144:	8d 96 80 02 00 00    	lea    edx,[esi+0x280]
+1000b14a:	52                   	push   edx
+1000b14b:	e8 20 2d 00 00       	call   0x1000de70
+1000b150:	c6 86 7c 02 00 00 01 	mov    BYTE PTR [esi+0x27c],0x1
+1000b157:	80 be 7d 02 00 00 00 	cmp    BYTE PTR [esi+0x27d],0x0
+1000b15e:	75 21                	jne    0x1000b181
+1000b160:	83 be 4c 02 00 00 01 	cmp    DWORD PTR [esi+0x24c],0x1
+1000b167:	75 18                	jne    0x1000b181
+1000b169:	68 d4 8e 05 10       	push   0x10058ed4
+1000b16e:	8d                   	.byte 0x8d
+1000b16f:	86                   	.byte 0x86

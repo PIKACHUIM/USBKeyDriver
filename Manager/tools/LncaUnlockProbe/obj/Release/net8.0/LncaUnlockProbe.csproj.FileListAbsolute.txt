@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\bin\Release\net8.0\LncaUnlockProbe.exe
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\bin\Release\net8.0\LncaUnlockProbe.deps.json
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\bin\Release\net8.0\LncaUnlockProbe.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\bin\Release\net8.0\LncaUnlockProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\bin\Release\net8.0\LncaUnlockProbe.pdb
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\refint\LncaUnlockProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.pdb
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\LncaUnlockProbe.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\tools\LncaUnlockProbe\obj\Release\net8.0\ref\LncaUnlockProbe.dll

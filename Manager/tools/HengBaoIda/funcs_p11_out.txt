@@ -1,0 +1,682 @@
+analysis done
+
+==========================================================================
+### 10012570 EnumSlots  func=10012570-100125E3
+==========================================================================
+int __cdecl sub_10012570(const char **a1, int *a2)
+{
+  const char **v2; // esi
+  int v3; // ebp
+  const char *v4; // edx
+  int v5; // ebx
+  int result; // eax
+  int v7; // [esp+8h] [ebp-4h] BYREF
+
+  v7 = 0;
+  sub_1002156A(&unk_1003DFA8, &v7);
+  v2 = a1;
+  if ( a1 )
+  {
+    v3 = v7;
+    v4 = (const char *)&unk_1003DFA8;
+    if ( v7 )
+    {
+      v5 = v7;
+      do
+      {
+        result = 0;
+        *v2++ = v4;
+        --v5;
+        v4 += strlen(v4) + 1;
+      }
+      while ( v5 );
+      *a2 = v3;
+    }
+    else
+    {
+      result = 0;
+      *a2 = 0;
+    }
+  }
+  else
+  {
+    *a2 = v7;
+    return 0;
+  }
+  return result;
+}
+
+
+==========================================================================
+### 10012610 OpenDeviceBySlotName  func=10012610-1001262A
+==========================================================================
+int __cdecl sub_10012610(char *Str, int a2)
+{
+  if ( Str )
+    return sub_1002161D(Str, a2);
+  else
+    return -255;
+}
+
+
+==========================================================================
+### 10012640 CloseDeviceHandle  func=10012640-10012679
+==========================================================================
+int __cdecl sub_10012640(void *a1)
+{
+  sub_10001244(aDCvsrootUranus_0, 85, aKclosedeviceIn);
+  if ( a1 )
+    sub_10021817(a1);
+  sub_10001244(aDCvsrootUranus_0, 90, aKclosedeviceOu);
+  return 0;
+}
+
+
+==========================================================================
+### 10012690 GetTokenLabelAndSerial  func=10012690-10012719
+==========================================================================
+int __cdecl sub_10012690(int a1, char *a2, char *a3)
+{
+  int result; // eax
+  char Destination[192]; // [esp+0h] [ebp-14Ch] BYREF
+  char v5[140]; // [esp+C0h] [ebp-8Ch] BYREF
+
+  result = 0;
+  if ( a1 )
+  {
+    result = sub_10021833(a1, Destination);
+    if ( !result )
+    {
+      qmemcpy(a2, Destination, strlen(Destination));
+      qmemcpy(a3, v5, strlen(v5));
+      return 0;
+    }
+  }
+  return result;
+}
+
+
+==========================================================================
+### 10015130 FindCachedRecord  func=10015130-1001514C
+==========================================================================
+_DWORD *__cdecl sub_10015130(int a1)
+{
+  _DWORD *v1; // ecx
+  _DWORD *result; // eax
+
+  v1 = dword_10047BC0;
+  while ( 1 )
+  {
+    v1 = (_DWORD *)v1[1];
+    if ( !v1 )
+      break;
+    result = (_DWORD *)*v1;
+    if ( *(_DWORD *)*v1 == a1 )
+      return result;
+  }
+  return 0;
+}
+
+
+==========================================================================
+### 10016DB0 EnumTokenObjects  func=10016DB0-10016EDC
+==========================================================================
+int __cdecl sub_10016DB0(int a1, int a2)
+{
+  int v2; // ebp
+  int v3; // edi
+  int result; // eax
+  _BYTE *v5; // esi
+  int v6; // edx
+  _BYTE *v7; // esi
+  int v8; // edx
+
+  v2 = a1;
+  v3 = a2;
+  sub_10001532(a1, a2);
+  result = sub_10001618(v2, &a1, &a2);
+  if ( !result )
+  {
+    while ( a2 )
+    {
+      v5 = operator new(0x914u);
+      *(_DWORD *)v5 = 1;
+      v5[1272] = 1;
+      v6 = a1;
+      v5[2306] = 0;
+      *((_DWORD *)v5 + 1) = v6;
+      v5[2320] = 0;
+      *((_DWORD *)v5 + 579) = 0;
+      *((_WORD *)v5 + 1023) = 0;
+      *((_WORD *)v5 + 894) = 0;
+      *((_WORD *)v5 + 765) = 0;
+      *((_WORD *)v5 + 1152) = 0;
+      v5[2322] = 0;
+      v5[2321] = 0;
+      sub_100011A9(v5);
+      sub_10001352(v3, v5);
+    }
+    result = sub_1000134D(v2, &a1, &a2);
+    if ( !result )
+    {
+      while ( a2 )
+      {
+        v7 = operator new(0x914u);
+        *(_DWORD *)v7 = 0;
+        v7[1272] = 1;
+        v8 = a1;
+        v7[2306] = 0;
+        *((_DWORD *)v7 + 1) = v8;
+        v7[2320] = 0;
+        *((_DWORD *)v7 + 579) = 0;
+        *((_WORD *)v7 + 1023) = 0;
+        *((_WORD *)v7 + 894) = 0;
+        *((_WORD *)v7 + 765) = 0;
+        *((_WORD *)v7 + 1152) = 0;
+        v7[2322] = 0;
+        v7[2321] = 0;
+        sub_100011A9(v7);
+        result = sub_10001352(v3, v7);
+      }
+    }
+  }
+  return result;
+}
+
+
+==========================================================================
+### 10013A00 DeviceVerifyPin  func=10013A00-10013A80
+==========================================================================
+int __cdecl sub_10013A00(HANDLE hMutex, int a2, int a3, int a4, unsigned int *a5)
+{
+  unsigned int v5; // eax
+
+  LOBYTE(a4) = a4 != 0;
+  v5 = (unsigned __int16)sub_100231A0(hMutex, 1, a4, a2, a3);
+  if ( v5 <= 0x63CF )
+  {
+    if ( v5 >= 0x63C1 )
+    {
+      *a5 = v5 & 0xF;
+      return -1;
+    }
+    if ( v5 )
+    {
+      if ( v5 != 25536 )
+        return -1;
+      goto LABEL_10;
+    }
+    goto LABEL_9;
+  }
+  if ( v5 == 27011 )
+  {
+LABEL_10:
+    *a5 = 0;
+    return -1;
+  }
+  if ( v5 == 36864 )
+  {
+LABEL_9:
+    dword_100461AC = 1;
+    return 0;
+  }
+  return -1;
+}
+
+
+==========================================================================
+### 10013AA0 DeviceChangePin  func=10013AA0-10013AD3
+==========================================================================
+int __cdecl sub_10013AA0(HANDLE hMutex, int a2, int a3, int a4, int a5, int a6)
+{
+  LOBYTE(a6) = a6 != 0;
+  return sub_1002338F(hMutex, 1, a6, a2, a3, a4, a5);
+}
+
+
+==========================================================================
+### 10017B50 GetObjAttribute  func=10017B50-1001819C
+==========================================================================
+char __cdecl sub_10017B50(unsigned int hMutex, int a2, unsigned int a3)
+{
+  unsigned int v3; // eax
+  int v4; // ebp
+  unsigned int v5; // eax
+  void *v6; // edi
+  void *v7; // edi
+  unsigned int v8; // eax
+  unsigned int v9; // ebp
+  char *v10; // edx
+  const char *v11; // esi
+  const char *v12; // edi
+  unsigned int v13; // ecx
+  void *v14; // edi
+  int v15; // eax
+  unsigned int v16; // ebp
+  void *v17; // edi
+  unsigned int v18; // ebp
+  void *v19; // edi
+  unsigned int v20; // eax
+  unsigned int v21; // ebp
+  void *v22; // edi
+  int v23; // eax
+  unsigned int v24; // ebp
+  _DWORD *v25; // eax
+  _DWORD *v26; // eax
+  _BYTE *v27; // eax
+  void *v28; // edi
+  unsigned int v29; // eax
+  unsigned int v30; // ebp
+  _DWORD *v31; // eax
+  unsigned int v32; // eax
+  unsigned int v33; // ecx
+  int *v34; // esi
+  _DWORD *v35; // ecx
+  unsigned int v37; // [esp+14h] [ebp-208h]
+  char v38[4]; // [esp+18h] [ebp-204h] BYREF
+  int v39[128]; // [esp+1Ch] [ebp-200h] BYREF
+
+  v3 = 0;
+  v37 = 0;
+  if ( !a3 )
+    return 1;
+  while ( 1 )
+  {
+    v4 = a2 + 12 * v3;
+    v5 = *(_DWORD *)v4;
+    if ( *(_DWORD *)v4 > 0x101u )
+    {
+      switch ( v5 )
+      {
+        case 0x102u:
+          if ( *(_WORD *)(hMutex + 1530) )
+          {
+            v28 = *(void **)(v4 + 4);
+            if ( v28 )
+            {
+              v29 = *(unsigned __int16 *)(hMutex + 1530);
+              if ( *(_DWORD *)(v4 + 8) > v29 )
+                *(_DWORD *)(v4 + 8) = v29;
+              v30 = *(_DWORD *)(v4 + 8);
+              if ( v30 )
+                qmemcpy(v28, (const void *)(hMutex + 1273), v30);
+            }
+            else
+            {
+              *(_DWORD *)(v4 + 8) = *(unsigned __int16 *)(hMutex + 1530);
+            }
+            goto LABEL_115;
+          }
+          v10 = *(char **)(v4 + 4);
+          v11 = (const char *)(hMutex + 1016);
+          v12 = (const char *)(hMutex + 1016);
+          if ( v10 )
+          {
+            if ( *(_DWORD *)(v4 + 8) > strlen(v12) + 1 )
+              *(_DWORD *)(v4 + 8) = strlen((const char *)(hMutex + 1016)) + 1;
+            goto LABEL_25;
+          }
+LABEL_20:
+          if ( !strlen(v12) )
+            goto LABEL_114;
+          v13 = strlen(v11) + 1;
+LABEL_22:
+          *(_DWORD *)(v4 + 8) = v13;
+          break;
+        case 0x120u:
+          if ( *(_DWORD *)hMutex != 3 && *(_DWORD *)hMutex != 2 )
+            goto LABEL_114;
+          if ( *(_DWORD *)(v4 + 4) )
+          {
+            v32 = *(_DWORD *)(hMutex + 948);
+            if ( *(_DWORD *)(v4 + 8) > v32 )
+              *(_DWORD *)(v4 + 8) = v32;
+            sub_10001307(hMutex, (int)v39);
+            v33 = *(_DWORD *)(v4 + 8);
+            v34 = v39;
+LABEL_113:
+            qmemcpy(*(void **)(v4 + 4), v34, v33);
+          }
+          else
+          {
+            *(_DWORD *)(v4 + 8) = *(_DWORD *)(hMutex + 948);
+          }
+          goto LABEL_115;
+        case 0x121u:
+          if ( *(_DWORD *)hMutex != 3 && *(_DWORD *)hMutex != 2 )
+            goto LABEL_114;
+          v35 = *(_DWORD **)(v4 + 4);
+          *(_DWORD *)(v4 + 8) = 4;
+          if ( v35 )
+            *v35 = 8 * *(_DWORD *)(hMutex + 944);
+          goto LABEL_115;
+        case 0x122u:
+          v13 = 3;
+          if ( *(_DWORD *)hMutex != 3 && *(_DWORD *)hMutex != 2 )
+            goto LABEL_114;
+          if ( !*(_DWORD *)(v4 + 4) )
+            goto LABEL_22;
+          if ( *(_DWORD *)(v4 + 8) > 3u )
+            *(_DWORD *)(v4 + 8) = 3;
+          sub_100013B1(hMutex, v38);
+          v33 = *(_DWORD *)(v4 + 8);
+          v34 = (int *)v38;
+          goto LABEL_113;
+        case 0x123u:
+        case 0x124u:
+        case 0x125u:
+        case 0x126u:
+        case 0x127u:
+        case 0x128u:
+          goto LABEL_115;
+        case 0x161u:
+          if ( *(_DWORD *)hMutex > 1u )
+            goto LABEL_114;
+          if ( *(_BYTE *)(hMutex + 2320) )
+            goto LABEL_93;
+          if ( !(unsigned __int8)sub_100013ED(hMutex) )
+            return 0;
+          if ( *(_BYTE *)(hMutex + 2320) )
+          {
+LABEL_93:
+            v31 = *(_DWORD **)(v4 + 4);
+            if ( !v31 )
+              *(_DWORD *)(v4 + 8) = 4;
+            *(_DWORD *)(v4 + 8) = 4;
+            *v31 = *(_DWORD *)(hMutex + 2316);
+          }
+          goto LABEL_115;
+        default:
+          goto LABEL_114;
+      }
+      goto LABEL_115;
+    }
+    if ( *(_DWORD *)v4 != 257 )
+    {
+      if ( v5 > 0x12 )
+      {
+        switch ( v5 )
+        {
+          case 0x80u:
+            if ( *(_DWORD *)hMutex != 1 )
+              goto LABEL_114;
+            v25 = *(_DWORD **)(v4 + 4);
+            *(_DWORD *)(v4 + 8) = 4;
+            if ( v25 )
+              *v25 = *(_DWORD *)(hMutex + 2308);
+            goto LABEL_115;
+          case 0x81u:
+            if ( *(_DWORD *)hMutex != 1 )
+              goto LABEL_114;
+            if ( *(_BYTE *)(hMutex + 2320) )
+              goto LABEL_67;
+            if ( !(unsigned __int8)sub_100013ED(hMutex) )
+              return 0;
+            if ( !*(_BYTE *)(hMutex + 2320) )
+              goto LABEL_114;
+LABEL_67:
+            sub_100012B7(*(_DWORD *)(hMutex + 2312), *(_DWORD *)(hMutex + 2316), *(_DWORD *)(v4 + 4), v4 + 8);
+            break;
+          case 0x82u:
+            if ( *(_DWORD *)hMutex != 1 )
+              goto LABEL_114;
+            if ( *(_BYTE *)(hMutex + 2320) )
+              goto LABEL_59;
+            if ( !(unsigned __int8)sub_100013ED(hMutex) )
+              return 0;
+            if ( !*(_BYTE *)(hMutex + 2320) )
+              goto LABEL_114;
+LABEL_59:
+            sub_1000149C(*(_DWORD *)(hMutex + 2312), *(_DWORD *)(hMutex + 2316), *(_DWORD *)(v4 + 4), v4 + 8);
+            break;
+          case 0x86u:
+LABEL_70:
+            v27 = *(_BYTE **)(v4 + 4);
+            *(_DWORD *)(v4 + 8) = 1;
+            if ( v27 )
+              *v27 = 1;
+            goto LABEL_115;
+          case 0x100u:
+            v26 = *(_DWORD **)(v4 + 4);
+            *(_DWORD *)(v4 + 8) = 4;
+            if ( v26 )
+              *v26 = 0;
+            goto LABEL_115;
+          default:
+            goto LABEL_114;
+        }
+      }
+      else if ( v5 == 18 )
+      {
+        v22 = *(void **)(v4 + 4);
+        if ( v22 )
+        {
+          v23 = *(unsigned __int16 *)(hMutex + 2304);
+          if ( *(_DWORD *)(v4 + 8) > (unsigned int)(unsigned __int16)v23 )
+            *(_DWORD *)(v4 + 8) = v23;
+          v24 = *(_DWORD *)(v4 + 8);
+          if ( v24 )
+            qmemcpy(v22, (const void *)(hMutex + 2048), v24);
+        }
+        else
+        {
+          *(_DWORD *)(v4 + 8) = *(unsigned __int16 *)(hMutex + 2304);
+        }
+      }
+      else
+      {
+        switch ( v5 )
+        {
+          case 0u:
+            v6 = *(void **)(v4 + 4);
+            if ( v6 )
+            {
+              if ( *(_DWORD *)(v4 + 8) > 4u )
+                *(_DWORD *)(v4 + 8) = 4;
+              qmemcpy(v6, (const void *)hMutex, *(_DWORD *)(v4 + 8));
+            }
+            else
+            {
+              *(_DWORD *)(v4 + 8) = 4;
+            }
+            goto LABEL_115;
+          case 1u:
+            v17 = *(void **)(v4 + 4);
+            if ( v17 )
+            {
+              if ( *(_DWORD *)(v4 + 8) > 1u )
+                *(_DWORD *)(v4 + 8) = 1;
+              v18 = *(_DWORD *)(v4 + 8);
+              if ( v18 )
+                qmemcpy(v17, (const void *)(hMutex + 1272), v18);
+            }
+            else
+            {
+              *(_DWORD *)(v4 + 8) = 1;
+            }
+            goto LABEL_115;
+          case 2u:
+            goto LABEL_70;
+          case 3u:
+            if ( *(_WORD *)(hMutex + 2046) )
+            {
+              v7 = *(void **)(v4 + 4);
+              if ( v7 )
+              {
+                v8 = *(unsigned __int16 *)(hMutex + 2046);
+                if ( *(_DWORD *)(v4 + 8) > v8 )
+                  *(_DWORD *)(v4 + 8) = v8;
+                v9 = *(_DWORD *)(v4 + 8);
+                if ( v9 )
+                  qmemcpy(v7, (const void *)(hMutex + 1790), v9);
+              }
+              else
+              {
+                *(_DWORD *)(v4 + 8) = *(unsigned __int16 *)(hMutex + 2046);
+              }
+              goto LABEL_115;
+            }
+            v10 = *(char **)(v4 + 4);
+            v11 = (const char *)(hMutex + 1016);
+            v12 = (const char *)(hMutex + 1016);
+            if ( !v10 )
+              goto LABEL_20;
+            if ( *(_DWORD *)(v4 + 8) > strlen(v12) + 1 )
+              *(_DWORD *)(v4 + 8) = strlen((const char *)(hMutex + 1016)) + 1;
+            break;
+          case 0x10u:
+            v14 = *(void **)(v4 + 4);
+            if ( v14 )
+            {
+              v15 = *(unsigned __int16 *)(hMutex + 1788);
+              if ( *(_DWORD *)(v4 + 8) > (unsigned int)(unsigned __int16)v15 )
+                *(_DWORD *)(v4 + 8) = v15;
+              v16 = *(_DWORD *)(v4 + 8);
+              if ( v16 )
+                qmemcpy(v14, (const void *)(hMutex + 1532), v16);
+            }
+            else
+            {
+              *(_DWORD *)(v4 + 8) = *(unsigned __int16 *)(hMutex + 1788);
+            }
+            goto LABEL_115;
+          case 0x11u:
+            if ( *(_DWORD *)hMutex > 1u )
+              goto LABEL_114;
+            if ( *(_BYTE *)(hMutex + 2320) )
+              goto LABEL_42;
+            if ( !(unsigned __int8)sub_100013ED(hMutex) )
+              return 0;
+            if ( !*(_BYTE *)(hMutex + 2320) )
+              goto LABEL_114;
+LABEL_42:
+            v19 = *(void **)(v4 + 4);
+            if ( v19 )
+            {
+              v20 = *(_DWORD *)(hMutex + 2316);
+              if ( *(_DWORD *)(v4 + 8) > v20 )
+                *(_DWORD *)(v4 + 8) = v20;
+              v21 = *(_DWORD *)(v4 + 8);
+              if ( v21 )
+                qmemcpy(v19, *(const void **)(hMutex + 2312), v21);
+            }
+            else
+            {
+              *(_DWORD *)(v4 + 8) = *(_DWORD *)(hMutex + 2316);
+            }
+            goto LABEL_115;
+          default:
+            goto LABEL_114;
+        }
+LABEL_25:
+        qmemcpy(v10, v11, *(_DWORD *)(v4 + 8));
+      }
+      goto LABEL_115;
+    }
+    if ( *(_DWORD *)hMutex != 1 )
+    {
+LABEL_114:
+      *(_DWORD *)(v4 + 8) = 0;
+      goto LABEL_115;
+    }
+    if ( !*(_BYTE *)(hMutex + 2320) )
+      break;
+LABEL_76:
+    sub_10001276(*(_DWORD *)(hMutex + 2312), *(_DWORD *)(hMutex + 2316), *(_DWORD *)(v4 + 4), v4 + 8);
+LABEL_115:
+    v3 = ++v37;
+    if ( v37 >= a3 )
+      return 1;
+  }
+  if ( (unsigned __int8)sub_100013ED(hMutex) )
+  {
+    if ( !*(_BYTE *)(hMutex + 2320) )
+      goto LABEL_114;
+    goto LABEL_76;
+  }
+  return 0;
+}
+
+
+==========================================================================
+### 1001A570 ListAdd  func=1001A570-1001A5A2
+==========================================================================
+_DWORD *__cdecl sub_1001A570(int a1, int a2)
+{
+  _DWORD *result; // eax
+  int v3; // ecx
+
+  result = operator new(8u);
+  if ( a2 )
+  {
+    v3 = a1;
+    if ( a1 )
+    {
+      result[1] = 0;
+      *result = a2;
+      while ( *(_DWORD *)(v3 + 4) )
+        v3 = *(_DWORD *)(v3 + 4);
+      *(_DWORD *)(v3 + 4) = result;
+    }
+  }
+  return result;
+}
+
+
+==========================================================================
+### 1001FBF0 TraceLog  func=1001FBF0-1001FCCF
+==========================================================================
+FILE *__cdecl sub_1001FBF0(const char *a1, int a2, const char *a3)
+{
+  FILE *result; // eax
+  FILE *v4; // esi
+  DWORD CurrentProcessId; // eax
+  __time32_t Time; // [esp+4h] [ebp-18h] BYREF
+  struct _SYSTEMTIME SystemTime; // [esp+8h] [ebp-14h] BYREF
+
+  result = (FILE *)access(FileName, 0);
+  if ( !result )
+  {
+    time(&Time);
+    result = fopen(aCZjLogZjCspLog, Mode);
+    v4 = result;
+    if ( result )
+    {
+      CurrentProcessId = GetCurrentProcessId();
+      fprintf(v4, "pid=%ld\n", CurrentProcessId);
+      GetLocalTime(&SystemTime);
+      fprintf(
+        v4,
+        aD,
+        SystemTime.wYear,
+        SystemTime.wMonth,
+        SystemTime.wDay,
+        SystemTime.wHour,
+        SystemTime.wMinute,
+        SystemTime.wSecond,
+        SystemTime.wMilliseconds);
+      fprintf(v4, "%s [FileName:%s,Line:%d]\n", a3, a1, a2);
+      return (FILE *)fclose(v4);
+    }
+  }
+  return result;
+}
+
+
+==========================================================================
+### 10015190 GetSessionDevice  func=10015190-100151AE
+==========================================================================
+_DWORD *__cdecl sub_10015190(_DWORD *a1)
+{
+  _DWORD *result; // eax
+
+  result = a1;
+  if ( a1 )
+  {
+    result = sub_1000105F(*(_DWORD *)((char *)a1 + 13));
+    if ( result )
+      return (_DWORD *)result[1];
+  }
+  return result;
+}
+

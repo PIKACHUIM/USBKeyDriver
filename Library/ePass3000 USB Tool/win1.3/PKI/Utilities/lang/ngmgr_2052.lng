@@ -1,0 +1,445 @@
+
+[settings]
+; 2052 = 0x0804
+CodePage=2052
+Language=SimpleChinese (简体中文)
+FontFace=宋体
+FontHeight=9
+
+[strings]
+
+;==============================================================
+; Common strings
+;==============================================================
+;10000=ePassNG PKI Manager
+10000=ePassNG PKI 管理工具
+;10001=Admin
+10001=管理员
+;10002=User
+10002=用户
+
+;10010=Field
+10010=数据域
+;10011=Value
+10011=值
+
+
+;10100=Description
+10100=描述信息
+;10101=Card Status
+10101=卡片状态
+;10102=Manufacturer
+10102=制造商
+;10103=Card present and ready to use
+10103=卡片已插入且可以使用
+;10104=Card present but not recognized
+10104=卡片已插入但不可识别
+;10105=<No card>
+10105=<没有卡片>
+;10106=<Not Recognized>
+10106=<卡片不可识别>
+;10107=Slot List
+10107=令牌插槽列表
+;10108=Data management
+10108=数据管理
+;10109=Flags
+10109=标志
+;10110=Hardware Version
+10110=硬件版本
+;10111=Firmware Version
+10111=固件版本
+;10112=Label(Token Name)
+10112=标签(令牌名)
+;10113=Model
+10113=型号
+;10114=Serial Number
+10114=序列号
+;10115=Max Session Count
+10115=最大会话数
+;10117=Max R/W Session Count
+10117=最大读写会话数
+;10119=Max PIN Length
+10119=最大PIN长度
+;10120=Min PIN Length
+10120=最小PIN长度
+;10121=Total Public Memory
+10121=公共数据区总空间
+;10122=Free Public Memory
+10122=公共数据区剩余空间
+;10123=Total Private Memory
+10123=秘密数据区总空间
+;10124=Free Private Memory
+10124=秘密数据区剩余空间
+;10125=Hardware Version
+10125=硬件版本
+;10126=Firmware Version
+10126=固件版本
+;10127=Token Time
+10127=令牌时间
+;10128=<No built-in timer>
+10128=<没有内置时钟>
+
+;320=Token名称
+;321=卡的状态
+;322=Token模型
+;323=生产时间
+;324=系列号
+;325=制造商
+;326=硬件版本
+;327=固件版本
+;328=标志信息
+;329=总共私有空间
+;330=总共公有空间
+;331=剩余私有空间
+;332=剩余公有空间
+;333=最大PIN码长度
+;334=最小PIN码长度
+;335=最大读写session次数
+;336=读写session次数
+;337=最大session次数
+;338=session次数
+
+
+;==============================================================
+; Dialog box strings
+;==============================================================
+1=确定
+2=取消
+
+;--------------------------------------------------------------
+; Slot information view
+;--------------------------------------------------------------
+;201=Slot information:
+201=令牌插槽简要信息:
+
+
+;301=Slot detial information:
+301=令牌插槽详细信息:
+;302=Token detial information:
+302=令牌详细信息:
+;303=User operation:
+303=用户操作:
+;304=Administrator operation:
+304=管理员操作:
+;310=Login
+310=登录
+;311=Change User PIN
+311=修改用户PIN
+;312=Change Token Name
+312=修改令牌名
+;320=Change SO PIN
+320=修改管理员PIN
+;321=Unblock Token
+321=令牌解锁
+;322=Initialize Token
+322=初始化令牌
+
+;---登录
+138=证书管理登录
+;138=Certificate Login Manager
+800=用户PIN码:
+;800=User PIN:
+801=您操作的USB Key 用户PIN码已经被锁定，请与系统管理员联系。
+;801=Sorry, your User PIN has been locked!
+802=您的用户PIN码长度超出规定范围!
+;802=Sorry ,your User PIN is out of length range!
+803=您输入错误的用户PIN码\n\n您的用户PIN码被锁定了!
+;803=Sorry, the User PIN you entered is incorrect.\n\nNow your User PIN is locked!
+804=您输入了错误的用户PIN码\n\n您还有最后一次机会输入您的用户PIN码,假如再次输入错误，您的令牌将被锁住!
+;804=Sorry ,the User PIN you entered is incorrect.\n\nNow you have the last chance to try your User PIN, if still incorrect, your token will be locked!
+;805=PIN verification failed, check your PIN and re-input please! remain %d times!
+805=对不起，您输入的PIN码无法通过验证，请重新输入！剩余验证次数为 %d 次。
+
+;---修改用户PIN码
+130=修改用户PIN码
+;130=Change User PIN
+810=请输入旧PIN码:
+;810=Please Input Old User PIN:
+811=请输入新的PIN码(%d 到 %d 字符):
+;811=Please Input New User PIN(%d To %d Characters):
+812=确认新的PIN码:
+;812=Please Confirm New User PIN:
+813=修改用户PIN码失败!
+;813=Change User PIN Error!
+814=修改用户PIN码成功!
+;814=Change User PIN OK!
+
+;---修改令牌名
+135=修改令牌名
+;135=Change Token Name
+820=当前令牌名:
+;820=Current Token Name:
+821=请输入令牌新名(最大32字符，不能以空格结尾):
+;821=Input Token New Name(Max to 32 Characters,can not end with blank):
+822=修改令牌名失败!
+;822=Change Token Name Error!
+823=修改令牌名成功!
+;823=Change Token Name OK!
+
+;---修改管理员PIN码
+134=修改管理员PIN码
+;134=Change Secure Officer PIN:
+830=请输入旧的管理员PIN码:
+;830=Input Old Secure Officer PIN:
+831=请输入新的PIN码(%d 到 %d 字符):
+;831=Input New PIN(%d To %d Characters):
+832=请确认新的PIN码:
+;832=Confirm New PIN:
+833=修改管理员PIN码错误!
+;833=Change Secure Officer PIN Error!
+834=修改管理员PIN码成功!
+;834=Change Secure Officer PIN OK!
+835=您的管理员PIN码被锁定了!
+;835=Sorry, your SO PIN has been locked!
+836=您的管理员PIN码长度超出规定范围!
+;836=Sorry ,your SO PIN is out of length range!
+837=您输入错误的管理员PIN码\n\n您的管理员PIN码被锁定了!
+;837=Sorry, the SO PIN you entered is incorrect.\n\nNow your SO PIN is locked!
+838=您输入了错误的管理员PIN码\n\n您还有最后一次机会输入您的管理员PIN码,假如再次输入错误，您的令牌将被锁住!
+;838=Sorry ,the SO PIN you entered is incorrect.\n\nNow you have the last chance to try your SO PIN, if still incorrect, your token will be locked!
+;839=SO PIN verification failed, check your SO PIN and re-input please! remain %d times!
+839=对不起，您输入的管理员PIN码无法通过验证，请重新输入！剩余验证次数为 %d 次。
+
+
+;---令牌解锁
+137=令牌解锁
+;137=Unblock Token
+840=请输入管理员PIN码:
+;840=Input Secure Officer PIN:
+841=设置用户PIN码(%d 到 %d 字符):
+;841=Input User PIN(%d To %d Characters):
+842=确认用户PIN码:
+;842=Confirm User PIN:
+843=令牌解锁失败!
+;843=Unblock Token Error!
+844=令牌解锁成功!
+;844=Unblock Token OK!
+
+
+;---初始化令牌
+136=初始化令牌
+;136=Initialize	Token
+850=请输入管理员PIN码:
+;850=Please Input Secure Officer PIN:
+851=设置用户PIN码(%d 到 %d字符):
+;851=Input User PIN(%d To %d Characters):
+852=确认用户PIN码:
+;852=Confirm User PIN:
+853=设置令牌名字(最大32字符,不能以空格结尾):
+;853=Input Token Name(Max to 32 Characters):
+854=初始化令牌失败!
+;854=Initialize Token Error!
+855=初始化令牌成功!
+;855=Initialize Token OK!
+856=令牌初始化后，令牌中的信息将被清空，您确认继续初始化操作吗？
+;856=After Initialzied,the message in the token will be cleaned, are you sure to continue initialize the token?
+
+;---导入证书文件
+146=导入证书文件
+;146=Import Certificate File
+860=证书文件路径:
+;860=Certificate File Path:
+861=证书访问密码:
+;861=Certificate Password:
+
+;---导出证书
+154=导出证书
+;154=Export Certificate
+870=证书路径:
+;870=Certificate Path:
+871=证书导出成功!
+;871=Export Certificate Success!
+
+;---About Dlg MSG
+100=关于ePassNG PKI 管理工具
+;100=About ePassNG PKI Manager
+880=ePassNG PKI 管理工具 V1.1版
+;880=ePassNG PKI Manager v1.1
+881=版权所有 (C) 2005-2009 Feitian Technologies Co., Ltd. \n\n www.FTsafe.com
+;881=Develop: FeiTian ePass Team, Copyright (C) 2005,Feitian Technologies Co.,Ltd.
+
+
+1046=slot信息
+1045=token信息
+1047=用户权限
+1048=管理员权限
+1021=登录
+1024=修改Token名字
+1000=修改用户PIN码
+1025=修改SO PIN码
+1026=Token解锁
+1027=初始化Token
+
+;====================================
+;证书管理
+;====================================
+1200=显示
+;1200=View
+1201=导入
+;1201=Import
+1202=导出
+;1202=Export
+1203=删除
+;1203=Delete
+
+1250=证书管理
+;1250=Certificate Manager
+1251=您的证书
+;1251=Your Certificate
+;1260=信息被删除以后，将无法恢复，您确信要继续删除操作吗?
+1260=数据被删除后可能导致令牌无法正常使用，且删除的数据无法恢复\n您确信要继续删除操作吗?
+;1260=After deleted, the key can't be recovered,are you sure to be continue?
+1261=删除信息成功!
+;1261=Delete Data Success!
+1262=删除信息出错!
+;1262=Error!Delete Token Message.
+
+
+1300=证书
+;1300=Certificate
+1301=公钥
+;1301=Public Key
+1302=私钥
+;1302=Private Key
+1303=数据
+;1303=Data
+
+1310=[交换]证书
+;1310=[Exchange]Certificate
+1311=[交换]公钥
+;1311=[Exchange]PublicKey
+1312=[交换]私钥
+;1312=[Exchange]PrivateKey
+
+1320=[加密]证书
+;1320=[Encrypt]Certificate
+1321=[加密]公钥
+;1321=[Encrypt]PublicKey
+1322=[加密]私钥
+;1322=[Encrypt]PrivateKey
+
+1330=[签名]证书
+;1330=[Exchange]Certificate
+1331=[签名]公钥
+;1331=[Sign]PublicKey
+1332=[签名]私钥
+;1332=[Sign]PrivateKey
+
+;============
+;证书内容信息
+;============
+139=证书内容
+;139=Certificate Infomation
+1077=显示系统证书查看器
+;1077=Show System Certificate Viewer
+
+;==============================================================
+; Menu
+;==============================================================
+;128=&File\n&View\n&Operation\n&Help
+128=文件(&F)\n查看(&V)\n令牌操作(&O)\n帮助(&H)
+;57664=&About ePassNG PKI Manager...
+57664=关于 ePassNG PKI 管理工具(&A)...
+;57665=E&xit
+57665=退出(&X)
+;32789=View &Slot List
+32789=查看令牌插槽列表(&S)
+;32809=&Hide Empty Slots
+32809=隐藏空的读卡器(&E)
+
+;32771=Login(&L)
+32771=登录(&L)
+;32772=Change Token Name(&N)
+32772=修改令牌名(&N)
+;32773=Change User PIN(&P)
+32773=修改用户PIN码(&P)
+;32774=Change SO PIN(&M)
+32774=修改管理员PIN码(&M)
+;32775=Unblock Token(&B)
+32775=令牌解锁(&B)
+;32776=Initialize Token(&I)
+32776=初始化令牌(&I)
+
+
+32801=登录
+;32801=Login
+32802=修改令牌名
+;32802=Change Token Name
+32803=修改用户PIN码
+;32803=Change User PIN
+32804=初始化令牌
+;32804=Initialize Token
+32805=令牌解锁
+;32805=Unblock Token
+32806=修改管理员PIN码
+;32806=Change Secure Officer PIN
+
+;==============================================================
+; Error message
+;==============================================================
+;50000=Can not initialize PKCS#11 library.\n\nPlease check you installation and try again.
+50000=无法正常初始化PKCS#11库。\n\n请检查您的安装是否正常，然后重新启动管理工具。\n如果这个错误仍然出现，请联系您的管理员。
+;50001=Can not initialize the manager.
+50001=无法初始化管理工具。
+
+;50002=Can not perform the operation.
+50002=无法执行此操作。
+
+5015=未知错误!
+;5015=Get some unknow error!
+5020=令牌被移除!
+;5020=Token has been removed!
+5025=错误的密码!
+;5025=Invalid Password!
+5026=令牌中没有足够的空间存储证书!
+;5026=Token has not enough memory to storage certificate!
+5027=特定的文件不存在!
+;5027=Special File Does Not Exist!
+5030=不支持的证书格式!
+;5030=Certificates File Format is not recongnized or supported!
+5031=不支持的密钥长度或证书内容!
+;5031=Token supports 1024 bits RSA key pair only!
+5032=令牌不支持这种格式的证书!
+;5032=Token does not support this kind of certificate format!
+5033=令牌中存在相同的证书，是否继续保存？
+;5033=There has same certificate in the token,are you sure continue save this certificate?
+5034=可能对令牌进行了其他操作导致Session句柄无效。
+;5034=Invalid Session Handle,maybe you have do some operation with this Token.
+5035=容器名已经存在，请更换为其它名称
+;5035=The container name have exited,please select another name
+5036=证书容器名不能为空，请设置一个证书容器名
+;5036=The container name is empty, please input a new contaier name
+5037= 用户还没有登录!
+;5037=Not Login. maybe last login is overtime.
+;for Container
+;160=Import Certificate File
+160=导入证书文件
+
+;161=Change Container Name
+161=修改容器名称
+;1096=New Container Name:
+1096=新的容器名称：
+
+;10129=Container Mangement
+10129=容器管理
+;1081=Import
+1081=导入
+;1082=Export
+1082=导出
+;1083=View
+1083=显示
+;1078=Change Container Name
+1078=修改容器名
+;1084=Delete Container
+1084=删除容器
+
+;1086=Set Container Name:
+1086=设置容器名:
+;1094=Certificate Type
+1094=证书类型:
+;1089=Both
+1089=两者
+;1088=Encrypt
+1088=加密
+;1090=Sign
+1090=签名

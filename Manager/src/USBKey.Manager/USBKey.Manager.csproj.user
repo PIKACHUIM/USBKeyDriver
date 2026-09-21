@@ -4,6 +4,9 @@
     <Compile Update="Dialogs.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="EnrollForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="LicenseActivateForm.cs">
       <SubType>Form</SubType>
     </Compile>

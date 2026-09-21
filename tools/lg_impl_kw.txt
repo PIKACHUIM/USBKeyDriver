@@ -1,0 +1,20 @@
+LocalKeySet
+password based MAC
+id-PasswordBasedMAC
+Proxy Certificate Information
+targetInformation
+Subject Information Access
+Authority Information Access
+challengePassword
+Please contact the application's support team for more information.
+- not enough space for locale information
+GetUserObjectInformationA
+LinguoContainerKeyIDHeader
+CPAcquireContext: phProv:0x%08p, pszContainer:%s, dwFlags:0x%08X, pVTable:
+CPGetProvParam:  hProv: 0x%08x,dwParam: 0x%08X, pbData: %8p, *LPDWORD: 0x%08X,dwFlags: 0x%08X
+CPSetProvParam: hProv: 0x%08x,dwParam: 0x%08x,dwFlags: 0x%08x,pbData
+CPGetHashParam: hProv:0x%08x,hHash:0x%08x,dwParam:0x%08x,pbData:0x%08p,*pcbDataLen:0x%08x,dwFlags:0x%08x
+CPSetHashParam: hProv:0x%08x,hHash:0x%08x,dwParam:0x%08x,dwFlags:0x%08x,pbData
+CPGetKeyParam: hProv:0x%08x,hKey:0x%08x,dwParam:0x%08x,*pcbDataLen:0x%08x,dwFlags:0x%08x,pbData:0x%08p
+CPSetKeyParam: hProv:0x%08x,hKey:0x%08x,dwParam:0x%08x,dwFlags:0x%08x,pbData:0x%08x
+GetUserObjectInformationW

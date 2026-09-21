@@ -1,0 +1,72 @@
+0x10008E07	w%SQ
+0x10012139	L$%SQ
+0x1003D4CF	- Attempt to use MSIL code from this assembly during native code initialization
+0x1003D5FF	- Attempt to initialize the CRT more than once.
+0x1003D663	- CRT not initialized
+0x1003D683	- unable to initialize heap
+0x1003D6AB	- not enough space for lowio initialization
+0x1003D6E3	- not enough space for stdio initialization
+0x1003E344	USER32.DLL
+0x1003E628	`dynamic initializer for '
+0x10040170	Time Stamping
+0x10040180	id-kp-timeStamping
+0x10040524	%s%s_%d
+0x100405A4	CreateFile
+0x100407C0	MacInit
+0x100409A0	ChangeDevAuthKeyEx
+0x100409B4	GetPinInfo
+0x100409C0	ChangePin
+0x100409CC	VerifyPin
+0x100409D8	UnblockPin
+0x100409E4	RemoteUnblockPin
+0x10040A0C	DigestInit
+0x10040BA8	EncryptInit
+0x10040BD4	DecryptInit
+0x10041088	e:\svn\Software\K3_GM\4.Development\middleware\prj_windows\mtoken_k3gm\Release\mtoken_gm3000.pdb
+0x1004240C	KERNEL32.dll
+0x100425B4	GetStartupInfoA
+0x10042724	GetCPInfo
+0x100427AC	InitializeCriticalSectionAndSpinCount
+0x100428FE	CreateFileA
+0x10042A46	USER32.dll
+0x10042A54	InitializeSecurityDescriptor
+0x10042A8E	ADVAPI32.dll
+0x10042A9E	SetupDiGetClassDevsA
+0x10042AB6	SetupDiDestroyDeviceInfoList
+0x10042AD6	SetupDiGetDeviceInterfaceDetailA
+0x10042AFA	SetupDiEnumDeviceInterfaces
+0x10042B16	SETUPAPI.dll
+0x10042B9C	HID.DLL
+0x10042BB2	DeviceIoControl
+0x1004310E	mtoken_gm3000.dll
+0x10043191	SKF_ChangeDevAuthKey
+0x100431A6	SKF_ChangePIN
+0x1004324E	SKF_CreateFile
+0x1004327A	SKF_DecryptInit
+0x1004331C	SKF_DigestInit
+0x1004332B	SKF_DigestInit_Display
+0x1004348C	SKF_EncryptInit
+0x100434E8	SKF_EnrollFingerInit
+0x1004377C	SKF_GetPINInfo
+0x1004383F	SKF_InitializeFinger
+0x10043875	SKF_MacInit
+0x100439D6	SKF_RemoteUnblockPIN
+0x10043A4F	SKF_UnblockPIN
+0x10043A5E	SKF_UnlockDev
+0x10043A7D	SKF_VerifyFingerInit
+0x10043A92	SKF_VerifyPIN
+0x10045168	gm3000,vid_055c&pid_db08,vid_055c&pid_e618|vid_055c&pid_f603|vid_055c&pid_f11d
+0x10008E01	呿t);遷%SQ岲.(P鑛
+0x10012138	峀$%SQ圽$,棂!
+0x10018A09	峀$%SQ圽$,
+0x100193A8	峀$%SQ圽$,鑹
+0x1002B615	W3踛?嬮峀$%SQ塂$
+0x10045164	!9馉gm3000,vid_055c&pid_db08,vid_055c&pid_e618|vid_055c&pid_f603|vid_055c&pid_f11d
+0x1003D268	KERNEL32.DLL
+0x1003D2D0	mscoree.dll
+0x1003EBFE	$ieframe.dll
+0x10040F40	\\.\pipe\mTokenIOSvr
+0x10048150	mtoken_k3gm
+0x10048190	mtoken_k Dynamic Link Library
+0x10048228	mToken GM3000
+0x100482B8	mtoken_gm300.dll

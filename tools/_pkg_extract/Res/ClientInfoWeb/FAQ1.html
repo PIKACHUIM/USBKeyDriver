@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<style>
+
+img{border:none;}
+body { padding:0; margin:0; background:#ffffff; border:0;width:805px;height:184px;}
+a{text-decoration:none;line-height:27.6px;}
+ul,li{margin:0;padding:0; list-style:none;}
+.clear{clear:both;}
+
+.wrap{margin:0 auto;width:805px;font-size:14px; font-family:"微软雅黑", "幼圆", Arial, Harrington;line-height:27.6px;background:url(images/faq_answer_bg.png) no-repeat bottom right;}
+
+
+
+</style>
+<script language="javascript">
+    //当拖拽图片时发生，设置图片不支持拖拽
+    function imgdragstart() {
+        return false;
+    }
+</script>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body onSelectStart="return false">
+<div class="wrap">
+	<br>
+	<ul>
+		<li>问题：用户在使用办税通报税时，上传申报数据或划款时提示请插入USB-KEY。</li><br>
+		<li><img src="images/FAQ1_1.png"  style="margin-left:57.5px"></li>
+		<li>可能由以下原因引起：</li>
+		<li>1、没有正确安装数字证书驱动程序及根证书；</li>
+		<li>解决办法：安装相应的数字证书驱动及根证书。</li>
+		<br>
+		<li>2、数字证书刚插到USB接口上，就点击申报或划款；</li>
+		<li>解决办法：在数字证书接到USB口后，等一会后再进行操作。</li>
+		<br>
+		<li>3、数字证书中没有企业的地税号码或地税号码与报税软件中的企业地税号码不一致；</li>
+		<li>解决办法：检查数字证书是否为地税报税专用（可能为其他项目数字证书）；</li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需用户判断报税软件的地税号码和数字证书的地税号码哪一个是正确的，</li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从而来确定是否需要更新数字证书的地税号码，</li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如需更改税号，及时与当地服务中心联系。</li>
+		<br>
+		<li>4、USB-KEY或USB口损坏。 </li>
+		<li>解决办法：检查USB－KEY灯是否亮，或换其他USB接口一试，或换其他电脑看是否能认出新硬件。</li>
+		
+	</ul>
+<div class="clear"></div>
+</div>
+<script>
+    for (i in document.images)
+        document.images[i].ondragstart = imgdragstart;
+</script>
+</body>
+</html>

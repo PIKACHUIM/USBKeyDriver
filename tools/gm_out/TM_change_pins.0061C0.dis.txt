@@ -1,0 +1,54 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll
+;; rva=0x61C0 len=0xA0 file_off=0x55C0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100061c0 <.text+0x51c0>:
+100061c0:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+100061c4:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+100061ca:	7d 19                	jge    0x100061e5
+100061cc:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+100061d2:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+100061d9:	74 0a                	je     0x100061e5
+100061db:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+100061e1:	85 c0                	test   eax,eax
+100061e3:	75 08                	jne    0x100061ed
+100061e5:	b8 01 00 00 00       	mov    eax,0x1
+100061ea:	c2 0c 00             	ret    0xc
+100061ed:	8b 4c 24 0c          	mov    ecx,DWORD PTR [esp+0xc]
+100061f1:	8b 54 24 08          	mov    edx,DWORD PTR [esp+0x8]
+100061f5:	51                   	push   ecx
+100061f6:	52                   	push   edx
+100061f7:	e8 44 22 00 00       	call   0x10008440
+100061fc:	c2 0c 00             	ret    0xc
+100061ff:	cc                   	int3
+10006200:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006204:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000620a:	7d 19                	jge    0x10006225
+1000620c:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006212:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006219:	74 0a                	je     0x10006225
+1000621b:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+10006221:	85 c0                	test   eax,eax
+10006223:	75 08                	jne    0x1000622d
+10006225:	b8 01 00 00 00       	mov    eax,0x1
+1000622a:	c2 0c 00             	ret    0xc
+1000622d:	8b 4c 24 0c          	mov    ecx,DWORD PTR [esp+0xc]
+10006231:	8b 54 24 08          	mov    edx,DWORD PTR [esp+0x8]
+10006235:	51                   	push   ecx
+10006236:	52                   	push   edx
+10006237:	e8 a4 22 00 00       	call   0x100084e0
+1000623c:	c2 0c 00             	ret    0xc
+1000623f:	cc                   	int3
+10006240:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006244:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000624a:	7d 19                	jge    0x10006265
+1000624c:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006252:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006259:	74 0a                	je     0x10006265
+1000625b:	8d                   	.byte 0x8d
+1000625c:	80 d8 eb             	sbb    al,0xeb
+1000625f:	01                   	.byte 0x1

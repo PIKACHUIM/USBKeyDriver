@@ -1,0 +1,43 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll
+;; rva=0x6110 len=0x60 file_off=0x5510
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10006110 <.text+0x5110>:
+10006110:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006114:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000611a:	7d 19                	jge    0x10006135
+1000611c:	69 c0 e0 00 00 00    	imul   eax,eax,0xe0
+10006122:	83 b8 a4 ec 01 10 00 	cmp    DWORD PTR [eax+0x1001eca4],0x0
+10006129:	74 0a                	je     0x10006135
+1000612b:	8d 80 d8 eb 01 10    	lea    eax,[eax+0x1001ebd8]
+10006131:	85 c0                	test   eax,eax
+10006133:	75 08                	jne    0x1000613d
+10006135:	b8 01 00 00 00       	mov    eax,0x1
+1000613a:	c2 0c 00             	ret    0xc
+1000613d:	8b 4c 24 0c          	mov    ecx,DWORD PTR [esp+0xc]
+10006141:	8b 50 04             	mov    edx,DWORD PTR [eax+0x4]
+10006144:	8b 40 10             	mov    eax,DWORD PTR [eax+0x10]
+10006147:	53                   	push   ebx
+10006148:	8b 5c 24 0c          	mov    ebx,DWORD PTR [esp+0xc]
+1000614c:	51                   	push   ecx
+1000614d:	52                   	push   edx
+1000614e:	50                   	push   eax
+1000614f:	e8 fc e7 ff ff       	call   0x10004950
+10006154:	f7 d8                	neg    eax
+10006156:	1b c0                	sbb    eax,eax
+10006158:	f7 d8                	neg    eax
+1000615a:	5b                   	pop    ebx
+1000615b:	c2 0c 00             	ret    0xc
+1000615e:	cc                   	int3
+1000615f:	cc                   	int3
+10006160:	8b 44 24 04          	mov    eax,DWORD PTR [esp+0x4]
+10006164:	3b 05 d4 eb 01 10    	cmp    eax,DWORD PTR ds:0x1001ebd4
+1000616a:	56                   	push   esi
+1000616b:	7d 19                	jge    0x10006186
+1000616d:	69                   	.byte 0x69
+1000616e:	c0                   	.byte 0xc0
+1000616f:	e0                   	.byte 0xe0

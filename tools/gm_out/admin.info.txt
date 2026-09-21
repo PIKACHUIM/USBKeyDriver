@@ -1,0 +1,12 @@
+== g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\GM3000Admin.exe
+size=1661824
+machine=0x014C magic=0x10B x86 image_base=0x400000
+  .text     va=0x00001000 vsize=0x0013B05C raw=0x00000400 rsize=0x0013B200
+  .itext    va=0x0013D000 vsize=0x000010F4 raw=0x0013B600 rsize=0x00001200
+  .data     va=0x0013F000 vsize=0x000088B0 raw=0x0013C800 rsize=0x00008A00
+  .bss      va=0x00148000 vsize=0x0000C998 raw=0x00145200 rsize=0x00000000
+  .idata    va=0x00155000 vsize=0x00003866 raw=0x00145200 rsize=0x00003A00
+  .tls      va=0x00159000 vsize=0x0000003C raw=0x00148C00 rsize=0x00000000
+  .rdata    va=0x0015A000 vsize=0x00000018 raw=0x00148C00 rsize=0x00000200
+  .reloc    va=0x0015B000 vsize=0x00014420 raw=0x00148E00 rsize=0x00014600
+  .rsrc     va=0x00170000 vsize=0x00032E00 raw=0x0015D400 rsize=0x00032E00

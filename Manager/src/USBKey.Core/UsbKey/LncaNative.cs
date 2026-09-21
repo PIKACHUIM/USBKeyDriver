@@ -108,6 +108,9 @@ internal static class LncaNative
 
     // ============ 密钥运算（证书导入/签名） ============
 
+    // 注意：逆向文档记录为 USBKey_GetRandom(hKey, byte* out, uint len)，
+    // 与当前声明 (hKey, len, out) 参数顺序存在歧义（逆向时日志打印顺序≠真实压栈顺序）。
+    // 此处暂按 (hKey, len, out) 使用，待实体设备动态验证后确认最终顺序。
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate int GetRandomFn(IntPtr hKey, uint randomStrLen, [Out] byte[] lpRandomStr);
 

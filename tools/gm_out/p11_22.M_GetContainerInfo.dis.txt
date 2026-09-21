@@ -1,0 +1,55 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll
+;; M_GetContainerInfo rva=0x1610 va=0x10001610 stop=0x10001670
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10001610 <.text+0x610>:
+10001610:	56                   	push   esi
+10001611:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+10001617:	57                   	push   edi
+10001618:	85 f6                	test   esi,esi
+1000161a:	74 0a                	je     0x10001626
+1000161c:	56                   	push   esi
+1000161d:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+10001623:	83 c4 04             	add    esp,0x4
+10001626:	8b 44 24 24          	mov    eax,DWORD PTR [esp+0x24]
+1000162a:	8b 4c 24 20          	mov    ecx,DWORD PTR [esp+0x20]
+1000162e:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10001632:	50                   	push   eax
+10001633:	8b 44 24 1c          	mov    eax,DWORD PTR [esp+0x1c]
+10001637:	51                   	push   ecx
+10001638:	8b 4c 24 1c          	mov    ecx,DWORD PTR [esp+0x1c]
+1000163c:	52                   	push   edx
+1000163d:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10001641:	50                   	push   eax
+10001642:	51                   	push   ecx
+10001643:	8b 4c 24 20          	mov    ecx,DWORD PTR [esp+0x20]
+10001647:	52                   	push   edx
+10001648:	e8 83 45 00 00       	call   0x10005bd0
+1000164d:	8b f8                	mov    edi,eax
+1000164f:	85 f6                	test   esi,esi
+10001651:	74 0a                	je     0x1000165d
+10001653:	56                   	push   esi
+10001654:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+1000165a:	83 c4 04             	add    esp,0x4
+1000165d:	8b c7                	mov    eax,edi
+1000165f:	5f                   	pop    edi
+10001660:	5e                   	pop    esi
+10001661:	c3                   	ret
+10001662:	cc                   	int3
+10001663:	cc                   	int3
+10001664:	cc                   	int3
+10001665:	cc                   	int3
+10001666:	cc                   	int3
+10001667:	cc                   	int3
+10001668:	cc                   	int3
+10001669:	cc                   	int3
+1000166a:	cc                   	int3
+1000166b:	cc                   	int3
+1000166c:	cc                   	int3
+1000166d:	cc                   	int3
+1000166e:	cc                   	int3
+1000166f:	cc                   	int3

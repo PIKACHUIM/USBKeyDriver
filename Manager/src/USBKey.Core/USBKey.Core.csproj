@@ -13,8 +13,28 @@
     <Using Include="System.Runtime.InteropServices" />
   </ItemGroup>
 
+  <!-- 联调探针需要直接使用内部的原生封装（BjcaSession / SkfSession） -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>BjcaProbe</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>SkfProbe</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>EPass3003Test</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- 实机探针需要访问 Linguo 传输层内部类型（LinguoNative）做协议校准 -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>LinguoProbe</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
 </Project>

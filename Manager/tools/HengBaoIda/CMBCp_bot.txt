@@ -1,0 +1,497 @@
+analysis done
+
+==========================================================================
+### 10028DE9 BotReadWrite_SCSI_STPD  func=10028DE9-10028EE3
+==========================================================================
+char __stdcall sub_10028DE9(HANDLE hDevice, int a2, void *a3, size_t *a4)
+{
+  size_t v5; // eax
+  bool v6; // zf
+  size_t InBuffer[28]; // [esp+4h] [ebp-74h] BYREF
+  DWORD BytesReturned; // [esp+74h] [ebp-4h] BYREF
+
+  if ( !hDevice )
+    return 0;
+  memset(&InBuffer[20], 0, 0x20u);
+  if ( !a2 )
+  {
+    LOBYTE(InBuffer[23]) = 0;
+    HIBYTE(InBuffer[23]) = -6;
+    LOBYTE(InBuffer[24]) = 58;
+    InBuffer[22] = *a4;
+  }
+  if ( a2 == 1 )
+  {
+    InBuffer[22] = 512;
+    LOBYTE(InBuffer[23]) = 1;
+    HIBYTE(InBuffer[23]) = -6;
+    LOBYTE(InBuffer[24]) = 8;
+  }
+  memset(InBuffer, 0, 0x50u);
+  LOBYTE(InBuffer[2]) = LOBYTE(InBuffer[23]) != 0;
+  InBuffer[3] = InBuffer[22];
+  LOWORD(InBuffer[0]) = 44;
+  LOBYTE(InBuffer[1]) = 1;
+  HIWORD(InBuffer[1]) = 4112;
+  InBuffer[4] = 60;
+  InBuffer[5] = (size_t)a3;
+  InBuffer[6] = 48;
+  InBuffer[7] = *(size_t *)((char *)&InBuffer[23] + 3);
+  InBuffer[8] = *(size_t *)((char *)&InBuffer[24] + 3);
+  InBuffer[9] = *(size_t *)((char *)&InBuffer[25] + 3);
+  InBuffer[10] = *(size_t *)((char *)&InBuffer[26] + 3);
+  if ( !DeviceIoControl(hDevice, 0x4D014u, InBuffer, 0x50u, InBuffer, 0x50u, &BytesReturned, 0) )
+    return 0;
+  if ( LOBYTE(InBuffer[23]) )
+  {
+    v5 = InBuffer[3];
+    v6 = InBuffer[5] == 0;
+    *a4 = InBuffer[3];
+    if ( !v6 )
+      memcpy(a3, (const void *)InBuffer[5], v5);
+  }
+  else
+  {
+    *a4 = 0;
+  }
+  return 1;
+}
+
+
+==========================================================================
+### 10028FC1 EnumDevicesByGuid  func=10028FC1-10029175
+==========================================================================
+int __stdcall sub_10028FC1(char *a1, GUID *ClassGuid)
+{
+  struct _SP_DEVICE_INTERFACE_DETAIL_DATA_A *v3; // esi
+  char *DevicePath; // esi
+  char *v5; // eax
+  BOOL v6; // eax
+  DWORD v7; // [esp-14h] [ebp-258h]
+  char Source[257]; // [esp+4h] [ebp-240h] BYREF
+  __int16 v9; // [esp+105h] [ebp-13Fh]
+  char v10; // [esp+107h] [ebp-13Dh]
+  _BYTE Destination[257]; // [esp+108h] [ebp-13Ch] BYREF
+  __int16 v12; // [esp+209h] [ebp-3Bh]
+  char v13; // [esp+20Bh] [ebp-39h]
+  struct _SP_DEVICE_INTERFACE_DATA DeviceInterfaceData; // [esp+20Ch] [ebp-38h] BYREF
+  DWORD DeviceInterfaceDetailDataSize; // [esp+228h] [ebp-1Ch]
+  int v16; // [esp+22Ch] [ebp-18h]
+  DWORD MemberIndex; // [esp+230h] [ebp-14h]
+  int v18; // [esp+234h] [ebp-10h]
+  HDEVINFO DeviceInfoSet; // [esp+238h] [ebp-Ch]
+  DWORD RequiredSize; // [esp+23Ch] [ebp-8h] BYREF
+  DWORD LastError; // [esp+240h] [ebp-4h]
+
+  v18 = 0;
+  DeviceInfoSet = SetupDiGetClassDevsA(ClassGuid, 0, 0, 0x12u);
+  if ( !DeviceInfoSet )
+    return 0;
+  MemberIndex = 0;
+  v16 = 0;
+  LastError = 0;
+  do
+  {
+    if ( LastError )
+      break;
+    DeviceInterfaceData.cbSize = 28;
+    if ( SetupDiEnumDeviceInterfaces(DeviceInfoSet, 0, ClassGuid, MemberIndex, &DeviceInterfaceData) )
+    {
+      if ( ((RequiredSize = 0,
+             SetupDiGetDeviceInterfaceDetailA(DeviceInfoSet, &DeviceInterfaceData, 0, 0, &RequiredSize, 0))
+         || GetLastError() == 122)
+        && (DeviceInterfaceDetailDataSize = RequiredSize,
+            (v3 = (struct _SP_DEVICE_INTERFACE_DETAIL_DATA_A *)operator new(RequiredSize)) != 0)
+        && (v7 = DeviceInterfaceDetailDataSize,
+            v3->cbSize = 5,
+            RequiredSize = 0,
+            SetupDiGetDeviceInterfaceDetailA(DeviceInfoSet, &DeviceInterfaceData, v3, v7, &RequiredSize, 0)) )
+      {
+        memset(Source, 0, sizeof(Source));
+        v9 = 0;
+        v10 = 0;
+        memset(&Destination[1], 0, 0x100u);
+        v12 = 0;
+        v13 = 0;
+        strcpy(Destination, aHengbao);
+        DevicePath = v3->DevicePath;
+        strcpy(Source, DevicePath);
+        strupr(DevicePath);
+        strupr(Destination);
+        if ( strstr(DevicePath, Destination) )
+        {
+          strcpy(a1, Source);
+          v5 = &a1[strlen(Source)];
+          a1 = v5 + 1;
+          ++v18;
+          *v5 = 0;
+        }
+      }
+      else
+      {
+        LastError = GetLastError();
+      }
+    }
+    else
+    {
+      LastError = GetLastError();
+      if ( LastError == 259 )
+        v16 = 1;
+    }
+    ++MemberIndex;
+  }
+  while ( !v16 );
+  v6 = SetupDiDestroyDeviceInfoList(DeviceInfoSet);
+  return v6 ? v18 : 0;
+}
+
+
+==========================================================================
+### 10028BFA CTSPBot_EnumDevice  func=10028BFA-10028C60
+==========================================================================
+int __stdcall sub_10028BFA(char *Str)
+{
+  char *v1; // edi
+  int v2; // eax
+  int v3; // esi
+  size_t v4; // eax
+  bool v5; // zf
+  int v6; // edi
+  char v8; // [esp+0h] [ebp-Ch]
+  char v9; // [esp+0h] [ebp-Ch]
+  char *Stra; // [esp+14h] [ebp+8h]
+
+  sub_10029365(2, aCtspbotEnumdev, v8);
+  v1 = Str;
+  v2 = sub_10028FC1(Str, (GUID *)&ClassGuid);
+  v3 = v2;
+  if ( v2 > 0 )
+  {
+    Stra = (char *)v2;
+    do
+    {
+      v4 = strlen(v1);
+      v5 = Stra-- == (char *)1;
+      v1 += v4 + 1;
+    }
+    while ( !v5 );
+  }
+  v6 = sub_10028FC1(v1, (GUID *)&stru_10039508);
+  sub_10029365(2, aCtspbotEnumdev_0, v9);
+  return v6 + v3;
+}
+
+
+==========================================================================
+### 10028C60 CTSPBot_OpenDevice  func=10028C60-10028CC7
+==========================================================================
+_DWORD *__userpurge sub_10028C60@<eax>(char a1@<sil>, const CHAR *lpFileName)
+{
+  HANDLE FileA; // edi
+  _DWORD *v4; // esi
+  char v6; // [esp+8h] [ebp-4h]
+  char v7; // [esp+8h] [ebp-4h]
+
+  sub_10029365(2, aCtspbotOpendev, v6);
+  FileA = CreateFileA(lpFileName, 0xC0000000, 3u, 0, 1u, 0x80u, 0);
+  if ( FileA == (HANDLE)-1 )
+  {
+    sub_10029365(2, aCreatefileInva, v7);
+    return 0;
+  }
+  else
+  {
+    v4 = operator new(4u);
+    *v4 = FileA;
+    sub_10029365(2, aCtspbotOpendev_0, a1);
+    return v4;
+  }
+}
+
+
+==========================================================================
+### 1002855E THidTSP_EnumDevice  func=1002855E-10028704
+==========================================================================
+int __stdcall sub_1002855E(void *a1)
+{
+  DWORD v1; // eax
+  struct _SP_DEVICE_INTERFACE_DETAIL_DATA_A *v2; // esi
+  const CHAR *DevicePath; // esi
+  HANDLE FileA; // eax
+  size_t v5; // edi
+  _BYTE *v6; // esi
+  DWORD v8; // [esp-14h] [ebp-5Ch]
+  const CHAR *v9; // [esp-14h] [ebp-5Ch]
+  char v10; // [esp-Ch] [ebp-54h]
+  char v11; // [esp+0h] [ebp-48h]
+  struct _SP_DEVICE_INTERFACE_DATA DeviceInterfaceData; // [esp+4h] [ebp-44h] BYREF
+  struct _HIDD_ATTRIBUTES Attributes; // [esp+20h] [ebp-28h] BYREF
+  DWORD DeviceInterfaceDetailDataSize; // [esp+2Ch] [ebp-1Ch]
+  int v15; // [esp+30h] [ebp-18h]
+  void *v16; // [esp+34h] [ebp-14h]
+  DWORD MemberIndex; // [esp+38h] [ebp-10h]
+  char ArgList[4]; // [esp+3Ch] [ebp-Ch]
+  HDEVINFO DeviceInfoSet; // [esp+40h] [ebp-8h]
+  DWORD RequiredSize; // [esp+44h] [ebp-4h] BYREF
+  DWORD LastError; // [esp+50h] [ebp+8h]
+
+  sub_10029365(2, aThidtspEnumdev, v11);
+  v16 = a1;
+  *(_DWORD *)ArgList = 0;
+  DeviceInfoSet = SetupDiGetClassDevsA(&InterfaceClassGuid, 0, 0, 0x12u);
+  if ( !DeviceInfoSet )
+    return 0;
+  MemberIndex = 0;
+  v15 = 0;
+  LastError = 0;
+  do
+  {
+    if ( LastError )
+      break;
+    DeviceInterfaceData.cbSize = 28;
+    if ( SetupDiEnumDeviceInterfaces(DeviceInfoSet, 0, &InterfaceClassGuid, MemberIndex, &DeviceInterfaceData) )
+    {
+      if ( ((RequiredSize = 0,
+             SetupDiGetDeviceInterfaceDetailA(DeviceInfoSet, &DeviceInterfaceData, 0, 0, &RequiredSize, 0))
+         || GetLastError() == 122)
+        && (DeviceInterfaceDetailDataSize = RequiredSize,
+            (v2 = (struct _SP_DEVICE_INTERFACE_DETAIL_DATA_A *)operator new(RequiredSize)) != 0)
+        && (v8 = DeviceInterfaceDetailDataSize,
+            v2->cbSize = 5,
+            RequiredSize = 0,
+            SetupDiGetDeviceInterfaceDetailA(DeviceInfoSet, &DeviceInterfaceData, v2, v8, &RequiredSize, 0)) )
+      {
+        DevicePath = v2->DevicePath;
+        FileA = CreateFileA(DevicePath, 0xC0000000, 3u, 0, 3u, 0, 0);
+        DeviceInterfaceDetailDataSize = (DWORD)FileA;
+        if ( FileA != (HANDLE)-1 )
+        {
+          HidD_GetAttributes(FileA, &Attributes);
+          if ( Attributes.VendorID == 5334 )
+          {
+            v5 = strlen(DevicePath);
+            v9 = DevicePath;
+            v6 = v16;
+            memcpy(v16, v9, v5);
+            v6[v5] = 0;
+            ++*(_DWORD *)ArgList;
+            v16 = &v6[v5 + 1];
+          }
+          CloseHandle((HANDLE)DeviceInterfaceDetailDataSize);
+        }
+      }
+      else
+      {
+        LastError = GetLastError();
+      }
+    }
+    else
+    {
+      v1 = GetLastError();
+      LastError = v1;
+      if ( v1 == 259 )
+        v15 = 1;
+      sub_10029365(2, aSetupdienumdev, v1);
+    }
+    ++MemberIndex;
+  }
+  while ( !v15 );
+  if ( !SetupDiDestroyDeviceInfoList(DeviceInfoSet) )
+    return 0;
+  sub_10029365(2, aReturnValue0x0, ArgList[0]);
+  sub_10029365(2, aThidtspEnumdev_0, v10);
+  return *(_DWORD *)ArgList;
+}
+
+
+==========================================================================
+### 100287E5 THidTSP_SendData  func=100287E5-100288F9
+==========================================================================
+DWORD __thiscall sub_100287E5(void *this, int a2, void *Src, DWORD Size, void *a5)
+{
+  void *v5; // ebx
+  size_t v6; // eax
+  __int16 v7; // ax
+  char v9; // [esp-Ch] [ebp-824h]
+  char v10; // [esp+0h] [ebp-818h]
+  char v11; // [esp+0h] [ebp-818h]
+  char v12[1024]; // [esp+Ch] [ebp-80Ch] BYREF
+  char v13[1024]; // [esp+40Ch] [ebp-40Ch] BYREF
+  void *v14; // [esp+80Ch] [ebp-Ch]
+  DWORD v15; // [esp+810h] [ebp-8h] BYREF
+  DWORD NumberOfBytesWritten; // [esp+814h] [ebp-4h] BYREF
+
+  v14 = this;
+  sub_10029365(2, aThidtspSenddat, v10);
+  v5 = *(void **)a2;
+  memset(v12, 0, sizeof(v12));
+  memset(v13, 0, sizeof(v13));
+  v6 = Size;
+  v13[0] = 67;
+  NumberOfBytesWritten = Size;
+  if ( Size > 0x400 )
+  {
+    v6 = 1024;
+    NumberOfBytesWritten = 1024;
+  }
+  v13[1] = BYTE1(v6);
+  v13[2] = v6;
+  memcpy(&v13[3], Src, v6);
+  v7 = *(_WORD *)(a2 + 4);
+  NumberOfBytesWritten += 3;
+  if ( !(unsigned __int8)sub_100288F9(v5, *(_DWORD *)(a2 + 8), 0, v13, &NumberOfBytesWritten, v7) )
+  {
+    sub_10029365(2, aSencmdHidWrite, v11);
+    return -1;
+  }
+  if ( !(unsigned __int8)sub_100288F9(v5, *(_DWORD *)(a2 + 8), 1, v12, &v15, *(_WORD *)(a2 + 4)) )
+  {
+    sub_10029365(2, aSencmdHidReadb, v11);
+    return -1;
+  }
+  memcpy(a5, &v12[3], v15 - 3);
+  sub_10029365(2, aThidtspSenddat_0, v9);
+  return v15 - 3;
+}
+
+
+==========================================================================
+### 1002156A EnumSlots_impl  func=1002156A-1002161D
+==========================================================================
+int __stdcall sub_1002156A(int a1, _DWORD *a2)
+{
+  int v2; // ebx
+  int v3; // esi
+  int v4; // eax
+  size_t v5; // edi
+  bool v6; // zf
+  char Str[33017]; // [esp+4h] [ebp-8104h] BYREF
+  __int16 v9; // [esp+80FDh] [ebp-Bh]
+  char v10; // [esp+80FFh] [ebp-9h]
+  int v11; // [esp+8100h] [ebp-8h]
+  int v12; // [esp+8104h] [ebp-4h]
+
+  v2 = 0;
+  if ( !a1 || !a2 )
+    return -2147483634;
+  memset(Str, 0, sizeof(Str));
+  v9 = 0;
+  v10 = 0;
+  v3 = 0;
+  v12 = 0;
+  v4 = sub_10028217(Str);
+  if ( v4 > 0 )
+  {
+    v11 = v4;
+    do
+    {
+      v5 = strlen(&Str[v2]);
+      if ( (unsigned __int8)sub_10023CB8(&Str[v2]) )
+      {
+        strcpy((char *)(v3 + a1), &Str[v2]);
+        ++v12;
+        v3 += v5 + 1;
+      }
+      v6 = v11-- == 1;
+      v2 += v5 + 1;
+    }
+    while ( !v6 );
+  }
+  *a2 = v12;
+  return 0;
+}
+
+
+==========================================================================
+### 10012610 GetDeviceBySlot  func=10012610-1001262A
+==========================================================================
+int __cdecl sub_10012610(char *Str, int a2)
+{
+  if ( Str )
+    return sub_1002161D(Str, a2);
+  else
+    return -255;
+}
+
+
+==========================================================================
+### 1002161D KOpenDevice  func=1002161D-10021817
+==========================================================================
+int __stdcall sub_1002161D(char *Str, char **a2)
+{
+  int *v4; // ebx
+  const char *v5; // esi
+  int *v6; // edi
+  unsigned int v7; // eax
+  char *v8; // esi
+  char *v9; // ebx
+  int v10; // eax
+  int v11; // esi
+  char Destination[257]; // [esp+Ch] [ebp-258h] BYREF
+  __int16 v13; // [esp+10Dh] [ebp-157h]
+  char v14; // [esp+10Fh] [ebp-155h]
+  char Src[4]; // [esp+110h] [ebp-154h] BYREF
+  unsigned __int8 v16; // [esp+114h] [ebp-150h]
+  char v17[251]; // [esp+115h] [ebp-14Fh] BYREF
+  int v18[20]; // [esp+210h] [ebp-54h] BYREF
+  size_t Size; // [esp+260h] [ebp-4h] BYREF
+  char *Stra; // [esp+26Ch] [ebp+8h]
+  char *Strb; // [esp+26Ch] [ebp+8h]
+
+  memset(v18, 0, sizeof(v18));
+  memset(Destination, 0, sizeof(Destination));
+  Size = 256;
+  v13 = 0;
+  v14 = 0;
+  if ( !a2 || strlen(Str) <= 2 )
+    return -2147483634;
+  Stra = (char *)sub_10028226(Str);
+  if ( !Stra )
+    return 0x80000000;
+  strcpy(Destination, Str);
+  v4 = v18;
+  v5 = &Destination[strlen(Str)];
+  v6 = v18;
+  do
+  {
+    v5 -= 2;
+    v7 = strtoul(v5, 0, 16);
+    *v5 = 0;
+    ++v6;
+    *v4 = v7;
+    v4 = v6;
+  }
+  while ( (unsigned int)*v6 >= 0x80 );
+  v8 = (char *)operator new(0x254u);
+  memset(v8, 0, 0x254u);
+  v9 = Stra;
+  *(_DWORD *)v8 = Stra;
+  strcpy(v8 + 4, Destination);
+  Strb = (char *)sub_100218D8((int)v8, 0x493E0u);
+  if ( !Strb )
+    return -2147483632;
+  sub_100250EE(v9, 44529, Src, &Size);
+  sub_10023ECF(v8);
+  v10 = sub_100251C0(v9, 3);
+  if ( v10 == 36864
+    && (Size = 20, v10 = sub_100253C4(v9, 0, Src, &Size), v10 == 36864)
+    && (memset(v8 + 456, 0, 0x40u), memcpy(v8 + 456, Src, Size), v10 = sub_100251C0(v9, 1), v10 == 36864)
+    && (Size = 76, v10 = sub_100253C4(v9, 0, Src, &Size), v10 == 36864) )
+  {
+    memset(v8 + 520, 0, 0x40u);
+    if ( v16 != 0xFF )
+    {
+      if ( v16 )
+        memcpy(v8 + 520, v17, v16);
+    }
+    *a2 = v8;
+    v11 = 0;
+  }
+  else
+  {
+    v11 = v10;
+  }
+  sub_1002198C(Strb);
+  return v11;
+}
+

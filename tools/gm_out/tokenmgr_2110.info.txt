@@ -1,0 +1,8 @@
+== g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\TokenMgr.dll
+size=113152
+machine=0x014C magic=0x10B x86 image_base=0x10000000
+  .text     va=0x00001000 vsize=0x00014441 raw=0x00000400 rsize=0x00014600
+  .rdata    va=0x00016000 vsize=0x00003CE8 raw=0x00014A00 rsize=0x00003E00
+  .data     va=0x0001A000 vsize=0x00004908 raw=0x00018800 rsize=0x00001200
+  .rsrc     va=0x0001F000 vsize=0x0000039C raw=0x00019A00 rsize=0x00000400
+  .reloc    va=0x00020000 vsize=0x00001B1A raw=0x00019E00 rsize=0x00001C00

@@ -1,0 +1,93 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll
+;; rva=0x5E10 len=0xC0 file_off=0x5210
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\TokenMgr.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10005e10 <.text+0x4e10>:
+10005e10:	a1 d0 eb 01 10       	mov    eax,ds:0x1001ebd0
+10005e15:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+10005e18:	8b 51 12             	mov    edx,DWORD PTR [ecx+0x12]
+10005e1b:	56                   	push   esi
+10005e1c:	8b 74 24 08          	mov    esi,DWORD PTR [esp+0x8]
+10005e20:	57                   	push   edi
+10005e21:	8b 7c 24 10          	mov    edi,DWORD PTR [esp+0x10]
+10005e25:	57                   	push   edi
+10005e26:	56                   	push   esi
+10005e27:	6a 01                	push   0x1
+10005e29:	c7 05 d4 eb 01 10 00 	mov    DWORD PTR ds:0x1001ebd4,0x0
+10005e30:	00 00 00 
+10005e33:	ff d2                	call   edx
+10005e35:	83 c4 0c             	add    esp,0xc
+10005e38:	85 c0                	test   eax,eax
+10005e3a:	74 0a                	je     0x10005e46
+10005e3c:	5f                   	pop    edi
+10005e3d:	b8 01 00 00 00       	mov    eax,0x1
+10005e42:	5e                   	pop    esi
+10005e43:	c2 08 00             	ret    0x8
+10005e46:	8b 17                	mov    edx,DWORD PTR [edi]
+10005e48:	33 c0                	xor    eax,eax
+10005e4a:	89 15 d4 eb 01 10    	mov    DWORD PTR ds:0x1001ebd4,edx
+10005e50:	85 d2                	test   edx,edx
+10005e52:	7e 1c                	jle    0x10005e70
+10005e54:	b9 d8 eb 01 10       	mov    ecx,0x1001ebd8
+10005e59:	8d a4 24 00 00 00 00 	lea    esp,[esp+0x0]
+10005e60:	8b 3c 86             	mov    edi,DWORD PTR [esi+eax*4]
+10005e63:	89 39                	mov    DWORD PTR [ecx],edi
+10005e65:	40                   	inc    eax
+10005e66:	81 c1 e0 00 00 00    	add    ecx,0xe0
+10005e6c:	3b c2                	cmp    eax,edx
+10005e6e:	7c f0                	jl     0x10005e60
+10005e70:	5f                   	pop    edi
+10005e71:	33 c0                	xor    eax,eax
+10005e73:	5e                   	pop    esi
+10005e74:	c2 08 00             	ret    0x8
+10005e77:	cc                   	int3
+10005e78:	cc                   	int3
+10005e79:	cc                   	int3
+10005e7a:	cc                   	int3
+10005e7b:	cc                   	int3
+10005e7c:	cc                   	int3
+10005e7d:	cc                   	int3
+10005e7e:	cc                   	int3
+10005e7f:	cc                   	int3
+10005e80:	51                   	push   ecx
+10005e81:	a1 d0 eb 01 10       	mov    eax,ds:0x1001ebd0
+10005e86:	8b 48 04             	mov    ecx,DWORD PTR [eax+0x4]
+10005e89:	6a 00                	push   0x0
+10005e8b:	8d 54 24 04          	lea    edx,[esp+0x4]
+10005e8f:	52                   	push   edx
+10005e90:	c7 44 24 08 00 00 00 	mov    DWORD PTR [esp+0x8],0x0
+10005e97:	00 
+10005e98:	8b 81 0e 01 00 00    	mov    eax,DWORD PTR [ecx+0x10e]
+10005e9e:	6a 00                	push   0x0
+10005ea0:	ff d0                	call   eax
+10005ea2:	83 c4 0c             	add    esp,0xc
+10005ea5:	85 c0                	test   eax,eax
+10005ea7:	74 09                	je     0x10005eb2
+10005ea9:	b8 01 00 00 00       	mov    eax,0x1
+10005eae:	59                   	pop    ecx
+10005eaf:	c2 04 00             	ret    0x4
+10005eb2:	8b 4c 24 08          	mov    ecx,DWORD PTR [esp+0x8]
+10005eb6:	8b 14 24             	mov    edx,DWORD PTR [esp]
+10005eb9:	89 11                	mov    DWORD PTR [ecx],edx
+10005ebb:	33 c0                	xor    eax,eax
+10005ebd:	59                   	pop    ecx
+10005ebe:	c2 04 00             	ret    0x4
+10005ec1:	cc                   	int3
+10005ec2:	cc                   	int3
+10005ec3:	cc                   	int3
+10005ec4:	cc                   	int3
+10005ec5:	cc                   	int3
+10005ec6:	cc                   	int3
+10005ec7:	cc                   	int3
+10005ec8:	cc                   	int3
+10005ec9:	cc                   	int3
+10005eca:	cc                   	int3
+10005ecb:	cc                   	int3
+10005ecc:	cc                   	int3
+10005ecd:	cc                   	int3
+10005ece:	cc                   	int3
+10005ecf:	cc                   	int3

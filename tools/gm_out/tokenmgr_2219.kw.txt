@@ -1,0 +1,49 @@
+0x10018527	- Attempt to use MSIL code from this assembly during native code initialization
+0x10018657	- Attempt to initialize the CRT more than once.
+0x100186BB	- CRT not initialized
+0x100186DB	- unable to initialize heap
+0x10018703	- not enough space for lowio initialization
+0x1001873B	- not enough space for stdio initialization
+0x10018BB4	`dynamic initializer for '
+0x10019B88	USER32.DLL
+0x10019F5C	\\.\
+0x1001B096	CRYPT32.dll
+0x1001B0C0	CRYPTUI.dll
+0x1001B0DE	HID.DLL
+0x1001B0E8	SetupDiGetClassDevsA
+0x1001B100	SetupDiDestroyDeviceInfoList
+0x1001B120	SetupDiGetDeviceInterfaceDetailA
+0x1001B144	SetupDiEnumDeviceInterfaces
+0x1001B160	SETUPAPI.dll
+0x1001B170	SCardEstablishContext
+0x1001B188	SCardFreeMemory
+0x1001B19A	SCardListReadersA
+0x1001B1AE	SCardReleaseContext
+0x1001B1C2	WinSCard.dll
+0x1001B290	KERNEL32.dll
+0x1001B33C	ADVAPI32.dll
+0x1001B48C	GetStartupInfoA
+0x1001B4D6	GetCPInfo
+0x1001B6FC	CreateFileA
+0x1001B70A	InitializeCriticalSectionAndSpinCount
+0x1001BB08	TokenMgr.dll
+0x1001BCA3	helper_gen_remote_unlock_response
+0x1001BD18	init_pkcs11
+0x1001BD24	init_pkcs11_ex
+0x1001BE69	token_change_sopin
+0x1001BE7C	token_change_upin
+0x1001BF56	token_get_pin_state
+0x1001BFCE	token_remote_unlock_upin
+0x1001C03E	token_set_upin
+0x1001C04D	token_unlock_upin
+0x1001C098	uninit_pkcs11
+0x00000000	Thawte Timestamping CA0
+0x00000000	'Symantec Time Stamping Services CA - G20
+0x00000000	.http://crl.thawte.com/ThawteTimestampingCA.crl0
+0x00000000	+Symantec Time Stamping Services Signer - G40
+0x00000000	+BeiJing Century Longmai Technology Co., Ltd1402
+0x00000000	+BeiJing Century Longmai Technology Co., Ltd0
+0x00000000	,I%s
+0x00000000	'Symantec Time Stamping Services CA - G2
+0x10018344	KERNEL32.DLL
+0x100183AC	mscoree.dll

@@ -1,0 +1,55 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x1350 len=0x60 file_off=0x750
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10001350 <.text+0x350>:
+10001350:	56                   	push   esi
+10001351:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+10001357:	57                   	push   edi
+10001358:	85 f6                	test   esi,esi
+1000135a:	74 0a                	je     0x10001366
+1000135c:	56                   	push   esi
+1000135d:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+10001363:	83 c4 04             	add    esp,0x4
+10001366:	8b 44 24 24          	mov    eax,DWORD PTR [esp+0x24]
+1000136a:	8b 4c 24 20          	mov    ecx,DWORD PTR [esp+0x20]
+1000136e:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10001372:	50                   	push   eax
+10001373:	8b 44 24 1c          	mov    eax,DWORD PTR [esp+0x1c]
+10001377:	51                   	push   ecx
+10001378:	8b 4c 24 1c          	mov    ecx,DWORD PTR [esp+0x1c]
+1000137c:	52                   	push   edx
+1000137d:	8b 54 24 1c          	mov    edx,DWORD PTR [esp+0x1c]
+10001381:	50                   	push   eax
+10001382:	51                   	push   ecx
+10001383:	52                   	push   edx
+10001384:	8b 54 24 24          	mov    edx,DWORD PTR [esp+0x24]
+10001388:	e8 d3 41 00 00       	call   0x10005560
+1000138d:	8b f8                	mov    edi,eax
+1000138f:	85 f6                	test   esi,esi
+10001391:	74 0a                	je     0x1000139d
+10001393:	56                   	push   esi
+10001394:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+1000139a:	83 c4 04             	add    esp,0x4
+1000139d:	8b c7                	mov    eax,edi
+1000139f:	5f                   	pop    edi
+100013a0:	5e                   	pop    esi
+100013a1:	c3                   	ret
+100013a2:	cc                   	int3
+100013a3:	cc                   	int3
+100013a4:	cc                   	int3
+100013a5:	cc                   	int3
+100013a6:	cc                   	int3
+100013a7:	cc                   	int3
+100013a8:	cc                   	int3
+100013a9:	cc                   	int3
+100013aa:	cc                   	int3
+100013ab:	cc                   	int3
+100013ac:	cc                   	int3
+100013ad:	cc                   	int3
+100013ae:	cc                   	int3
+100013af:	cc                   	int3

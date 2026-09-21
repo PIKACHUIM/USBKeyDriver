@@ -1,0 +1,49 @@
+password based MAC
+id-PasswordBasedMAC
+X509v3 Policy Mappings
+policyMappings
+setext-pinAny
+setext-pinSecure
+merchant initiated auth
+setct-MeAqCInitResTBS
+setct-CardCInitResTBS
+setct-PInitResData
+AD Time Stamping
+ad_timestamping
+localKeyID
+Time Stamping
+timeStamping
+initials
+authorityKeyIdentifier
+subjectKeyIdentifier
+challengePassword
+.\crypto\engine\eng_init.c
+InitCommonControls
+InitCommonControlsEx
+- Attempt to use MSIL code from this assembly during native code initialization
+- Attempt to initialize the CRT more than once.
+- CRT not initialized
+- unable to initialize heap
+- not enough space for lowio initialization
+- not enough space for stdio initialization
+`dynamic initializer for '
+GetLinguoKeyId
+GetLinguoKeyCount
+InitializeCriticalSection
+GetCPInfo
+GetStartupInfoA
+InitializeCriticalSectionAndSpinCount
+ModifyMenuA
+InitializeSecurityDescriptor
+.?AVXPersistStreamInit@COleControl@@
+.?AUIPersistStreamInit@@
+GetLinguoKeyCountWWW
+^GetLinguoKeyIdWWd
+GetLinguoKeyCountW
+GetLinguoKeyId 
+cjx@linguo.cn1-0+
+WoSign Time Stamping Signer0
+隵GetLinguoKeyIdWWd
+方法GetLinguoKeyCountW
+方法GetLinguoKeyId 
+Controls safely initializable from persistent data

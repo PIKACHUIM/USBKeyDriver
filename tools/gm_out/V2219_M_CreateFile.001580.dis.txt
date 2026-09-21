@@ -1,0 +1,45 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x1580 len=0x50 file_off=0x980
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10001580 <.text+0x580>:
+10001580:	56                   	push   esi
+10001581:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+10001587:	57                   	push   edi
+10001588:	85 f6                	test   esi,esi
+1000158a:	74 0a                	je     0x10001596
+1000158c:	56                   	push   esi
+1000158d:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+10001593:	83 c4 04             	add    esp,0x4
+10001596:	8b 44 24 1c          	mov    eax,DWORD PTR [esp+0x1c]
+1000159a:	8b 4c 24 18          	mov    ecx,DWORD PTR [esp+0x18]
+1000159e:	8b 54 24 14          	mov    edx,DWORD PTR [esp+0x14]
+100015a2:	50                   	push   eax
+100015a3:	8b 44 24 14          	mov    eax,DWORD PTR [esp+0x14]
+100015a7:	51                   	push   ecx
+100015a8:	52                   	push   edx
+100015a9:	8b 54 24 18          	mov    edx,DWORD PTR [esp+0x18]
+100015ad:	50                   	push   eax
+100015ae:	e8 ed 44 00 00       	call   0x10005aa0
+100015b3:	8b f8                	mov    edi,eax
+100015b5:	85 f6                	test   esi,esi
+100015b7:	74 0a                	je     0x100015c3
+100015b9:	56                   	push   esi
+100015ba:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+100015c0:	83 c4 04             	add    esp,0x4
+100015c3:	8b c7                	mov    eax,edi
+100015c5:	5f                   	pop    edi
+100015c6:	5e                   	pop    esi
+100015c7:	c3                   	ret
+100015c8:	cc                   	int3
+100015c9:	cc                   	int3
+100015ca:	cc                   	int3
+100015cb:	cc                   	int3
+100015cc:	cc                   	int3
+100015cd:	cc                   	int3
+100015ce:	cc                   	int3
+100015cf:	cc                   	int3

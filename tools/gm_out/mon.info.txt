@@ -1,0 +1,12 @@
+== g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\GM3000Mon.exe
+size=944128
+machine=0x014C magic=0x10B x86 image_base=0x400000
+  .text     va=0x00001000 vsize=0x000B6F84 raw=0x00000400 rsize=0x000B7000
+  .itext    va=0x000B8000 vsize=0x00000CEC raw=0x000B7400 rsize=0x00000E00
+  .data     va=0x000B9000 vsize=0x00003004 raw=0x000B8200 rsize=0x00003200
+  .bss      va=0x000BD000 vsize=0x00007A14 raw=0x000BB400 rsize=0x00000000
+  .idata    va=0x000C5000 vsize=0x00003244 raw=0x000BB400 rsize=0x00003400
+  .tls      va=0x000C9000 vsize=0x0000003C raw=0x000BE800 rsize=0x00000000
+  .rdata    va=0x000CA000 vsize=0x00000018 raw=0x000BE800 rsize=0x00000200
+  .reloc    va=0x000CB000 vsize=0x0000CAA8 raw=0x000BEA00 rsize=0x0000CC00
+  .rsrc     va=0x000D8000 vsize=0x0001B200 raw=0x000CB600 rsize=0x0001B200

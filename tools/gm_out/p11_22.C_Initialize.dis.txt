@@ -1,0 +1,48 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll
+;; C_Initialize rva=0x20D0 va=0x100020D0 stop=0x10002120
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100020d0 <.text+0x10d0>:
+100020d0:	55                   	push   ebp
+100020d1:	8b ec                	mov    ebp,esp
+100020d3:	83 e4 f8             	and    esp,0xfffffff8
+100020d6:	56                   	push   esi
+100020d7:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+100020dd:	57                   	push   edi
+100020de:	85 f6                	test   esi,esi
+100020e0:	74 0a                	je     0x100020ec
+100020e2:	56                   	push   esi
+100020e3:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+100020e9:	83 c4 04             	add    esp,0x4
+100020ec:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+100020ef:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+100020f2:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+100020f5:	50                   	push   eax
+100020f6:	51                   	push   ecx
+100020f7:	52                   	push   edx
+100020f8:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+100020fb:	e8 f0 11 00 00       	call   0x100032f0
+10002100:	8b f8                	mov    edi,eax
+10002102:	85 f6                	test   esi,esi
+10002104:	74 0a                	je     0x10002110
+10002106:	56                   	push   esi
+10002107:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+1000210d:	83 c4 04             	add    esp,0x4
+10002110:	8b c7                	mov    eax,edi
+10002112:	5f                   	pop    edi
+10002113:	5e                   	pop    esi
+10002114:	8b e5                	mov    esp,ebp
+10002116:	5d                   	pop    ebp
+10002117:	c3                   	ret
+10002118:	cc                   	int3
+10002119:	cc                   	int3
+1000211a:	cc                   	int3
+1000211b:	cc                   	int3
+1000211c:	cc                   	int3
+1000211d:	cc                   	int3
+1000211e:	cc                   	int3
+1000211f:	cc                   	int3

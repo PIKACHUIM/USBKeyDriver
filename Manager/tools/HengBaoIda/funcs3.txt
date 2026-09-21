@@ -1,0 +1,11 @@
+0x1000150F P11_EnumSlots_wrapper
+0x10012570 EnumSlots
+0x100012E9 P11_GetDeviceBySlot
+0x10023CB8 SlotFilter
+0x10028217 Transport_EnumDevicePaths
+0x10028226 Transport_Open
+0x100250EE SendAPDU_SELECT_ADF1
+0x100251C0 SelectFile_ByIndex
+0x100253C4 ReadBinary
+0x1002945F BinToHex
+0x100293FC HexToBin

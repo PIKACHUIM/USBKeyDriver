@@ -1,0 +1,42 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x14E0 len=0x50 file_off=0x8E0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100014e0 <.text+0x4e0>:
+100014e0:	56                   	push   esi
+100014e1:	8b 35 bc d9 07 10    	mov    esi,DWORD PTR ds:0x1007d9bc
+100014e7:	57                   	push   edi
+100014e8:	85 f6                	test   esi,esi
+100014ea:	74 0a                	je     0x100014f6
+100014ec:	56                   	push   esi
+100014ed:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+100014f3:	83 c4 04             	add    esp,0x4
+100014f6:	8b 44 24 20          	mov    eax,DWORD PTR [esp+0x20]
+100014fa:	8b 4c 24 1c          	mov    ecx,DWORD PTR [esp+0x1c]
+100014fe:	8b 54 24 18          	mov    edx,DWORD PTR [esp+0x18]
+10001502:	50                   	push   eax
+10001503:	8b 44 24 18          	mov    eax,DWORD PTR [esp+0x18]
+10001507:	51                   	push   ecx
+10001508:	8b 4c 24 18          	mov    ecx,DWORD PTR [esp+0x18]
+1000150c:	52                   	push   edx
+1000150d:	8b 54 24 18          	mov    edx,DWORD PTR [esp+0x18]
+10001511:	50                   	push   eax
+10001512:	51                   	push   ecx
+10001513:	e8 68 44 00 00       	call   0x10005980
+10001518:	8b f8                	mov    edi,eax
+1000151a:	85 f6                	test   esi,esi
+1000151c:	74 0a                	je     0x10001528
+1000151e:	56                   	push   esi
+1000151f:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+10001525:	83 c4 04             	add    esp,0x4
+10001528:	8b c7                	mov    eax,edi
+1000152a:	5f                   	pop    edi
+1000152b:	5e                   	pop    esi
+1000152c:	c3                   	ret
+1000152d:	cc                   	int3
+1000152e:	cc                   	int3
+1000152f:	cc                   	int3

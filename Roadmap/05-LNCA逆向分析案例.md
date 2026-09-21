@@ -183,8 +183,8 @@ ret $0x4                 ; __stdcall，单参数（int* count）
 ## 七、仍待验证项
 
 1. **多容器语义**：JIT 层为"签名 + 加密证书对"模型。多容器需扩展 `HD_ReadContainerListInfo` / `HD_ReadContainerInfoEx`（HDCOS 层）。
-2. **`ImportPfx` 私钥导入**：`USBKey_WritePubPriKey` 要求私钥先以设备公钥加密（`dPubEncKey`/`dAlgID`），加密协议需逆向 `HDJIT_ImportRsaPrivateKey` 链路确认。当前采用设备内 `GenRSAKeyPair` 兜底。
-3. **`DeleteContainer` 定位方式**：需确认证书容器与 Key 内文件的对应关系。
+2. **`ImportPfx` 私钥导入**：`USBKey_WritePubPriKey` 要求私钥先以设备公钥加密（`dPubEncKey`/`dAlgID`），加密协议需逆向 `HDJIT_ImportRsaPrivateKey` 链路确认。已修复：不再用 `GenRSAKeyPair` 兜底（会造成证书与设备内私钥不匹配），改为「读设备加密证书提取加密公钥 → PKCS#1 v1.5 加密私钥 → `WritePubPriKey`」，协议假设仍待实体设备验证。
+3. **`DeleteContainer` 定位方式**：已修复——不再用 `container.ContainerName`（实为证书 CN）误调 `DelFile`；明确抛 `NotSupportedException`，待 `HD_DeleteCert`/`HD_DeleteContainer` 逆向确认后对接。
 4. **挑战码解锁**：`HD_ExternalMF` / `External_Authentication` 协议待确认。
 5. **`ChangePin`/`Unlock`/`Reset` 运行时验证**：签名已从反汇编确认（`ret $0x14` 等），但涉及修改设备状态，需谨慎实测。
 6. **返回值错误码表**：已知 `0x3E9`（打开失败）、`0x3EA`（KEYMAX）、`0x3EB`（参数无效）、`0x3F0`，其余待补充。
@@ -244,7 +244,7 @@ ret $0x4                 ; __stdcall，单参数（int* count）
 | `ListContainers` | `USBKey_ReadCert`（type 0=签名 / 1=加密） |
 | `ImportPfx` | `USBKey_WriteCert` + `USBKey_RegisterCert` + `USBKey_WritePubPriKey`（私钥） |
 | `ExportCertificate` / `ViewCertificate` | `USBKey_ReadCert` |
-| `DeleteContainer` | `USBKey_DelFile`（待确认） |
+| `DeleteContainer` | HDCOS 层 `HD_DeleteCert` / `HD_DeleteContainer`（签名已逆向确认，见第十一章） |
 | `RegisterToCsp` / `UnregisterFromCsp` | 标准 CryptoAPI（`X509Store`，无需 DLL） |
 | `ChangePin` | `USBKey_ChangePin` |
 | `Unlock` | `USBKey_UserUnlockPin` / `USBKey_UnlockPin` |
@@ -277,4 +277,378 @@ ret $0x4                 ; __stdcall，单参数（int* count）
 
 **分析日期**：2026-08-25
 **分析者**：AI 逆向协作（objdump + strings + 反汇编 + 动态探针验证）
-**版本**：1.2
+**版本**：1.3
+
+---
+
+## 十一、删除证书函数签名逆向（2026-09-01 新增）
+
+### 11.1 背景
+
+`DeleteContainer` 长期无法对接，根本原因：**JIT 层（`USBKey_*`，44 导出）没有删除证书的独立函数**，而 HDCOS 层（`HD_*`，104 导出）的 `HD_DeleteCert` / `HD_DeleteContainer` **未被任何上层 DLL 静态导入**（通过 `LoadLibrary` + `GetProcAddress` 动态调用，或纯内部调用），因此无法从调用链推断签名。
+
+### 11.2 签名确定方法
+
+用 Python + Capstone 反汇编入口，依据 `ret imm16`（`__stdcall` 参数总字节数）确定参数个数，再依据 prologue 中的 `strlen`（`repne scasb`）判断字符串参数、依据句柄传递判断设备句柄。
+
+### 11.3 已确认签名（HDCOS_LNCA.dll）
+
+| 函数 | RVA | ret | 签名 |
+|------|-----|-----|------|
+| `HD_DeleteCert` | 0x7210 | `ret 8` | `int HD_DeleteCert(const char* A, const char* B)` |
+| `HD_DeleteContainer` | 0x6A10 | `ret 8` | `int HD_DeleteContainer(int hDev, int containerId)` |
+| `HD_DelCertFrIE` | 0x6FD0 | `ret 0x10` | 4 参数（IE 删除，暂不采用） |
+| `HD_ClearDir` | 0x67D0 | `ret 4` | `int HD_ClearDir(int hDev)` |
+| `HD_ReadContainerListInfo` | 0x6650 | `ret 8` | 2 参数（读容器列表） |
+| `HD_ReadContainerInfo` | 0x6280 | `ret 0x10` | `int HD_ReadContainerInfo(hDev, outBuf, lenPtr, containerId)` |
+| `HD_CreateContainer` | 0x68F0 | — | 创建容器 |
+
+### 11.4 `HD_DeleteCert` 参数语义
+
+反汇编证据（RVA 0x7210）：
+
+```
+mov edi, [esp+0x110]      ; 参数1 = 字符串A
+repne scasb               ; strlen(A) → 拷贝到局部 buf
+mov edi, [esp+0x10c]      ; 参数2 = 字符串B
+...
+mov byte[esp+ecx+8], 0xff ; 在 A 末尾插入 0xFF 分隔符
+lea edx, [esp+ecx+9]      ; B 写入位置 = A + 0xFF + 1
+strlen(B) → 拷贝 B
+lea ecx, [esp+8]          ; 组合串 = A + 0xFF + B
+call 0x8b60               ; 内部处理（含 MessageBox 弹窗）
+ret 8
+```
+
+**结论**：`HD_DeleteCert` 将两个字符串拼成 `A \x00ff B` 复合标识符。推测 A = 容器名、B = 证书别名（CN），但**精确语义需真实设备验证**。
+
+### 11.5 `HD_DeleteContainer` 参数语义
+
+反汇编证据（RVA 0x6A10，完整流程）：
+
+```
+mov eax, [esp+4]          ; 参数1 = hDev（设备句柄）
+push 0 / push eax
+call 0x7d40               ; 连接/打开设备
+...
+call 0x8ff0(3, hDev)      ; 第1步：选择/验证
+mov bx, word[esp+0x158]   ; 参数2 = containerId（16 位 word）
+mov al, bl
+add al, 0x10              ; P1 = bl + 0x10（删除容器指令）
+push al
+call 0x22b0               ; 第2步：删除主命令（APDU）
+mov cl, bh                ; 高字节 = 容器类型字段
+mov byte[esp+0x28], cl
+mov byte[esp+0x29], bl
+call 0x1c40               ; 发送 APDU
+call 0x8ff0(0x83, hDev)   ; 第3步：收尾
+call 0x5b90               ; 提交
+call 0x15b0               ; 释放
+ret 8
+```
+
+**结论**：
+
+- 签名：`int HD_DeleteContainer(int hDev, WORD containerId)`
+- `containerId` 低字节 `bl` = 容器索引（1/2/3，与 `HD_ReadContainerListInfo` 枚举编号一致）
+- `containerId` 高字节 `bh` = 证书类型（0=签名 / 1=加密）
+- 删除指令 APDU 的 P1 = `bl + 0x10`
+
+与 `HD_ReadContainerListInfo` 交叉验证（RVA 0x6650）：
+
+```
+mov eax, [esp+0x160]      ; 参数2 = 输出缓冲区
+lea ebp, [eax+4]          ; 缓冲区偏移 +4
+mov dword[ebp-4], 0       ; 缓冲区前4字节 = count
+xor ebx, ebx
+inc cl                    ; 容器编号从 1 开始
+add ebx, 4                ; 每个容器记录偏移 +4
+add ecx, 0x80             ; 每个容器记录 0x80 = 128 字节
+cmp ebp, 3                ; 最多 3 个容器
+jl loop
+```
+
+即 `HD_ReadContainerListInfo(hDev, outBuf)` 返回：
+
+```
+[0:4]   = count（容器数量，最多 3）
+[4:...] = 每容器 128 字节记录（含容器名/证书标识）
+```
+
+**注意**：函数末尾真实返回为 `ret 8`（早期误读的内部错误路径 `ret 4` 已澄清）。
+
+### 11.6 对接风险提示
+
+1. `HD_DeleteCert` 内部会弹 **MessageBox**（`call dword[0x10017180]`），不适合静默调用；对接时应优先 `HD_DeleteContainer`（按容器索引删除，无弹窗）。
+2. **无真实 LNCA 设备可验证**（当前环境仅插入 Feitian ePass3003），上述签名通过静态反汇编确定，未做实机验证，**对接后必须在真实设备上测试**。
+3. ePass3003 平台的 `DeleteContainer` 已通过标准 PKCS#11 `C_DestroyObject` 完整实现（见 `EPass3003Provider.cs`），无需逆向。
+
+---
+
+## 十二、「完全格式化 + 重设 PIN」链路逆向（2026-09-20 新增）
+
+### 12.1 背景
+
+`ResetDevice`（初始化）长期无法落地，历史结论是「公开 DLL 无「无需认证的初始化重置 PIN」入口」。本次用**静态反汇编定位到真正的 COS 层入口**，彻底推翻该结论。
+
+### 12.2 三个错误入口（已排除）
+
+| 入口 | 结论 | 证据 |
+|------|------|------|
+| `JIT_USBKEY_HD.dll::USBKey_InitKey` / `USBKey_Reset` | 调试空壳 | 仅打印日志后 `xor eax,eax; ret` |
+| `HDCOS_LNCA.dll::InitialCard`（RVA 0x73F0） | 空 stub | `or eax,0xffffffff; ret 0x10`（4 参数直接返回 -1） |
+| `HD_HardAPI.dll::HSErase` → `HD_SortDev.dll::HS_Erase` | 只擦「存储层文件系统」 | 内部 APDU 为 `DD EA`/`DD FA`/`AD F1~F3` 系列文件系统命令，不重置 COS PIN |
+
+另：`HSChangeUserPin` / `HSReWriteUserPin`（HD_SortDev 层）经反汇编确认**必须先校验旧 PIN**（`HS_ReWriteUserPin` 先 `strlen` 校验旧 PIN 1~16、新 PIN 2~16，再调用内部 0x4760），故不能用于「旧 PIN 未知」。
+
+### 12.3 正确入口：`HD_ClearDir` = COS 层完全格式化
+
+`HDCOS_LNCA.dll::HD_ClearDir`（RVA 0x67D0，`ret 4`）内部链路（逐条反汇编确认）：
+
+```
+Get_Challenge(hCard, 8, &challenge, &sw)          ; APDU CLA 0x84，取 8 字节挑战
+  ↓
+[0x10019050..0x10019060] 内置传输密钥（16B，数据段常量）
+  ↓ call 0x10008dc0(...)                           ; 挑战应答计算
+External_Authentication(hCard, 0, resp8, &sw)     ; APDU CLA 0x82，P1=0（管理员/传输密钥）
+  ↓ 校验 SW == 0x9000
+Clear_DF(hCard, &sw)                              ; 私有 APDU：BF CE 00 00 00
+```
+
+**关键点**：
+
+1. 外部认证用的传输密钥**硬编码在 DLL 数据段**（RVA 0x19050：`63 79 74 62 79 68 79 78 73 79 6b 79 68 62 08 31` = `"cytbyhyxsykyhb"` + `08 31`），**不需要用户 PIN**。
+   ⚠️ **实机修正（见 12.9）**：该常量是整个 SDK 共用的「出厂默认传输密钥」，只有**未修改过管理员口令**的卡才接受它；批量个性化后的卡密钥已被替换，此时 `HD_ClearDir` 必定失败（返回 -1），必须由调用方提供 SO 口令走备用链路。
+2. 交叉引用扫描（`tools/disasm_lnca.py --xrefs`）证明：`Clear_DF` 在 DLL 内**只有一个调用者**，即 `HD_ClearDir`（`0x68BC`）——它是 COS 层清除数据区（DF）的**唯一入口**。
+3. `HD_ClearDir` 与 `HSErase` 互补：前者清 COS 层数据区（证书/容器/密钥记录），后者清存储层文件系统，**两者叠加才是真正的「完全格式化」**。
+
+### 12.4 重设 PIN 的三个入口
+
+| 入口 | 签名 | 底层命令 |
+|------|------|----------|
+| `Reload_Pin` | `int(hCard, uint dataLen, byte* data, void* reserved)`，`ret 0x10` | APDU `80 5E 00 00 Lc data`（ISO7816-4 INS 0x5E = RESET RETRY COUNTER） |
+| `HD_ChangePin` | `int(hCard, byte* oldNewPin, uint len)`，`ret 0xC` | 缓冲区格式 `旧PIN + 0xFF + 新PIN`（DLL 以 0xFF 拆分，与 `HD_DeleteCert` 同一风格） |
+| `HSReWriteUserPin` | `int(hDev, char* old, char* new)`，`ret 0xC` | 存储层改 PIN，**必须先验证旧 PIN** |
+
+`Reload_Pin` 在 DLL 内**无任何内部调用者**（xrefs 为空）→ 它是专供上层管理工具（`GP_ADM_LNCA.exe`）调用的导出 API，语义即 ISO7816 RESET RETRY COUNTER。
+
+### 12.5 `HD_VerifyPin` 的真实语义（重要）
+
+`HD_VerifyPin(hCard, byte* pin, uint len)`（RVA 0x2840，`ret 0xC`）**不是**简单 VERIFY，而是：
+
+```
+0x10008d10(len, pin)                       ; 以 PIN 作为密钥材料做密钥派生
+Get_Challenge(hCard, 8, &ch, &sw)
+0x10008dc0(...)                            ; 计算 8 字节响应
+External_Authentication(hCard, 1, resp, &sw)  ; P1=1（用户 PIN 外部认证）
+SW 判定：0x9000 = 通过；(SW & 0xFFF0)==0x63C0 → 返回剩余重试次数（为 0 则返回 -1）；
+        0x6983 / 0x9303 → -1（锁定/被拒）
+```
+
+即：**COS 的 PIN 认证 = 用 PIN 做挑战应答外部认证**（PIN 即"密钥"）。这解释了历史上「默认 123456 验证失败返回 0x3EE」的现象，也说明**盲目遍历默认 PIN 会消耗重试计数**，实现时必须限制尝试次数。
+
+### 12.6 设备打开方式
+
+`HD_Open(int port)`（RVA 0x1120，`ret 4`）→ 返回卡片句柄（0 表示失败）；`HD_Close(hCard)`（RVA 0x15B0）关闭。
+`HD_OpenJITDevice(char* devSN, int* phCard)`（RVA 0x9070，`ret 8`）为 JIT 层使用的打开流程：遍历 port 0~3 → `HD_Open(port)` → `HD_GET_BCDSN` 比对序列号 → `HD_IC_RESET` → `HD_GET_SN`。
+
+**调用链权威性证据**：`JIT_USBKEY_HD.dll` 的字符串表中同时出现 `HDCOS_LNCA` 与 `HD_ChangePin`/`HD_VerifyPin`/`HD_OpenJITDevice`/`HDJIT_VerifyAdminPin` 等导入名，证明 **HDCOS_LNCA.dll 就是 LNCA 的权威 COS 层**（注意与同目录的 `HD_hdcos480.dll` 是**两个不同文件**：139264B vs 57344B，SHA256 不同）。
+
+### 12.7 代码落地
+
+| 位置 | 内容 |
+|------|------|
+| `Manager/src/USBKey.Core/UsbKey/LncaHdcosNative.cs` | HDCOS 层 P/Invoke 声明（新增） |
+| `Manager/src/USBKey.Core/UsbKey/LncaProvider.cs::ResetDevice` | 新流程：存储层擦除 → `HD_ClearDir` 完全格式化 → 重设 PIN（Reload_Pin → HD_ChangePin → HSReWriteUserPin）→ `HD_VerifyPin` 验证 |
+| `Manager/tools/LncaProbe --format [port] [newPin] [puk] [--dry]` | 实机验证探针（`--dry` 只读探测，不做破坏性操作） |
+| `tools/disasm_lnca.py` | 反汇编工具（`--full`/`--xrefs`/`--imports`/`--strings`/`--data` 五种模式） |
+
+**诚实原则**：每一步真实返回码都记录到 `LncaProvider.LastResetReport`；只有最终 `HD_VerifyPin(新 PIN)` 通过才判定成功，否则抛出带完整报告的异常，绝不假装成功。
+
+### 12.8 待实机验证项
+
+1. `HD_ClearDir` 是否真的能清空 COS 层数据区（需真实 LNCA 设备，当前环境仅 Feitian ePass3003，`HD_Open` 返回 0）。
+2. `Clear_DF` 后 User PIN 是否回到出厂默认（若回到默认，`HD_ChangePin` 用默认旧 PIN 即可改密）。
+3. `Reload_Pin` 的数据域语义（「PUK + 新 PIN」还是「仅新 PIN」）需按固件实测确定。
+4. 各步返回码含义（`SW` 与 DLL 返回值）需实测建立对照表。
+
+### 12.9 实机测试记录（2026-09-20，真机 LNCA Key）
+
+设备：`HD_GET_BCDSN = 01102001519176`，`HD_GET_SN = SZD23B10`（ATR 前 8 字节即 `SZD23B10`），擦除前持有一张加密证书
+`CN=营口辽河装备有限公司, OU=@05566801-6`（1151 字节）。
+
+#### (1) HDCOS 返回码约定（与 JIT 层不同！）
+
+| 调用 | 返回 | SW | 说明 |
+|------|------|----|------|
+| `HD_Open(0)` | `0xA4E6A50` | — | 句柄非 0 即成功 |
+| `HD_GET_BCDSN` / `HD_GET_SN` | `0` | — | 成功 0 |
+| `Get_Challenge(hCard, 8, ...)` | **`8`** | `0x9000` | **成功 = 返回数据字节数**（非 0！） |
+| `Select_File(hCard,0,0,0,0)` | `8` | `0x9000` | 同上 |
+| `External_Authentication(P1=0, 错误响应)` | `0` | **`0x63CF`** | 认证失败，**末位 = 剩余重试次数（15）** |
+| `Clear_DF`（未认证） | `0` | **`0x6982`** | 「安全状态不满足」→ 格式化必须先认证 |
+| `HD_ClearDir` | **`0xFFFFFFFF`** | — | 内置默认密钥不匹配 → 失败 |
+| `Reload_Pin(hCard, len, 新PIN, 0)` | `0` | — | ⚠️ **该函数不检查 SW，返回值无成功语义** |
+
+#### (2) 关键结论（逐条实测）
+
+1. `HD_ClearDir` → **-1（失败）**：本卡的管理员/传输密钥已非 SDK 内置默认值 `cytbyhyxsykyhb`。
+2. `Clear_DF` 直连 → `SW=0x6982`：**完全格式化必须处于已认证会话**，不能绕过。
+3. `Reload_Pin`（仅新 PIN）→ 返回 0 但 **PIN 实际未改变**：`HD_VerifyPin(新PIN)` 仍为 -1，JIT 层
+   `USBKey_UserLogin(新PIN)` → `0x3E9` 失败。→ **`Reload_Pin` 的 rc 不能作为成功判据**，必须用 `HD_VerifyPin` 终判。
+4. `HD_VerifyPin` → **-1 = 用户 PIN 已锁定**（SW=0x63C0，重试次数 0）；成功返回 `0`，其他失败返回 `-1000`。
+   （其成功路径还会再调一次 `Verify_Pin(hCard, 0, 6, ...)` 做二次确认。）
+5. `HSErase`（存储层）→ **rc=0 成功**，但**证书仍在**（擦除后 `ReadCert(type=1)` 仍返回同一张证书）→ 证实
+   「存储层擦除 ≠ 完全格式化」，**必须叠加 COS 层 `Clear_DF` 才是完整格式化**。
+6. `HDJIT_VerifyAdminPin` 用 `12345678`、`cytbyhyxsykyhb` 均返回 -1（不匹配）；未继续穷举以免耗尽
+   P1=2 认证计数（该计数同样为 15 次起算）。
+7. 出厂默认传输密钥在同一 SDK 的多个模块中重复出现（`HDCOS_LNCA.dll` ×4、`GP_COS_LNCA.dll` ×4、
+   `HD_SortDev.dll` ×1 @0xE058、`LNCACSPSetup.exe` ×1），可确认为「默认值」而非本卡密钥。
+
+#### (3) 因此的工程结论
+
+- **可自动完成**：存储层擦除（`HSErase`，rc=0）。
+- **需要凭据才能完成**：COS 层完全格式化（`Clear_DF` 需已认证会话）+ 用户 PIN 重设
+  （`HD_VerifyPin` 显示 PIN 已锁定，须用 PUK 走 INS 0x5E，或先用 SO 口令完成 `External_Authentication` P1=2）。
+- 代码已实现双链路：内置密钥优先；失败则（提供 SO 口令时）`HDJIT_VerifyAdminPin` → `Clear_DF` → `HDJIT_ReloadPin`，
+  并在失败时自动跑 `Get_Challenge`/`Select_File`/`External_Authentication` 逐层诊断，把 rc 与 SW 写入报告。
+
+#### (3.5) 认证通道状态与「暴力测试」可行性（2026-09-20 二次实测）
+
+`Clear_DF` 失败根因可完整定位为**认证通道全部不可用**：
+
+```
+Clear_DF → SW=0x6982（安全状态不满足：需先外部认证）
+   └─ External_Authentication 三条通道实测：
+        P1=0 传输密钥   ：可尝试、且失败【不递减】计数（连续 10 次恒为 0x63CF）
+                         但密钥 ≠ SDK 内置默认值 → 恒失败
+        P1=1 用户 PIN   ：SW=0x63C0 → 已锁定（重试次数 0）
+        P1=2 管理员/SO  ：SW=0x6983 → 已锁定（第 1 次即返回锁定；随后出现 0x6D00）
+```
+
+- 内置默认密钥常量 `cytbyhyxsykyhb` + `08 31`（16B）已用 4 种形态测试全部不匹配：
+  14 字符 ASCII、16 字节原样、8 字节前缀 `cytbyhyx`、另一内置 16 字节常量
+  `A62F1A1D6F5F85E2F31DFA933F273947`（RVA 0x190F4）。
+- 密钥变换 `sub_8D10`（RVA 0x8D10）实现为「对每个低位置 1 的字节翻转 bit7」，即
+  **SO 口令近乎原样作为对称密钥**参与挑战应答 → **不存在「由序列号推导密钥」的可能**。
+- 单次认证实测 **≈137 ms**（10 次 1367 ms）。
+
+**暴力测试结论：不可行。**
+1. P1=2（管理员）通道**已锁定**，任何候选项都被直接拒绝（0x6983），与口令是否正确无关 → 无法枚举。
+2. 即便未锁定：SO 口令长度 6~16、且按原样用作密钥，空间 ≥ 10⁶（6 位数字）～10¹¹+（字母数字）；
+   按 137 ms/次，10⁶ ≈ 38 小时、2×10⁹ ≈ 8.7 年。
+3. P1=0 通道虽不锁定，但要枚举必须先复现 `sub_8DC0` 的挑战应答算法（需逆向
+   0x1000F160/0x1000F570 的对称算法与 0x1000F980 的编码），且同样受限于密钥空间。
+
+**唯一可行路径**：由厂商/客户提供传输密钥或 SO 口令（或用厂商管理工具 `GP_ADM_LNCA.exe`
+按其授权的初始化流程处理）。本软件已实现「输入 SO 口令 → `HDJIT_VerifyAdminPin` → `Clear_DF`
+→ `HDJIT_ReloadPin`」链路，拿到口令即可一键完成完全格式化与 PIN 重设。
+
+#### (6) 厂商工具与「另一个 COS 层」的发现（2026-09-21）
+
+厂商工具都在仓库内：`Library/LNCA USBKey Manage/`（2026-08-22 同批）
+
+| 文件 | 大小 | 说明 |
+|------|------|------|
+| `GP_ADM_LNCA.exe` | 88 KB | 管理工具（原生 C++/MFC GUI，v2.0.0.6） |
+| `GP_CLT_LNCA.exe` | 236 KB | 客户端工具 |
+| `GP_CLT_LNCA_Service.exe` | 24 KB | 自动登录服务 |
+| `LNCACSPSetup.exe` / `VISTA64_DriverInstall.exe` | 678/64 KB | CSP 安装与驱动安装 |
+
+**`GP_ADM_LNCA.exe` 的动态导入名（字符串证据）**：`HD_ClearDir`、`HD_ChangePin`、`HD_VerifyPin`、
+`HD_Open`/`HD_Close`/`HD_IC_RESET`、`HD_GET_BCDSN`/`HD_GET_SN`、`HD_ReadContainerInfoEx`、
+`HD_WriteContainerInfoEx`、`HD_StoreCert`/`HD_StoreCertEx`、`HD_ReadLableInfo`/`HD_WriteLableInfo`、
+`HD_ReadBinFileNoLen`/`HD_WriteBinFileNoLen`、`HD_AddCertToIE`/`HD_DelCertFrIE`/`HD_DeleteCert`、
+`HD_IsHDDevice`、`HD_RegisterCardNotification`；模块引用 `GP_COS_LNCA`/`GP_IFD_LNCA`/`GP_CLT_LNCA`/`GPClientLNCAClass`。
+→ **证实 `HD_ClearDir` 即官方「清除/初始化」入口**。
+
+**另一个 COS 层：`GP_COS_LNCA.dll`（604 KB）**，比 `HDCOS_LNCA.dll` 多出 `HD_StoreCertEx`、
+`HD_OpenReaderEx`、`HD_IsHDDevice` 等导出，且 **`InitialCard` 是真实现**：
+
+| 导出 | HDCOS_LNCA.dll | GP_COS_LNCA.dll |
+|------|----------------|-----------------|
+| `InitialCard` | 0x73F0 **空 stub**（`or eax,-1`） | **0x6910 真实现**（`ret 0x10`，4 参数） |
+
+`GP_COS_LNCA!InitialCard` 逻辑（反汇编还原）：
+
+```
+字符串参数① 长度限制 6~8   → SO PIN
+字符串参数② 长度限制 6~16  → 用户 PIN
+  sub_8340()（= HDCOS 的 sub_8D10：低位置 1 的字节翻转 bit7）
+  → ExternalAuthMF(hCard)          [RVA 0xE160，内部加载 GP_IFD.dll 用 HD_ApduT0 发 APDU]
+  → Create_File(hCard, 0xB, F2 20 33…) / Write_Key(0x84, P1=0, P2=0xF2…)
+  → sub_2970(hCard, …, 0x10082020 /*内置 16B 常量*/, 16, …)   ← 用内置密钥封装后写入
+  失败统一返回 0xFFFFFC18 (-1000)
+```
+
+**实测（本卡）**：用 `LncaProbe --mf` 直接调用其第一步 `ExternalAuthMF(hCard)`（只认证、不写入）：
+
+```
+GP_COS_LNCA!HD_Open(0) → hCard=0xA496A30
+ExternalAuthMF(hCard)  → -1000      ← 失败
+```
+
+结论：`GP_COS_LNCA.dll` 同样内置 `cytbyhyxsykyhb`+`08 31`（@0x82020/0x82030，且 `InitialCard`
+在 0x6D14 把它当加密密钥用），本卡该密钥已被替换 ⇒ **COS 层的「初始化 / 完全格式化」在本卡上不可达**，
+与 `HD_ClearDir`、`HD_VerifyPin` 的结论完全一致。厂商侧唯一可行路径是拿到该卡真实传输密钥
+（或使用 `GP_ADM_LNCA.exe` 按其授权流程处理）。
+
+#### (7) 认证通道全面测绘与 P1=0 密钥验证器（2026-09-21）
+
+**APDU 层还原（HDCOS_LNCA.dll）**
+
+| 导出 | 签名 | APDU |
+|------|------|------|
+| `Verify_Pin` | `int(hCard, byte p2, uint len, byte* data, ushort* sw)` | `00 20 00 P2 Lc <PIN>`（ISO VERIFY） |
+| `Change_Pin` | `int(hCard, byte p2, uint len, byte* data, ushort* sw)` | `80 5E 01 P2 Lc <data>` |
+| `Reload_Pin` | `int(hCard, uint len, byte* data, void* reserved)` | `80 5E 00 00 Lc <data>`（unblock） |
+| `External_Authentication` | `int(hCard, uint p1, byte* resp8, ushort* sw)` | `CLA 82 P1 00 08 <resp>` |
+| `HD_Application_Manager` | `int(hCard, uint apduLen, byte* apdu, byte* respBuf, ushort* sw)` | 通用 APDU 通道（5 参数，ret 0x14） |
+| `HD_ChangePin` | 内部流程 = `Verify_Pin`(旧PIN) → `Write_Key`(写新 PIN 记录) | — |
+
+**实机测绘结果（本卡，SN 01102001519176）**
+
+| 探测 | 结果 |
+|------|------|
+| `Verify_Pin` P2=0x00 | **SW=0x6982 安全状态不满足**（参考数据存在，但未认证） |
+| `Verify_Pin` P2=0x01/0x02/0x80/0x81/0x83/0x84 | **SW=0x6A88 参考数据未找到**（这些引用不存在） |
+| `Verify_Pin` 全部 P2 用 Lc=0 | 一律 0x6700（先判长度，不区分 P2，无法用于枚举） |
+| `External_Authentication` P1=0 | 0x63CF，**连续 10+ 次恒为 15 → 不递减、不锁定** |
+| `External_Authentication` P1=1 | **0x6983 已锁定** |
+| `External_Authentication` P1=2 | **0x6983 已锁定** |
+| `Clear_DF`（`BF CE 00 00 00`） | **0x6982**（须已认证） |
+| 任意 APDU 经 `HD_Application_Manager` 发 `00 2C` / `80 5E` | `rc=-300`，SW 未回填 → **被 DLL 层拦截，未到卡** |
+| `HD_VerifyPin(新PIN)` | -1（走 0x6983 分支，与 P1=1 已锁一致） |
+
+**P1=0 密钥验证器**：由于 `HD_ClearDir` 的认证只是「`Get_Challenge` → 内部函数 `sub_8DC0(challenge,8,out,key16,0)` 算响应 → `External_Authentication(P1=0)`」，
+可用 **按 RVA 直接调用内部函数**（`sub_8D10` @0x8D10 变换、`sub_8DC0` @0x8DC0 计算）自行构造响应，
+从而在 **P1=0（唯一不锁定）通道** 上验证任意候选密钥（`LncaProbe --key <候选>`）。
+
+自检：用 SDK 内置常量 `637974627968797873796B7968620831` 自算响应 → `SW=0x63CF`，
+**与 `HD_ClearDir` 内部实测结果完全一致** ⇒ 验证器实现忠实可信。
+
+已试候选（全部 0x63CF 失败）：SDK 内置常量 16B、内置随机常量 `A62F1A1D…F273947`、`SZD23B10`、`01102001519176`。
+
+⇒ **结论**：本卡唯一未锁的认证通道是 P1=0 传输密钥；只要拿到该密钥（或放进候选清单命中），
+即可通过 `Clear_DF` 完成完全格式化、并由 `HDJIT_ReloadPin`/`InitialCard` 重设 PIN。
+穷举不可行（6~16 字节口令空间），只有「候选清单」有意义。
+
+#### (4) 复现命令
+
+```powershell
+# 只读状态快照（不消耗任何认证计数，可反复执行）
+dotnet run --project Manager/tools/LncaProbe -c Release -- --jitstate
+dotnet run --project Manager/tools/LncaProbe -c Release -- --state 0
+
+# 逐层定位（不加 --noerase 会真的发 Clear_DF）
+dotnet run --project Manager/tools/LncaProbe -c Release -- --deep 0 [--noerase]
+
+# 完整格式化 + 重设 PIN（破坏性）：port、新PIN、SO口令
+dotnet run --project Manager/tools/LncaProbe -c Release -- --format 0 <新PIN> <SO口令>
+```
+
+---
+
+**分析日期**：2026-09-20
+**分析方法**：Capstone 静态反汇编 + PE 导出/导入表解析 + 交叉引用扫描（`tools/disasm_lnca.py`）
+**版本**：1.4

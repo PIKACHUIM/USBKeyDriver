@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LncaProbe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fec0fb024911e6f924e620c901e905b21e497612")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7aad5a6b13fc07056a0c513f5575e7a8efee5482")]
 [assembly: System.Reflection.AssemblyProductAttribute("LncaProbe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LncaProbe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

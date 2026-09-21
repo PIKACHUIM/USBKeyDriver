@@ -1,0 +1,449 @@
+
+[settings]
+; 1033 = 0x0409
+CodePage=1033
+Language=English (U.S.)
+FontFace=Tahoma
+FontHeight=8
+
+[strings]
+
+;==============================================================
+; Common strings
+;==============================================================
+;10000=ePassNG PKI Manager
+10000=ePassNG PKI Manager
+;10001=Admin
+10001=Administrator
+;10002=User
+10002=User
+
+;10010=Field
+10010=Field
+;10011=Value
+10011=Value
+
+
+;10100=Description
+10100=Description
+;10101=Card status
+10101=Card status
+;10102=Manufacturer
+10102=Manufacturer
+;10103=Card present and ready to use
+10103=Token is inserted and ready to use
+;10104=Card present but not recognized
+10104=Token is inserted but cannot be recognized
+;10105=<No card>
+10105=<Card not found>
+;10106=<Not Recognized>
+10106=<Card not recognized>
+;10107=Slot List
+10107=Slot List
+;10108=Data Management
+10108=Data Management
+;10109=Flags
+10109=Flags
+;10110=Hardware version
+10110=Hardware version
+;10111=Firmware version
+10111=Firmware version
+;10112=Label(Token name)
+10112=Token name
+;10113=Model
+10113=Model
+;10114=Serial number
+10114=Serial number
+;10115=Max session count
+10115=Max session number
+;10117=Max R/W session count
+10117=Max R/W session number
+;10119=Max PIN length
+10119=Max PIN length
+;10120=Min PIN length
+10120=Min PIN length
+;10121=Total public memory
+10121=Public space
+;10122=Free public memory
+10122=Free public space
+;10123=Total private memory
+10123=Private space
+;10124=Free private memory
+10124=Free private space
+;10125=Hardware version
+10125=Hardware version
+;10126=Firmware version
+10126=Firmware version
+;10127=Token time
+10127=Token timer
+;10128=<No built-in timer>
+10128=<No built-in timer>
+
+
+
+;320=Token名称
+;321=卡的状态
+;322=Token模型
+;323=生产时间
+;324=系列号
+;325=制造商
+;326=硬件版本
+;327=固件版本
+;328=标志信息
+;329=总共私有空间
+;330=总共公有空间
+;331=剩余私有空间
+;332=剩余公有空间
+;333=最大PIN码长度
+;334=最小PIN码长度
+;335=最大读写session次数
+;336=读写session次数
+;337=最大session次数
+;338=session次数
+
+
+;==============================================================
+; Dialog box strings
+;==============================================================
+1=OK
+2=Cancel
+
+;--------------------------------------------------------------
+; Slot information view
+;--------------------------------------------------------------
+;201=Slot Information:
+201=Slot Information:
+
+
+;301=Slot detail information:
+301=Slot detail:
+;302=Token detail information:
+302=Token detail:
+;303=User operation:
+303=User operation:
+;304=Administrator operation:
+304=Administrator operation:
+;310=Login
+310=Login
+;311=Change User PIN
+311=Change User PIN
+;312=Change token name
+312=Change token name
+;320=Change SO PIN
+320=Change SO PIN
+;321=Unlock token
+321=Unlock token
+;322=Initialize token
+322=Initialize token
+
+;---登录
+138=Certificate Login Manager
+;138=Certificate Login Manager
+800=User PIN:
+;800=User PIN:
+801=Token is locked by User PIN
+;801=Sorry, your User PIN has been locked!
+802=User PIN is too long
+;802=Sorry, User PIN requires correct number of digits!
+803=Incorrect PIN!\n\n The token is locked.
+;803=Sorry, the User PIN you entered is incorrect.\n\n Your User PIN is now locked!
+804=Incorrect PIN\n\nThis is the LAST PIN attempt, if your next PIN entered is still incorrect the token will be locked.
+;804=Sorry ,the User PIN you entered is incorrect.\n\This is the last chance to try your User PIN. If still incorrect, your token will be locked!
+;805=PIN verification failed, please check your PIN and re-input ! %d times remain !
+805=PIN verification failed, please check your PIN and re-input ! %d times remain !
+
+;---修改用户PIN码
+130=Change User PIN
+;130=Change User PIN
+810=Current User PIN:
+;810=Please input old User PIN:
+811=New User PIN (%d to %d characters):
+;811=Please input new User PIN(%d To %d characters):
+812=Confirm User PIN:
+;812=Please confirm new User PIN:
+813=Change User PIN failed!
+;813=Change User PIN Error!
+814=Change User PIN successful!
+;814=Change User PIN OK!
+
+;---修改令牌名
+135=Change token name
+;135=Change token name
+820=Current token name:
+;820=Current token name:
+821=Input new token name(Max To 32 characters):
+;821=Input new token name(Max To 32 characters):
+822=Change token name failed!
+;822=Change token name error!
+823=Change token name successful!
+;823=Change token name OK!
+
+;---修改管理员PIN码
+134=Change SO PIN
+;134=Change Secure Officer PIN:
+830=Current SO PIN:
+;830=Input Old Secure Officer PIN:
+831=New SO PIN(%d to %d characters):
+;831=Input New PIN(%d To %d characters):
+832=Confirm SO PIN:
+;832=Confirm New PIN:
+833=Change SO PIN failed!
+;833=Change Secure Officer PIN error!
+834=Change SO PIN successful!
+;834=Change Secure Officer PIN OK!
+835=Token is locked by SO PIN!
+;835=Sorry, your SO PIN has been locked!
+836=SO PIN is too long!
+;836=Sorry ,User PIN requires correct number of digits!
+837=Incorrect SO PIN\n\nYour token is locked by SO PIN!
+;837=Sorry, the SO PIN you entered is incorrect.\n\nYour token is now locked!
+838=Incorrect SO PIN\n\n This is the LAST SO PIN attempt, if the PIN is still incorrect, the token will be locked.
+;838=Sorry ,the SO PIN you entered is incorrect.\n\nThis is the last chance to input your SO PIN. If still incorrect, your token will be locked!
+;839=SO PIN verification failed, please check your SO PIN and re-input ! %d times remain !
+839=SO PIN verification failed, please check your SO PIN and re-input ! %d times remain !
+
+
+;---令牌解锁
+137=Unlock token
+;137=Unlock token
+840=Input SO PIN:
+;840=Input Secure Officer PIN:
+841=Input User PIN(%d to %d characters):
+;841=Input User PIN(%d To %d characters):
+842=Confirm User PIN:
+;842=Confirm User PIN:
+843=Unlock token failed!
+;843=Unlock token error!
+844=Unlock token successful!
+;844=Unlock token OK!
+
+
+;---初始化令牌
+136=Initialize token
+;136=Initialize token
+850=Input SO PIN:
+;850=Please input Secure Officer PIN:
+851=Input User PIN(%d to %d characters):
+;851=Input User PIN(%d To %d characters):
+852=Confirm User PIN:
+;852=Confirm User PIN:
+853=Input token name (Max to 32 characters):
+;853=Input token name(MAX To 32 characters):
+854=Initialize token failed!
+;854=Initialize token error!
+855=Initialize token successful!
+;855=Initialize token OK!
+856=All information will be deleted after initialization. Do you wish to continue?
+;856=After initialization, token content will be cleared. Do you wish to continue initializing the token?
+
+;---导入证书文件
+146=Import certificate
+;146=Import certificate file
+860=Certificate path:
+;860=Certificate file path:
+861=Certificate password:
+;861=Certificate password:
+
+;---导出证书
+154=Export certificate
+;154=Export certificate
+870=Certificate path:
+;870=Certificate path:
+871=Export certificate successful!
+;871=Export certificate successful!
+
+;---About Dlg MSG
+100=About ePassNG PKI Manager
+;100=About ePassNG PKI Manager
+880=ePassNG PKI Manager V1.1
+;880=ePassNG PKI Manager V1.1
+881=Copyright (C) 2005-2009 Feitian Technologies Co., Ltd. \n\n www.FTsafe.com
+;881=Developer: FeiTian ePass Team, Copyright (C) 2005-2008 Feitian Technologies Co., Ltd.
+
+
+
+
+
+
+1046=Slot Info
+1045=Token Info
+1047=User Privilege
+1048=Administrator Privilege
+1021=Logon
+1024=Change token name
+1000=Change User PIN
+1025=Change SO PIN
+1026=Unlock token
+1027=Initialize token
+
+;====================================
+;证书管理
+;====================================
+1200=View
+;1200=View
+1201=Import
+;1201=Import
+1202=Export
+;1202=Export
+1203=Delete
+;1203=Delete
+
+1250=Certificate Manager
+;1250=Certificate Manager
+1251=Your certificates
+;1251=Your certificates
+1260=Do you wish to delete it?
+;1260=After deletion, the key cannot be recovered, are you sure you wish to continue?
+1261=Delete data successful!
+;1261=Delete data successful!
+1262=Delete data failed!
+;1262=Error! Delete token message.
+
+
+1300=Certificate
+;1300=Certificate
+1301=Public Key
+;1301=Public Key
+1302=Private Key
+;1302=Private Key
+1303=Data
+;1303=Data
+
+1310=[Exchange]Certificate
+;1310=[Exchange]Certificate
+1311=[Exchange]PublicKey
+;1311=[Exchange]PublicKey
+1312=[Exchange]PrivateKey
+;1312=[Exchange]PrivateKey
+
+1320=[Encrypt]Certificate
+;1320=[Encrypt]Certificate
+1321=[Encrypt]PublicKey
+;1321=[Encrypt]PublicKey
+1322=[Encrypt]PrivateKey
+;1322=[Encrypt]PrivateKey
+
+1330=[Exchange]Certificate
+;1330=[Exchange]Certificate
+1331=[Sign]PublicKey
+;1331=[Sign]PublicKey
+1332=[Sign]PrivateKey
+;1332=[Sign]PrivateKey
+
+;============
+;证书内容信息
+;============
+139=Certificate Information
+;139=Certificate Information
+1077=View Certificate
+;1077=Show system certificate viewer
+
+;==============================================================
+; Menu
+;==============================================================
+;128=&File\n&View\n&Operation\n&Help
+128=File(&F)\nView(&V)\nOperation(&O)\nHelp(&H)
+;57664=About ePassNG PKI Manager...
+57664=About ePassNG Manager(&A)...
+;57665=Exit
+57665=Exit(&X)
+;32789=View slot list
+32789=View slot list(&S)
+;32809=Hide empty slots
+32809=Hide empty slots(&E)
+
+;32771=Login (ALT+L)
+32771=Login(&L)
+;32772=Change token name (ALT+N)
+32772=Change token name(&N)
+;32773=Change User PIN	(ALT+P)
+32773=Change User PIN(&P)
+;32774=Change SO PIN	(ALT+M)
+32774=Change SO PIN(&M)
+;32775=Unlock token	(ALT+B)
+32775=Unlock token(&B)
+;32776=Initialize token	(ALT+I)
+32776=Initialize token(&I)
+
+
+32801=Login
+;32801=Login
+32802=Change token name
+;32802=Change token name
+32803=Change User PIN
+;32803=Change User PIN
+32804=Initialize token
+;32804=Initialize token
+32805=Unlock token
+;32805=Unlock token
+32806=Change SO PIN
+;32806=Change Secure Officer (SO)PIN
+
+;==============================================================
+; Error message
+;==============================================================
+;50000=Cannot Initialize PKCS#11 Library.\n\nPlease check your installation and try again.
+50000=Initialize PKCS#11 library failed!
+;50001=Cannot initialize the Manager.
+50001=Initialize ePass Manager failed
+;50002=Can not perform the operation.
+50002=Can not perform the operation.
+
+
+5015=Unknown error!
+;5015=Unknown error!
+5020=Token is removed!
+;5020=Token has been removed!
+5025=Incorrect password!
+;5025=Invalid password!
+5026=Not enough space!
+;5026=Token has insufficient memory to store certificate!
+5027=File not found!
+;5027=Special file does not exist!
+5030=Certificate not supported !
+;5030=Certificate file format is not recognized or supported!
+5031=Unsupported secret key length or certificate content!
+;5031=Token supports 1024 bits RSA key pair only!
+5032=Certificate not supported !
+;5032=Token does not support this kind of certificate format!
+5033=The certificate already exists, continue?
+;5033=Token has same certificate, continue to save this certificate?
+5034=Invalid session handle due to other operation
+;5034=Invalid session handle, maybe token is used in another session.
+
+;for Container
+;160=Import certificate file
+160=Import certificate file
+
+;161=Change container name
+161=Change container name
+;1096=New container name:
+1096=New container name:
+
+;10129=Container Management
+10129=Container Management
+;1081=Import
+1081=Import
+;1082=Export
+1082=Export
+;1083=View
+1083=View
+;1078=Change container name
+1078=Change container name
+;1084=Delete container
+1084=Delete container
+
+;1086=Set container name:
+1086=Set container name:
+;1094=Certificate type:
+1094=Certificate type:
+;1089=Both
+1089=Both
+;1088=Exchange
+1088=Exchange
+;1090=Sign
+1090=Sign
+;5035=The container name already exists, please select another name
+5035=The container name already exists, please select another name
+;5036=The container name is empty, please input a new container name
+5036=The container name is empty, please input a new container name

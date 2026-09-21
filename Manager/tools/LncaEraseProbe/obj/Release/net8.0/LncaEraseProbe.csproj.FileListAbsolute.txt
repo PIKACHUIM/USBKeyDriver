@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\bin\Release\net8.0\LncaEraseProbe.exe
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\bin\Release\net8.0\LncaEraseProbe.deps.json
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\bin\Release\net8.0\LncaEraseProbe.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\bin\Release\net8.0\LncaEraseProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\bin\Release\net8.0\LncaEraseProbe.pdb
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\refint\LncaEraseProbe.dll
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.pdb
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\LncaEraseProbe.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\tools\LncaEraseProbe\obj\Release\net8.0\ref\LncaEraseProbe.dll

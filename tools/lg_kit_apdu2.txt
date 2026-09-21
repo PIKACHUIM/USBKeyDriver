@@ -1,0 +1,88 @@
+﻿
+ZJK_LgKit.exe:     file format pei-i386
+
+
+Disassembly of section .text:
+
+00404ec0 <.text+0x3ec0>:
+  404ec0:	24 28                	and    al,0x28
+  404ec2:	2f                   	das
+  404ec3:	01 00                	add    DWORD PTR [eax],eax
+  404ec5:	00 3c ca             	add    BYTE PTR [edx+ecx*8],bh
+  404ec8:	74 0c                	je     0x404ed6
+  404eca:	3c c2                	cmp    al,0xc2
+  404ecc:	74 08                	je     0x404ed6
+  404ece:	c7 44 24 28 41 00 00 	mov    DWORD PTR [esp+0x28],0x41
+  404ed5:	00 
+  404ed6:	8b 35 28 22 45 00    	mov    esi,DWORD PTR ds:0x452228
+  404edc:	6a 00                	push   0x0
+  404ede:	8d 54 24 14          	lea    edx,[esp+0x14]
+  404ee2:	52                   	push   edx
+  404ee3:	6a 50                	push   0x50
+  404ee5:	8d 44 24 74          	lea    eax,[esp+0x74]
+  404ee9:	89 44 24 38          	mov    DWORD PTR [esp+0x38],eax
+  404eed:	8d 44 24 24          	lea    eax,[esp+0x24]
+  404ef1:	50                   	push   eax
+  404ef2:	8b cb                	mov    ecx,ebx
+  404ef4:	c1 e9 08             	shr    ecx,0x8
+  404ef7:	6a 50                	push   0x50
+  404ef9:	88 4c 24 4f          	mov    BYTE PTR [esp+0x4f],cl
+  404efd:	8b c8                	mov    ecx,eax
+  404eff:	51                   	push   ecx
+  404f00:	68 14 d0 04 00       	push   0x4d014
+  404f05:	57                   	push   edi
+  404f06:	c7 44 24 50 30 00 00 	mov    DWORD PTR [esp+0x50],0x30
+  404f0d:	00 
+  404f0e:	c6 44 24 54 e2       	mov    BYTE PTR [esp+0x54],0xe2
+  404f13:	88 5c 24 5c          	mov    BYTE PTR [esp+0x5c],bl
+  404f17:	ff d6                	call   esi
+  404f19:	85 c0                	test   eax,eax
+  404f1b:	75 1d                	jne    0x404f3a
+  404f1d:	5f                   	pop    edi
+  404f1e:	5e                   	pop    esi
+  404f1f:	b8 08 00 00 00       	mov    eax,0x8
+  404f24:	5b                   	pop    ebx
+  404f25:	8b 8c 24 5c 04 00 00 	mov    ecx,DWORD PTR [esp+0x45c]
+  404f2c:	33 cc                	xor    ecx,esp
+  404f2e:	e8 32 68 03 00       	call   0x43b765
+  404f33:	81 c4 60 04 00 00    	add    esp,0x460
+  404f39:	c3                   	ret
+  404f3a:	80 7c 24 1a 00       	cmp    BYTE PTR [esp+0x1a],0x0
+  404f3f:	75 dc                	jne    0x404f1d
+  404f41:	6a 50                	push   0x50
+  404f43:	8d 54 24 1c          	lea    edx,[esp+0x1c]
+  404f47:	6a 00                	push   0x0
+  404f49:	52                   	push   edx
+  404f4a:	e8 c1 69 03 00       	call   0x43b910
+  404f4f:	68 00 04 00 00       	push   0x400
+  404f54:	8d 4c 24 78          	lea    ecx,[esp+0x78]
+  404f58:	b8 2c 00 00 00       	mov    eax,0x2c
+  404f5d:	6a 00                	push   0x0
+  404f5f:	51                   	push   ecx
+  404f60:	66 89 44 24 30       	mov    WORD PTR [esp+0x30],ax
+  404f65:	c6 44 24 34 01       	mov    BYTE PTR [esp+0x34],0x1
+  404f6a:	c6 44 24 36 0c       	mov    BYTE PTR [esp+0x36],0xc
+  404f6f:	c6 44 24 37 18       	mov    BYTE PTR [esp+0x37],0x18
+  404f74:	c6 44 24 38 01       	mov    BYTE PTR [esp+0x38],0x1
+  404f79:	e8 92 69 03 00       	call   0x43b910
+  404f7e:	83 c4 18             	add    esp,0x18
+  404f81:	6a 00                	push   0x0
+  404f83:	8d 44 24 14          	lea    eax,[esp+0x14]
+  404f87:	50                   	push   eax
+  404f88:	6a 50                	push   0x50
+  404f8a:	8d 4c 24 24          	lea    ecx,[esp+0x24]
+  404f8e:	51                   	push   ecx
+  404f8f:	8d 54 24 78          	lea    edx,[esp+0x78]
+  404f93:	6a 50                	push   0x50
+  404f95:	89 54 24 40          	mov    DWORD PTR [esp+0x40],edx
+  404f99:	8b d1                	mov    edx,ecx
+  404f9b:	52                   	push   edx
+  404f9c:	68 14 d0 04 00       	push   0x4d014
+  404fa1:	57                   	push   edi
+  404fa2:	c7 44 24 44 00 04 00 	mov    DWORD PTR [esp+0x44],0x400
+  404fa9:	00 
+  404faa:	c7                   	.byte 0xc7
+  404fab:	44                   	inc    esp
+  404fac:	24 48                	and    al,0x48
+  404fae:	41                   	inc    ecx
+	...

@@ -1,0 +1,33 @@
+﻿Confirm New USB-Key PIN:
+New USB-Key PIN(8-20 Characters):
+Current USB-Key PIN:
+Changing User PIN
+X509v3 Policy Mappings
+policyMappings
+setext-pinAny
+setext-pinSecure
+setct-PInitResData
+AD Time Stamping
+ad_timestamping
+Time Stamping
+timeStamping
+GlobalUnlock
+GetCPInfo
+UnlockFile
+GetStartupInfoA
+InitializeCriticalSectionAndSpinCount
+2DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA0
+Ihttp://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl0
+Lhttp://cacerts.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crt0
+2DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA
+�޸��Ñ����
+ע�⣺��ʼ���ὫUSB-Key�ڵ�֤����Ϣȫ��ɾ��������ִ�������
+��ʼ��USB-Keyʧ�ܣ������µ����
+��ʼ��USB-Key�ɹ���
+��ʼ���������û�ȡ����ʱ�������µ����
+���޸�USB-Key����
+�޸�USB-Key����
+���޸��żҿ�����USB-Key�û�����
+�żҿ�����USB-Key�����Ƿ���
+S0Q0O�M�K�Ihttp://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl0��
+�Lhttp://cacerts.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crt0

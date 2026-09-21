@@ -1,0 +1,12 @@
+0x10020747 GenSessionKey_16B
+0x100207BB RsaEncryptSessionKey
+0x1001EC96 MspCipher_EncryptDecrypt
+0x1001EB6C BinToHex
+0x1001EB09 HexToBin
+0x10020376 MspCtxCheck
+0x100200EC MspSetSessionKey
+0x100205A6 MspEnable
+0x10021532 TransportSendRaw
+0x1001EAD3 EAD3_maybe_bswap_or_pad
+0x1001FDDE Handshake_80F2
+0x100205A6 MspEnable2

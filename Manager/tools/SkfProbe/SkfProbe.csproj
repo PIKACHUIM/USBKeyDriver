@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <!-- 管理器为 x86 宿主；SKF 中间件（lgu3073_p1514_gm.dll）为 32 位 -->
+    <PlatformTarget>x86</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>SkfProbe</AssemblyName>
+    <RootNamespace>SkfProbe</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\USBKey.Core\USBKey.Core.csproj" />
+  </ItemGroup>
+
+</Project>

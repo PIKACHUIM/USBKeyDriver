@@ -1,0 +1,67 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll
+;; SKF_UnblockPIN rva=0x115F0 va=0x100115F0 stop=0x10011690
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100115f0 <.text+0x105f0>:
+100115f0:	83 ec 0c             	sub    esp,0xc
+100115f3:	56                   	push   esi
+100115f4:	57                   	push   edi
+100115f5:	8d 44 24 0c          	lea    eax,[esp+0xc]
+100115f9:	50                   	push   eax
+100115fa:	c7 44 24 10 f4 04 04 	mov    DWORD PTR [esp+0x10],0x100404f4
+10011601:	10 
+10011602:	e8 b9 18 01 00       	call   0x10022ec0
+10011607:	8b 7c 24 18          	mov    edi,DWORD PTR [esp+0x18]
+1001160b:	8d 4c 24 08          	lea    ecx,[esp+0x8]
+1001160f:	51                   	push   ecx
+10011610:	be b8 55 04 10       	mov    esi,0x100455b8
+10011615:	c7 44 24 0c 00 00 00 	mov    DWORD PTR [esp+0xc],0x0
+1001161c:	00 
+1001161d:	e8 6e a8 00 00       	call   0x1001be90
+10011622:	85 c0                	test   eax,eax
+10011624:	75 07                	jne    0x1001162d
+10011626:	be 05 00 00 0a       	mov    esi,0xa000005
+1001162b:	eb 27                	jmp    0x10011654
+1001162d:	8b 48 20             	mov    ecx,DWORD PTR [eax+0x20]
+10011630:	8b 54 24 08          	mov    edx,DWORD PTR [esp+0x8]
+10011634:	8b 82 04 01 00 00    	mov    eax,DWORD PTR [edx+0x104]
+1001163a:	50                   	push   eax
+1001163b:	8b 44 24 20          	mov    eax,DWORD PTR [esp+0x20]
+1001163f:	e8 2c d4 00 00       	call   0x1001ea70
+10011644:	8b f0                	mov    esi,eax
+10011646:	83 c4 04             	add    esp,0x4
+10011649:	85 f6                	test   esi,esi
+1001164b:	74 07                	je     0x10011654
+1001164d:	e8 3e 97 00 00       	call   0x1001ad90
+10011652:	8b f0                	mov    esi,eax
+10011654:	8b 44 24 10          	mov    eax,DWORD PTR [esp+0x10]
+10011658:	85 c0                	test   eax,eax
+1001165a:	74 24                	je     0x10011680
+1001165c:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+1001165f:	85 c0                	test   eax,eax
+10011661:	74 1d                	je     0x10011680
+10011663:	8b 08                	mov    ecx,DWORD PTR [eax]
+10011665:	85 c9                	test   ecx,ecx
+10011667:	74 17                	je     0x10011680
+10011669:	83 78 08 00          	cmp    DWORD PTR [eax+0x8],0x0
+1001166d:	8d 78 08             	lea    edi,[eax+0x8]
+10011670:	7e 0e                	jle    0x10011680
+10011672:	51                   	push   ecx
+10011673:	ff 15 04 d1 03 10    	call   DWORD PTR ds:0x1003d104
+10011679:	57                   	push   edi
+1001167a:	ff 15 48 d0 03 10    	call   DWORD PTR ds:0x1003d048
+10011680:	5f                   	pop    edi
+10011681:	8b c6                	mov    eax,esi
+10011683:	5e                   	pop    esi
+10011684:	83 c4 0c             	add    esp,0xc
+10011687:	c2 08 00             	ret    0x8
+1001168a:	cc                   	int3
+1001168b:	cc                   	int3
+1001168c:	cc                   	int3
+1001168d:	cc                   	int3
+1001168e:	cc                   	int3
+1001168f:	cc                   	int3

@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title>signId1</title>
+</head>
+
+<body onload="slotLinkClicked()">
+<div class="bd">
+	
+	<div class="h01"></div>
+	<div class="middle_1">
+    	
+        <p class="left_p">您的证书基本信息如下，如信息无误，可点击按钮申请年检，进行年检申请。</p>
+    	<div class="clear"></div>
+    </div>
+    
+	<div class="down_1">
+    <div class="h01"></div>
+    <div class="h01"></div>
+    <div class="h01"></div>
+		<div class="middle_2">
+    		<ul class="left p2">
+            	 <li>
+                	<div class="left">证书主题：</div>
+                    <div class="textB right">
+                    <textarea ID="cert_message" style="width:550px;height:70px;" readonly>CN=沈阳巴士添翼投资管理咨询有限公司fs,
+OU=!22,OU=@58936745-3,L=沈阳,ST=辽宁,C=CN</textarea>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="h01"></div> 
+                </li>
+                 <li>
+                    <div class="left">证书有效期：</div>
+                    <div class="textB right"><input  disabled="disabled" type="text" ID="cert_date" value="2015-01-12 至 2016-01-11" style="width:550px;"></div>
+                    <div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+            	
+                <li>
+                    <div class="left">已开通应用：</div>
+                    <div class="textB right">
+                    	<textarea ID="cert_app" style="width:550px;height:70px;" readonly>省地税直属</textarea>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="h01"></div>    
+                </li>
+            	<li>
+                	
+                </li>
+        <script>
+            javascript: obj_web_view.SetCertSinal.connect(slotLinkClicked);
+            function slotLinkClicked() {
+            	//alert("dd");
+                var effectiveDate = obj_web_view.GetCerteffectiveDate();
+                document.getElementById("cert_date").value = effectiveDate;
+                var data = obj_web_view.GetCertInfo();
+                document.getElementById("cert_message").value = data;
+                //var enterprise = obj_web_view.GetEnterpriseInfo();
+               // document.getElementById("cert_message_b").value = enterprise;
+                var cert_app = obj_web_view.GetAppname();
+                document.getElementById("cert_app").value = cert_app;      
+				
+				 var price = obj_web_view.GetPrice();
+                document.getElementById("cert_match").value = price;     
+            	//
+            }
+		</script>    
+			</ul>
+            <ul class="right p2">
+            	<!--li>
+                    <div class="B1" >开通应用</div>
+                    <div class="h01"></div>
+                  
+                </li>
+                
+                <li>
+                    <div class="textB">
+                    	<textarea   readonly="readonly" ID="cert_app" style="width:200px;height:160px;">text1
+text2
+text3
+text4
+text5</textarea>
+                    </div>
+                     <div class="h01"></div>  
+                    
+				</li-->
+                <li>
+                 <div class="right">
+                    <div class="left">年检费用：</div>
+                    <div class="textB left" style="width:80px;"><input  disabled="disabled" type="text" ID="cert_match" value="200" style="width:60px;"></div>
+                    <div class="left">元</div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="h01"></div> 
+                 </li>
+            </ul>
+   		</div>
+        <div class="down_2">
+		<div class="bg_index_1">	
+    		<div class="left"><img src="images/jdta.png"> </div>
+        	<a href="javascript:obj_web_view.Yearlyinspection()" class="right">
+            	<div class="po"><img class="btn_2" src="images/btn2.png"><img src="images/button.png"><span>申请年检</span></div>
+            </a>
+    	</div>
+        </div>
+	</div>
+</div>
+</body>
+</html>

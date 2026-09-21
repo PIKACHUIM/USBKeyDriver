@@ -1,0 +1,15 @@
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\bin\Release\net8.0\DbgCapture.exe
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\bin\Release\net8.0\DbgCapture.deps.json
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\bin\Release\net8.0\DbgCapture.runtimeconfig.json
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\bin\Release\net8.0\DbgCapture.dll
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\bin\Release\net8.0\DbgCapture.pdb
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.GeneratedMSBuildEditorConfig.editorconfig
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.AssemblyInfoInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.AssemblyInfo.cs
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.csproj.CoreCompileInputs.cache
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.sourcelink.json
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.dll
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\refint\DbgCapture.dll
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.pdb
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\DbgCapture.genruntimeconfig.cache
+G:\Codes\USBKeyDriver\Manager\tools\DbgCapture\obj\Release\net8.0\ref\DbgCapture.dll

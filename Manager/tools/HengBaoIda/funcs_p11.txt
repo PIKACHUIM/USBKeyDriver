@@ -1,0 +1,12 @@
+0x1000150F EnumSlots
+0x100012E9 OpenDeviceBySlotName
+0x10001280 CloseDeviceHandle
+0x10001523 GetTokenLabelAndSerial
+0x1000105F FindCachedRecord
+0x1000157D EnumTokenObjects
+0x1000128F DeviceVerifyPin
+0x100012F3 DeviceChangePin
+0x100015BE GetObjAttribute
+0x10001352 ListAdd
+0x10001244 TraceLog
+0x100015A0 GetSessionDevice

@@ -4,9 +4,32 @@
     <ProjectReference Include="..\USBKey.Core\USBKey.Core.csproj" />
   </ItemGroup>
 
-  <!-- 部署：构建时复制厂商驱动 DLL（Library/LNCA）与运行配置到输出目录 -->
+  <!-- 部署：构建时复制厂商驱动 DLL（Library/LNCA、Library/HengBao）与运行配置到输出目录 -->
   <ItemGroup>
-    <None Include="..\..\..\Library\LNCA\*.dll" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\LNCA USBKey Manage\*.dll" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\LNCA USBKey Manage\*.exe" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\HengBao USB Manage\*.dll" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\HengBao USB Manage\*.ini" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\HengBao USB Manage\*.sig" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\HengBao USB Manage\*.cer" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\HengBao USB Manage\*.h64" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\HengBao USB Manage\*.hbl" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <!-- 凌国（Linguo / 张家口银行）USB Key：Provider 走 SCSI 直通，不依赖这些 DLL，
+         但随包分发便于设备驱动注册与问题排查（LgCsp.sig 为厂商签名）。 -->
+    <None Include="..\..\..\Library\Linguo USB Key DLL\ZjkccbUKey\win32\*.dll" Link="Library\Linguo\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\Linguo USB Key DLL\ZjkccbUKey\win32\*.sig" Link="Library\Linguo\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\Linguo USB Key DLL\ZjkccbUKey\win32\*.ini" Link="Library\Linguo\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\Linguo USB Key DLL\ZjkccbUKey\win32\*.ocx" Link="Library\Linguo\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <!-- 龙脉 GM3000 USB Key：SKF（GM/T 0016）中间件。
+         取 2.1.1.0（2016）版本的 mtoken_GM.dll，落地时改名为其模块真名 mtoken_gm3000.dll
+         （该文件内部 PDB 路径即为 mtoken_gm3000.pdb）。
+         注意：GM3000_2.2.19\mtoken_gm3000.dll.old（2022 版）实测 SKF_EnumDev 返回 0 台设备，
+         已不支持本机这把老型号 GM3000（VID_055C&PID_DB08，USBSTOR/CD-ROM 形态）。 -->
+    <None Include="..\..\..\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\mtoken_GM.dll" Link="Library\GM3000\mtoken_gm3000.dll" CopyToOutputDirectory="PreserveNewest" />
+    <!-- SKF（GM/T 0016）通用平台：林果 LG3073（BJCA 定制卡，VID:PID 6588:1514）的 SKF 中间件。
+         实测该 DLL 只依赖系统 DLL（HID/KERNEL32/USER32/ADVAPI32/SHLWAPI/SETUPAPI/OLEACC/GDI32/OLEAUT32），
+         可独立拷贝，无需同目录其它厂商文件；它通过 HID 直接与设备通信。 -->
+    <None Include="..\..\..\Library\BJCA USBKEY DRIVER\BJCAClient\CertAppEnvV3.7.418.0052\Driver\x86\lgu3073_p1514_gm.dll" Link="Library\SKF\lgu3073_p1514_gm.dll" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\config\*" Link="config\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

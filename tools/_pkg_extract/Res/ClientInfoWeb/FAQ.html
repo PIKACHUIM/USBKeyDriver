@@ -1,0 +1,447 @@
+﻿<!doctype html>
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<style>
+
+img{border:none;}
+body {position:relative; padding:0; margin:0; background:#ffffff; border:0;width:920px;height:430px;overflow:scroll;overflow-y:hidden}
+a{text-decoration:none;line-height:27.6px;}
+
+ul,li{margin:0;padding:0; list-style:none;}
+
+.clear{clear:both;}
+
+.wrap{width:862.5px;position:relative;height:264.5px;margin:0 auto;}
+.wrap_1{width:862.5px;position:relative;height:264.5px;margin:0 auto;}
+.space_left,.space_middle,.space_right{float:left;}
+.space_middle{background-image:url(images/middle_1.png);}
+.space_middle{line-height:40px;color:#003357;font-size:16px;}
+
+.space_middle:hover{ cursor:pointer;}
+
+.tip_1{position:absolute;top:23px;left:138px;}
+.tip_2{position:absolute;top:80.5px;left:115px;}
+.tip_3{position:absolute;top:138px;left:172.5px;}
+.tip_4{position:absolute;top:195.5px;left:115px;}
+.tip_5{position:absolute;top:195.5px;left:425.5px;}
+
+#wrap{display:none;}
+#wrap1{display:none;}
+
+#TIP{display:none;}
+
+#TIP1{display:none;}
+
+.tip_6{position:absolute;top:23px;left:138px;}
+.tip_7{position:absolute;top:23px;left:391px;}
+.tip_8{position:absolute;top:80.5px;left:115px;}
+.tip_9{position:absolute;top:138px;left:184px;}
+.tip_10{position:absolute;top:195.5px;left:218.5px;}
+
+.ctrl{width:750px;}
+
+/*问题页*/
+.p_textarea{background:url(images/faq_answer_bg.png) no-repeat bottom right;margin:0 auto;}
+.p_textarea{width:805px;height:184px;font-size:14px; font-family:"微软雅黑", "幼圆", Arial, Harrington;/*outline:none;border:none;resize:none;*/line-height:24px;}
+.p_title{ text-align:center;font-size:20px; font-family:"微软雅黑", "幼圆", Arial, Harrington;}
+
+.go_back:hover{cursor:pointer;}
+.go_back{float:left;padding:6px 10px;background:#90c2ff;width:92px;height:23px; border-radius:10px;margin-left:92px;}
+.go_home a{font-size:14px;color:black;line-height:23px; text-decoration:underline;}
+.go_home{margin-right:46px;}
+#wrap_1,#wrap_2,#wrap_3,#wrap_4,#wrap_5,#wrap_6,#wrap_7,#wrap_8,#wrap_9,#wrap_10{display:none;}
+</style>
+<script language="javascript">
+    //当拖拽图片时发生，设置图片不支持拖拽
+    function imgdragstart() {
+        return false;
+    }
+</script>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body onload="javascript:go_1();" onSelectStart="return false">
+<img src="images/title1.png" style="position:fixed;top:-1px;left:0;">
+<div style="position:relative;top:0;left:0;height:80.5px;"></div>
+<div class="wrap" id="wrap">
+	<div class="tip_1" id="TIP" onClick="javascript:oc_q1();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">上传申报数据或划款时提示请插入USB-KEY ?</div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_2" id="TIP" onClick="javascript:oc_q2();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">密码系统异常：您的数字证书已经过期，请续费后再使用 ?</div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_3" id="TIP" onClick="javascript:oc_q3();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">密码系统异常：操作失败；获取JIT证书扩展内容操作错误 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_4" id="TIP" onClick="javascript:oc_q4();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">其他密钥用法，枚举证书无效 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_5" id="TIP" onClick="javascript:oc_q5();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">使用SSL建立连接时发生错误 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+      
+</div>
+
+<div class="wrap" id="wrap1">
+	<div class="tip_6" id="TIP1" onClick="javascript:oc_q6();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">提示数字证书已超期 ?</div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_7" id="TIP1" onClick="javascript:oc_q7();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">解密并验证签名数据失败 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_8" id="TIP1" onClick="javascript:oc_q8();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">弹出选择证书的对话框，但是里面没有申报单位的名称 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_9" id="TIP1" onClick="javascript:oc_q9();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">点击登陆，没有反应，没有弹出证书选择对话框 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+    <div class="tip_10" id="TIP1" onClick="javascript:oc_q10();">
+		<div class="space_left"><img src="images/left_1.png"></div>
+   	 	<div class="space_middle">税务登记号与密码不匹配 ? </div>
+    	<div class="space_right"><img src="images/right_1.png"></div>
+        <div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="ctrl">
+    	<span class="ctrl_span1" style="margin-right:11.5px;margin-left:230px; " onClick="javascript:go_1();"><img src="images/span_1.png"></span>
+        <span class="ctrl_span2" style="margin-right:10px;" onClick="javascript:go_2();"><img src="images/span_2.png"></span>
+     	<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+     	<div class="clear"></div>
+</div>
+<!--FAQ·1······开始-->
+<div class="wrap_1 close_1" id="wrap_1">
+	<p class="p_title">上传申报数据或划款时提示请插入USB-KEY</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ1.html" style="margin-left:46px; margin-top:-23px;"></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back2();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·1······结束-->
+
+<!--FAQ·2······开始-->
+<div class="wrap_1 close_1" id="wrap_2">
+	<p class="p_title">密码系统异常：您的数字证书已经过期，请续费后再使用</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ2.html" style="margin-left:46px; margin-top:-23px;" ></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back2();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·2······结束-->   
+
+<!--FAQ·3······开始-->
+<div class="wrap_1 close_1" id="wrap_3">
+	<p class="p_title">密码系统异常：操作失败；获取JIT证书扩展内容操作错误</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ3.html" style="margin-left:46px; margin-top:-23px;"></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back2();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·3······结束-->   
+
+<!--FAQ·4······开始-->
+<div class="wrap_1 close_1" id="wrap_4">
+	<p class="p_title">其他密钥用法，枚举证书无效</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ4.html" style="margin-left:46px; margin-top:-23px;"></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back2();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·4······结束-->   
+
+<!--FAQ·5······开始-->
+<div class="wrap_1 close_1" id="wrap_5">
+	<p class="p_title">使用SSL建立连接时发生错误</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ5.html" style="margin-left:46px; margin-top:-23px;"></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back2();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·5······结束-->   
+
+<!--FAQ·6······开始-->
+<div class="wrap_1 close_1" id="wrap_6">
+	<p class="p_title">提示数字证书已超期</p>
+	<div class="p_textarea" id="FAQ">
+		<ul>
+			<li>问题：用户在使用办税通报税，申报或划款时提示数字证书已超期。</li>
+			<br/>
+			<li>解决办法：如果数字证书已经到期，请到当地服务中心办理年检；</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果没到期，请检查用户电脑的系统时间是否为当前时间，系统时间不对需要调整为当前时间；</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果以上情况无法解决您的问题，请致电我客户中心电话，我们将为您提供相关技术支持。</li>
+		</ul>
+	</div>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·6······结束-->
+
+<!--FAQ·7······开始-->
+<div class="wrap_1 close_1" id="wrap_7">
+	<p class="p_title">解密并验证签名数据失败</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ7.html" style="margin-left:46px; margin-top:-23px;"></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·7······结束-->   
+
+<!--FAQ·8······开始-->
+<div class="wrap_1 close_1" id="wrap_8">
+	<p class="p_title">弹出选择证书的对话框，但是里面没有申报单位的名称</p>
+	<div class="p_textarea" id="FAQ">
+		<ul>
+			<li>问题：用户在进行网页申报时，输入纳税人识别号和纳税人密码后，</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击登陆，弹出选择证书的对话框，但是里面没有申报单位的名称。
+</li>
+			<br/>
+			<li>解决办法：是因为没有安装数字证书驱动或者数字证书没有被成功的识别出来，</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;检查是否安装证书的驱动，以及证书是否有问题。</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;具体分析是哪种KEY，正确的安装驱动。</li>
+		</ul>
+	</div>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·8······结束-->   
+
+<!--FAQ·9······开始-->
+<div class="wrap_1 close_1" id="wrap_9">
+	<p class="p_title">点击登陆，没有反应，没有弹出证书选择对话框</p>
+	<div class="p_textarea" id="FAQ">
+		<ul>
+			<li>问题：用户在进行网页申报时，输入纳税人识别号和纳税人密码后，点击登陆，</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有反应，没有弹出证书选择对话框，网页左下角显示“网页有错误”。</li>
+			<br/>
+			<li>解决办法：是因为没有正确安装控件程序的原因，</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可在地税申报网站登陆页面手动下载组件安装，</li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安装结束后，重新打开一个页面再登陆。</li>
+		</ul>
+	</div>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·9······结束-->   
+
+<!--FAQ·10······开始-->
+<div class="wrap_1 close_1" id="wrap_10">
+	<p class="p_title">税务登记号与密码不匹配</p>
+	<iframe width="828" height="184" frameborder="0" id="FAQ" src="FAQ10.html" style="margin-left:46px; margin-top:-23px;"></iframe><br><br>
+	<div class="wrap" >
+		<span class="go_back" onClick="javascript:go_back();"><img src="images/arrow_back.png">&nbsp;返回</span>
+		<span class="go_home" style="float:right;"><a href="http://www.lnjh.net" ><img src="images/go_index.png" style=" vertical-align:middle;margin-right:11.5px;">更多信息请联网进入官网查询</a></span>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--FAQ·10······结束-->   
+
+<script type="text/javascript">
+//淡入淡出
+function go_1(){
+	$("#wrap1").hide().children().hide();
+	$("#wrap").show();
+	var x= 1;
+	if( x =1){
+		go_on1();
+		};
+	}
+function go_on1(){
+	
+$("#TIP:first").fadeIn(200,function(){
+	$(this).next().fadeIn(200,function(){
+		$(this).next().fadeIn(200,function(){
+			$(this).next().fadeIn(200,function(){
+				$(this).next().fadeIn(200);
+				});
+			});
+		});
+});
+}
+
+function go_2(){
+	$("#wrap").hide().children().hide();
+	$("#wrap1").show();
+	var i=1;
+	if( i=1 ){
+		go_down1();
+		};
+}
+
+
+function go_down1(){$("#TIP1:first").fadeIn(200,function(){
+			$(this).next().fadeIn(200,function(){
+		$(this).next().fadeIn(200,function(){
+			$(this).next().fadeIn(200,function(){
+				$(this).next().fadeIn(200);
+				});
+			});
+		});
+});}
+
+
+$(".ctrl span").click(function(){
+	$(this).children("img").attr("src","images/span_1.png");
+	$(this).siblings("span").children("img").attr("src","images/span_2.png");
+	
+	});
+function oc_q1(){
+	$("#wrap_1").show();
+	$("#wrap").hide().children().hide();
+	$(".ctrl").hide(1
+		,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		}
+		);
+	}
+function oc_q2(){
+	$("#wrap_2").show();
+	$("#wrap").hide().children().hide();
+	$(".ctrl").hide(1
+		,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		}
+		);
+	}
+function oc_q3(){
+	$("#wrap_3").show();
+	$("#wrap").hide().children().hide();
+	$(".ctrl").hide(1
+		,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		}
+		);
+	}
+function oc_q4(){
+	$("#wrap_4").show();
+	$("#wrap").hide().children().hide();
+	$(".ctrl").hide(1
+		,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		}
+		);
+	}
+	function oc_q5(){
+	$("#wrap_5").show();
+	$("#wrap").hide().children().hide();
+	$(".ctrl").hide(1
+		,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		}
+		);
+	}
+
+function oc_q6(){
+	$("#wrap_6").show();
+	$("#wrap1").hide();
+	$(".ctrl").hide(1,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		});
+	}
+function oc_q7(){
+	$("#wrap_7").show();
+	$("#wrap1").hide();
+	$(".ctrl").hide(1,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		});
+	}
+function oc_q8(){
+	$("#wrap_8").show();
+	$("#wrap1").hide();
+	$(".ctrl").hide(1,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		});
+	}
+function oc_q9(){
+	$("#wrap_9").show();
+	$("#wrap1").hide();
+	$(".ctrl").hide(1,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		});
+	}
+function oc_q10(){
+	$("#wrap_10").show();
+	$("#wrap1").hide();
+	$(".ctrl").hide(1,function (){
+		$(".ctrl span:first").children("img").attr("src","images/span_1.png");
+		$(".ctrl span:first").siblings(".ctrl span").children("img").attr("src","images/span_2.png");
+		});
+	}
+
+function go_back2(){
+	$(".close_1").hide();
+	$(".ctrl").show(1);
+		go_1();		
+	}	
+	
+function go_back(){
+	$(".close_1").hide();
+	$(".ctrl").show();
+	go_1();	
+	}	
+</script>
+<script>
+    for (i in document.images)
+        document.images[i].ondragstart = imgdragstart;
+</script>
+</body>
+</html>

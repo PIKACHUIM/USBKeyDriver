@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<style>
+
+img{border:none;}
+body { padding:0; margin:0; background:#ffffff; border:0;width:700px;height:160px;}
+a{text-decoration:none;line-height:27.6px;}
+ul,li{margin:0;padding:0; list-style:none;}
+.clear{clear:both;}
+
+.wrap{margin:0 auto;width:804px;font-size:14px; font-family:"微软雅黑", "幼圆", Arial, Harrington;line-height:27.6px;background:url(images/faq_answer_bg.png) no-repeat bottom right;}
+
+
+
+</style>
+<script language="javascript">
+    //当拖拽图片时发生，设置图片不支持拖拽
+    function imgdragstart() {
+        return false;
+    }
+</script>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body onSelectStart="return false">
+<div class="wrap">
+	<br>
+	<ul>
+		<li>问题：用户在使用办税通报税时，上传申报数据或划款时提示“使用SSL建立连接时发生错误”,如下图示。</li><br>
+		<li><img src="images/FAQ5_1.png"></li>
+		<li>可能由以下原因引起：</li>
+		<li>1、输入密码等待超时；</li>
+		<li>解决办法：提示输入证书密码时，要尽快输入并点击确定（一般为10秒之内）。</li><br>
+		<li>2、在使用证书过程中，若证书因连续输入错误的密码，达到一定次数后而被锁定后，在报税平台中有时也会提示“SSL建立连接失败”的提示；</li>
+		<li>解决办法：如数字证书被锁定，需要到当地服务中心办理解锁，然后再进行报税。</li><br>
+		<li>3、其他情况</li>
+		<li>解决办法：此种情况需要逐步对问题进行排查。</li>
+		<li>第一步，首先确定申报服务器是否正常，可在报税软件里系统参数里进行”连接测试”， </li>
+		<li><img src="images/FAQ5_2.png"></li>
+		<li>第二步，如果正常，可以在插KEY的情况下，访问以下网址 
+https://218.25.48.198:47022/ieds/control（该网址可在软件的系统参数中找到，注意是https），</li>
+		<li>弹出选择证书窗口，点确定后，可能会出现以下界面</li>
+		<li><img src="images/FAQ5_3.png"></li>
+		<li>如果出现以上界面，而申报或划款时仍有“SSL建立连接失败”的错误提示，很可能是KEY在制作过程中出现问题。</li>
+		<li>此时可以到IE中查看证书，将加密证书删除，即可成功申报或划款。</li>
+		<li>但需要用户在本月报税结束后，携带UKEY和相关证明文件（如加盖公章的营业执照复印件）</li>
+		<li>到当服务中心进行验KEY，更新等工作，否则以后报税仍有此问题出现。</li><br>
+		
+		
+	</ul>
+<div class="clear"></div>
+</div>
+<script>
+    for (i in document.images)
+        document.images[i].ondragstart = imgdragstart;
+</script>
+</body>
+</html>

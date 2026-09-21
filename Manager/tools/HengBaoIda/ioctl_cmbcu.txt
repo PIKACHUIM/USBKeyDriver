@@ -1,0 +1,298 @@
+found 1 DeviceIoControl-ish symbols
+  004120D4  DeviceIoControl
+distinct caller functions: 1
+  0040FA16  (call sites: 0040FB02, 0040FBE5, 0040FAFC)
+
+==========================================================================
+### 0040FA16
+==========================================================================
+char __thiscall sub_40FA16(void *this, HANDLE *a2, int a3, void *a4, int *a5)
+{
+  size_t v5; // eax
+  int v6; // edi
+  int v7; // eax
+  bool v8; // zf
+  char LastError; // [esp-4h] [ebp-E4h]
+  char v11; // [esp-4h] [ebp-E4h]
+  size_t OutBuffer[20]; // [esp+Ch] [ebp-D4h] BYREF
+  int InBuffer[28]; // [esp+5Ch] [ebp-84h] BYREF
+  void *v14; // [esp+CCh] [ebp-14h]
+  DWORD BytesReturned; // [esp+D0h] [ebp-10h] BYREF
+  HANDLE hDevice; // [esp+D4h] [ebp-Ch]
+  char v17[8]; // [esp+D8h] [ebp-8h] BYREF
+  unsigned int v18; // [esp+ECh] [ebp+Ch]
+
+  v14 = this;
+  if ( !a2 )
+    return 0;
+  hDevice = *a2;
+  memset(&InBuffer[20], 0, 0x20u);
+  if ( !a3 )
+  {
+    LOBYTE(InBuffer[23]) = 0;
+    HIBYTE(InBuffer[23]) = -6;
+    LOBYTE(InBuffer[24]) = 58;
+    InBuffer[22] = *a5;
+  }
+  if ( a3 == 1 )
+  {
+    InBuffer[22] = 512;
+    LOBYTE(InBuffer[23]) = 1;
+    HIBYTE(InBuffer[23]) = -6;
+    LOBYTE(InBuffer[24]) = 8;
+  }
+  memset(InBuffer, 0, 0x50u);
+  memset(OutBuffer, 0, sizeof(OutBuffer));
+  LOBYTE(InBuffer[2]) = LOBYTE(InBuffer[23]) != 0;
+  InBuffer[3] = InBuffer[22];
+  LOWORD(InBuffer[0]) = 44;
+  LOBYTE(InBuffer[1]) = 1;
+  HIWORD(InBuffer[1]) = 4112;
+  InBuffer[4] = 300;
+  InBuffer[5] = (int)a4;
+  InBuffer[6] = 48;
+  InBuffer[7] = *(int *)((char *)&InBuffer[23] + 3);
+  InBuffer[8] = *(int *)((char *)&InBuffer[24] + 3);
+  InBuffer[9] = *(int *)((char *)&InBuffer[25] + 3);
+  InBuffer[10] = *(int *)((char *)&InBuffer[26] + 3);
+  if ( !DeviceIoControl(hDevice, 0x4D014u, InBuffer, 0x50u, OutBuffer, 0x50u, &BytesReturned, 0) )
+  {
+    LastError = GetLastError();
+    sub_40FE11(2, aDeviceiocontro, LastError);
+    return 0;
+  }
+  if ( LOBYTE(InBuffer[23]) )
+  {
+    v18 = 0;
+    v17[0] = 0;
+    *(_DWORD *)&v17[1] = 0;
+    v17[5] = 0;
+    while ( 1 )
+    {
+      memcpy(v17, (const void *)OutBuffer[5], 5u);
+      v5 = OutBuffer[3];
+      if ( OutBuffer[3] >= 5
+        && v17[0] == 82
+        && ((unsigned __int8)v17[1] << 8) + (unsigned __int8)v17[2] + 3 == OutBuffer[3] )
+      {
+        break;
+      }
+      sub_40FE11(2, aDeviceiocontro_0, v17[0]);
+      if ( v18 > 1 )
+      {
+        sub_40FE11(2, aDeviceiocontro_1, v18);
+        return 0;
+      }
+      v6 = (int)v14;
+      v7 = (*(int (__thiscall **)(void *, HANDLE *))(*(_DWORD *)v14 + 16))(v14, a2 + 1);
+      (*(void (__thiscall **)(int, int))(*(_DWORD *)v6 + 20))(v6, v7);
+      memset(OutBuffer, 0, sizeof(OutBuffer));
+      if ( !DeviceIoControl(hDevice, 0x4D014u, InBuffer, 0x50u, OutBuffer, 0x50u, &BytesReturned, 0) )
+      {
+        v11 = GetLastError();
+        sub_40FE11(2, aDeviceiocontro_2, v11);
+        return 0;
+      }
+      ++v18;
+    }
+    v8 = OutBuffer[5] == 0;
+    *a5 = OutBuffer[3];
+    if ( !v8 )
+      memcpy(a4, (const void *)OutBuffer[5], v5);
+  }
+  else
+  {
+    *a5 = 0;
+  }
+  return 1;
+}
+
+  0040FA16  push    ebp
+  0040FA17  mov     ebp, esp
+  0040FA19  sub     esp, 0D4h
+  0040FA1F  mov     eax, [ebp+arg_0]
+  0040FA22  push    ebx
+  0040FA23  push    esi
+  0040FA24  xor     esi, esi
+  0040FA26  cmp     eax, esi
+  0040FA28  push    edi
+  0040FA29  mov     [ebp+var_14], ecx
+  0040FA2C  jz      loc_40FC35
+  0040FA32  mov     eax, [eax]
+  0040FA34  push    20h ; ' '; Size
+  0040FA36  mov     [ebp+hDevice], eax
+  0040FA39  lea     eax, [ebp+var_34]
+  0040FA3C  push    esi; Val
+  0040FA3D  push    eax; void *
+  0040FA3E  call    memset
+  0040FA43  add     esp, 0Ch
+  0040FA46  cmp     [ebp+arg_4], esi
+  0040FA49  jnz     short loc_40FA5F
+  0040FA4B  mov     eax, [ebp+arg_C]
+  0040FA4E  and     [ebp+var_28], 0
+  0040FA52  mov     [ebp+var_25], 0FAh
+  0040FA56  mov     [ebp+var_24], 3Ah ; ':'
+  0040FA5A  mov     eax, [eax]
+  0040FA5C  mov     [ebp+var_2C], eax
+  0040FA5F  cmp     [ebp+arg_4], 1
+  0040FA63  jnz     short loc_40FA78
+  0040FA65  mov     [ebp+var_2C], 200h
+  0040FA6C  mov     [ebp+var_28], 1
+  0040FA70  mov     [ebp+var_25], 0FAh
+  0040FA74  mov     [ebp+var_24], 8
+  0040FA78  push    50h ; 'P'
+  0040FA7A  lea     eax, [ebp+InBuffer]
+  0040FA80  pop     ebx
+  0040FA81  push    ebx; Size
+  0040FA82  push    esi; Val
+  0040FA83  push    eax; void *
+  0040FA84  call    memset
+  0040FA89  push    ebx; Size
+  0040FA8A  lea     eax, [ebp+OutBuffer]
+  0040FA90  push    esi; Val
+  0040FA91  push    eax; void *
+  0040FA92  call    memset
+  0040FA97  add     esp, 18h
+  0040FA9A  cmp     [ebp+var_28], 0
+  0040FA9E  lea     esi, [ebp+var_25]
+  0040FAA1  lea     edi, [ebp+var_68]
+  0040FAA4  setnz   al
+  0040FAA7  mov     [ebp+var_7C], al
+  0040FAAA  mov     eax, [ebp+var_2C]
+  0040FAAD  mov     [ebp+var_78], eax
+  0040FAB0  mov     eax, [ebp+arg_8]
+  0040FAB3  mov     [ebp+InBuffer], 2Ch ; ','
+  0040FABC  mov     [ebp+var_80], 1
+  0040FAC0  mov     [ebp+var_7E], 10h
+  0040FAC4  mov     [ebp+var_7D], 10h
+  0040FAC8  mov     [ebp+var_74], 12Ch
+  0040FACF  mov     [ebp+var_70], eax
+  0040FAD2  mov     [ebp+var_6C], 30h ; '0'
+  0040FAD9  lea     eax, [ebp+BytesReturned]
+  0040FADC  movsd
+  0040FADD  movsd
+  0040FADE  push    0; lpOverlapped
+  0040FAE0  push    eax; lpBytesReturned
+  0040FAE1  lea     eax, [ebp+OutBuffer]
+  0040FAE7  push    ebx; nOutBufferSize
+  0040FAE8  movsd
+  0040FAE9  push    eax; lpOutBuffer
+  0040FAEA  push    ebx; nInBufferSize
+  0040FAEB  lea     eax, [ebp+InBuffer]
+  0040FAF1  mov     ebx, 4D014h
+  0040FAF6  push    eax; lpInBuffer
+  0040FAF7  push    ebx; dwIoControlCode
+  0040FAF8  push    [ebp+hDevice]; hDevice
+  0040FAFB  movsd
+  0040FAFC  mov     esi, ds:DeviceIoControl
+  0040FB02  call    esi ; DeviceIoControl
+  0040FB04  test    eax, eax
+  0040FB06  jnz     short loc_40FB19
+  0040FB08  call    ds:GetLastError
+  0040FB0E  push    eax
+  0040FB0F  push    offset aDeviceiocontro; "DeviceIoControl=%08x"
+  0040FB14  jmp     loc_40FC2B
+  0040FB19  cmp     [ebp+var_28], 0
+  0040FB1D  jz      loc_40FC39
+  0040FB23  and     [ebp+arg_4], 0
+  0040FB27  and     [ebp+var_8], 0
+  0040FB2B  xor     eax, eax
+  0040FB2D  lea     edi, [ebp+var_7]
+  0040FB30  stosd
+  0040FB31  stosb
+  0040FB32  push    5; Size
+  0040FB34  lea     eax, [ebp+var_8]
+  0040FB37  push    [ebp+Src]; Src
+  0040FB3D  push    eax; void *
+  0040FB3E  call    memcpy
+  0040FB43  mov     eax, [ebp+Size]
+  0040FB49  add     esp, 0Ch
+  0040FB4C  cmp     eax, 5
+  0040FB4F  jb      short loc_40FB6E
+  0040FB51  cmp     [ebp+var_8], 52h ; 'R'
+  0040FB55  jnz     short loc_40FB6E
+  0040FB57  movzx   ecx, [ebp+var_7]
+  0040FB5B  movzx   edx, [ebp+var_6]
+  0040FB5F  shl     ecx, 8
+  0040FB62  lea     ecx, [ecx+edx+3]
+  0040FB66  cmp     ecx, eax
+  0040FB68  jz      loc_40FBF3
+  0040FB6E  push    eax
+  0040FB6F  movzx   eax, [ebp+var_4]
+  0040FB73  push    eax
+  0040FB74  movzx   eax, [ebp+var_5]
+  0040FB78  push    eax
+  0040FB79  movzx   eax, [ebp+var_6]
+  0040FB7D  push    eax
+  0040FB7E  movzx   eax, [ebp+var_7]
+  0040FB82  push    eax
+  0040FB83  movzx   eax, [ebp+var_8]
+  0040FB87  push    eax; ArgList
+  0040FB88  push    offset aDeviceiocontro_0; "DeviceIoControl(uSptdWbOut.SPTD.DataBuf"...
+  0040FB8D  push    2; int
+  0040FB8F  call    sub_40FE11
+  0040FB94  add     esp, 20h
+  0040FB97  cmp     [ebp+arg_4], 1
+  0040FB9B  ja      short loc_40FC15
+  0040FB9D  mov     ecx, [ebp+arg_0]
+  0040FBA0  mov     edi, [ebp+var_14]
+  0040FBA3  add     ecx, 4
+  0040FBA6  mov     eax, [edi]
+  0040FBA8  push    ecx
+  0040FBA9  mov     ecx, edi
+  0040FBAB  call    dword ptr [eax+10h]
+  0040FBAE  mov     edx, [edi]
+  0040FBB0  push    eax
+  0040FBB1  mov     ecx, edi
+  0040FBB3  call    dword ptr [edx+14h]
+  0040FBB6  push    50h ; 'P'; Size
+  0040FBB8  lea     eax, [ebp+OutBuffer]
+  0040FBBE  push    0; Val
+  0040FBC0  push    eax; void *
+  0040FBC1  call    memset
+  0040FBC6  add     esp, 0Ch
+  0040FBC9  lea     eax, [ebp+BytesReturned]
+  0040FBCC  push    0; lpOverlapped
+  0040FBCE  push    eax; lpBytesReturned
+  0040FBCF  lea     eax, [ebp+OutBuffer]
+  0040FBD5  push    50h ; 'P'; nOutBufferSize
+  0040FBD7  push    eax; lpOutBuffer
+  0040FBD8  lea     eax, [ebp+InBuffer]
+  0040FBDE  push    50h ; 'P'; nInBufferSize
+  0040FBE0  push    eax; lpInBuffer
+  0040FBE1  push    ebx; dwIoControlCode
+  0040FBE2  push    [ebp+hDevice]; hDevice
+  0040FBE5  call    esi ; DeviceIoControl
+  0040FBE7  test    eax, eax
+  0040FBE9  jz      short loc_40FC1F
+  0040FBEB  inc     [ebp+arg_4]
+  0040FBEE  jmp     loc_40FB32
+  0040FBF3  mov     ecx, [ebp+arg_C]
+  0040FBF6  cmp     [ebp+Src], 0
+  0040FBFD  mov     [ecx], eax
+  0040FBFF  jz      short loc_40FC3F
+  0040FC01  push    eax; Size
+  0040FC02  push    [ebp+Src]; Src
+  0040FC08  push    [ebp+arg_8]; void *
+  0040FC0B  call    memcpy
+  0040FC10  add     esp, 0Ch
+  0040FC13  jmp     short loc_40FC3F
+  0040FC15  push    [ebp+arg_4]
+  0040FC18  push    offset aDeviceiocontro_1; "DeviceIoControl(READBUF_FLG ulCount=%08"...
+  0040FC1D  jmp     short loc_40FC2B
+  0040FC1F  call    ds:GetLastError
+  0040FC25  push    eax; ArgList
+  0040FC26  push    offset aDeviceiocontro_2; "DeviceIoControl(READBUF_FLG)=%08x"
+  0040FC2B  push    2; int
+  0040FC2D  call    sub_40FE11
+  0040FC32  add     esp, 0Ch
+  0040FC35  xor     al, al
+  0040FC37  jmp     short loc_40FC41
+  0040FC39  mov     eax, [ebp+arg_C]
+  0040FC3C  and     dword ptr [eax], 0
+  0040FC3F  mov     al, 1
+  0040FC41  pop     edi
+  0040FC42  pop     esi
+  0040FC43  pop     ebx
+  0040FC44  leave
+  0040FC45  retn    10h

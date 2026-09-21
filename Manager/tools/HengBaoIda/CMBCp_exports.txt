@@ -1,0 +1,486 @@
+FILE: G:\Codes\USBKeyDriver\Manager\tools\HengBaoIda\CMBCp.dll
+IMAGEBASE: 0x10000000
+
+=== EXPORTS ===
+ord=1      ea=100011EF name=C_CancelFunction
+ord=2      ea=100012B2 name=C_CloseAllSessions
+ord=3      ea=10001217 name=C_CloseSession
+ord=4      ea=1000147E name=C_CopyObject
+ord=5      ea=10001014 name=C_CreateObject
+ord=6      ea=100016BD name=C_Decrypt
+ord=7      ea=1000152D name=C_DecryptDigestUpdate
+ord=8      ea=1000123F name=C_DecryptFinal
+ord=9      ea=100015FA name=C_DecryptInit
+ord=10     ea=100014EC name=C_DecryptUpdate
+ord=11     ea=100013BB name=C_DecryptVerifyUpdate
+ord=12     ea=10001311 name=C_DeriveKey
+ord=13     ea=10001712 name=C_DestroyObject
+ord=14     ea=1000105A name=C_Digest
+ord=15     ea=100013C0 name=C_DigestEncryptUpdate
+ord=16     ea=10001343 name=C_DigestFinal
+ord=17     ea=1000154B name=C_DigestInit
+ord=18     ea=10001663 name=C_DigestKey
+ord=19     ea=100011C7 name=C_DigestUpdate
+ord=20     ea=10001668 name=C_Encrypt
+ord=21     ea=10001442 name=C_EncryptFinal
+ord=22     ea=1000156E name=C_EncryptInit
+ord=23     ea=1000166D name=C_EncryptUpdate
+ord=24     ea=10001028 name=C_Finalize
+ord=25     ea=10001186 name=C_FindObjects
+ord=26     ea=1000102D name=C_FindObjectsFinal
+ord=27     ea=100011EA name=C_FindObjectsInit
+ord=28     ea=1000112C name=C_GenerateKey
+ord=29     ea=1000126C name=C_GenerateKeyPair
+ord=30     ea=10001609 name=C_GenerateRandom
+ord=31     ea=100015A5 name=C_GetAttributeValue
+ord=32     ea=1000116D name=C_GetFunctionList
+ord=33     ea=10001438 name=C_GetFunctionStatus
+ord=34     ea=1000131B name=C_GetInfo
+ord=35     ea=10001686 name=C_GetMechanismInfo
+ord=36     ea=1000168B name=C_GetMechanismList
+ord=37     ea=100011DB name=C_GetObjectSize
+ord=38     ea=100010B9 name=C_GetOperationState
+ord=39     ea=100011D6 name=C_GetSessionInfo
+ord=40     ea=100013F2 name=C_GetSlotInfo
+ord=41     ea=1000141F name=C_GetSlotList
+ord=42     ea=10001159 name=C_GetTokenInfo
+ord=43     ea=1000139D name=C_InitPIN
+ord=44     ea=10001550 name=C_InitToken
+ord=45     ea=100011B3 name=C_Initialize
+ord=46     ea=10001447 name=C_Login
+ord=47     ea=1000172B name=C_Logout
+ord=48     ea=10001717 name=C_OpenSession
+ord=49     ea=1000103C name=C_SeedRandom
+ord=50     ea=1000169A name=C_SetAttributeValue
+ord=51     ea=100016A9 name=C_SetOperationState
+ord=52     ea=10001127 name=C_SetPIN
+ord=53     ea=1000104B name=C_Sign
+ord=54     ea=100013E8 name=C_SignEncryptUpdate
+ord=55     ea=10001384 name=C_SignFinal
+ord=56     ea=1000136B name=C_SignInit
+ord=57     ea=100010A5 name=C_SignRecover
+ord=58     ea=10001226 name=C_SignRecoverInit
+ord=59     ea=10001140 name=C_SignUpdate
+ord=60     ea=1000164F name=C_UnwrapKey
+ord=61     ea=10001735 name=C_Verify
+ord=62     ea=10001294 name=C_VerifyFinal
+ord=63     ea=1000135C name=C_VerifyInit
+ord=64     ea=10001046 name=C_VerifyRecover
+ord=65     ea=10001230 name=C_VerifyRecoverInit
+ord=66     ea=100016B8 name=C_VerifyUpdate
+ord=67     ea=10001375 name=C_WaitForSlotEvent
+ord=68     ea=100013AC name=C_WrapKey
+ord=268605525 ea=10029855 name=DllEntryPoint
+
+=== PROTOTYPES / STD CALL CHECK ===
+C_CreateObject                             ea=10001014  (no function)
+C_Finalize                                 ea=10001028  (no function)
+C_FindObjectsFinal                         ea=1000102D  (no function)
+C_SeedRandom                               ea=1000103C  (no function)
+C_VerifyRecover                            ea=10001046  (no function)
+C_Sign                                     ea=1000104B  (no function)
+C_Digest                                   ea=1000105A  (no function)
+C_SignRecover                              ea=100010A5  (no function)
+C_GetOperationState                        ea=100010B9  (no function)
+C_SetPIN                                   ea=10001127  (no function)
+C_GenerateKey                              ea=1000112C  (no function)
+C_SignUpdate                               ea=10001140  (no function)
+C_GetTokenInfo                             ea=10001159  (no function)
+C_GetFunctionList                          ea=1000116D  (no function)
+C_FindObjects                              ea=10001186  (no function)
+C_Initialize                               ea=100011B3  (no function)
+C_DigestUpdate                             ea=100011C7  (no function)
+C_GetSessionInfo                           ea=100011D6  (no function)
+C_GetObjectSize                            ea=100011DB  (no function)
+C_FindObjectsInit                          ea=100011EA  (no function)
+C_CancelFunction                           ea=100011EF  (no function)
+C_CloseSession                             ea=10001217  (no function)
+C_SignRecoverInit                          ea=10001226  (no function)
+C_VerifyRecoverInit                        ea=10001230  (no function)
+C_DecryptFinal                             ea=1000123F  (no function)
+C_GenerateKeyPair                          ea=1000126C  (no function)
+C_VerifyFinal                              ea=10001294  (no function)
+C_CloseAllSessions                         ea=100012B2  (no function)
+C_DeriveKey                                ea=10001311  (no function)
+C_GetInfo                                  ea=1000131B  (no function)
+C_DigestFinal                              ea=10001343  (no function)
+C_VerifyInit                               ea=1000135C  (no function)
+C_SignInit                                 ea=1000136B  (no function)
+C_WaitForSlotEvent                         ea=10001375  (no function)
+C_SignFinal                                ea=10001384  (no function)
+C_InitPIN                                  ea=1000139D  (no function)
+C_WrapKey                                  ea=100013AC  (no function)
+C_DecryptVerifyUpdate                      ea=100013BB  (no function)
+C_DigestEncryptUpdate                      ea=100013C0  (no function)
+C_SignEncryptUpdate                        ea=100013E8  (no function)
+C_GetSlotInfo                              ea=100013F2  (no function)
+C_GetSlotList                              ea=1000141F  (no function)
+C_GetFunctionStatus                        ea=10001438  (no function)
+C_EncryptFinal                             ea=10001442  (no function)
+C_Login                                    ea=10001447  (no function)
+C_CopyObject                               ea=1000147E  (no function)
+C_DecryptUpdate                            ea=100014EC  (no function)
+C_DecryptDigestUpdate                      ea=1000152D  (no function)
+C_DigestInit                               ea=1000154B  (no function)
+C_InitToken                                ea=10001550  (no function)
+C_EncryptInit                              ea=1000156E  (no function)
+C_GetAttributeValue                        ea=100015A5  (no function)
+C_DecryptInit                              ea=100015FA  (no function)
+C_GenerateRandom                           ea=10001609  (no function)
+C_UnwrapKey                                ea=1000164F  (no function)
+C_DigestKey                                ea=10001663  (no function)
+C_Encrypt                                  ea=10001668  (no function)
+C_EncryptUpdate                            ea=1000166D  (no function)
+C_GetMechanismInfo                         ea=10001686  (no function)
+C_GetMechanismList                         ea=1000168B  (no function)
+C_SetAttributeValue                        ea=1000169A  (no function)
+C_SetOperationState                        ea=100016A9  (no function)
+C_VerifyUpdate                             ea=100016B8  (no function)
+C_Decrypt                                  ea=100016BD  (no function)
+C_DestroyObject                            ea=10001712  (no function)
+C_OpenSession                              ea=10001717  (no function)
+C_Logout                                   ea=1000172B  (no function)
+C_Verify                                   ea=10001735  (no function)
+DllEntryPoint                              ea=10029855 end=100298F2 proto=BOOL __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
+
+=== DECOMPILED (C_*) ===
+
+======================================================================
+### C_CreateObject  @ 0x10001014
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Finalize  @ 0x10001028
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_FindObjectsFinal  @ 0x1000102D
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SeedRandom  @ 0x1000103C
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_VerifyRecover  @ 0x10001046
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Sign  @ 0x1000104B
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Digest  @ 0x1000105A
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SignRecover  @ 0x100010A5
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetOperationState  @ 0x100010B9
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SetPIN  @ 0x10001127
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GenerateKey  @ 0x1000112C
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SignUpdate  @ 0x10001140
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetTokenInfo  @ 0x10001159
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetFunctionList  @ 0x1000116D
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_FindObjects  @ 0x10001186
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Initialize  @ 0x100011B3
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DigestUpdate  @ 0x100011C7
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetSessionInfo  @ 0x100011D6
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetObjectSize  @ 0x100011DB
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_FindObjectsInit  @ 0x100011EA
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_CancelFunction  @ 0x100011EF
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_CloseSession  @ 0x10001217
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SignRecoverInit  @ 0x10001226
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_VerifyRecoverInit  @ 0x10001230
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DecryptFinal  @ 0x1000123F
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GenerateKeyPair  @ 0x1000126C
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_VerifyFinal  @ 0x10001294
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_CloseAllSessions  @ 0x100012B2
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DeriveKey  @ 0x10001311
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetInfo  @ 0x1000131B
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DigestFinal  @ 0x10001343
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_VerifyInit  @ 0x1000135C
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SignInit  @ 0x1000136B
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_WaitForSlotEvent  @ 0x10001375
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SignFinal  @ 0x10001384
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_InitPIN  @ 0x1000139D
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_WrapKey  @ 0x100013AC
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DecryptVerifyUpdate  @ 0x100013BB
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DigestEncryptUpdate  @ 0x100013C0
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SignEncryptUpdate  @ 0x100013E8
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetSlotInfo  @ 0x100013F2
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetSlotList  @ 0x1000141F
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetFunctionStatus  @ 0x10001438
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_EncryptFinal  @ 0x10001442
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Login  @ 0x10001447
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_CopyObject  @ 0x1000147E
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DecryptUpdate  @ 0x100014EC
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DecryptDigestUpdate  @ 0x1000152D
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DigestInit  @ 0x1000154B
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_InitToken  @ 0x10001550
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_EncryptInit  @ 0x1000156E
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetAttributeValue  @ 0x100015A5
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DecryptInit  @ 0x100015FA
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GenerateRandom  @ 0x10001609
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_UnwrapKey  @ 0x1000164F
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DigestKey  @ 0x10001663
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Encrypt  @ 0x10001668
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_EncryptUpdate  @ 0x1000166D
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetMechanismInfo  @ 0x10001686
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_GetMechanismList  @ 0x1000168B
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SetAttributeValue  @ 0x1000169A
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_SetOperationState  @ 0x100016A9
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_VerifyUpdate  @ 0x100016B8
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Decrypt  @ 0x100016BD
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_DestroyObject  @ 0x10001712
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_OpenSession  @ 0x10001717
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Logout  @ 0x1000172B
+======================================================================
+(decompile returned None)
+
+======================================================================
+### C_Verify  @ 0x10001735
+======================================================================
+(decompile returned None)

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<style>
+
+img{border:none;}
+body { padding:0; margin:0; background:#ffffff; border:0;width:700px;height:160px;}
+a{text-decoration:none;line-height:27.6px;}
+ul,li{margin:0;padding:0; list-style:none;}
+.clear{clear:both;}
+.wrap{margin:0 auto;width:804px;font-size:14px; font-family:"微软雅黑", "幼圆", Arial, Harrington;line-height:27.6px;background:url(images/faq_answer_bg.png) no-repeat bottom right;}
+
+
+</style>
+<script language="javascript">
+    //当拖拽图片时发生，设置图片不支持拖拽
+    function imgdragstart() {
+        return false;
+    }
+</script>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body onSelectStart="return false">
+<div class="wrap">
+	<br>
+	<ul>
+		<li>问题：用户在进行网页申报登陆时，选择证书后提示解密并验证签名数据失败。</li><br>
+		<li><img src="images/FAQ7_1.png" style="margin-left:57.5px;"></li>
+		<li>解决办法：先更新一下驱动，如果问题仍没有解决，是证书的加密密钥对不匹配造成，</li>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要用户携带数字证书当地服务中心检测，如有问题需要更新，使用新加密密钥。</li>
+
+	</ul>
+<div class="clear"></div>
+</div>
+<script>
+    for (i in document.images)
+        document.images[i].ondragstart = imgdragstart;
+</script>
+</body>
+</html>

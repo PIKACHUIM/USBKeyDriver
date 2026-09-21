@@ -59,10 +59,23 @@ internal sealed class SettingsForm : Form
         _txtCloud = new TextBox { Left = 150, Top = 104, Width = 220, Text = s.CloudEndpoint };
 
         _chkAutoStart = new CheckBox { Text = "开机自启动", Left = 14, Top = 138, AutoSize = true, Checked = s.AutoStart };
-        _chkAutoRegister = new CheckBox { Text = "证书自动注册到系统", Left = 14, Top = 168, AutoSize = true, Checked = s.AutoRegisterCert };
+        _chkAutoRegister = new CheckBox
+        {
+            Text = "证书自动注册到系统（含私钥关联）",
+            Left = 14, Top = 168, AutoSize = true, Checked = s.AutoRegisterCert,
+        };
+        var lblAutoRegHint = new Label
+        {
+            Left = 32, Top = 190, AutoSize = true,
+            ForeColor = System.Drawing.Color.DimGray,
+            Font = new Font("Microsoft YaHei UI", 8.25F),
+            Text = "默认开启：新识别的 USB Key 会自动注册其上证书，注册时把卡内私钥容器一并写入系统，\n" +
+                   "注册记录持久化保存，下次启动若证书库中缺失会自动重新注册。\n" +
+                   "手动「注销」过的证书不会被自动加回来；解析不到厂商 CSP/KSP 时会报错而不会写入空壳证书。",
+        };
 
         // 软件信息
-        var group = new GroupBox { Text = "软件信息", Left = 14, Top = 200, Width = 470, Height = 150 };
+        var group = new GroupBox { Text = "软件信息", Left = 14, Top = 226, Width = 470, Height = 140 };
         var lblName = new Label { Left = 20, Top = 26, AutoSize = true, Text = "名称：" + AppConfig.SoftwareName + "  v" + AppConfig.Version };
         var lblCopy = new Label { Left = 20, Top = 52, AutoSize = true, Text = "版权：" + AppConfig.Copyright };
         var lblBuild = new Label { Left = 20, Top = 78, AutoSize = true, Text = "构建日期：" + AppConfig.BuildDate };
@@ -72,7 +85,7 @@ internal sealed class SettingsForm : Form
         group.Controls.Add(lblBuild);
         group.Controls.Add(lblPlat);
 
-        page.Controls.AddRange(new Control[] { _chkDeleteCert, _chkChangePin, lblTimeout, _numTimeout, lblCloud, _txtCloud, _chkAutoStart, _chkAutoRegister, group });
+        page.Controls.AddRange(new Control[] { _chkDeleteCert, _chkChangePin, lblTimeout, _numTimeout, lblCloud, _txtCloud, _chkAutoStart, _chkAutoRegister, lblAutoRegHint, group });
         return page;
     }
 
@@ -124,7 +137,11 @@ internal sealed class SettingsForm : Form
         s.LoginTimeoutMinutes = (int)_numTimeout.Value;
         s.CloudEndpoint = _txtCloud.Text.Trim();
         s.AutoStart = _chkAutoStart.Checked;
+
+        // 自动注册开关变化时立即生效（不必重启）：主窗体收到请求后会补跑一轮
+        var autoRegisterChanged = s.AutoRegisterCert != _chkAutoRegister.Checked;
         s.AutoRegisterCert = _chkAutoRegister.Checked;
+        if (autoRegisterChanged && s.AutoRegisterCert) _ctx.CertAutoRegisterRequested = true;
 
         // 管理模式：把用户权限反馈到 features 配置
         if (_ctx.IsAdminMode)

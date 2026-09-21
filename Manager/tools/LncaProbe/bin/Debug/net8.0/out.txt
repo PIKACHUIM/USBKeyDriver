@@ -1,0 +1,6 @@
+=== HD_HardAPI 探针 ===
+DLL: G:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\HD_HardAPI.dll  PIN: 123456
+[+] LoadLibrary OK handle=0x10000000
+[1] HSConnectDev(idx=0) rc=0x0 hDev=0x7559720
+[2] HSGetSerial rc=0x0 sn="01519176" len=64
+[3] HSGetTotalSize rc=0x0 total=64253

@@ -1,0 +1,1062 @@
+analysis done
+
+==========================================================================
+### 004088F1 DoInitUkey_实际初始化  func=004088F1-00408E23
+==========================================================================
+LRESULT __stdcall sub_4088F1(HWND hDlg)
+{
+  HWND DlgItem; // ebx
+  int v2; // ebx
+  char *v3; // eax
+  void *v4; // edi
+  char *v5; // eax
+  char v6; // al
+  LPARAM v7; // eax
+  void *v8; // ebx
+  int v9; // edi
+  int v10; // eax
+  int v11; // edi
+  bool v12; // zf
+  CHAR *v13; // edi
+  unsigned int v14; // ebx
+  char v15; // al
+  LPARAM v16; // eax
+  int v18; // [esp+0h] [ebp-69Ch] BYREF
+  char Str[1021]; // [esp+Ch] [ebp-690h] BYREF
+  __int16 v20; // [esp+409h] [ebp-293h]
+  char v21; // [esp+40Bh] [ebp-291h]
+  char Destination[257]; // [esp+40Ch] [ebp-290h] BYREF
+  __int16 v23; // [esp+50Dh] [ebp-18Fh]
+  char v24; // [esp+50Fh] [ebp-18Dh]
+  char Buffer[257]; // [esp+510h] [ebp-18Ch] BYREF
+  __int16 v26; // [esp+611h] [ebp-8Bh]
+  char v27; // [esp+613h] [ebp-89h]
+  SHELLEXECUTEINFOA pExecInfo; // [esp+614h] [ebp-88h] BYREF
+  CHAR String2[20]; // [esp+650h] [ebp-4Ch] BYREF
+  int v30; // [esp+664h] [ebp-38h]
+  HWND v31; // [esp+668h] [ebp-34h]
+  HWND hWnd; // [esp+66Ch] [ebp-30h]
+  int v33; // [esp+670h] [ebp-2Ch]
+  int v34; // [esp+674h] [ebp-28h] BYREF
+  WPARAM wParam; // [esp+678h] [ebp-24h]
+  LPARAM v36; // [esp+67Ch] [ebp-20h]
+  LPARAM lParam; // [esp+680h] [ebp-1Ch]
+  void *v38; // [esp+684h] [ebp-18h] BYREF
+  void *hMutex; // [esp+688h] [ebp-14h]
+  int *v40; // [esp+68Ch] [ebp-10h]
+  int v41; // [esp+698h] [ebp-4h]
+
+  memset(Str, 0, sizeof(Str));
+  memset(Destination, 0, sizeof(Destination));
+  v20 = 0;
+  v40 = &v18;
+  v21 = 0;
+  v34 = 0;
+  v23 = 0;
+  wParam = 0;
+  v41 = 0;
+  v24 = 0;
+  dword_54E034 = 0;
+  if ( dword_54E030 > 0 )
+    sub_4063B0(hDlg, 0);
+  DlgItem = GetDlgItem(hDlg, 1015);
+  v31 = DlgItem;
+  SendMessageA(DlgItem, 0x1101u, 0, -65536);
+  hWnd = GetDlgItem(hDlg, 1047);
+  SendMessageA(hWnd, 0x14Bu, 0, 0);
+  hMutex = 0;
+  while ( (int)hMutex < 8 )
+  {
+    v2 = 263 * (_DWORD)hMutex;
+    v3 = (char *)dword_41A5F0[263 * (_DWORD)hMutex];
+    if ( v3 && dword_41A5F8[263 * (_DWORD)hMutex] && !sub_4099C6(v3, (int)&v38) )
+    {
+      if ( byte_41A600[v2 * 4] )
+      {
+        v4 = (void *)sub_409CA0((int)v38, 0x493E0u);
+        sub_40B73D(v38, 1);
+        sub_409D54(v4);
+      }
+      if ( sub_40215E((int)v38, Str) && strlen(Str) )
+      {
+        memset(&byte_41A608[v2 * 4], 0, 0x400u);
+        strcpy(&byte_41A608[v2 * 4], Str);
+      }
+      if ( dword_41A5F4[v2] )
+      {
+        operator delete((void *)dword_41A5F4[v2]);
+        dword_41A5F4[v2] = 0;
+      }
+      v5 = (char *)operator new(0x150u);
+      dword_41A5F4[v2] = (int)v5;
+      if ( !sub_409BEF((int)v38, v5) )
+      {
+        v6 = wParam;
+        dword_41A5FC[v2] = 0;
+        byte_41AA08[v2 * 4] = v6;
+        v7 = sub_406433(hDlg, -65536, 0, 1, dword_41A5F4[v2] + 192, (int)&dword_41A5F0[v2]);
+        memset(Buffer, 0, sizeof(Buffer));
+        lParam = v7;
+        v26 = 0;
+        v27 = 0;
+        if ( lstrlenA((LPCSTR)(dword_41A5F4[v2] + 64)) )
+          sprintf(Buffer, "SN:%s", (const char *)(dword_41A5F4[v2] + 64));
+        else
+          sprintf(Buffer, "SN:%s", (const char *)dword_41A5F4[v2]);
+        SendMessageA(hWnd, 0x14Au, wParam, (LPARAM)Buffer);
+        v8 = hMutex;
+        ++wParam;
+        v9 = 0;
+        v34 = 0;
+        sub_403325(v38, hMutex, &v34);
+        v33 = 0;
+        while ( v9 < v34 )
+        {
+          if ( dword_54E038 == 1 )
+            v10 = sub_406433(
+                    hDlg,
+                    lParam,
+                    2,
+                    3,
+                    (int)(&(&dword_416B54)[120 * (_DWORD)v8])[v9],
+                    (int)&(&(&dword_416B54)[120 * (_DWORD)v8])[15 * v9]);
+          else
+            v10 = lParam;
+          v36 = v10;
+          memset(String2, 0, sizeof(String2));
+          sub_4033EE((int)v38, v8, (&(&dword_416B54)[120 * (_DWORD)v8])[v9], v9);
+          v11 = 10264 * (v9 + 8 * (_DWORD)v8);
+          if ( byte_41CF10[v11] == 2 )
+          {
+            LoadStringA(hInstance, 0x43Fu, String2, 20);
+            lstrcatA(&byte_41DF18[v11], String2);
+            sub_406433(hDlg, v36, 4, 5, (int)&byte_41DF18[v11], (int)&byte_41CF10[v11]);
+            v8 = hMutex;
+            dword_41A5FC[263 * (_DWORD)hMutex] = 1;
+          }
+          v12 = byte_41E31C[v11] == 1;
+          v30 = (int)&byte_41E31C[v11];
+          if ( v12 )
+          {
+            LoadStringA(hInstance, 0x43Eu, String2, 20);
+            v13 = (char *)&unk_41F324 + v11;
+            lstrcatA(v13, String2);
+            sub_406433(hDlg, v36, 6, 7, (int)v13, v30);
+            dword_41A5FC[263 * (_DWORD)v8] = 1;
+          }
+          v9 = ++v33;
+        }
+        sub_409BD3(v38);
+        v14 = 1052 * (_DWORD)v8;
+        v15 = *(_BYTE *)(dword_41A5F4[v14 / 4] + 70);
+        if ( v15 == 56 || v15 == 57 )
+        {
+          if ( byte_41A600[v14] && dword_54E24C && !sub_40149C() && !sub_401461() )
+          {
+            if ( !sub_40150E(Destination) )
+              goto LABEL_34;
+            memset(&pExecInfo.fMask, 0, 0x38u);
+            pExecInfo.cbSize = 60;
+            pExecInfo.lpFile = Destination;
+            pExecInfo.fMask = 32832;
+            pExecInfo.hwnd = 0;
+            pExecInfo.lpVerb = aOpen;
+            pExecInfo.lpParameters = 0;
+            pExecInfo.lpDirectory = 0;
+            pExecInfo.nShow = 5;
+            pExecInfo.hInstApp = 0;
+            ShellExecuteExA(&pExecInfo);
+          }
+        }
+        else if ( !sub_401461() && byte_41A600[v14] && dword_54E24C )
+        {
+LABEL_34:
+          sub_408140((int)hDlg, 0);
+          dword_54E24C = 0;
+        }
+      }
+    }
+    hMutex = (char *)hMutex + 1;
+    DlgItem = v31;
+  }
+  sub_4039DC(0);
+  sub_408E23(hDlg);
+  if ( dword_54E030 > 0 )
+    sub_4083B1(hDlg);
+  lParam = SendMessageA(DlgItem, 0x110Au, 5u, 0);
+  v36 = SendMessageA(DlgItem, 0x110Au, 4u, lParam);
+  if ( v36 )
+  {
+    if ( dword_54E038 == 1 )
+    {
+      SendMessageA(DlgItem, 0x1102u, 2u, lParam);
+      SendMessageA(DlgItem, 0x1102u, 2u, v36);
+      v16 = SendMessageA(DlgItem, 0x110Au, 6u, v36);
+    }
+    else
+    {
+      SendMessageA(DlgItem, 0x1102u, 2u, lParam);
+      v16 = SendMessageA(DlgItem, 0x110Au, 6u, lParam);
+    }
+    SendMessageA(DlgItem, 0x110Bu, 9u, v16);
+  }
+  else
+  {
+    SendMessageA(DlgItem, 0x110Bu, 9u, lParam);
+  }
+  return SendMessageA(hWnd, 0x14Eu, 0, 0);
+}
+
+
+==========================================================================
+### 004083B1 DeviceConfirm_设备按键确认  func=004083B1-00408423
+==========================================================================
+BOOL __stdcall sub_4083B1(HWND hDlg)
+{
+  HWND DlgItem; // eax
+  HWND v2; // eax
+  HWND v3; // eax
+  HWND v4; // eax
+  HWND v5; // eax
+  HWND v6; // eax
+  HWND v7; // eax
+
+  DlgItem = GetDlgItem(hDlg, 1017);
+  EnableWindow(DlgItem, 1);
+  v2 = GetDlgItem(hDlg, 1020);
+  EnableWindow(v2, 1);
+  v3 = GetDlgItem(hDlg, 1041);
+  EnableWindow(v3, 1);
+  v4 = GetDlgItem(hDlg, 1042);
+  EnableWindow(v4, 1);
+  v5 = GetDlgItem(hDlg, 1048);
+  EnableWindow(v5, 1);
+  v6 = GetDlgItem(hDlg, 1018);
+  EnableWindow(v6, 1);
+  v7 = GetDlgItem(hDlg, 1026);
+  return EnableWindow(v7, 1);
+}
+
+
+==========================================================================
+### 00402225 VerifyPin_校验111111  func=00402225-00402308
+==========================================================================
+int __stdcall sub_402225(HANDLE hMutex, LPCSTR lpString, unsigned __int8 a3, unsigned int a4)
+{
+  HWND ForegroundWindow; // eax
+  HWND v5; // esi
+  int v6; // eax
+  HWND Parent; // ebx
+  _BYTE *v8; // esi
+  int v9; // ebx
+  bool v10; // zf
+  void *v11; // esi
+  _DWORD v13[7]; // [esp+0h] [ebp-1Ch] BYREF
+
+  v13[3] = v13;
+  ForegroundWindow = GetForegroundWindow();
+  v13[6] = 0;
+  v5 = ForegroundWindow;
+  if ( a4 < 0x40 )
+    return sub_40269E(hMutex, a4842417574684b, (int)Str, lpString, a3, (int)aUranusafeKey12);
+  v6 = sub_402308(hMutex);
+  if ( (v6 & 0xFF00) == 27648 )
+  {
+    Parent = GetParent(v5);
+    if ( !Parent )
+      Parent = v5;
+    v8 = operator new(0xCu);
+    v8[8] = 0;
+    *((_DWORD *)v8 + 1) = hMutex;
+    v9 = sub_403266(hInstance, (LPCSTR)0x8F, Parent, (DLGPROC)DialogFunc, (LPARAM)v8);
+    operator delete(v8);
+    v10 = v9 == 0;
+  }
+  else
+  {
+    v10 = v6 == 1;
+  }
+  if ( !v10 )
+    return 0;
+  v11 = (void *)sub_409CA0((int)hMutex, 0x493E0u);
+  sub_40B73D(hMutex, 1);
+  sub_409D54(v11);
+  return 1;
+}
+
+
+==========================================================================
+### 00403BE5   func=00403BE5-00403CEA
+==========================================================================
+int __stdcall sub_403BE5(char *Str)
+{
+  int v1; // ebx
+  int *v2; // edi
+  unsigned int v3; // esi
+  int v5; // [esp+Ch] [ebp-10h]
+  int v6; // [esp+10h] [ebp-Ch]
+  char **v7; // [esp+14h] [ebp-8h]
+  LPCSTR *v8; // [esp+18h] [ebp-4h]
+
+  v5 = 0;
+  v6 = 0;
+  v7 = &dword_416B54;
+  v8 = (LPCSTR *)dword_41A5F0;
+  do
+  {
+    if ( lstrlenA(*v8) > 0 )
+    {
+      v1 = 0;
+      if ( !Str || !strlen(Str) || !lstrcmpA(*v8, Str) )
+      {
+        v2 = (int *)v7;
+        do
+        {
+          if ( lstrlenA((LPCSTR)*v2) > 0 )
+          {
+            v3 = 10264 * (v6 + v1);
+            if ( byte_41CF10[v3] == 2 )
+            {
+              v5 = sub_403B57(*v2, &byte_41CF11[v3], dword_41DF14[v3 / 4], 2);
+              if ( v5 == 1 )
+                byte_41E318[v3] = 0;
+            }
+            if ( byte_41E31C[v3] == 1 )
+            {
+              v5 = sub_403B57(*v2, &byte_41E31D[v3], dword_41F320[v3 / 4], 1);
+              if ( v5 == 1 )
+                byte_41F724[v3] = 0;
+            }
+          }
+          ++v1;
+          ++v2;
+        }
+        while ( v1 < 15 );
+      }
+    }
+    v8 += 263;
+    v7 += 120;
+    v6 += 8;
+  }
+  while ( (int)v8 < (int)&unk_41C6D0 );
+  return v5;
+}
+
+
+==========================================================================
+### 004099C6 OpenDeviceOrMutex  func=004099C6-00409BD3
+==========================================================================
+unsigned int __stdcall sub_4099C6(char *Str, char *a2)
+{
+  char *v3; // esi
+  unsigned int v4; // edi
+  int *v5; // ebx
+  const char *v6; // esi
+  int *v7; // edi
+  unsigned int v8; // eax
+  unsigned int v10; // eax
+  HANDLE v11; // [esp-4h] [ebp-26Ch]
+  char Destination[257]; // [esp+Ch] [ebp-25Ch] BYREF
+  __int16 v13; // [esp+10Dh] [ebp-15Bh]
+  char v14; // [esp+10Fh] [ebp-159h]
+  char v15[4]; // [esp+110h] [ebp-158h] BYREF
+  unsigned __int8 v16; // [esp+114h] [ebp-154h]
+  char Src[251]; // [esp+115h] [ebp-153h] BYREF
+  int v18[20]; // [esp+210h] [ebp-58h] BYREF
+  HANDLE hMutex; // [esp+260h] [ebp-8h]
+  size_t Size; // [esp+264h] [ebp-4h] BYREF
+  char *Stra; // [esp+270h] [ebp+8h]
+
+  memset(Destination, 0, sizeof(Destination));
+  memset(v18, 0, sizeof(v18));
+  v13 = 0;
+  v14 = 0;
+  Size = 256;
+  hMutex = 0;
+  if ( !a2 || strlen(Str) <= 2 )
+    return -2147483634;
+  Stra = (char *)sub_40E211(Str);
+  if ( Stra )
+  {
+    strcpy(Destination, Str);
+    v5 = v18;
+    v6 = &Destination[strlen(Str)];
+    v7 = v18;
+    do
+    {
+      v6 -= 2;
+      v8 = strtoul(v6, 0, 16);
+      *v6 = 0;
+      ++v7;
+      *v5 = v8;
+      v5 = v7;
+    }
+    while ( (unsigned int)*v7 >= 0x80 );
+    v3 = (char *)operator new(0x25Cu);
+    memset(v3, 0, 0x25Cu);
+    *(_DWORD *)v3 = Stra;
+    strcpy(v3 + 4, Destination);
+    hMutex = (HANDLE)sub_409CA0((int)v3, 0x493E0u);
+    if ( !hMutex )
+      return -2147483632;
+    *((_DWORD *)v3 + 150) = sub_40E24A(Stra);
+    sub_40D341(Stra, 44529, v15, &Size);
+    sub_40AD6E(v3);
+    v10 = sub_40D413(Stra, 1);
+    if ( v10 == 36864 && (Size = 76, v10 = sub_40D617(Stra, 0, v15, &Size), v10 == 36864) )
+    {
+      memset(v3 + 520, 0, 0x40u);
+      if ( v16 != 0xFF && v16 )
+        memcpy(v3 + 520, Src, v16);
+      if ( sub_40D413(Stra, 3) == 36864 )
+      {
+        Size = 32;
+        if ( sub_40D617(Stra, 0, v15, &Size) == 36864 )
+        {
+          memset(v3 + 456, 0, 0x40u);
+          memcpy(v3 + 456, v15, Size);
+        }
+      }
+      v4 = 0;
+    }
+    else
+    {
+      v4 = v10;
+    }
+  }
+  else
+  {
+    v3 = a2;
+    v4 = 0x80000000;
+  }
+  v11 = hMutex;
+  *(_DWORD *)a2 = v3;
+  sub_409D54(v11);
+  return v4;
+}
+
+
+==========================================================================
+### 00409BD3 CloseDevice  func=00409BD3-00409BEF
+==========================================================================
+void __stdcall sub_409BD3(void **a1)
+{
+  if ( a1 )
+  {
+    sub_40E220(*a1);
+    operator delete(a1);
+  }
+}
+
+
+==========================================================================
+### 004015B0 ShowMessage  func=004015B0-00401601
+==========================================================================
+int __cdecl sub_4015B0(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
+{
+  WORD v4; // bx
+
+  v4 = 2052;
+  if ( lstrcmpA(ReturnedString, a0409) )
+  {
+    if ( !lstrcmpA(ReturnedString, a0c04) )
+      v4 = 1028;
+  }
+  else
+  {
+    v4 = 1033;
+  }
+  return sub_401601(hWnd, lpText, lpCaption, uType, v4);
+}
+
+
+==========================================================================
+### 00407FCF CheckPinIsDefault  func=00407FCF-004080F2
+==========================================================================
+BOOL sub_407FCF()
+{
+  BOOL result; // eax
+  CHAR Buffer[52]; // [esp+8h] [ebp-50h] BYREF
+  struct tagMSG Msg; // [esp+3Ch] [ebp-1Ch] BYREF
+
+  LoadStringA(hInstance, 0x446u, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x45Cu, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x45Du, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x442u, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x443u, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x45Eu, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x454u, Buffer, 50);
+  sub_4080F2(Buffer);
+  LoadStringA(hInstance, 0x465u, Buffer, 50);
+  sub_4080F2(Buffer);
+  for ( result = PeekMessageA(&Msg, 0, 0, 0, 1u); result; result = PeekMessageA(&Msg, 0, 0, 0, 1u) )
+  {
+    TranslateMessage(&Msg);
+    DispatchMessageA(&Msg);
+  }
+  return result;
+}
+
+
+==========================================================================
+### 00407C87 ChangePin  func=00407C87-00407D26
+==========================================================================
+char *__stdcall sub_407C87(HWND hWnd)
+{
+  const char *CommandLineA; // eax
+  char *result; // eax
+  CHAR Text[253]; // [esp+4h] [ebp-164h] BYREF
+  __int16 v4; // [esp+101h] [ebp-67h]
+  char v5; // [esp+103h] [ebp-65h]
+  CHAR Buffer[97]; // [esp+104h] [ebp-64h] BYREF
+  __int16 v7; // [esp+165h] [ebp-3h]
+  char v8; // [esp+167h] [ebp-1h]
+
+  memset(Buffer, 0, sizeof(Buffer));
+  memset(Text, 0, sizeof(Text));
+  v7 = 0;
+  v8 = 0;
+  v4 = 0;
+  v5 = 0;
+  CommandLineA = GetCommandLineA();
+  if ( !CommandLineA || (result = strstr(CommandLineA, SubStr)) == 0 )
+  {
+    LoadStringA(hInstance, 0x446u, Buffer, 100);
+    LoadStringA(hInstance, 0x453u, Text, 256);
+    return (char *)sub_4015B0(hWnd, Text, Buffer, 0x30u);
+  }
+  return result;
+}
+
+
+==========================================================================
+### 00406EB4 VerifyPinFlow  func=00406EB4-004070AF
+==========================================================================
+HMODULE __stdcall sub_406EB4(HMODULE hLibModule, LPCSTR lpString)
+{
+  CHAR Str[509]; // [esp+8h] [ebp-55Ch] BYREF
+  __int16 v4; // [esp+205h] [ebp-35Fh]
+  char v5; // [esp+207h] [ebp-35Dh]
+  struct _WIN32_FIND_DATAA FindFileData; // [esp+208h] [ebp-35Ch] BYREF
+  CHAR LibFileName[257]; // [esp+348h] [ebp-21Ch] BYREF
+  __int16 v8; // [esp+449h] [ebp-11Bh]
+  char v9; // [esp+44Bh] [ebp-119h]
+  CHAR String1[257]; // [esp+44Ch] [ebp-118h] BYREF
+  __int16 v11; // [esp+54Dh] [ebp-17h]
+  char v12; // [esp+54Fh] [ebp-15h]
+  char Buffer; // [esp+550h] [ebp-14h] BYREF
+  int v14; // [esp+551h] [ebp-13h]
+  int v15; // [esp+555h] [ebp-Fh]
+  char v16; // [esp+559h] [ebp-Bh]
+  HANDLE hFindFile; // [esp+55Ch] [ebp-8h]
+  HMODULE v18; // [esp+560h] [ebp-4h]
+  HMODULE hLibModulea; // [esp+56Ch] [ebp+8h]
+
+  memset(String1, 0, sizeof(String1));
+  memset(LibFileName, 0, sizeof(LibFileName));
+  v11 = 0;
+  v12 = 0;
+  memset(Str, 0, sizeof(Str));
+  v8 = 0;
+  v9 = 0;
+  Buffer = 0;
+  v4 = 0;
+  v5 = 0;
+  v14 = 0;
+  v15 = 0;
+  v16 = 0;
+  v18 = hLibModule;
+  if ( hLibModule == (HMODULE)2052 || !lpString || !lstrlenA(lpString) )
+    return hLibModule;
+  sprintf(&Buffer, "%04X", hLibModule);
+  sub_401363(aEASvnSrcTrunkU_0, 2025, &Buffer);
+  lstrcpyA(String1, byte_415668);
+  LibFileName[lstrlenA(String1) + 255] = 0;
+  lstrcatA(String1, aHbl);
+  memset(&FindFileData, 0, sizeof(FindFileData));
+  hFindFile = FindFirstFileA(String1, &FindFileData);
+  if ( GetLastError() != 18 )
+  {
+    while ( 1 )
+    {
+      lstrcpyA(LibFileName, lpString);
+      lstrcatA(LibFileName, FindFileData.cFileName);
+      hLibModulea = (HMODULE)sub_403742(LibFileName);
+      LoadStringA(hLibModulea, 0x45Bu, Str, 512);
+      if ( strstr(Str, &Buffer) )
+        break;
+      FreeLibrary(hLibModulea);
+      FindNextFileA(hFindFile, &FindFileData);
+      if ( GetLastError() == 18 )
+        goto LABEL_9;
+    }
+    LoadStringA(hLibModulea, 0x449u, Str, 512);
+    v18 = (HMODULE)strtoul(Str, 0, 16);
+    FreeLibrary(hLibModulea);
+  }
+LABEL_9:
+  FindClose(hFindFile);
+  return v18;
+}
+
+
+==========================================================================
+### 00406541 MenuHandler  func=00406541-0040690D
+==========================================================================
+int __cdecl sub_406541(HWND hWnd)
+{
+  HWND DlgItem; // ebp
+  LPARAM v2; // eax
+  int result; // eax
+  HWND v4; // eax
+  BOOL v5; // [esp-4h] [ebp-11Ch]
+  LPARAM v6; // [esp-4h] [ebp-11Ch]
+  BYTE *lParam; // [esp+10h] [ebp-108h]
+  CHAR Buffer[260]; // [esp+14h] [ebp-104h] BYREF
+
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x462u, Buffer, 260);
+  SetWindowTextA(hWnd, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x46Fu, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1057, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x470u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1030, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x471u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1039, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x472u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1034, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x473u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1035, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x474u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1036, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x475u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1037, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x476u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1038, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x477u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1040, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x478u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1017, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x479u, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1048, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x47Au, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1041, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x47Bu, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1042, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x47Cu, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1020, Buffer);
+  memset(Buffer, 0, sizeof(Buffer));
+  LoadStringA(hInstance, 0x47Du, Buffer, 260);
+  SetDlgItemTextA(hWnd, 1026, Buffer);
+  sub_40690D(hWnd, dword_54E034);
+  DlgItem = GetDlgItem(hWnd, 1015);
+  lParam = (BYTE *)SendMessageA(DlgItem, 0x110Au, 9u, 0);
+  if ( SendMessageA(DlgItem, 0x110Au, 3u, (LPARAM)lParam) )
+  {
+    if ( dword_54E038 == 1 )
+    {
+      v2 = SendMessageA(DlgItem, 0x110Au, 3u, (LPARAM)lParam);
+      if ( !SendMessageA(DlgItem, 0x110Au, 3u, v2) )
+        return SendMessageA(DlgItem, 0x110Au, 3u, (LPARAM)lParam);
+      v6 = SendMessageA(DlgItem, 0x110Au, 3u, (LPARAM)lParam);
+      SendMessageA(DlgItem, 0x110Au, 3u, v6);
+    }
+    else
+    {
+      result = SendMessageA(DlgItem, 0x110Au, 3u, (LPARAM)lParam);
+      if ( !result )
+        return result;
+      SendMessageA(DlgItem, 0x110Au, 3u, (LPARAM)lParam);
+    }
+    sub_4069AD(hWnd, lParam);
+    v5 = 1;
+  }
+  else
+  {
+    v5 = 0;
+  }
+  v4 = GetDlgItem(hWnd, 1040);
+  return EnableWindow(v4, v5);
+}
+
+
+==========================================================================
+### 00405FBF StartAddress_按键等待线程  func=00405FBF-004061AF
+==========================================================================
+DWORD __stdcall StartAddress(LPVOID lpThreadParameter)
+{
+  int nResult; // [esp+10h] [ebp-208h]
+  HANDLE hMutex; // [esp+14h] [ebp-204h]
+  HANDLE hMutexa; // [esp+14h] [ebp-204h]
+  CHAR Buffer[253]; // [esp+18h] [ebp-200h] BYREF
+  __int16 v6; // [esp+115h] [ebp-103h]
+  char v7; // [esp+117h] [ebp-101h]
+  CHAR Format[253]; // [esp+118h] [ebp-100h] BYREF
+  __int16 v9; // [esp+215h] [ebp-3h]
+  char v10; // [esp+217h] [ebp-1h]
+
+  memset(Buffer, 0, sizeof(Buffer));
+  memset(Format, 0, sizeof(Format));
+  v6 = 0;
+  v7 = 0;
+  nResult = 0;
+  v9 = 0;
+  v10 = 0;
+  if ( lpThreadParameter )
+  {
+    while ( 1 )
+    {
+      if ( !*((_BYTE *)lpThreadParameter + 8) )
+      {
+        LoadStringA(hInstance, 0x88u, Buffer, 256);
+        SetDlgItemTextA(*(HWND *)lpThreadParameter, 140, Buffer);
+        nResult = sub_402308(*((HANDLE *)lpThreadParameter + 1));
+        if ( nResult == 1 )
+          goto LABEL_11;
+      }
+      if ( *((_BYTE *)lpThreadParameter + 8) == 1 )
+      {
+        LoadStringA(hInstance, 0x87u, Buffer, 256);
+        SetDlgItemTextA(*(HWND *)lpThreadParameter, 140, Buffer);
+        hMutex = (HANDLE)sub_409CA0(*((_DWORD *)lpThreadParameter + 1), 0x493E0u);
+        nResult = sub_40B70E(*((_DWORD *)lpThreadParameter + 1), 1, 0);
+        sub_409D54(hMutex);
+        if ( !nResult )
+          goto LABEL_10;
+      }
+      if ( *((_BYTE *)lpThreadParameter + 8) == 2 )
+      {
+        LoadStringA(hInstance, 0x86u, Buffer, 256);
+        SetDlgItemTextA(*(HWND *)lpThreadParameter, 140, Buffer);
+        hMutexa = (HANDLE)sub_409CA0(*((_DWORD *)lpThreadParameter + 1), 0x493E0u);
+        nResult = sub_40B6DF(*((_DWORD *)lpThreadParameter + 1), 1, 0);
+        sub_409D54(hMutexa);
+        if ( !nResult )
+        {
+LABEL_10:
+          Sleep(0xBB8u);
+LABEL_11:
+          EndDialog(*(HWND *)lpThreadParameter, 0);
+          return 0;
+        }
+      }
+      if ( (nResult & 0xFF00) != 27648 )
+        break;
+      LoadStringA(hInstance, 0x8Bu, Format, 256);
+      sprintf(Buffer, Format, (unsigned __int8)nResult);
+      SetDlgItemTextA(*(HWND *)lpThreadParameter, 141, Buffer);
+      PostMessageA(*(HWND *)lpThreadParameter, 0x18u, 0, 0);
+      Sleep(0x3E8u);
+    }
+    Sleep(0xBB8u);
+    EndDialog(*(HWND *)lpThreadParameter, nResult);
+  }
+  return 0;
+}
+
+
+==========================================================================
+### 00405A5B   func=00405A5B-00405BFF
+==========================================================================
+int __stdcall sub_405A5B(HWND hDlg)
+{
+  HWND Parent; // eax
+  int v3; // [esp+0h] [ebp-158h] BYREF
+  CHAR Text[253]; // [esp+Ch] [ebp-14Ch] BYREF
+  __int16 v5; // [esp+109h] [ebp-4Fh]
+  char v6; // [esp+10Bh] [ebp-4Dh]
+  CHAR String[36]; // [esp+10Ch] [ebp-4Ch] BYREF
+  CHAR Buffer; // [esp+130h] [ebp-28h] BYREF
+  int v9; // [esp+131h] [ebp-27h]
+  int v10; // [esp+135h] [ebp-23h]
+  int v11; // [esp+139h] [ebp-1Fh]
+  int v12; // [esp+13Dh] [ebp-1Bh]
+  __int16 v13; // [esp+141h] [ebp-17h]
+  char v14; // [esp+143h] [ebp-15h]
+  HANDLE hMutex[5]; // [esp+144h] [ebp-14h] BYREF
+
+  Buffer = 0;
+  hMutex[1] = &v3;
+  v9 = 0;
+  v10 = 0;
+  v11 = 0;
+  v12 = 0;
+  v13 = 0;
+  v14 = 0;
+  memset(Text, 0, sizeof(Text));
+  v5 = 0;
+  v6 = 0;
+  memset(String, 0, 33);
+  hMutex[4] = 0;
+  LoadStringA(hInstance, 0x446u, &Buffer, 20);
+  GetDlgItemTextA(hDlg, 1052, String, 33);
+  if ( !lstrlenA(String) || !lstrcmpA(String, (LPCSTR)(*(_DWORD *)(dword_54B5A4 + 4) + 192)) )
+    return 1;
+  if ( !sub_4099C6(*(char **)dword_54B5A4, (char *)hMutex) && sub_401E70(hMutex[0], String, 0) == 1 )
+  {
+    LoadStringA(hInstance, 0x41Du, Text, 256);
+    sub_409BD3((void **)hMutex[0]);
+    lstrcpyA((LPSTR)(*(_DWORD *)(dword_54B5A4 + 4) + 192), String);
+    Parent = GetParent(hDlg);
+    SendMessageA(Parent, 0x403u, 0, (LPARAM)String);
+    sub_4015B0(hDlg, Text, &Buffer, 0x40u);
+    return 1;
+  }
+  LoadStringA(hInstance, 0x41Cu, Text, 256);
+  sub_409BD3((void **)hMutex[0]);
+  sub_4015B0(hDlg, Text, &Buffer, 0x30u);
+  SetDlgItemTextA(hDlg, 1052, Default);
+  return 0;
+}
+
+
+==========================================================================
+### 004051FF   func=004051FF-00405815
+==========================================================================
+int __stdcall sub_4051FF(HWND hDlg)
+{
+  int i; // eax
+  CHAR v2; // cl
+  int j; // eax
+  CHAR v4; // cl
+  int k; // eax
+  CHAR v6; // cl
+  HWND DlgItem; // eax
+  int v8; // eax
+  int v9; // eax
+  int v10; // eax
+  int v11; // eax
+  int v12; // eax
+  HANDLE *v13; // eax
+  int v14; // eax
+  void *v15; // ebx
+  HWND Parent; // eax
+  unsigned int v17; // eax
+  HWND v18; // eax
+  HWND v19; // eax
+  int v21; // [esp-4h] [ebp-278h]
+  int v22; // [esp+0h] [ebp-274h] BYREF
+  CHAR Format[256]; // [esp+Ch] [ebp-268h] BYREF
+  CHAR Text[253]; // [esp+10Ch] [ebp-168h] BYREF
+  __int16 v25; // [esp+209h] [ebp-6Bh]
+  char v26; // [esp+20Bh] [ebp-69h]
+  CHAR Buffer; // [esp+20Ch] [ebp-68h] BYREF
+  int v28; // [esp+20Dh] [ebp-67h]
+  int v29; // [esp+211h] [ebp-63h]
+  int v30; // [esp+215h] [ebp-5Fh]
+  int v31; // [esp+219h] [ebp-5Bh]
+  __int16 v32; // [esp+21Dh] [ebp-57h]
+  char v33; // [esp+21Fh] [ebp-55h]
+  CHAR v34[20]; // [esp+220h] [ebp-54h] BYREF
+  CHAR String[20]; // [esp+234h] [ebp-40h] BYREF
+  CHAR String2[20]; // [esp+248h] [ebp-2Ch] BYREF
+  unsigned int v37; // [esp+25Ch] [ebp-18h]
+  HANDLE hMutex[5]; // [esp+260h] [ebp-14h] BYREF
+
+  Buffer = 0;
+  v28 = 0;
+  v29 = 0;
+  v30 = 0;
+  v31 = 0;
+  memset(Format, 0, sizeof(Format));
+  hMutex[1] = &v22;
+  v32 = 0;
+  v33 = 0;
+  memset(Text, 0, sizeof(Text));
+  v25 = 0;
+  v26 = 0;
+  memset(String2, 0, 17);
+  memset(v34, 0, 17);
+  memset(String, 0, 0x11u);
+  if ( strlen(byte_54B43C) )
+    sub_4051A0(byte_54B43C, Format, 0);
+  for ( i = 0; i < 16; ++i )
+  {
+    v2 = Format[i];
+    if ( v2 == -1 )
+      break;
+    String[i] = v2;
+  }
+  memset(Format, 0, sizeof(Format));
+  memset(String2, 0, 0x11u);
+  if ( strlen(byte_54B408) )
+    sub_4051A0(byte_54B408, Format, 0);
+  for ( j = 0; j < 16; ++j )
+  {
+    v4 = Format[j];
+    if ( v4 == -1 )
+      break;
+    String2[j] = v4;
+  }
+  memset(Format, 0, sizeof(Format));
+  memset(v34, 0, 0x11u);
+  if ( strlen(byte_54B460) )
+    sub_4051A0(byte_54B460, Format, 0);
+  for ( k = 0; k < 16; ++k )
+  {
+    v6 = Format[k];
+    if ( v6 == -1 )
+      break;
+    v34[k] = v6;
+  }
+  memset(Format, 0, sizeof(Format));
+  hMutex[4] = 0;
+  LoadStringA(hInstance, 0x446u, &Buffer, 20);
+  if ( !lstrlenA(String) )
+  {
+    LoadStringA(hInstance, 0xA8u, Text, 256);
+LABEL_31:
+    sub_4015B0(hDlg, Text, &Buffer, 0x30u);
+    SetDlgItemTextA(hDlg, 153, Default);
+    SetDlgItemTextA(hDlg, 151, Default);
+    SetDlgItemTextA(hDlg, 152, Default);
+    DlgItem = GetDlgItem(hDlg, 153);
+    SetFocus(DlgItem);
+    return 0;
+  }
+  if ( lstrlenA(String) < (unsigned __int8)byte_54B591 )
+  {
+    LoadStringA(hInstance, 0xA7u, Format, 256);
+LABEL_30:
+    sprintf(Text, Format, (unsigned __int8)byte_54B591, (unsigned __int8)byte_54B590);
+    goto LABEL_31;
+  }
+  if ( !lstrlenA(String2) )
+  {
+    LoadStringA(hInstance, 0xA6u, Text, 256);
+    goto LABEL_31;
+  }
+  if ( lstrlenA(String2) < (unsigned __int8)byte_54B591 )
+  {
+    LoadStringA(hInstance, 0xA5u, Format, 256);
+    goto LABEL_30;
+  }
+  if ( !lstrcmpA(String, String2) )
+  {
+    LoadStringA(hInstance, 0xADu, Text, 256);
+    goto LABEL_31;
+  }
+  if ( !lstrlenA(v34) )
+  {
+    LoadStringA(hInstance, 0xA4u, Text, 256);
+    goto LABEL_31;
+  }
+  if ( lstrlenA(v34) < (unsigned __int8)byte_54B591 )
+  {
+    LoadStringA(hInstance, 0xA3u, Format, 256);
+    goto LABEL_30;
+  }
+  if ( lstrcmpA(String2, v34) )
+  {
+    LoadStringA(hInstance, 0xA2u, Text, 256);
+    goto LABEL_31;
+  }
+  v8 = sub_404CD8(String2);
+  if ( v8 == 1 )
+  {
+    LoadStringA(hInstance, 0xABu, Text, 256);
+    goto LABEL_31;
+  }
+  if ( v8 == 2 )
+  {
+    LoadStringA(hInstance, 0xAAu, Text, 256);
+    goto LABEL_31;
+  }
+  if ( v8 )
+    goto LABEL_31;
+  if ( sub_4099C6(byte_54B488, (char *)hMutex) )
+  {
+LABEL_40:
+    LoadStringA(hInstance, 0x9Eu, Text, 256);
+    goto LABEL_31;
+  }
+  v21 = lstrlenA(String2);
+  v9 = lstrlenA(String);
+  v37 = sub_40A4F6((int)hMutex[0], 1, 0, String, v9, String2, v21);
+  v10 = lstrlenA(String);
+  memset(String, 0, v10);
+  v11 = lstrlenA(String2);
+  memset(String2, 0, v11);
+  v12 = lstrlenA(v34);
+  memset(v34, 0, v12);
+  if ( (v37 & 0xFF00) == 27648 )
+  {
+    v13 = (HANDLE *)operator new(0xCu);
+    v13[1] = hMutex[0];
+    *((_BYTE *)v13 + 8) = 1;
+    v37 = sub_403266(hInstance, (LPCSTR)0x8F, hDlg, (DLGPROC)DialogFunc, (LPARAM)v13);
+  }
+  if ( !v37 )
+  {
+    if ( (unsigned int)dword_54B58C < 0x40 && !sub_40202D(hMutex[0]) )
+    {
+      v14 = lstrlenA(String2);
+      sub_40A337(hMutex[0], 1, 0, String2, v14);
+      sub_40202D(hMutex[0]);
+    }
+    v15 = (void *)sub_409CA0((int)hMutex[0], 0x493E0u);
+    sub_40B73D(hMutex[0], 1);
+    sub_409D54(v15);
+    sub_409BD3((void **)hMutex[0]);
+    LoadStringA(hInstance, 0x9Fu, Text, 256);
+    EndDialog(hDlg, 1);
+    sub_4015B0(hDlg, Text, &Buffer, 0x40u);
+    return 1;
+  }
+  sub_409BD3((void **)hMutex[0]);
+  if ( v37 == 27011 )
+  {
+    LoadStringA(hInstance, 0x447u, Text, 256);
+    Parent = GetParent(hDlg);
+    sub_4063B0(Parent, 1);
+    EndDialog(hDlg, 1);
+    sub_4015B0(hDlg, Text, &Buffer, 0x30u);
+    return 1;
+  }
+  if ( (v37 & 0xFF00) != 25344 )
+    goto LABEL_40;
+  v17 = v37 & 0xF;
+  v37 = v17;
+  if ( v17 > 1 )
+  {
+    LoadStringA(hInstance, 0xA1u, Format, 256);
+    sprintf(Text, Format, v37);
+LABEL_54:
+    v18 = GetParent(hDlg);
+    sub_406499((int)v18, Text, (int)aCmbc, 1, 0);
+    goto LABEL_31;
+  }
+  if ( v17 == 1 )
+  {
+    LoadStringA(hInstance, 0xA9u, Format, 256);
+    sprintf(Text, Format, 1);
+    goto LABEL_54;
+  }
+  LoadStringA(hInstance, 0x447u, Text, 256);
+  v19 = GetParent(hDlg);
+  sub_4063B0(v19, 1);
+  EndDialog(hDlg, 1);
+  sub_4015B0(hDlg, Text, &Buffer, 0x30u);
+  return 1;
+}
+

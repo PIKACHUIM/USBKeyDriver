@@ -1,0 +1,94 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x38520 len=0x100 file_off=0x37920
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10038520 <.text+0x37520>:
+10038520:	55                   	push   ebp
+10038521:	8b ec                	mov    ebp,esp
+10038523:	83 ec 28             	sub    esp,0x28
+10038526:	68 68 83 07 10       	push   0x10078368
+1003852b:	68 c0 d0 07 10       	push   0x1007d0c0
+10038530:	8d 4d dc             	lea    ecx,[ebp-0x24]
+10038533:	e8 68 a0 00 00       	call   0x100425a0
+10038538:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+1003853f:	8b 45 18             	mov    eax,DWORD PTR [ebp+0x18]
+10038542:	89 45 e8             	mov    DWORD PTR [ebp-0x18],eax
+10038545:	8b 4d 18             	mov    ecx,DWORD PTR [ebp+0x18]
+10038548:	89 4d f0             	mov    DWORD PTR [ebp-0x10],ecx
+1003854b:	8b 55 14             	mov    edx,DWORD PTR [ebp+0x14]
+1003854e:	89 55 f4             	mov    DWORD PTR [ebp-0xc],edx
+10038551:	e8 0a 4b 02 00       	call   0x1005d060
+10038556:	89 45 ec             	mov    DWORD PTR [ebp-0x14],eax
+10038559:	c7 45 f8 00 00 00 00 	mov    DWORD PTR [ebp-0x8],0x0
+10038560:	8d 45 f8             	lea    eax,[ebp-0x8]
+10038563:	50                   	push   eax
+10038564:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+10038567:	51                   	push   ecx
+10038568:	e8 93 7f 00 00       	call   0x10040500
+1003856d:	8b c8                	mov    ecx,eax
+1003856f:	e8 8c 76 00 00       	call   0x1003fc00
+10038574:	89 45 e4             	mov    DWORD PTR [ebp-0x1c],eax
+10038577:	83 7d e4 00          	cmp    DWORD PTR [ebp-0x1c],0x0
+1003857b:	75 12                	jne    0x1003858f
+1003857d:	c7 45 fc 05 00 00 0a 	mov    DWORD PTR [ebp-0x4],0xa000005
+10038584:	83 7d fc 00          	cmp    DWORD PTR [ebp-0x4],0x0
+10038588:	74 05                	je     0x1003858f
+1003858a:	e9 c3 00 00 00       	jmp    0x10038652
+1003858f:	8b 55 f0             	mov    edx,DWORD PTR [ebp-0x10]
+10038592:	3b 55 ec             	cmp    edx,DWORD PTR [ebp-0x14]
+10038595:	7c 60                	jl     0x100385f7
+10038597:	8b 45 ec             	mov    eax,DWORD PTR [ebp-0x14]
+1003859a:	89 45 e8             	mov    DWORD PTR [ebp-0x18],eax
+1003859d:	8b 4d e8             	mov    ecx,DWORD PTR [ebp-0x18]
+100385a0:	51                   	push   ecx
+100385a1:	8b 55 f4             	mov    edx,DWORD PTR [ebp-0xc]
+100385a4:	52                   	push   edx
+100385a5:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+100385a8:	50                   	push   eax
+100385a9:	8b 4d 0c             	mov    ecx,DWORD PTR [ebp+0xc]
+100385ac:	51                   	push   ecx
+100385ad:	8b 4d e4             	mov    ecx,DWORD PTR [ebp-0x1c]
+100385b0:	e8 6b d4 ff ff       	call   0x10035a20
+100385b5:	50                   	push   eax
+100385b6:	8b 4d f8             	mov    ecx,DWORD PTR [ebp-0x8]
+100385b9:	e8 62 b8 ff ff       	call   0x10033e20
+100385be:	50                   	push   eax
+100385bf:	e8 1c 64 02 00       	call   0x1005e9e0
+100385c4:	83 c4 18             	add    esp,0x18
+100385c7:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+100385ca:	83 7d fc 00          	cmp    DWORD PTR [ebp-0x4],0x0
+100385ce:	74 0a                	je     0x100385da
+100385d0:	e8 eb 5a 00 00       	call   0x1003e0c0
+100385d5:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+100385d8:	eb 78                	jmp    0x10038652
+100385da:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+100385dd:	03 55 e8             	add    edx,DWORD PTR [ebp-0x18]
+100385e0:	89 55 10             	mov    DWORD PTR [ebp+0x10],edx
+100385e3:	8b 45 f0             	mov    eax,DWORD PTR [ebp-0x10]
+100385e6:	2b 45 e8             	sub    eax,DWORD PTR [ebp-0x18]
+100385e9:	89 45 f0             	mov    DWORD PTR [ebp-0x10],eax
+100385ec:	8b 4d f4             	mov    ecx,DWORD PTR [ebp-0xc]
+100385ef:	03 4d e8             	add    ecx,DWORD PTR [ebp-0x18]
+100385f2:	89 4d f4             	mov    DWORD PTR [ebp-0xc],ecx
+100385f5:	eb 98                	jmp    0x1003858f
+100385f7:	83 7d f0 00          	cmp    DWORD PTR [ebp-0x10],0x0
+100385fb:	7e 55                	jle    0x10038652
+100385fd:	8b 55 f0             	mov    edx,DWORD PTR [ebp-0x10]
+10038600:	89 55 e8             	mov    DWORD PTR [ebp-0x18],edx
+10038603:	8b 45 e8             	mov    eax,DWORD PTR [ebp-0x18]
+10038606:	50                   	push   eax
+10038607:	8b 4d f4             	mov    ecx,DWORD PTR [ebp-0xc]
+1003860a:	51                   	push   ecx
+1003860b:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+1003860e:	52                   	push   edx
+1003860f:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+10038612:	50                   	push   eax
+10038613:	8b 4d e4             	mov    ecx,DWORD PTR [ebp-0x1c]
+10038616:	e8 05 d4 ff ff       	call   0x10035a20
+1003861b:	50                   	push   eax
+1003861c:	8b 4d f8             	mov    ecx,DWORD PTR [ebp-0x8]
+1003861f:	e8                   	.byte 0xe8

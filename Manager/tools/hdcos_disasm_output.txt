@@ -1,0 +1,441 @@
+==============================================================================
+HD_Open (RVA 0x1120)
+==============================================================================
+  0x00001120  push    ecx
+  0x00001121  mov     eax, dword ptr [0x1001c440]
+  0x00001126  push    esi
+  0x00001127  mov     esi, dword ptr [0x10017094]
+  0x0000112D  push    edi
+  0x0000112E  mov     edi, dword ptr [0x10017090]
+  0x00001134  test    eax, eax
+  0x00001136  jne     0x128a
+  0x0000113C  push    0x1001926c  ; "GP_IFD_LNCA.dll"
+  0x00001141  call    edi
+  0x00001143  test    eax, eax
+  0x00001145  mov     dword ptr [0x1001c440], eax
+  0x0000114A  je      0x132d
+  0x00001150  push    0x1001925c  ; "HD_ResetCard"
+  0x00001155  push    eax
+  0x00001156  call    esi
+  0x00001158  test    eax, eax
+  0x0000115A  mov     dword ptr [0x1001c20c], eax
+  0x0000115F  je      0x1313
+  0x00001165  mov     eax, dword ptr [0x1001c440]
+  0x0000116A  push    0x10019248  ; "HD_GetDescriptor"
+  0x0000116F  push    eax
+  0x00001170  call    esi
+  0x00001172  test    eax, eax
+  0x00001174  mov     dword ptr [0x1001c250], eax
+  0x00001179  je      0x1313
+  0x0000117F  mov     ecx, dword ptr [0x1001c440]
+  0x00001185  push    0x1001923c  ; "HD_OpenPort"
+  0x0000118A  push    ecx
+  0x0000118B  call    esi
+  0x0000118D  test    eax, eax
+  0x0000118F  mov     dword ptr [0x1001c230], eax
+  0x00001194  je      0x1313
+  0x0000119A  mov     edx, dword ptr [0x1001c440]
+  0x000011A0  push    0x1001922c  ; "HD_ClosePort"
+  0x000011A5  push    edx
+  0x000011A6  call    esi
+  0x000011A8  test    eax, eax
+  0x000011AA  mov     dword ptr [0x1001c21c], eax
+  0x000011AF  je      0x1313
+  0x000011B5  mov     eax, dword ptr [0x1001c440]
+  0x000011BA  push    0x10019220  ; "HD_ApduT0"
+  0x000011BF  push    eax
+  0x000011C0  call    esi
+  0x000011C2  test    eax, eax
+
+==============================================================================
+HD_Close (RVA 0x15B0)
+==============================================================================
+  0x000015B0  mov     eax, dword ptr [0x1001c440]
+  0x000015B5  test    eax, eax
+  0x000015B7  je      0x15db
+  0x000015B9  mov     eax, dword ptr [esp + 4]
+  0x000015BD  push    eax
+  0x000015BE  call    dword ptr [0x1001c21c]
+  0x000015C4  mov     ecx, dword ptr [0x1001c440]
+  0x000015CA  push    ecx
+  0x000015CB  call    dword ptr [0x1001708c]
+  0x000015D1  mov     dword ptr [0x1001c440], 0
+  0x000015DB  xor     eax, eax
+  0x000015DD  ret     4
+  0x000015E0  sub     esp, 0x64
+  0x000015E3  push    ebx
+  0x000015E4  mov     ebx, dword ptr [esp + 0x70]
+  0x000015E8  push    esi
+  0x000015E9  push    edi
+  0x000015EA  test    ebx, ebx
+  0x000015EC  je      0x16a2
+  0x000015F2  mov     ecx, 0x10
+  0x000015F7  xor     eax, eax
+  0x000015F9  lea     edi, [esp + 0x2c]
+  0x000015FD  rep stosd dword ptr es:[edi], eax
+  0x000015FF  mov     ecx, dword ptr [esp + 0x74]
+  0x00001603  stosb   byte ptr es:[edi], al
+  0x00001604  lea     eax, [esp + 0x2c]
+  0x00001608  push    eax
+  0x00001609  push    ecx
+  0x0000160A  call    dword ptr [0x1001c250]
+  0x00001610  cmp     ax, 0x9000
+  0x00001614  jne     0x16a2
+  0x0000161A  lea     edi, [esp + 0x2c]
+  0x0000161E  or      ecx, 0xffffffff
+  0x00001621  xor     eax, eax
+  0x00001623  xor     edx, edx
+  0x00001625  repne scasb al, byte ptr es:[edi]
+  0x00001627  not     ecx
+  0x00001629  dec     ecx
+  0x0000162A  shr     ecx, 1
+  0x0000162C  test    ecx, ecx
+  0x0000162E  jle     0x1679
+  0x00001630  lea     esi, [esp + 0x2d]
+  0x00001634  mov     al, byte ptr [esi - 1]
+  0x00001637  cmp     al, 0x41
+  0x00001639  jl      0x1646
+
+==============================================================================
+HD_IC_RESET (RVA 0x10C0)
+==============================================================================
+  0x000010C0  sub     esp, 0x20
+  0x000010C3  push    edi
+  0x000010C4  mov     edi, dword ptr [esp + 0x2c]
+  0x000010C8  test    edi, edi
+  0x000010CA  je      0x110b
+  0x000010CC  mov     edx, dword ptr [esp + 0x28]
+  0x000010D0  lea     eax, [esp + 0x2c]
+  0x000010D4  push    0
+  0x000010D6  lea     ecx, [esp + 8]
+  0x000010DA  push    eax
+  0x000010DB  push    ecx
+  0x000010DC  push    edx
+  0x000010DD  call    dword ptr [0x1001c20c]
+  0x000010E3  cmp     ax, 0x9000
+  0x000010E7  jne     0x110b
+  0x000010E9  movsx   ecx, word ptr [esp + 0x2c]
+  0x000010EE  mov     eax, ecx
+  0x000010F0  push    esi
+  0x000010F1  lea     esi, [esp + 8]
+  0x000010F5  shr     ecx, 2
+  0x000010F8  rep movsd dword ptr es:[edi], dword ptr [esi]
+  0x000010FA  mov     ecx, eax
+  0x000010FC  and     ecx, 3
+  0x000010FF  xor     eax, eax
+  0x00001101  rep movsb byte ptr es:[edi], byte ptr [esi]
+  0x00001103  pop     esi
+  0x00001104  pop     edi
+  0x00001105  add     esp, 0x20
+  0x00001108  ret     8
+  0x0000110B  mov     eax, 0xfffffed4
+  0x00001110  pop     edi
+  0x00001111  add     esp, 0x20
+  0x00001114  ret     8
+  0x00001117  nop     
+  0x00001118  nop     
+  0x00001119  nop     
+  0x0000111A  nop     
+  0x0000111B  nop     
+  0x0000111C  nop     
+  0x0000111D  nop     
+  0x0000111E  nop     
+  0x0000111F  nop     
+  0x00001120  push    ecx
+  0x00001121  mov     eax, dword ptr [0x1001c440]
+  0x00001126  push    esi
+
+==============================================================================
+HD_VerifyPin (RVA 0x2840)
+==============================================================================
+  0x00002840  sub     esp, 0x38
+  0x00002843  mov     al, byte ptr [0x1001c460]
+  0x00002848  push    esi
+  0x00002849  push    edi
+  0x0000284A  mov     byte ptr [esp + 0x20], al
+  0x0000284E  mov     ecx, 7
+  0x00002853  xor     eax, eax
+  0x00002855  lea     edi, [esp + 0x21]
+  0x00002859  mov     esi, dword ptr [esp + 0x48]
+  0x0000285D  rep stosd dword ptr es:[edi], eax
+  0x0000285F  stosw   word ptr es:[edi], ax
+  0x00002861  or      ecx, 0xffffffff
+  0x00002864  stosb   byte ptr es:[edi], al
+  0x00002865  mov     dword ptr [esp + 0x20], ecx
+  0x00002869  mov     al, 0x11
+  0x0000286B  mov     dword ptr [esp + 0x24], ecx
+  0x0000286F  mov     byte ptr [esp + 8], al
+  0x00002873  mov     byte ptr [esp + 9], al
+  0x00002877  mov     byte ptr [esp + 0xa], al
+  0x0000287B  mov     byte ptr [esp + 0xb], al
+  0x0000287F  mov     byte ptr [esp + 0xc], al
+  0x00002883  mov     byte ptr [esp + 0xd], al
+  0x00002887  mov     eax, dword ptr [esp + 0x4c]
+  0x0000288B  mov     dword ptr [esp + 0x28], ecx
+  0x0000288F  lea     edi, [esp + 0x20]
+  0x00002893  mov     dword ptr [esp + 0x2c], ecx
+  0x00002897  mov     ecx, eax
+  0x00002899  mov     edx, ecx
+  0x0000289B  push    eax
+  0x0000289C  shr     ecx, 2
+  0x0000289F  rep movsd dword ptr es:[edi], dword ptr [esi]
+  0x000028A1  mov     ecx, edx
+  0x000028A3  lea     eax, [esp + 0x24]
+  0x000028A7  and     ecx, 3
+  0x000028AA  push    eax
+  0x000028AB  rep movsb byte ptr es:[edi], byte ptr [esi]
+  0x000028AD  call    0x8d10
+  0x000028B2  mov     esi, dword ptr [esp + 0x4c]
+  0x000028B6  add     esp, 8
+  0x000028B9  lea     ecx, [esp + 0x4c]
+  0x000028BD  lea     edx, [esp + 0x10]
+  0x000028C1  push    ecx
+  0x000028C2  push    edx
+  0x000028C3  push    8
+  0x000028C5  push    esi
+
+==============================================================================
+HD_ChangePin (RVA 0x2490)
+==============================================================================
+  0x00002490  sub     esp, 0x13c
+  0x00002496  mov     dl, byte ptr [0x1001c460]
+  0x0000249C  push    ebx
+  0x0000249D  push    ebp
+  0x0000249E  push    esi
+  0x0000249F  push    edi
+  0x000024A0  mov     ecx, 7
+  0x000024A5  xor     eax, eax
+  0x000024A7  lea     edi, [esp + 0x45]
+  0x000024AB  mov     byte ptr [esp + 0x44], dl
+  0x000024AF  mov     byte ptr [esp + 0xac], dl
+  0x000024B6  rep stosd dword ptr es:[edi], eax
+  0x000024B8  stosw   word ptr es:[edi], ax
+  0x000024BA  stosb   byte ptr es:[edi], al
+  0x000024BB  mov     ecx, 7
+  0x000024C0  xor     eax, eax
+  0x000024C2  lea     edi, [esp + 0xad]
+  0x000024C9  mov     byte ptr [esp + 0x84], dl
+  0x000024D0  rep stosd dword ptr es:[edi], eax
+  0x000024D2  stosw   word ptr es:[edi], ax
+  0x000024D4  stosb   byte ptr es:[edi], al
+  0x000024D5  mov     ecx, 7
+  0x000024DA  xor     eax, eax
+  0x000024DC  lea     edi, [esp + 0x85]
+  0x000024E3  mov     byte ptr [esp + 0x24], dl
+  0x000024E7  rep stosd dword ptr es:[edi], eax
+  0x000024E9  stosw   word ptr es:[edi], ax
+  0x000024EB  stosb   byte ptr es:[edi], al
+  0x000024EC  mov     ecx, 7
+  0x000024F1  xor     eax, eax
+  0x000024F3  lea     edi, [esp + 0x25]
+  0x000024F7  mov     edx, dword ptr [esp + 0x158]
+  0x000024FE  rep stosd dword ptr es:[edi], eax
+  0x00002500  stosw   word ptr es:[edi], ax
+  0x00002502  mov     ebp, dword ptr [esp + 0x154]
+  0x00002509  stosb   byte ptr es:[edi], al
+  0x0000250A  mov     al, 0x11
+  0x0000250C  mov     byte ptr [esp + 0x14], al
+  0x00002510  mov     byte ptr [esp + 0x15], al
+  0x00002514  mov     byte ptr [esp + 0x16], al
+  0x00002518  mov     byte ptr [esp + 0x17], al
+  0x0000251C  mov     byte ptr [esp + 0x18], al
+  0x00002520  mov     byte ptr [esp + 0x19], al
+  0x00002524  xor     eax, eax
+  0x00002526  test    edx, edx
+
+==============================================================================
+HD_SPWD (RVA 0x2B00)
+==============================================================================
+  0x00002B00  mov     eax, dword ptr [esp + 4]
+  0x00002B04  sub     esp, 0x40
+  0x00002B07  mov     cl, byte ptr [eax]
+  0x00002B09  push    esi
+  0x00002B0A  test    cl, cl
+  0x00002B0C  jne     0x2b3a
+  0x00002B0E  push    0
+  0x00002B10  push    eax
+  0x00002B11  call    0x7d40
+  0x00002B16  mov     esi, eax
+  0x00002B18  add     esp, 8
+  0x00002B1B  test    esi, esi
+  0x00002B1D  jne     0x2b29
+  0x00002B1F  or      eax, 0xffffffff
+  0x00002B22  pop     esi
+  0x00002B23  add     esp, 0x40
+  0x00002B26  ret     8
+  0x00002B29  lea     eax, [esp + 4]
+  0x00002B2D  push    eax
+  0x00002B2E  push    esi
+  0x00002B2F  call    0x10c0
+  0x00002B34  push    esi
+  0x00002B35  call    0x15b0
+  0x00002B3A  push    ebx
+  0x00002B3B  push    ebp
+  0x00002B3C  push    edi
+  0x00002B3D  xor     ebx, ebx
+  0x00002B3F  mov     ebp, 0x1001c2e4
+  0x00002B44  mov     edi, ebp
+  0x00002B46  or      ecx, 0xffffffff
+  0x00002B49  xor     eax, eax
+  0x00002B4B  repne scasb al, byte ptr es:[edi]
+  0x00002B4D  not     ecx
+  0x00002B4F  dec     ecx
+  0x00002B50  je      0x2b93
+  0x00002B52  mov     esi, dword ptr [esp + 0x54]
+  0x00002B56  mov     eax, ebp
+  0x00002B58  mov     dl, byte ptr [eax]
+  0x00002B5A  mov     cl, dl
+  0x00002B5C  cmp     dl, byte ptr [esi]
+  0x00002B5E  jne     0x2b7c
+  0x00002B60  test    cl, cl
+  0x00002B62  je      0x2b78
+  0x00002B64  mov     dl, byte ptr [eax + 1]
+  0x00002B67  mov     cl, dl
+
+==============================================================================
+Clear_DF (RVA 0x19C0)
+==============================================================================
+  0x000019C0  sub     esp, 0x21c
+  0x000019C6  xor     al, al
+  0x000019C8  lea     ecx, [esp + 0x118]
+  0x000019CF  mov     byte ptr [esp + 2], al
+  0x000019D3  mov     byte ptr [esp + 3], al
+  0x000019D7  mov     byte ptr [esp + 4], al
+  0x000019DB  mov     eax, dword ptr [esp + 0x224]
+  0x000019E2  push    eax
+  0x000019E3  mov     eax, dword ptr [esp + 0x224]
+  0x000019EA  lea     edx, [esp + 4]
+  0x000019EE  push    ecx
+  0x000019EF  push    edx
+  0x000019F0  push    5
+  0x000019F2  push    eax
+  0x000019F3  mov     byte ptr [esp + 0x14], 0xbf
+  0x000019F8  mov     byte ptr [esp + 0x15], 0xce
+  0x000019FD  call    0x17c0
+  0x00001A02  add     esp, 0x21c
+  0x00001A08  ret     8
+  0x00001A0B  nop     
+  0x00001A0C  nop     
+  0x00001A0D  nop     
+  0x00001A0E  nop     
+  0x00001A0F  nop     
+  0x00001A10  sub     esp, 0x21c
+  0x00001A16  mov     al, byte ptr [esp + 0x224]
+  0x00001A1D  mov     byte ptr [esp], 0x80
+  0x00001A22  mov     byte ptr [esp + 3], al
+  0x00001A26  mov     eax, dword ptr [esp + 0x228]
+  0x00001A2D  mov     ecx, eax
+  0x00001A2F  mov     byte ptr [esp + 1], 0xe0
+  0x00001A34  and     ecx, 0xff
+  0x00001A3A  mov     byte ptr [esp + 2], 0
+  0x00001A3F  mov     byte ptr [esp + 4], al
+  0x00001A43  jle     0x1a62
+  0x00001A45  push    esi
+  0x00001A46  mov     esi, dword ptr [esp + 0x230]
+  0x00001A4D  mov     edx, ecx
+  0x00001A4F  push    edi
+  0x00001A50  lea     edi, [esp + 0xd]
+  0x00001A54  shr     ecx, 2
+  0x00001A57  rep movsd dword ptr es:[edi], dword ptr [esi]
+  0x00001A59  mov     ecx, edx
+  0x00001A5B  and     ecx, 3
+  0x00001A5E  rep movsb byte ptr es:[edi], byte ptr [esi]
+
+==============================================================================
+HD_ClearDir (RVA 0x67D0)
+==============================================================================
+  0x000067D0  sub     esp, 0xc4
+  0x000067D6  mov     dl, byte ptr [0x1001c460]
+  0x000067DC  push    esi
+  0x000067DD  push    edi
+  0x000067DE  mov     ecx, 0xf
+  0x000067E3  xor     eax, eax
+  0x000067E5  lea     edi, [esp + 0x8d]
+  0x000067EC  mov     byte ptr [esp + 0x8c], dl
+  0x000067F3  mov     byte ptr [esp + 0x4c], dl
+  0x000067F7  rep stosd dword ptr es:[edi], eax
+  0x000067F9  stosw   word ptr es:[edi], ax
+  0x000067FB  stosb   byte ptr es:[edi], al
+  0x000067FC  mov     ecx, 0xf
+  0x00006801  xor     eax, eax
+  0x00006803  lea     edi, [esp + 0x4d]
+  0x00006807  mov     byte ptr [esp + 0xc], dl
+  0x0000680B  rep stosd dword ptr es:[edi], eax
+  0x0000680D  stosw   word ptr es:[edi], ax
+  0x0000680F  stosb   byte ptr es:[edi], al
+  0x00006810  mov     ecx, 0xf
+  0x00006815  xor     eax, eax
+  0x00006817  lea     edi, [esp + 0xd]
+  0x0000681B  mov     esi, dword ptr [esp + 0xd0]
+  0x00006822  rep stosd dword ptr es:[edi], eax
+  0x00006824  stosw   word ptr es:[edi], ax
+  0x00006826  stosb   byte ptr es:[edi], al
+  0x00006827  lea     eax, [esp + 0xa]
+  0x0000682B  lea     ecx, [esp + 0x4c]
+  0x0000682F  push    eax
+  0x00006830  push    ecx
+  0x00006831  push    8
+  0x00006833  push    esi
+  0x00006834  call    0x1b40
+  0x00006839  test    eax, eax
+  0x0000683B  jl      0x68d9
+  0x00006841  mov     edi, 0x9000
+  0x00006846  cmp     word ptr [esp + 0xa], di
+  0x0000684B  jne     0x68d9
+  0x00006851  mov     edx, dword ptr [0x10019050]
+  0x00006857  mov     eax, dword ptr [0x10019054]
+  0x0000685C  mov     ecx, dword ptr [0x10019058]
+  0x00006862  mov     dword ptr [esp + 0xc], edx
+  0x00006866  mov     edx, dword ptr [0x1001905c]
+  0x0000686C  mov     dword ptr [esp + 0x10], eax
+  0x00006870  mov     dword ptr [esp + 0x14], ecx
+
+==============================================================================
+Reload_Pin (RVA 0x1D70)
+==============================================================================
+  0x00001D70  sub     esp, 0x21c
+  0x00001D76  xor     al, al
+  0x00001D78  mov     byte ptr [esp], 0x80
+  0x00001D7D  mov     byte ptr [esp + 2], al
+  0x00001D81  mov     byte ptr [esp + 3], al
+  0x00001D85  mov     eax, dword ptr [esp + 0x224]
+  0x00001D8C  mov     byte ptr [esp + 1], 0x5e
+  0x00001D91  mov     ecx, eax
+  0x00001D93  mov     byte ptr [esp + 4], al
+  0x00001D97  and     ecx, 0xff
+  0x00001D9D  jle     0x1dbc
+  0x00001D9F  push    esi
+  0x00001DA0  mov     esi, dword ptr [esp + 0x22c]
+  0x00001DA7  mov     edx, ecx
+  0x00001DA9  push    edi
+  0x00001DAA  lea     edi, [esp + 0xd]
+  0x00001DAE  shr     ecx, 2
+  0x00001DB1  rep movsd dword ptr es:[edi], dword ptr [esi]
+  0x00001DB3  mov     ecx, edx
+  0x00001DB5  and     ecx, 3
+  0x00001DB8  rep movsb byte ptr es:[edi], byte ptr [esi]
+  0x00001DBA  pop     edi
+  0x00001DBB  pop     esi
+  0x00001DBC  mov     ecx, dword ptr [esp + 0x22c]
+  0x00001DC3  lea     edx, [esp + 0x118]
+  0x00001DCA  push    ecx
+  0x00001DCB  push    edx
+  0x00001DCC  xor     dx, dx
+  0x00001DCF  lea     ecx, [esp + 8]
+  0x00001DD3  mov     dl, al
+  0x00001DD5  mov     eax, dword ptr [esp + 0x228]
+  0x00001DDC  add     edx, 5
+  0x00001DDF  push    ecx
+  0x00001DE0  push    edx
+  0x00001DE1  push    eax
+  0x00001DE2  call    0x17c0
+  0x00001DE7  add     esp, 0x21c
+  0x00001DED  ret     0x10
+  0x00001DF0  sub     esp, 0x21c
+  0x00001DF6  mov     dl, byte ptr [esp + 0x22c]
+  0x00001DFD  mov     al, byte ptr [esp + 0x224]
+  0x00001E04  mov     cl, byte ptr [esp + 0x228]
+  0x00001E0B  mov     byte ptr [esp + 3], dl
+  0x00001E0F  mov     edx, dword ptr [esp + 0x230]
+  0x00001E16  push    esi
+

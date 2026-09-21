@@ -1,0 +1,58 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll
+;; M_GetExtFunctionList rva=0x2960 va=0x10002960 stop=0x100029C0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.1.1.0\gm3000_pkcs11.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10002960 <.text+0x1960>:
+10002960:	55                   	push   ebp
+10002961:	8b ec                	mov    ebp,esp
+10002963:	83 e4 f8             	and    esp,0xfffffff8
+10002966:	56                   	push   esi
+10002967:	8b 35 e0 4f 06 10    	mov    esi,DWORD PTR ds:0x10064fe0
+1000296d:	57                   	push   edi
+1000296e:	85 f6                	test   esi,esi
+10002970:	74 0a                	je     0x1000297c
+10002972:	56                   	push   esi
+10002973:	ff 15 0c 4e 06 10    	call   DWORD PTR ds:0x10064e0c
+10002979:	83 c4 04             	add    esp,0x4
+1000297c:	8b 45 20             	mov    eax,DWORD PTR [ebp+0x20]
+1000297f:	8b 4d 1c             	mov    ecx,DWORD PTR [ebp+0x1c]
+10002982:	8b 55 18             	mov    edx,DWORD PTR [ebp+0x18]
+10002985:	50                   	push   eax
+10002986:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+10002989:	51                   	push   ecx
+1000298a:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+1000298d:	52                   	push   edx
+1000298e:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+10002991:	50                   	push   eax
+10002992:	51                   	push   ecx
+10002993:	52                   	push   edx
+10002994:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+10002997:	e8 34 2b 00 00       	call   0x100054d0
+1000299c:	8b f8                	mov    edi,eax
+1000299e:	85 f6                	test   esi,esi
+100029a0:	74 0a                	je     0x100029ac
+100029a2:	56                   	push   esi
+100029a3:	ff 15 10 4e 06 10    	call   DWORD PTR ds:0x10064e10
+100029a9:	83 c4 04             	add    esp,0x4
+100029ac:	8b c7                	mov    eax,edi
+100029ae:	5f                   	pop    edi
+100029af:	5e                   	pop    esi
+100029b0:	8b e5                	mov    esp,ebp
+100029b2:	5d                   	pop    ebp
+100029b3:	c3                   	ret
+100029b4:	cc                   	int3
+100029b5:	cc                   	int3
+100029b6:	cc                   	int3
+100029b7:	cc                   	int3
+100029b8:	cc                   	int3
+100029b9:	cc                   	int3
+100029ba:	cc                   	int3
+100029bb:	cc                   	int3
+100029bc:	cc                   	int3
+100029bd:	cc                   	int3
+100029be:	cc                   	int3
+100029bf:	cc                   	int3
