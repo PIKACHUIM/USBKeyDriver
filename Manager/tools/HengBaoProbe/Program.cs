@@ -1040,9 +1040,9 @@ internal static class Program
     }
 
     /// <summary>用已建立的 MSP 会话加密发送一条 APDU，并解密响应。</summary>
-    private static bool MspSend(IntPtr h, byte[] key, byte[] apdu, out uint sw, out byte[] data, out string diag)
+    private static bool MspSend(IntPtr h, byte[] key, byte[] apdu, out uint sw, out byte[] data, out byte[] raw, out string diag)
     {
-        sw = 0xFFFF; data = null; diag = "";
+        sw = 0xFFFF; data = null; raw = null; diag = "";
         // 明文 hex = 长度(4 hex) + APDU hex
         var lenHex = (apdu.Length).ToString("X4");
         var plainHex = lenHex + Convert.ToHexString(apdu);
@@ -1061,60 +1061,34 @@ internal static class Program
         { diag = "读失败 err=" + err; return false; }
 
         var payload = PayloadOf(resp, got);
-        Console.WriteLine("      原始响应帧 {0} 字节: {1}", got, Hex(resp, got));
+        raw = payload;
         Console.WriteLine("      载荷 {0} 字节: {1}", payload.Length, Hex(payload));
 
-        // 卡片确实在用它收到的会话密钥加密（两次运行密文不同），
-        // 所以按「密钥表示形式 × 块字节序 × 加解密方向 × 起始偏移」全搜一遍。
-        var keyHexAscii = Encoding.ASCII.GetBytes(Convert.ToHexString(key));
-        var keyCands = new List<Tuple<string, byte[]>>
-        {
-            Tuple.Create("raw16", key),
-            Tuple.Create("hexAscii[:16]", keyHexAscii.Take(16).ToArray()),
-            Tuple.Create("hexAscii[16:]", keyHexAscii.Skip(16).ToArray()),
-            Tuple.Create("raw16反转", key.Reverse().ToArray()),
-            Tuple.Create("raw16半交换", key.Skip(8).Concat(key.Take(8)).ToArray()),
-            Tuple.Create("raw16半内反转", key.Take(8).Reverse().Concat(key.Skip(8).Reverse()).ToArray()),
-            Tuple.Create("单DES(K1)", key.Take(8).Concat(key.Take(8)).ToArray()),
-        };
-
+        // 按 DLL 的分帧：载荷 = [1 字节前缀][8 字节密文]，用标准 3DES 解密
         byte[] dec = null;
-        string hint = "";
-        foreach (var k in keyCands)
+        for (int off = 0; off <= 1 && dec == null; off++)
         {
-            if (k.Item2.Length != 16 && k.Item2.Length != 24) continue;
-            foreach (var bswap in new[] { false, true })
+            var n = payload.Length - off;
+            if (n <= 0 || n % 8 != 0) continue;
+            var slice = new byte[n];
+            Buffer.BlockCopy(payload, off, slice, 0, n);
+            try
             {
-                foreach (var encDir in new[] { false, true })
-                {
-                    for (int off = 0; off <= 1 && dec == null; off++)
-                    {
-                        var n = payload.Length - off;
-                        if (n <= 0 || n % 8 != 0) continue;
-                        var slice = new byte[n];
-                        Buffer.BlockCopy(payload, off, slice, 0, n);
-                        if (bswap) Array.Reverse(slice);
-                        byte[] plain;
-                        try { plain = Des3Ecb(slice, k.Item2, encDir); }
-                        catch { continue; }
-                        if (bswap) Array.Reverse(plain);
-                        var s = Encoding.ASCII.GetString(plain);
-                        var hexLen = s.TakeWhile(ch => (ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f')).Count();
-                        if (hexLen >= 8)
-                        {
-                            var shown = new string(s.Select(ch => ch >= 0x20 && ch < 0x7F ? ch : '.').ToArray());
-                            Console.WriteLine("      [命中] key={0} 块反转={1} 方向={2} off={3} → {4}",
-                                k.Item1, bswap, encDir ? "加密" : "解密", off, shown);
-                            dec = plain;
-                            hint = string.Format("key={0} 块反转={1} 方向={2} off={3}", k.Item1, bswap, encDir ? "加密" : "解密", off);
-                            break;
-                        }
-                    }
-                }
+                var plain = Des3Ecb(slice, key, false);
+                var s = Encoding.ASCII.GetString(plain);
+                var hexLen = s.TakeWhile(ch => (ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f')).Count();
+                var shown = new string(s.Select(ch => ch >= 0x20 && ch < 0x7F ? ch : '.').ToArray());
+                Console.WriteLine("      [3DES解密 off={0}] {1}  (hex前缀 {2})", off, shown, hexLen);
+                if (hexLen >= 4) dec = plain;
             }
+            catch (Exception ex) { Console.WriteLine("      [3DES解密 off={0}] 异常 {1}", off, ex.Message); }
         }
-        if (dec == null) { diag = "全部变体都无法解出可读 hex（载荷 " + Hex(payload) + "）"; return false; }
-        Console.WriteLine("      [采用] " + hint);
+        if (dec == null)
+        {
+            MspKeySearch(key, payload);
+            diag = "标准 3DES 解不出可读内容（载荷 " + Hex(payload) + "）";
+            return false;
+        }
 
         var txt = Encoding.ASCII.GetString(dec).TrimEnd('\0');
         if (txt.Length < 8) { diag = "解密结果过短: " + txt; return false; }
@@ -1140,7 +1114,11 @@ internal static class Program
         var targets = paths.FindAll(p => p.IndexOf("HENGBAO", StringComparison.OrdinalIgnoreCase) >= 0);
         if (targets.Count == 0) { Console.WriteLine("[!] 未发现恒宝设备"); return 2; }
 
-        var apdu = ParseHex(apduHex);
+        var apdus = new List<byte[]>();
+        foreach (var p in (apduHex ?? "").Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries))
+            apdus.Add(ParseHex(p));
+        if (apdus.Count == 0) apdus.Add(ParseHex(null));
+
         foreach (var path in targets)
         {
             Console.WriteLine("---- " + path);
@@ -1161,23 +1139,90 @@ internal static class Program
                 }
                 Console.WriteLine("  [2] 握手成功，MSP 已启用。");
 
-                Console.WriteLine("  [3] 用 MSP 发 " + Hex(apdu));
-                uint sw; byte[] data;
-                if (!MspSend(h, key, apdu, out sw, out data, out diag))
+                Console.WriteLine("  [3] 同一会话内用 MSP 连发 {0} 条 APDU：", apdus.Count);
+                var raws = new List<string>();
+                foreach (var apdu in apdus)
                 {
-                    Console.WriteLine("  [x] 受保护 APDU 失败: " + diag);
-                    continue;
+                    uint sw; byte[] data, raw;
+                    Console.WriteLine("    -> 发送 " + Hex(apdu));
+                    if (!MspSend(h, key, apdu, out sw, out data, out raw, out diag))
+                    {
+                        Console.WriteLine("       [x] 失败: " + diag);
+                        continue;
+                    }
+                    raws.Add(raw == null ? "" : Hex(raw));
+                    Console.WriteLine("       => SW=0x{0:X4}  数据 {1} 字节  {2}", sw, data.Length, Hex(data));
                 }
-                Console.WriteLine("      → SW=0x{0:X4}  数据 {1} 字节  {2}", sw, data.Length, Hex(data));
-                if (sw == 0x9000 || sw == 0x6109)
-                    Console.WriteLine("      => 成功！卡片接受了 MSP 安全报文，PKCS#11 缺的正是这一层。");
-                else
-                    Console.WriteLine("      => 收到状态字但非预期，可据此微调填充/字节序。");
+
+                Console.WriteLine("  [4] 原始应答密文对比（ECB 下：明文相同 ⇒ 密文必相同）：");
+                for (int i = 0; i < raws.Count; i++)
+                {
+                    var cmp = i == 0 ? "" : (raws[i] == raws[0] ? "   ← 与 #0 完全相同" : "   ← 与 #0 不同");
+                    Console.WriteLine("      #{0} {1}{2}", i, raws[i], cmp);
+                }
             }
             finally { CloseHandle(h); }
             Console.WriteLine();
         }
         return 0;
+    }
+
+    /// <summary>
+    /// 密钥派生搜索：卡片对 SELECT ADF1 应回 SW=0x6109，因此应答明文 hex 必为
+    /// "0002"+"6109"（长度 2 = 数据 0 字节 + SW 2 字节），hex 解码后 = 00 02 61 09，
+    /// 4 字节按厂商规则补 0x80 到 8 字节 → 解密结果应为 00 02 61 09 80 00 00 00。
+    /// 用它当"已知明文"，逐一验证厂商 3DES 可能使用的密钥派生形式。
+    /// </summary>
+    private static void MspKeySearch(byte[] key, byte[] payload)
+    {
+        var target = HexToBytes("0002610980000000");
+        // 密文 = 载荷跳过 1 字节前缀后的 8 字节
+        if (payload.Length < 9) return;
+        var cipher = new byte[8];
+        Buffer.BlockCopy(payload, 1, cipher, 0, 8);
+
+        var hexUp = Convert.ToHexString(key);            // BinToHex 输出大写
+        var hexLo = hexUp.ToLowerInvariant();
+        var cands = new List<Tuple<string, byte[]>>();
+        void Add(string n, byte[] b) { if (b != null && (b.Length == 16 || b.Length == 24)) cands.Add(Tuple.Create(n, b)); }
+
+        Add("K", key);
+        Add("K反转", key.Reverse().ToArray());
+        Add("K半交换", key.Skip(8).Concat(key.Take(8)).ToArray());
+        Add("K半内反转", key.Take(8).Reverse().Concat(key.Skip(8).Reverse()).ToArray());
+        Add("hexUp[:16]", Encoding.ASCII.GetBytes(hexUp.Substring(0, 16)));
+        Add("hexUp[16:]", Encoding.ASCII.GetBytes(hexUp.Substring(16)));
+        Add("hexLo[:16]", Encoding.ASCII.GetBytes(hexLo.Substring(0, 16)));
+        Add("hexLo[16:]", Encoding.ASCII.GetBytes(hexLo.Substring(16)));
+        try { Add("MD5(K)", System.Security.Cryptography.MD5.HashData(key)); } catch { }
+        try { Add("MD5(hexUp)", System.Security.Cryptography.MD5.HashData(Encoding.ASCII.GetBytes(hexUp))); } catch { }
+        try { Add("MD5(hexLo)", System.Security.Cryptography.MD5.HashData(Encoding.ASCII.GetBytes(hexLo))); } catch { }
+        try { Add("SHA1(K)[:16]", System.Security.Cryptography.SHA1.HashData(key).Take(16).ToArray()); } catch { }
+        try { Add("SHA256(K)[:16]", System.Security.Cryptography.SHA256.HashData(key).Take(16).ToArray()); } catch { }
+        Add("K^FF", key.Select(b => (byte)(b ^ 0xFF)).ToArray());
+        Add("K位反转", key.Select(BitReverse).ToArray());
+
+        Console.WriteLine("      [密钥派生搜索] 目标明文 = 0002610980000000");
+        foreach (var c in cands)
+        {
+            foreach (var dir in new[] { true, false })
+            {
+                byte[] p;
+                try { p = Des3Ecb(cipher, c.Item2, dir); }
+                catch { continue; }
+                var tag = p.SequenceEqual(target) ? "  ★★★ 精确命中 ★★★" : "";
+                var s = new string(p.Select(ch => ch >= 0x20 && ch < 0x7F ? (char)ch : '.').ToArray());
+                if (tag.Length > 0)
+                    Console.WriteLine("        {0} {1} → {2}{3}", c.Item1, dir ? "加密" : "解密", Hex(p), tag);
+            }
+        }
+    }
+
+    private static byte BitReverse(byte b)
+    {
+        byte r = 0;
+        for (int i = 0; i < 8; i++) if ((b & (1 << i)) != 0) r |= (byte)(1 << (7 - i));
+        return r;
     }
 
     private static byte[] ParseHex(string hex)    {
