@@ -313,6 +313,55 @@ else v11 = v10;                                  // ← 这里得到 0x6E00
 > 所需的厂商参考材料：`CMBCu.exe`（可执行）、`CMBCC.dll`（x86 CSP，含设备层与 MSP），
 > 两者均已在 `Library/HengBao USB Manage/` 与 `Manager/tools/HengBaoIda/`（IDA 数据库）。
 
+### 2.2.5 ✅ 已攻克（2026-09-21）：MSP 协议完整复刻并实机验证
+
+`HengBaoProbe.exe --msp-open` 已能**不依赖任何厂商 DLL/工具**，用自研实现完成握手并用安全报文读卡：
+
+```
+00A4000002ADF1 → SW=0x6109
+00C0000009     → SW=0x9000  数据 9 字节  6F07840548424B4559              （FCI，DF 名 "HBKEY"）
+00A40000020001 → SW=0x9000
+00B000004C     → SW=0x9000  数据 76 字节 0000030009434D42435F534B4600…  （"CMBC_SKF"）
+00A40000020003 → SW=0x9000
+00B0000020     → SW=0x9000  数据 32 字节 434D42430000…31315F4F70656E544F4B45（"CMBC" / "11_OpenTOKE"）
+0020000000     → SW=0x6102  （VERIFY，等待口令）
+```
+
+与官方 `CMBCu.exe` 的设备层日志**逐字节一致**；且 `00A40000020001` 与 `00A40000020003`
+的应答密文完全相同（都回 `0002900080000000`），印证了 ECB 的确定性。
+
+**完整协议规格（均已实机验证）**
+
+| 层 | 内容 |
+|----|------|
+| 传输 | `IOCTL_SCSI_PASS_THROUGH_DIRECT(0x4D014)`，`TargetId=1`、`Lun=0`、`CDB=FA3A(写)/FA08(读)`、`SenseInfoOffset=48`、`TimeOut=60`（官方 300） |
+| 枚举 | `GUID_DEVINTERFACE_DISK` + `GUID_DEVINTERFACE_CDROM`，设备路径（大写）须含 `"HENGBAO"` |
+| 命令帧 | `43 <len_hi> <len_lo> <payload>`；响应帧 `52 <len_hi> <len_lo> <payload>` |
+| 明文 APDU | `payload` = 裸 APDU 字节（握手阶段） |
+| 握手 1 | `80F2030001` → 须 `SW=9000` 且应答首字节 `01` |
+| 握手 2 | `80F4020000` → 须 `SW=9000` |
+| 握手 3 | `80F4000087` → 135 字节；**字节 2..129 = 128 字节 RSA 模数**，指数固定 `65537` |
+| 会话密钥 | 16 字节随机 `K`；`EM = 00 02 \|\| 01×109 \|\| 00 \|\| K`（PKCS#1 v1.5 外形、填充串恒为 `0x01`） |
+| 握手 4 | `80F40100 80 <c = EM^65537 mod n 的 256 hex>` → 须 `SW=9000`；此后 MSP 生效 |
+| MSP 密码 | **3DES-ECB（两密钥，K3=K1，密钥 = K 的 16 字节原文）**；hex→bin → 追加 `0x80` 并补 `0x00` 到 8 字节倍数 → 逐块加/解密 → bin→hex。DES 表已与标准 IP/FP/PC1/PC2/S-box 逐字节比对一致 |
+| MSP 请求 | `payload` = `01` + 密文；密文 = `3DES_enc( bin( apduLen 的 4 位 hex + APDU 的 hex ) )` |
+| MSP 应答 | `payload` = `01` + 8 字节密文（无独立 SW）；`hex(3DES_dec(该 8 字节))` = `长度4hex + 数据hex + SW4hex`，其中 `长度 = 数据字节数 + 2` |
+
+> 代码位置：`Manager/tools/HengBaoProbe/Program.cs` 的 `MspHandshake` / `RsaEncryptSessionKey` /
+> `Des3Ecb` / `MspSend`（`--msp-open` 模式）。
+>
+> 踩坑记录（极易误判）：
+> 1. `MSP::XSendAPDU` 中传输层返回的是**二进制**（数据+2 字节 SW），DLL 内部才转 hex；
+>    而 `MspCipher(sub_1001F02A)` 的**输入是 hex 串、输出也是 hex 串**（结果再 hex 编码一次）。
+>    若把解密结果当 ASCII 直接读，会得到 `..a.?...` 这类"垃圾"——其实正是
+>    `00 02 61 09 80 00 00 00` 的 ASCII 呈现。
+> 2. 应答载荷里那 2 字节"SW"其实是**密文的后 2 字节**；DLL 会把它们与前面的 6 字节重新拼成
+>    完整 8 字节密文再解密（`MSP::XSendAPDU` 0x1001FC01/0x1001FC2D 处）。
+
+**下一步**：把 `MspHandshake`/`MspSend` 平移进 `HengBaoProvider`，在打开设备前先建立 MSP 会话；
+之后即可实现 `VERIFY(0020…)`、`READ BINARY(00B0…)`，并最终落地「初始化 U 宝 / 清空 / 改口令」。
+（注意：`VERIFY` 会消耗口令重试次数，联调时先用 `0020 0000` 查询剩余次数，不要盲目试错。）
+
 ---
 
 ## 3. 分析环境与脚本

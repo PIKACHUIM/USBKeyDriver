@@ -1064,9 +1064,11 @@ internal static class Program
         raw = payload;
         Console.WriteLine("      载荷 {0} 字节: {1}", payload.Length, Hex(payload));
 
-        // 按 DLL 的分帧：载荷 = [1 字节前缀][8 字节密文]，用标准 3DES 解密
-        byte[] dec = null;
-        for (int off = 0; off <= 1 && dec == null; off++)
+        // 按 DLL 的分帧：载荷 = [1 字节前缀][8 字节密文]。
+        // 注意 sub_1001F02A 的语义：输入是 hex 串（先 hex→bin 再解密），
+        // 输出是「解密结果的 hex 串」——所以这里必须 Convert.ToHexString，不能再当 ASCII 读。
+        string txt = null;
+        for (int off = 0; off <= 1 && txt == null; off++)
         {
             var n = payload.Length - off;
             if (n <= 0 || n % 8 != 0) continue;
@@ -1075,23 +1077,21 @@ internal static class Program
             try
             {
                 var plain = Des3Ecb(slice, key, false);
-                var s = Encoding.ASCII.GetString(plain);
-                var hexLen = s.TakeWhile(ch => (ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f')).Count();
-                var shown = new string(s.Select(ch => ch >= 0x20 && ch < 0x7F ? ch : '.').ToArray());
-                Console.WriteLine("      [3DES解密 off={0}] {1}  (hex前缀 {2})", off, shown, hexLen);
-                if (hexLen >= 4) dec = plain;
+                var hexStr = Convert.ToHexString(plain);
+                Console.WriteLine("      [3DES解密 off={0}] hex={1}", off, hexStr);
+                if (hexStr.Length < 8) continue;
+                var len0 = Convert.ToInt32(hexStr.Substring(0, 4), 16);
+                if (len0 >= 2 && 4 + (len0 - 2) * 2 + 4 <= hexStr.Length) txt = hexStr;
             }
             catch (Exception ex) { Console.WriteLine("      [3DES解密 off={0}] 异常 {1}", off, ex.Message); }
         }
-        if (dec == null)
+        if (txt == null)
         {
             MspKeySearch(key, payload);
             diag = "标准 3DES 解不出可读内容（载荷 " + Hex(payload) + "）";
             return false;
         }
 
-        var txt = Encoding.ASCII.GetString(dec).TrimEnd('\0');
-        if (txt.Length < 8) { diag = "解密结果过短: " + txt; return false; }
         var total = Convert.ToInt32(txt.Substring(0, 4), 16);      // = 数据字节数 + 2
         var dataLen = total - 2;
         if (dataLen < 0 || 4 + dataLen * 2 + 4 > txt.Length) { diag = "长度字段异常: " + txt; return false; }

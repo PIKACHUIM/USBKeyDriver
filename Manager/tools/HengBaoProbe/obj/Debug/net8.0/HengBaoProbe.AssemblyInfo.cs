@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HengBaoProbe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72228f66c67ad218ab8509dc478a630737c37438")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1437827df9d6a789ad3b53860b84235bf42e31a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("HengBaoProbe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HengBaoProbe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
