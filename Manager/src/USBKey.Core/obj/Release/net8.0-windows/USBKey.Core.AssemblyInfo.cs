@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("USBKey.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f43e742143d739451d0e62f275babd56d9f186c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83784e8520b0bc76c36a8589ae5971640defd074")]
 [assembly: System.Reflection.AssemblyProductAttribute("USBKey.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("USBKey.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

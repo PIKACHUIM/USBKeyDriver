@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using HB = USBKey.Core.UsbKey.HengBao;
 
 /// <summary>
 /// 恒宝（HengBao）CMBC U 宝 / PKCS#11 探针。
@@ -1225,6 +1226,93 @@ internal static class Program
         return r;
     }
 
+    /// <summary>
+    /// --native：用 <c>USBKey.Core</c> 里的自研原生栈读卡，完全不经过厂商 DLL。
+    /// 链路：SCSI-BOT 透传 → MSP 握手（RSA 交换 16 字节会话密钥）→ 3DES 安全报文。
+    /// 用途：验证接入 Manager 的那套实现（HengBaoScsi / HengBaoMsp / HengBaoToken）与实机一致。
+    /// </summary>
+    private static int NativeStackSelfTest()
+    {
+        Console.WriteLine("=== 自研原生栈自检（--native，走 USBKey.Core） ===");
+        Console.WriteLine("链路：SCSI-BOT 透传 → MSP 握手 → 3DES 安全报文（全程不调用厂商 DLL）");
+        Console.WriteLine("权限：需要管理员身份（打开 CD-ROM/磁盘设备接口）");
+        Console.WriteLine();
+
+        Console.WriteLine("[1] 枚举 Disk/CD-ROM 接口");
+        var all = HB.HengBaoScsi.EnumerateAllStoragePaths();
+        foreach (var p in all)
+        {
+            bool hit = p.IndexOf(HB.HengBaoScsi.PathFilter, StringComparison.OrdinalIgnoreCase) >= 0;
+            Console.WriteLine("   {0}{1}", hit ? "[匹配] " : "       ", p);
+        }
+        var paths = HB.HengBaoScsi.EnumerateDevicePaths();
+        Console.WriteLine("   => 命中 HENGBAO 的路径 {0} 个", paths.Count);
+        if (paths.Count == 0)
+        {
+            Console.WriteLine("[!] 未发现恒宝设备（与 CMBCp.dll 行为一致：此时 C_GetSlotList 返回 0）");
+            return 2;
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("[2] 单设备细粒度验证（含握手日志）");
+        HB.HengBaoToken token = null;
+        try
+        {
+            if (!HB.HengBaoToken.TryOpen(paths[0], out token, out var err))
+            {
+                Console.WriteLine("   [x] 打开/握手失败：" + err);
+            }
+            else
+            {
+                Console.WriteLine("   [√] 打开并完成 MSP 握手：" + token.DevicePath);
+                foreach (var line in token.HandshakeLog.Split('\n'))
+                    if (line.Trim().Length > 0) Console.WriteLine("       " + line.Trim());
+
+                if (HB.HengBaoScsi.TryOpen(paths[0], out var ch, out var win32) && ch != null)
+                {
+                    using (ch)
+                    {
+                        if (ch.Inquiry(out var ven, out var prod, out var rev, out var ierr))
+                            Console.WriteLine("       INQUIRY: Vendor=\"{0}\" Product=\"{1}\" Rev=\"{2}\"", ven, prod, rev);
+                        else
+                            Console.WriteLine("       INQUIRY 失败: " + ierr);
+                    }
+                }
+
+                if (token.ReadDeviceInfo(out var info, out var ierr2))
+                {
+                    Console.WriteLine("       " + info.Describe());
+                    Console.WriteLine("       TLV      : " + info.RawTlvHex);
+                    Console.WriteLine("       status01 : " + info.RawStatus01Hex);
+                    Console.WriteLine("       status04 : " + info.RawStatus04Hex);
+                    Console.WriteLine("       口令状态 : " + info.PinStateCode);
+                }
+                else
+                {
+                    Console.WriteLine("   [x] 读设备信息失败：" + ierr2);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("   [x] 异常：" + ex.Message);
+        }
+        finally { token?.Dispose(); }
+        Console.WriteLine();
+
+        Console.WriteLine("[3] 聚合 API：HengBaoToken.Discover()（Manager 侧使用同一个入口）");
+        var list = HB.HengBaoToken.Discover(out var diags);
+        foreach (var d in diags)
+            Console.WriteLine("   [跳过] {0}\n          {1}", d.Path, d.Error);
+        foreach (var info in list)
+            Console.WriteLine("   [可用] {0}\n          {1}", info.DevicePath, info.Describe());
+        Console.WriteLine();
+        Console.WriteLine("结论：可用设备 {0} 个。", list.Count);
+        if (list.Count > 0)
+            Console.WriteLine("      => 自研原生栈已能独立读卡，Manager 无需依赖 CMBCp.dll 即可识别该 U 宝。");
+        return list.Count > 0 ? 0 : 3;
+    }
+
     private static byte[] ParseHex(string hex)    {
         if (string.IsNullOrWhiteSpace(hex)) return new byte[] { 0x00, 0xA4, 0x00, 0x00, 0x02, 0xAD, 0xF1 };
         var s = new StringBuilder();
@@ -1333,7 +1421,7 @@ internal static class Program
         string newPin = null, resetPin = null;
         string importPfx = null, pfxPwd = "", pfxInfo = null;
         bool eraseAll = false, doSign = false, probeInit = false, scanOnly = false, certOnly = false, assumeYes = false;
-        bool rawMode = false, bruteMode = false, cdbScanMode = false, mspOpenMode = false;
+        bool rawMode = false, bruteMode = false, cdbScanMode = false, mspOpenMode = false, nativeMode = false;
         string apduHex = null, claHex = null, seqHex = null;
 
         var positional = new List<string>();
@@ -1358,6 +1446,7 @@ internal static class Program
                 case "--brute": bruteMode = true; break;
                 case "--cdb-scan": cdbScanMode = true; break;
                 case "--msp-open": mspOpenMode = true; break;
+                case "--native": nativeMode = true; break;
                 case "--cla": if (i + 1 < args.Length) claHex = args[++i]; break;
                 case "--seq": if (i + 1 < args.Length) seqHex = args[++i]; break;
                 case "--open-new": _createDisposition = 1; break;
@@ -1376,6 +1465,7 @@ internal static class Program
         if (bruteMode) return BruteForceScan(claHex == null
             ? new byte[] { 0x00, 0x80, 0x84, 0x90, 0xFF }
             : ParseHex(claHex));
+        if (nativeMode) return NativeStackSelfTest();
         if (mspOpenMode) return MspOpenTest(apduHex);
         if (seqHex != null) return RunSequence(seqHex);
         if (cdbScanMode) return CdbScan();
