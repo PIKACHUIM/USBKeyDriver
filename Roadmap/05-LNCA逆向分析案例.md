@@ -419,7 +419,7 @@ Clear_DF(hCard, &sw)                              ; 私有 APDU：BF CE 00 00 00
 
 1. 外部认证用的传输密钥**硬编码在 DLL 数据段**（RVA 0x19050：`63 79 74 62 79 68 79 78 73 79 6b 79 68 62 08 31` = `"cytbyhyxsykyhb"` + `08 31`），**不需要用户 PIN**。
    ⚠️ **实机修正（见 12.9）**：该常量是整个 SDK 共用的「出厂默认传输密钥」，只有**未修改过管理员口令**的卡才接受它；批量个性化后的卡密钥已被替换，此时 `HD_ClearDir` 必定失败（返回 -1），必须由调用方提供 SO 口令走备用链路。
-2. 交叉引用扫描（`_lnca_reverse/tools/disasm_lnca.py --xrefs`）证明：`Clear_DF` 在 DLL 内**只有一个调用者**，即 `HD_ClearDir`（`0x68BC`）——它是 COS 层清除数据区（DF）的**唯一入口**。
+2. 交叉引用扫描（`_逆向分析/tools/disasm_lnca.py --xrefs`）证明：`Clear_DF` 在 DLL 内**只有一个调用者**，即 `HD_ClearDir`（`0x68BC`）——它是 COS 层清除数据区（DF）的**唯一入口**。
 3. `HD_ClearDir` 与 `HSErase` 互补：前者清 COS 层数据区（证书/容器/密钥记录），后者清存储层文件系统，**两者叠加才是真正的「完全格式化」**。
 
 ### 12.4 重设 PIN 的三个入口
@@ -460,10 +460,10 @@ SW 判定：0x9000 = 通过；(SW & 0xFFF0)==0x63C0 → 返回剩余重试次数
 |------|------|
 | `Manager/src/USBKey.Core/UsbKey/LncaHdcosNative.cs` | HDCOS 层 P/Invoke 声明（新增） |
 | `Manager/src/USBKey.Core/UsbKey/LncaProvider.cs::ResetDevice` | 新流程：存储层擦除 → `HD_ClearDir` 完全格式化 → 重设 PIN（Reload_Pin → HD_ChangePin → HSReWriteUserPin）→ `HD_VerifyPin` 验证 |
-| `Library/LNCA USBKey Manage/_lnca_reverse/probe/LncaProbe` | 实机验证探针（`--format [port] [新PIN] [SO口令] [PUK] [--dry]`；`--dry` 只读探测，不做破坏性操作） |
-| `Library/LNCA USBKey Manage/_lnca_reverse/tools/disasm_lnca.py` | 反汇编工具（`--full`/`--xrefs`/`--imports`/`--strings`/`--wstrings`/`--data`/`--findpat`/`--countpat`/`--addrrefs`） |
-| `Library/LNCA USBKey Manage/_lnca_reverse/tools/lnca_keytest.ps1` | P1=0 通道候选密钥批量验证脚本 |
-| `Library/LNCA USBKey Manage/_lnca_reverse/README.md` | 归档索引：结论摘要 + 全部工具用法 + 路径说明 |
+| `Library/LNCA USBKey Manage/_逆向分析/probe/LncaProbe` | 实机验证探针（`--format [port] [新PIN] [SO口令] [PUK] [--dry]`；`--dry` 只读探测，不做破坏性操作） |
+| `Library/LNCA USBKey Manage/_逆向分析/tools/disasm_lnca.py` | 反汇编工具（`--full`/`--xrefs`/`--imports`/`--strings`/`--wstrings`/`--data`/`--findpat`/`--countpat`/`--addrrefs`） |
+| `Library/LNCA USBKey Manage/_逆向分析/tools/lnca_keytest.ps1` | P1=0 通道候选密钥批量验证脚本 |
+| `Library/LNCA USBKey Manage/_逆向分析/README.md` | 归档索引：结论摘要 + 全部工具用法 + 路径说明 |
 
 **诚实原则**：每一步真实返回码都记录到 `LncaProvider.LastResetReport`；只有最终 `HD_VerifyPin(新 PIN)` 通过才判定成功，否则抛出带完整报告的异常，绝不假装成功。
 
@@ -692,7 +692,7 @@ ExternalAuthMF(hCard)  → -1000      ← 失败
 
 ```powershell
 # 工具归档位置（2026-09-21 起统一收纳于此）
-$R = "G:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse"
+$R = "G:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_逆向分析"
 $P = "$R\probe\LncaProbe\bin\Release\net8.0\LncaProbe.exe"
 
 # 只读状态快照（不消耗任何认证计数，可反复执行）
@@ -713,5 +713,5 @@ pwsh -File "$R\tools\lnca_keytest.ps1"
 ---
 
 **分析日期**：2026-09-20
-**分析方法**：Capstone 静态反汇编 + PE 导出/导入表解析 + 交叉引用扫描（`Library/LNCA USBKey Manage/_lnca_reverse/tools/disasm_lnca.py`）
+**分析方法**：Capstone 静态反汇编 + PE 导出/导入表解析 + 交叉引用扫描（`Library/LNCA USBKey Manage/_逆向分析/tools/disasm_lnca.py`）
 **版本**：1.4

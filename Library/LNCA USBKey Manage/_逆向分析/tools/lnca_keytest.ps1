@@ -34,8 +34,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# ---- 定位探针可执行文件（本归档内 _lnca_reverse/probe/LncaProbe） ----
-$revRoot = Split-Path -Parent $PSScriptRoot           # ...\_lnca_reverse
+# ---- 定位探针可执行文件（本归档内 _逆向分析/probe/LncaProbe） ----
+$revRoot = Split-Path -Parent $PSScriptRoot           # ...\_逆向分析
 $proj = Join-Path $revRoot "probe\LncaProbe"
 $probe = Join-Path $proj "bin\Release\net8.0\LncaProbe.exe"
 if (-not (Test-Path $probe)) { $probe = Join-Path $proj "bin\Debug\net8.0\LncaProbe.exe" }

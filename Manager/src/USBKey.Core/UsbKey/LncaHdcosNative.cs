@@ -5,7 +5,7 @@ namespace USBKey.Core.UsbKey;
 /// <summary>
 /// LNCA COS 层 <c>HDCOS_LNCA.dll</c> 的原生接口委托定义（「完全格式化 / 重设 PIN」链路）。
 /// <para>
-/// 逆向依据（2026-09，静态反汇编，工具见 <c>Library/LNCA USBKey Manage/_lnca_reverse/tools/disasm_lnca.py</c>）：
+/// 逆向依据（2026-09，静态反汇编，工具见 <c>Library/LNCA USBKey Manage/_逆向分析/tools/disasm_lnca.py</c>）：
 /// <list type="bullet">
 /// <item>JIT 层 <c>JIT_USBKEY_HD.dll</c> 的 <c>USBKey_InitKey</c>/<c>USBKey_Reset</c> 是调试空壳；
 /// <c>HDCOS_LNCA.dll</c> 的 <c>InitialCard</c>（RVA 0x73F0）同样是空 stub（<c>or eax,-1; ret 0x10</c>）。</item>

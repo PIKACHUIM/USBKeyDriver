@@ -12,8 +12,10 @@
 
 | 目录 | 内容 |
 |------|------|
+| `README.md` | 本文件（结论摘要 + 工具用法 + 路径说明） |
 | `tools/` | 通用工具：`disasm_lnca.py`（PE 反汇编）、`lnca_keytest.ps1`（候选密钥验证） |
-| `scripts/` | 本次逆向过程产生的 108 个一次性反汇编/转储脚本（`disasm_*.py`、`dump_*.py`、`find_*.py` 等） |
+| `scripts/` | 本次逆向过程产生的 104 个一次性反汇编/转储脚本（`disasm_*.py`、`dump_*.py`、`find_*.py` 等） |
+| `artifacts/` | 反汇编/转储产物（`hdcos_disasm_*.txt`、`exports.txt`、`test-lnca.pfx`） |
 | `probe/` | 6 个 .NET 探针工程，**`LncaProbe` 为当前主探针**，其余为早期探索版 |
 | `shim/gpifd/` | GP_IFD shim 快照（14 个 DLL，含把 `GP_IFD_LNCA.dll` 改名为 `GP_IFD.dll` 的副本）；`--mf` 模式会自动在 `%TEMP%` 重建 |
 | `pkg/` | 归档的厂商安装包目录（见 §四） |
@@ -141,8 +143,8 @@ pwsh -File tools/lnca_keytest.ps1 -Key "87654321" "hex:0011223344556677"
 | 删除证书调试-快速开始 | `Manager/docs/LNCA-删除证书调试-快速开始.md` |
 | 厂商原始文件 | `Library/LNCA USBKey Manage/official driver/` |
 | 已安装中间件（CSP 1.0.7.0） | `C:\Windows\SysWOW64\`（`HDCOS_LNCA.dll` 等，与 SDK 版哈希一致/近似） |
-| 「数字证书管家 1.0」安装目录（109 MB / 283 文件，原 `tools\_pkg_extract\`） | `_lnca_reverse\pkg\LNCA数字证书管家-1.0-install\` |
-| GP_IFD shim 快照（原 `%TEMP%\lnca_gpifd_shim\`，可由 `--mf` 自动重建） | `_lnca_reverse\shim\gpifd\` |
+| 「数字证书管家 1.0」安装目录（109 MB / 283 文件，原 `tools\_pkg_extract\`） | `_逆向分析\pkg\LNCA数字证书管家-1.0-install\` |
+| GP_IFD shim 快照（原 `%TEMP%\lnca_gpifd_shim\`，可由 `--mf` 自动重建） | `_逆向分析\shim\gpifd\` |
 | ~~`tools\_pkg_usbkey\`~~ | 空目录（0 文件），已删除 |
 
 **打包规则已同步**：`Manager/src/USBKey.Manager/USBKey.Manager.csproj` 的复制源已改为
@@ -162,7 +164,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninsta
 
 ```powershell
 $k = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{FC771526-2FBC-4FEF-87B0-55577A492B82}_is1"
-$n = "g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse\pkg\LNCA数字证书管家-1.0-install"
+$n = "g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_逆向分析\pkg\LNCA数字证书管家-1.0-install"
 Set-ItemProperty $k UninstallString "`"$n\unins000.exe`""
 Set-ItemProperty $k InstallLocation "$n\"
 ```

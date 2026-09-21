@@ -267,7 +267,7 @@ private bool ResetViaHardApi(KeyDevice device, string? adminKey, string newUserP
 
 **编译**：
 ```powershell
-cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse\probe\LncaEraseTest
+cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_逆向分析\probe\LncaEraseTest
 dotnet build -c Debug
 ```
 
@@ -518,7 +518,7 @@ Func:
 
 ```powershell
 # 编译测试程序
-cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse\probe\LncaEraseTest
+cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_逆向分析\probe\LncaEraseTest
 dotnet build -c Debug
 
 # 运行调试模式

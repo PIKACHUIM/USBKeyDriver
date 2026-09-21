@@ -31,7 +31,7 @@
 ### 1. 启动测试程序
 
 ```powershell
-cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse\probe\LncaEraseTest\bin\Debug\net8.0-windows
+cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_逆向分析\probe\LncaEraseTest\bin\Debug\net8.0-windows
 .\LncaEraseTest.exe debug
 ```
 

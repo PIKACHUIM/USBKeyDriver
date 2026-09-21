@@ -19,7 +19,7 @@
 | 注册方式 | **无需 regsvr32**：LoadLibrary → `DllGetClassObject` → `IClassFactory::CreateInstance` |
 | 调用方式 | **`IDispatch::Invoke` 按 dispid**（dispid == `COM.idl` 的 `[id(N)]`），参数走 `DISPPARAMS/VARIANT` |
 | 重置入口 | `InitDeviceEx(sn, 管理口令, 用户PIN, KeyLabel, 管理重试上限, 用户PIN重试上限)`（dispid 95），成功返回 `VARIANT_TRUE` |
-| 导入证书 | ✅ 卡内生成密钥 → CSR → CA 签发 → `ImportSignCert`；❌ **外部 PFX（含私钥）不可导入**（硬件安全设计） |
+| 导入证书 | ✅ 卡内生成密钥 → CSR → CA 签发 → `ImportSignCert`；❌ **外部 PFX（含私钥）不可导入**（详见 §8.2 —— 组件内部有 `ImportPlainKeyCert` 实现且能走到最后一步，但最终失败；SKF 侧同样缺少「设备加密公钥」通道） |
 | 注意事项 | 组件在需要口令时会**弹出自身密码框**（`#32770` / `inputpasswdui`），无界面场景会阻塞 |
 | 覆盖型号 | 由 `Driver\driver.ini` 自动分派：中孚 C3200/C3201、飞天 ePass2000/3000/3001GM、林果 3056/3073、天地融、握奇 USK218、AK5018/5019、蓝牙 1509… |
 
@@ -237,13 +237,13 @@ InitDeviceEx(sn, 管理口令, 用户PIN, BJCA-UserKey, 10, 10) → 成功
 | 3 | `ExportPKCS10`（CSR） | 46 | ✅ 返回 PKCS#10，Subject 按传入 DN 生成 |
 | 4 | `ImportSignCert`（导入**公钥不匹配**的证书） | 40 | ✅ 被正确拒绝（返回 FALSE）——证书公钥必须与容器内密钥匹配 |
 | 4b | `ImportSignCert`（导入**本机测试 CA 为设备 CSR 签发**的证书） | 40 | ✅ **成功**（base64 DER，612 字节） |
-| 5 | `ImportPfxToDevice`（导入本地 PFX） | 113 | ❌ **失败**（bSign true/false 均失败）。且**失败后会在设备上留下一个空容器**，必须调用方清理 |
+| 5 | `ImportPfxToDevice`（导入本地 PFX） | 113 | ❌ 失败，**但原因已修正**（2026-09-21）：旧测试的 PFX 是 .NET 默认的 **PBES2/AES 编码**，组件 `PKCS12_parse` 不认 → 卡在解析阶段。换 **PBES1（3DES+SHA1）** 编码后可推进到 `ImportPlainKeyCert`（容器建成功、私钥验签通过、自动 PIN 认证成功），最终失败于 `status=0x00000002`。**失败后仍会留下空容器，需调用方清理**（见 §8.2） |
 | 6 | `SOF_GetAllContainerName` | 79 | ✅ 分隔符为 **`&&&`**（如 `BJCATEST&&&`） |
 | 7 | `GetContainerCount` | 62 | ✅ 容器数随建/删同步变化 |
 | 8 | `DeleteContainer` | 45 | ✅ 成功（但见下方「弹窗」问题） |
 | 9 | `DeleteOldContainer` | 73 | ❌ 失败（仅用于旧格式容器，常规设备无此项） |
 | 10 | `SOF_GetCertInfo` / `ValidateCert` / `GetCertInfoByOid` | 10/58/11 | ✅ 入参是**证书内容**（base64），无需 CertID，可正常解析 |
-| 11 | `SOF_GetUserList`（取 CertID 的关键） | 5 | ❌ **始终返回空**（见 §8.3） |
+| 11 | `SOF_GetUserList`（取 CertID 的关键） | 5 | ❌ 恒返回空（见 §8.3）；**已绕过** —— CertID 格式确定为「容器名/序列号」，可自行构造 |
 | 12 | `SOF_Login` | 7 | ❌ 所有 CertID 候选都失败，`SOF_GetLastErrMsg = 打开设备失败` |
 
 ### 8.1 `SOF_GetCertInfo(cert, type)` 字段语义（实测，`type` 为 `VT_I2`）
@@ -265,10 +265,54 @@ InitDeviceEx(sn, 管理口令, 用户PIN, BJCA-UserKey, 10, 10) → 成功
 > 这套接口可直接用于填充 `KeyContainer` 的 Subject/Issuer/有效期/算法/公钥，**不需要 CertID**。
 
 
-### 8.2 关键结论：**BJCA 不支持「导入外部私钥（PFX）」**
+### 8.2 关键结论：**不能导入外部私钥（PFX）** —— 但失败原因与原先判断不同
 
-`ImportPfxToDevice` 在本型号上无法把本地 PFX（含私钥）写入卡内——
-这符合 USBKey 的安全设计（**私钥在卡内生成、不可导出也不可导入**）。
+> **2026-09-21 修正**：本节原先的结论是「BJCA 不支持导入 PFX，符合硬件安全设计」。
+> 该结论是**由一次失败倒推**得出的，而组件 trace 日志显示那次失败发生在
+> `CryptokenBucket::ImportPFX → PKCS12_parse error!`，即**连 PFX 都没解析开**，
+> 根本未走到「卡是否肯写」这一步。
+>
+> **失败真因**：旧测试用 `X509Certificate2.Export(X509ContentType.Pfx, pwd)` 生成 PFX，
+> 而 **.NET 5+ 该方法默认产出 PBES2（PBKDF2 + AES-256 + SHA256）**，
+> 组件的 `PKCS12_parse` 是 OpenSSL 老 API，**不认 PBES2**。
+>
+> 完整实测链见
+> [`Library/BJCA USBKEY DRIVER/_逆向分析/02-私钥导入可行性.md`](../Library/BJCA USBKEY DRIVER/_逆向分析/02-私钥导入可行性.md)。
+
+**换用老式编码（PBES1：3DES + SHA1）的 PFX 复测后，流程显著推进：**
+
+```
+CXTXApp::ImportPfxToDevice                        (XTXApp.cpp:2952)
+  → CryptokenBucket::ImportPFX                    (cryptobucket.cpp:5395)
+     → SKFApplicationWrap::CreateContainer        ← 容器建成功
+     → CryptokenBucket::ImportPlainKeyCert        (cryptobucket.cpp:5262)  ★「导入明文密钥+证书」
+        → x509Parser::GetPublicKey                ← 证书解析 OK
+        → Soft_RSASignHash + Soft_RSAVerify       ← 私钥签名/验签 OK（证明与证书匹配）
+        → SKFApplicationWrap::VerifyPIN           ← 组件自动完成 PIN 认证，成功
+        → [status=0x00000002] at cryptobucket.cpp(5369)   ★ 最终失败点
+```
+
+**即：组件内部确实实现了「导入明文密钥对」，并执行到了最后一步才失败。**
+
+**三个入场条件（均实测）**：
+
+| 条件 | 说明 |
+|------|------|
+| PFX 须为**老式编码** | PBES1（3DES/RC2 + SHA1）；现代 PBES2/AES 在 `PKCS12_parse` 阶段即被拒 |
+| 须含 **RSA 私钥** | 组件用 `d2i_RSAPrivateKey` 解析，EC/SM2 直接失败（实测 `cert public key len:65` → `d2i_RSAPrivateKey error!`） |
+| 需 **PIN 认证** | 组件会**自动**调用 `SKF_VerifyPIN`，实测认证成功 |
+
+即使三条齐备，最终仍失败于 `status=0x00000002`（对外 `GetLastError=18`、`GetLastErrMsg=导入证书失败`）。
+失败点位于**建容器成功之后、真正写入密钥之前**。
+
+**同一张卡的 SKF 链路也已排除**：`SKF_ImportRSAKeyPair` 存在且与国标 6 参数一致，
+但遍历「2 种字节序 × 2 种 padding × 4 种对称算法」共 **16 组参数**后，错误码恒为
+`0x0A000019 RSA解密错误` —— 这说明它用的**不是传入的 `pbEncryptedKey` 对应的容器公钥**，
+而是设备级密钥；而导出「设备加密公钥」的接口在中间件 100 个导出里**一个都没有**，
+该通道被关在 `SKF_DevAuth`（厂商密钥、挑战应答）认证域内。两侧失败原因高度一致，很可能同根。
+
+**结论：这张卡上的私钥只能卡内生成，无法从外部导入。**
+与旧结论的差别在于 —— 这一结论现有**完整实证链条**支撑，而不再是由一次编码格式错误倒推而来。
 
 **正确流程（已在 `BjcaProvider` 中提供为公开方法）**：
 
@@ -306,6 +350,23 @@ InitDeviceEx(sn, 管理口令, 用户PIN, BJCA-UserKey, 10, 10) → 成功
 （组件内含 `CacheManager`、`CSS`、`XTXAppCOM.ini` 的 `CSSUpdateCert`、`C:\BJCAROOT\XTXTrust\`，
 以及 USBKeyPnPActiveX 的 `GetSavedPass/SaveUserPass` 等），只有走官方客户端（BjcaCertAide）
 或银行展期流程写入缓存后才有条目。因此**无法用裸 API 自举**「登录/改密/导出」这条链路。
+
+> **2026-09-21 更新：该阻塞点已绕过，本节的「未闭环」状态解除。**
+>
+> 组件 trace 日志（`C:\BJCAROOT\BJCAlog\xtx\XTXAppCOM.log`）暴露了 CertID 的**确定构成方式**：
+> `CXTXApp::SOF_ExportUserCert` 收到的实参是 `UserKey/5303201812001784`，
+> 即 **`容器名 + '/' + 设备序列号`**。既然格式确定，就不必依赖那个恒空的列表接口 ——
+> 对 `SOF_GetAllContainerName` 中的每个容器**自行拼出 CertID** 再调 `SOF_ExportUserCert` 即可。
+>
+> `BjcaProvider.TryExportCertificateByConvention` 已按此实现并**实测通过**：
+> BJCA 侧与 SKF 侧显示的证书完全一致（`证书 UserKey/5303201812001784 RSA Test User 2026-09-21~2027-09-21`）。
+> 详见 [`_逆向分析/03-容器管理（权限·缓存·同步）.md`](../Library/BJCA USBKEY DRIVER/_逆向分析/03-容器管理（权限·缓存·同步）.md) §5。
+>
+> **该列表为空的原因也已查清**：它是**组件进程内的会话缓存**
+> （`CryptokenBucket::GetUserListString`，`cryptobucket.cpp:250`），
+> **不落卡、不落盘**，重启进程即为空 —— 与上文的"证书缓存"推断方向一致。
+> 另：它恒为空的同时往往会残留**卡上并不存在的条目**（如 `Test User`），
+> 那些条目去删除必然失败（`0x0A00002E`），已由 `BjcaProvider` 的悬空条目过滤处理。
 
 ### 8.4 另一条可行路线：直接对接 SKF（GM/T 0016）
 
@@ -422,3 +483,6 @@ dotnet run -- reset 123456 111111 --yes
 |------|------|
 | 2026-09-21 | 完成逆向分析与对接；新增 `BjcaProvider`/`BjcaSession`；接入 `config.json`/`AppContext`/`MainForm`；实机验证重置成功 |
 | 2026-09-21 | 实测证书链路（§8）：确认卡内建容器/导出公钥/导出 CSR/**导入证书**/删除容器可用；确认 `ImportPfxToDevice` 不可用并补齐正确流程 API（`GenerateKeyPair`/`ExportPkcs10`/`ImportCertificate`/`RemoveContainer`）；给出 `SOF_GetCertInfo` 字段语义表（§8.1）；定位 CertID 阻塞点（§8.3）；发现 `inputpasswdui` 弹窗阻塞行为并在 `ImportPfx` 中加入失败残留容器清理 |
+| 2026-09-21 | **修正 §8.2 结论**：原「BJCA 不支持导入 PFX」系由一次 PFX **编码格式错误**（.NET 默认 PBES2/AES，组件 `PKCS12_parse` 不认）倒推得出。换 **PBES1（3DES+SHA1）** 后可推进至 `ImportPlainKeyCert`（容器建成功、私钥验签通过、自动 PIN 认证成功），最终失败于 `status=0x00000002`。同时排除 SKF 侧路径：`SKF_ImportRSAKeyPair` 存在且合国标 6 参数，但 16 组参数（字节序×padding×对称算法）错误码恒为 `0x0A000019`，缺「设备加密公钥」通道。**结论仍是不支持导入，但现有完整实证支撑** |
+| 2026-09-21 | **解除 §8.3 阻塞**：`SOF_GetUserList` 恒空问题已绕过 —— CertID 格式确定为「容器名/设备序列号」，自行构造即可取证书（`BjcaProvider.TryExportCertificateByConvention`，实测 BJCA 与 SKF 显示一致）；并查明该列表为**组件进程内会话缓存**（`CryptokenBucket::GetUserListString`），不落卡不落盘，重启即为空 |
+| 2026-09-21 | 实测资料归档至 [`Library/BJCA USBKEY DRIVER/_逆向分析/`](../Library/BJCA USBKEY DRIVER/_逆向分析/)：架构关系（SKF 与 BJCA）、私钥导入可行性、容器管理（权限·缓存·同步）三份文档 + `artifacts/` / `scripts/` / `samples/` / `probes/` |
