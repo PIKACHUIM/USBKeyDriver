@@ -694,7 +694,7 @@ public sealed class Gm3000Provider : IKeyProvider
     {
         if (container.CertRaw == null || container.CertRaw.Length == 0)
             throw new InvalidOperationException("证书数据不可用");
-        Crypto.CertHelper.Register(container.CertRaw, container.Name, container.KeyBinding);
+        Crypto.CertHelper.Register(container.CertRaw, container.Name);
         container.IsRegisteredInCsp = true;
     }
 

@@ -1,0 +1,103 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x5D1B0 len=0x100 file_off=0x5C5B0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+1005d1b0 <.text+0x5c1b0>:
+1005d1b0:	55                   	push   ebp
+1005d1b1:	8b ec                	mov    ebp,esp
+1005d1b3:	83 ec 14             	sub    esp,0x14
+1005d1b6:	a1 60 70 07 10       	mov    eax,ds:0x10077060
+1005d1bb:	33 c5                	xor    eax,ebp
+1005d1bd:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+1005d1c0:	c6 45 ec 00          	mov    BYTE PTR [ebp-0x14],0x0
+1005d1c4:	33 c0                	xor    eax,eax
+1005d1c6:	89 45 ed             	mov    DWORD PTR [ebp-0x13],eax
+1005d1c9:	89 45 f1             	mov    DWORD PTR [ebp-0xf],eax
+1005d1cc:	89 45 f5             	mov    DWORD PTR [ebp-0xb],eax
+1005d1cf:	66 89 45 f9          	mov    WORD PTR [ebp-0x7],ax
+1005d1d3:	88 45 fb             	mov    BYTE PTR [ebp-0x5],al
+1005d1d6:	8a 4d 0c             	mov    cl,BYTE PTR [ebp+0xc]
+1005d1d9:	88 4d ec             	mov    BYTE PTR [ebp-0x14],cl
+1005d1dc:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+1005d1df:	c1 fa 18             	sar    edx,0x18
+1005d1e2:	81 e2 ff 00 00 00    	and    edx,0xff
+1005d1e8:	88 55 ee             	mov    BYTE PTR [ebp-0x12],dl
+1005d1eb:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+1005d1ee:	c1 f8 10             	sar    eax,0x10
+1005d1f1:	25 ff 00 00 00       	and    eax,0xff
+1005d1f6:	88 45 ef             	mov    BYTE PTR [ebp-0x11],al
+1005d1f9:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+1005d1fc:	c1 f9 08             	sar    ecx,0x8
+1005d1ff:	81 e1 ff 00 00 00    	and    ecx,0xff
+1005d205:	88 4d f0             	mov    BYTE PTR [ebp-0x10],cl
+1005d208:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+1005d20b:	81 e2 ff 00 00 00    	and    edx,0xff
+1005d211:	88 55 f1             	mov    BYTE PTR [ebp-0xf],dl
+1005d214:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+1005d217:	c1 f8 08             	sar    eax,0x8
+1005d21a:	25 ff 00 00 00       	and    eax,0xff
+1005d21f:	88 45 f3             	mov    BYTE PTR [ebp-0xd],al
+1005d222:	8b 4d 14             	mov    ecx,DWORD PTR [ebp+0x14]
+1005d225:	81 e1 ff 00 00 00    	and    ecx,0xff
+1005d22b:	88 4d f4             	mov    BYTE PTR [ebp-0xc],cl
+1005d22e:	8b 55 1c             	mov    edx,DWORD PTR [ebp+0x1c]
+1005d231:	52                   	push   edx
+1005d232:	8b 45 18             	mov    eax,DWORD PTR [ebp+0x18]
+1005d235:	50                   	push   eax
+1005d236:	6a 10                	push   0x10
+1005d238:	8d 4d ec             	lea    ecx,[ebp-0x14]
+1005d23b:	51                   	push   ecx
+1005d23c:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+1005d23f:	52                   	push   edx
+1005d240:	e8 7b fd ff ff       	call   0x1005cfc0
+1005d245:	8b c8                	mov    ecx,eax
+1005d247:	e8 94 3b 00 00       	call   0x10060de0
+1005d24c:	85 c0                	test   eax,eax
+1005d24e:	74 11                	je     0x1005d261
+1005d250:	c7 05 94 94 07 10 03 	mov    DWORD PTR ds:0x10079494,0x8003
+1005d257:	80 00 00 
+1005d25a:	b8 01 00 00 00       	mov    eax,0x1
+1005d25f:	eb 02                	jmp    0x1005d263
+1005d261:	33 c0                	xor    eax,eax
+1005d263:	8b 4d fc             	mov    ecx,DWORD PTR [ebp-0x4]
+1005d266:	33 cd                	xor    ecx,ebp
+1005d268:	e8 a8 69 fc ff       	call   0x10023c15
+1005d26d:	8b e5                	mov    esp,ebp
+1005d26f:	5d                   	pop    ebp
+1005d270:	c3                   	ret
+1005d271:	cc                   	int3
+1005d272:	cc                   	int3
+1005d273:	cc                   	int3
+1005d274:	cc                   	int3
+1005d275:	cc                   	int3
+1005d276:	cc                   	int3
+1005d277:	cc                   	int3
+1005d278:	cc                   	int3
+1005d279:	cc                   	int3
+1005d27a:	cc                   	int3
+1005d27b:	cc                   	int3
+1005d27c:	cc                   	int3
+1005d27d:	cc                   	int3
+1005d27e:	cc                   	int3
+1005d27f:	cc                   	int3
+1005d280:	55                   	push   ebp
+1005d281:	8b ec                	mov    ebp,esp
+1005d283:	83 ec 18             	sub    esp,0x18
+1005d286:	a1 60 70 07 10       	mov    eax,ds:0x10077060
+1005d28b:	33 c5                	xor    eax,ebp
+1005d28d:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+1005d290:	c6 45 ec 00          	mov    BYTE PTR [ebp-0x14],0x0
+1005d294:	33 c0                	xor    eax,eax
+1005d296:	89 45 ed             	mov    DWORD PTR [ebp-0x13],eax
+1005d299:	89 45 f1             	mov    DWORD PTR [ebp-0xf],eax
+1005d29c:	89 45 f5             	mov    DWORD PTR [ebp-0xb],eax
+1005d29f:	66 89 45 f9          	mov    WORD PTR [ebp-0x7],ax
+1005d2a3:	88 45 fb             	mov    BYTE PTR [ebp-0x5],al
+1005d2a6:	8a 4d 0c             	mov    cl,BYTE PTR [ebp+0xc]
+1005d2a9:	88 4d ec             	mov    BYTE PTR [ebp-0x14],cl
+1005d2ac:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+1005d2af:	c1                   	.byte 0xc1

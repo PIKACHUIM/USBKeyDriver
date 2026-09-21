@@ -43,20 +43,17 @@ public sealed class CertAutoRegisterResult
 /// <para>
 /// 两条业务规则：
 /// <list type="number">
-/// <item><b>新设备</b>（记录里没见过这台卡的 平台+序列号）：扫描卡上全部证书，自动注册到系统并持久化，
+/// <item><b>新设备</b>（记录里没见过这台卡的 平台+序列号）：把卡上全部证书注册到系统证书库并持久化记录，
 /// 下次启动就能按记录恢复；</item>
-/// <item><b>已知设备</b>：只保证「记录里那几条证书」还在系统证书库里（缺了就重新注册）；
+/// <item><b>已知设备</b>：只保证「记录里那几条证书」还在系统证书库里，缺了就重新注册。
 /// 用户手动注销过的证书会因为记录被删除而不会被自动加回来。</item>
 /// </list>
-/// 每次注册都会解析私钥容器（厂商 CSP/KSP），把 CERT_KEY_PROV_INFO 一并写进证书：
-/// 卡上的证书必然带卡内私钥，注册就必须连私钥一起注册；解析不到提供程序时按失败上报，
-/// 不写入"系统用不了"的证书。
+/// 只负责证书本体的注册/注销（走各平台既有的 RegisterToCsp），不涉及私钥容器。
 /// </para>
 /// </summary>
 public sealed class CertAutoRegistrar
 {
     private readonly AppConfig _config;
-    private readonly Dictionary<string, CertKeyBinding?> _bindingCache = new(StringComparer.OrdinalIgnoreCase);
 
     public CertAutoRegistrar(AppConfig config, CertRegistrationStore store)
     {
@@ -87,7 +84,6 @@ public sealed class CertAutoRegistrar
             return result;
         }
 
-        _bindingCache.Clear();
         foreach (var dev in devices)
         {
             result.DevicesScanned++;
@@ -134,19 +130,15 @@ public sealed class CertAutoRegistrar
 
         if (isNew)
         {
-            // ---- 新设备：卡上所有证书都注册一遍（带上卡内私钥容器） ----
+            // ---- 新设备：卡上所有证书都注册一遍 ----
             var targets = containers.Where(c => c.HasCertificate && !string.IsNullOrEmpty(c.Thumbprint)).ToList();
             if (targets.Count > 0) Log.Write($"[自动注册] 首次识别 {dev.TrayLabel}，发现 {targets.Count} 张证书");
             var failedBefore = result.Failed;
-            foreach (var c in targets)
-            {
-                RegisterOne(prov, dev, c, result, rebind: true);
-            }
+            foreach (var c in targets) RegisterOne(prov, dev, c, result);
 
             if (result.Failed > failedBefore)
             {
-                // 有失败的（多半是厂商 CSP/KSP 没装）：不标记"已识别"，
-                // 这样装上驱动后的下一次启动/插卡还会自动重试，而不是永远错过这台卡。
+                // 有失败的：不标记"已识别"，下次扫描（或装了驱动后）还会重试，而不是永远错过这台卡
                 Log.Write($"[自动注册] {dev.TrayLabel} 本次有注册失败，保留为新设备状态，下次扫描会重试");
                 return;
             }
@@ -175,49 +167,28 @@ public sealed class CertAutoRegistrar
                 continue;
             }
 
-            // 记录里没写下私钥提供程序（早期版本注册留下的），这次重新注册把绑定补上
-            RegisterOne(prov, dev, cert, result, rebind: !rec.HasKeyBinding, recorded: rec.ToKeyBinding());
+            RegisterOne(prov, dev, cert, result);
         }
     }
 
-    /// <summary>
-    /// 把一张证书注册到系统证书库（连带卡内私钥容器）。
-    /// </summary>
-    /// <param name="rebind">为 true 时即使证书已在库中也重新注册（用于覆盖旧副本、补上私钥绑定）。</param>
-    /// <param name="recorded">上次注册落盘的绑定（现场探测失败时的兜底，保证"下次启动还能注册回来"）。</param>
-    private void RegisterOne(IKeyProvider prov, UsbKeyDevice dev, KeyContainer cert,
-        CertAutoRegisterResult result, bool rebind, CertKeyBinding? recorded = null)
+    /// <summary>把一张证书注册到系统证书库（已在库里则跳过）。</summary>
+    private void RegisterOne(IKeyProvider prov, UsbKeyDevice dev, KeyContainer cert, CertAutoRegisterResult result)
     {
         var thumb = cert.Thumbprint;
         if (string.IsNullOrEmpty(thumb)) return;
 
-        if (!rebind && CertHelper.IsRegistered(thumb))
+        if (CertHelper.IsRegistered(thumb))
         {
             result.AlreadyRegistered++;
             return;
         }
 
-        // 卡上的证书必然带卡内私钥：拿不到「提供程序 + 容器」说明厂商 CSP/KSP 没装好，
-        // 这时宁可报错，也不能把一张系统用不了的证书塞进证书库。
-        var binding = ResolveBinding(dev, cert);
-        if (binding == null && recorded is { IsValid: true })
-        {
-            binding = recorded;
-            Log.Write($"[私钥] 现场未匹配到容器，改用注册记录中的绑定：{binding.Describe()}");
-        }
-        if (binding == null)
-        {
-            result.Failed++;
-            result.Messages.Add($"{dev.TrayLabel}：证书「{cert.Name}」未找到对应的厂商 CSP/KSP，已跳过");
-            return;
-        }
-
         try
         {
-            prov.RegisterToCsp(cert, binding);
+            prov.RegisterToCsp(cert);
             result.Registered++;
-            Store.Upsert(BuildRecord(dev, cert, binding));
-            Log.Write($"[自动注册] {dev.TrayLabel} 证书「{cert.Name}」已注册（{binding.Describe()}）");
+            Store.Upsert(BuildRecord(dev, cert));
+            Log.Write($"[自动注册] {dev.TrayLabel} 证书「{cert.Name}」已注册到系统证书库");
         }
         catch (Exception ex)
         {
@@ -227,7 +198,7 @@ public sealed class CertAutoRegistrar
         }
     }
 
-    private CertRegistrationRecord BuildRecord(UsbKeyDevice dev, KeyContainer cert, CertKeyBinding? binding) => new()
+    private static CertRegistrationRecord BuildRecord(UsbKeyDevice dev, KeyContainer cert) => new()
     {
         Platform = dev.Platform,
         SerialNumber = dev.SerialNumber,
@@ -235,44 +206,8 @@ public sealed class CertAutoRegistrar
         ContainerUuid = cert.ContainerUuid,
         Thumbprint = cert.Thumbprint,
         FriendlyName = cert.Name,
-        KeyProvider = binding?.ProviderName ?? "",
-        KeyStoreKind = binding == null ? "" : (binding.Kind == KeyStoreKind.Cng ? "cng" : "capi"),
-        KeyContainer = binding?.ContainerName ?? "",
-        ProviderType = binding?.ProviderType ?? 0,
-        KeySpec = binding?.KeySpec ?? 0,
         RegisteredAtUtc = DateTime.UtcNow,
         LastSeenUtc = DateTime.UtcNow,
         NotAfterUtc = cert.NotAfter?.ToUniversalTime(),
     };
-
-    /// <summary>解析私钥容器（结果按 平台+容器 缓存，避免同一容器反复枚举系统 CSP）。</summary>
-    private CertKeyBinding? ResolveBinding(UsbKeyDevice dev, KeyContainer cert)
-    {
-        var cacheKey = $"{dev.Platform}|{cert.ContainerName}|{cert.ContainerUuid}|{cert.Name}";
-        if (_bindingCache.TryGetValue(cacheKey, out var cached)) return cached;
-
-        var def = FindDeviceDef(dev);
-        string? pinned = null;
-        KeyStoreKind? pinnedKind = null;
-        if (!string.IsNullOrWhiteSpace(def?.Ksp)) { pinned = def!.Ksp; pinnedKind = KeyStoreKind.Cng; }
-        else if (!string.IsNullOrWhiteSpace(def?.Csp)) { pinned = def!.Csp; pinnedKind = KeyStoreKind.Capi; }
-
-        var binding = CertKeyBinder.Resolve(
-            new[] { cert.ContainerName, cert.ContainerUuid, cert.Name },
-            pinned, pinnedKind, CertKeyBinder.KeySpecFromUsage(cert.KeyUsage));
-
-        _bindingCache[cacheKey] = binding;
-        return binding;
-    }
-
-    /// <summary>在 config.json 的 keyslist 里找该设备所属的型号定义（按 VID/PID 匹配）。</summary>
-    private UsbDeviceDef? FindDeviceDef(UsbKeyDevice dev)
-    {
-        if (_config.KeyList == null) return null;
-        if (!_config.KeyList.TryGetValue(dev.Platform, out var defs) || defs == null) return null;
-        return defs.FirstOrDefault(d =>
-                   (d.VidInt == 0 || d.VidInt == dev.Vid) &&
-                   (d.PidInt == 0 || d.PidInt == dev.Pid))
-               ?? defs.FirstOrDefault(d => string.IsNullOrEmpty(d.Vid) && string.IsNullOrEmpty(d.Pid));
-    }
 }

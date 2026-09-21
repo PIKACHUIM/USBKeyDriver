@@ -19,40 +19,12 @@ public sealed class CertRegistrationRecord
     public string Thumbprint { get; set; } = "";
     /// <summary>注册到系统时使用的友好名称。</summary>
     public string FriendlyName { get; set; } = "";
-    /// <summary>私钥提供程序名（CSP/KSP）；空表示只注册了证书本体。</summary>
-    public string KeyProvider { get; set; } = "";
-    /// <summary>提供程序类别：capi / cng。</summary>
-    public string KeyStoreKind { get; set; } = "";
-    /// <summary>私钥容器名（Windows 侧）。</summary>
-    public string KeyContainer { get; set; } = "";
-    /// <summary>CAPI 提供程序类型（CNG 为 0）。</summary>
-    public int ProviderType { get; set; }
-    /// <summary>密钥用途（AT_SIGNATURE / AT_KEYEXCHANGE / CERT_NCRYPT_KEY_SPEC）。</summary>
-    public int KeySpec { get; set; }
     /// <summary>首次注册时间（UTC）。</summary>
     public DateTime RegisteredAtUtc { get; set; }
     /// <summary>最近一次确认/补注册时间（UTC）。</summary>
     public DateTime LastSeenUtc { get; set; }
-    /// <summary>证书有效期（UTC，仅用于过期后清理提示）。</summary>
+    /// <summary>证书有效期（UTC）。</summary>
     public DateTime? NotAfterUtc { get; set; }
-
-    /// <summary>是否记录了私钥绑定。</summary>
-    [JsonIgnore]
-    public bool HasKeyBinding => !string.IsNullOrWhiteSpace(KeyProvider);
-
-    /// <summary>把记录还原成绑定对象（无绑定时返回 null）。</summary>
-    public Crypto.CertKeyBinding? ToKeyBinding() => HasKeyBinding
-        ? new Crypto.CertKeyBinding
-        {
-            Kind = string.Equals(KeyStoreKind, "cng", StringComparison.OrdinalIgnoreCase)
-                ? Crypto.KeyStoreKind.Cng
-                : Crypto.KeyStoreKind.Capi,
-            ProviderName = KeyProvider,
-            ContainerName = KeyContainer,
-            ProviderType = ProviderType,
-            KeySpec = KeySpec,
-        }
-        : null;
 }
 
 /// <summary>

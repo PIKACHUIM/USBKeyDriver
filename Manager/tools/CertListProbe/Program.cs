@@ -18,6 +18,9 @@ internal static class Program
     private static bool _verifyAdmin;
     private static bool _probeDeletePerm;
     private static bool _asUser;
+    private static bool _probeImport;
+    private static bool _probeImportCall;
+    private static bool _probeImportReal;
     private static string _adminPin = "111111";
     private static string _userPin = "123456";
 
@@ -29,6 +32,9 @@ internal static class Program
         _verifyAdmin = rest.Remove("--verify-admin");
         _probeDeletePerm = rest.Remove("--probe-delete-perm");
         _asUser = rest.Remove("--as-user");
+        _probeImport = rest.Remove("--probe-import");
+        _probeImportCall = rest.Remove("--probe-import-call");
+        _probeImportReal = rest.Remove("--probe-import-real");
         int ai = rest.IndexOf("--admin-pin");
         if (ai >= 0 && ai + 1 < rest.Count)
         {
@@ -88,6 +94,36 @@ internal static class Program
 
         if (_probeDeletePerm) ProbeDeletePermission(prov);
         if (_asUser) ProbeDeleteAsUser(prov);
+        if (_probeImport)
+        {
+            Console.WriteLine();
+            Console.WriteLine("== 方案A 可行性探测：SKF 导入密钥对的先决条件（只读）==");
+            foreach (var d in prov.Enumerate())
+            {
+                try { Console.WriteLine(prov.ProbeImportCapability(d)); }
+                catch (Exception ex) { Console.WriteLine("   探测失败：" + ex.Message); }
+            }
+        }
+        if (_probeImportCall)
+        {
+            Console.WriteLine();
+            Console.WriteLine("== 方案A 实测：SKF_ImportRSAKeyPair 空负载调用（会建/删临时容器）==");
+            foreach (var d in prov.Enumerate())
+            {
+                try { Console.WriteLine(prov.ProbeImportKeyPairCall(d, _adminPin)); }
+                catch (Exception ex) { Console.WriteLine("   调用探测失败：" + ex.Message); }
+            }
+        }
+        if (_probeImportReal)
+        {
+            Console.WriteLine();
+            Console.WriteLine("== 方案A 实测：按国标构造真实参数导入 RSA 密钥对（会建/删临时容器）==");
+            foreach (var d in prov.Enumerate())
+            {
+                try { Console.WriteLine(prov.ProbeImportRealKeyPair(d, _adminPin)); }
+                catch (Exception ex) { Console.WriteLine("   真实参数探测失败：" + ex.Message); }
+            }
+        }
     }
 
     /// <summary>

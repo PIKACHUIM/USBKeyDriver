@@ -1,0 +1,59 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x16B0 len=0x70 file_off=0xAB0
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+100016b0 <.text+0x6b0>:
+100016b0:	55                   	push   ebp
+100016b1:	8b ec                	mov    ebp,esp
+100016b3:	83 e4 f8             	and    esp,0xfffffff8
+100016b6:	56                   	push   esi
+100016b7:	57                   	push   edi
+100016b8:	8b 3d bc d9 07 10    	mov    edi,DWORD PTR ds:0x1007d9bc
+100016be:	85 ff                	test   edi,edi
+100016c0:	74 0a                	je     0x100016cc
+100016c2:	57                   	push   edi
+100016c3:	ff 15 b0 d9 07 10    	call   DWORD PTR ds:0x1007d9b0
+100016c9:	83 c4 04             	add    esp,0x4
+100016cc:	a1 6c da 07 10       	mov    eax,ds:0x1007da6c
+100016d1:	85 c0                	test   eax,eax
+100016d3:	74 19                	je     0x100016ee
+100016d5:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+100016d8:	8b 48 08             	mov    ecx,DWORD PTR [eax+0x8]
+100016db:	85 c9                	test   ecx,ecx
+100016dd:	74 08                	je     0x100016e7
+100016df:	3b 91 50 02 00 00    	cmp    edx,DWORD PTR [ecx+0x250]
+100016e5:	74 0e                	je     0x100016f5
+100016e7:	8b 40 04             	mov    eax,DWORD PTR [eax+0x4]
+100016ea:	85 c0                	test   eax,eax
+100016ec:	75 ea                	jne    0x100016d8
+100016ee:	be 32 00 00 00       	mov    esi,0x32
+100016f3:	eb 0b                	jmp    0x10001700
+100016f5:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+100016f8:	50                   	push   eax
+100016f9:	e8 22 b0 00 00       	call   0x1000c720
+100016fe:	8b f0                	mov    esi,eax
+10001700:	85 ff                	test   edi,edi
+10001702:	74 0a                	je     0x1000170e
+10001704:	57                   	push   edi
+10001705:	ff 15 b4 d9 07 10    	call   DWORD PTR ds:0x1007d9b4
+1000170b:	83 c4 04             	add    esp,0x4
+1000170e:	5f                   	pop    edi
+1000170f:	8b c6                	mov    eax,esi
+10001711:	5e                   	pop    esi
+10001712:	8b e5                	mov    esp,ebp
+10001714:	5d                   	pop    ebp
+10001715:	c3                   	ret
+10001716:	cc                   	int3
+10001717:	cc                   	int3
+10001718:	cc                   	int3
+10001719:	cc                   	int3
+1000171a:	cc                   	int3
+1000171b:	cc                   	int3
+1000171c:	cc                   	int3
+1000171d:	cc                   	int3
+1000171e:	cc                   	int3
+1000171f:	cc                   	int3

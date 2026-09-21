@@ -33,7 +33,7 @@
 ### 2. 测试程序已编译
 
 ```powershell
-cd g:\Codes\USBKeyDriver\Manager\tools\LncaEraseTest
+cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse\probe\LncaEraseTest
 dotnet build -c Debug
 ```
 
@@ -46,7 +46,7 @@ dotnet build -c Debug
 #### 1. 运行测试程序（调试模式）
 
 ```powershell
-cd g:\Codes\USBKeyDriver\Manager\tools\LncaEraseTest\bin\Debug\net8.0-windows
+cd g:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse\probe\LncaEraseTest\bin\Debug\net8.0-windows
 .\LncaEraseTest.exe debug
 ```
 

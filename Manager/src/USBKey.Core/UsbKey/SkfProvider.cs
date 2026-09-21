@@ -514,7 +514,7 @@ public sealed class SkfProvider : IKeyProvider
     public void RegisterToCsp(KeyContainer container)
     {
         if (container.CertRaw == null) throw new InvalidOperationException("证书数据不可用");
-        Crypto.CertHelper.Register(container.CertRaw, container.Name, container.KeyBinding);
+        Crypto.CertHelper.Register(container.CertRaw, container.Name);
         container.IsRegisteredInCsp = true;
     }
 
@@ -578,6 +578,367 @@ public sealed class SkfProvider : IKeyProvider
     }
 
     /// <summary>导出容器内公钥（原始 SKF blob）。</summary>
+    /// <summary>
+    /// 【只读探测】评估国标「导入密钥对」（<c>SKF_ImportRSAKeyPair</c>）在本设备上的可行性。
+    ///
+    /// <para>不创建容器、不写入任何数据，只回答三件事：</para>
+    /// <list type="number">
+    /// <item>设备的算法能力位图（决定 <c>ulSymAlgId</c> 可用取值）与设备认证算法 <c>DevAuthAlgId</c>；</item>
+    /// <item>各容器的<b>公钥能否导出</b> —— 国标导入流程要用「容器的密钥加密公钥」保护会话密钥，
+    /// 若本中间件在空容器上导不出公钥，则说明导入必须先有密钥来源，路径需要重新设计；</item>
+    /// <item>容器枚举结果，作为对照基线。</item>
+    /// </list>
+    ///
+    /// <para>之所以要先做这一步：07/08 文档中关于「导入密钥」的结论都缺少参数层面的实证，
+    /// 而 <c>SKF_ImportRSAKeyPair</c> 的 <c>pbEncryptedKey</c> 必须由设备侧公钥加密而来 ——
+    /// 这个前提不落实，写再多调用代码都是盲猜。</para>
+    /// </summary>
+    public string ProbeImportCapability(UsbKeyDevice device)
+    {
+        var s = Session;
+        var lines = new List<string>();
+        var (rcC, hDev) = s.ConnectDev(device.SerialNumber);
+        if (rcC != SkfNative.SAR_OK)
+            return $"SKF_ConnectDev 失败：{SkfNative.Describe(rcC)}";
+
+        try
+        {
+            var (rcI, info) = s.GetDevInfo(hDev);
+            if (rcI == SkfNative.SAR_OK && info != null)
+            {
+                lines.Add($"DEVINFO        : {info}");
+                lines.Add($"  AlgSymCap      = 0x{info.AlgSymCap:X8}  （对称算法能力位图）");
+                lines.Add($"  AlgAsymCap     = 0x{info.AlgAsymCap:X8}  （非对称算法能力位图）");
+                lines.Add($"  AlgHashCap     = 0x{info.AlgHashCap:X8}  （摘要算法能力位图）");
+                lines.Add($"  DevAuthAlgId   = 0x{info.DevAuthAlgId:X8}  （设备认证算法，SKF_DevAuth 使用）");
+                lines.Add($"  ChannelMaxBufLen = {info.ChannelMaxBufLen}");
+            }
+            else
+            {
+                lines.Add($"SKF_GetDevInfo 失败：{SkfNative.Describe(rcI)}");
+            }
+
+            var appName = string.IsNullOrWhiteSpace(_appName) ? DefaultAppName : _appName;
+            var (rcO, hApp) = s.OpenApplication(hDev, appName);
+            if (rcO != SkfNative.SAR_OK)
+            {
+                lines.Add($"SKF_OpenApplication({appName}) 失败：{SkfNative.Describe(rcO)}");
+                return string.Join(Environment.NewLine, lines);
+            }
+
+            try
+            {
+                var (rcE, names) = s.EnumContainer(hApp);
+                lines.Add($"容器枚举       : {SkfNative.Describe(rcE)}，共 {names.Count} 个" +
+                          (names.Count > 0 ? $" [{string.Join(", ", names)}]" : ""));
+
+                foreach (var cn in names)
+                {
+                    var (rcOc, hCon) = s.OpenContainer(hApp, cn);
+                    if (rcOc != SkfNative.SAR_OK)
+                    {
+                        lines.Add($"  容器 {cn}：打开失败 {SkfNative.Describe(rcOc)}");
+                        continue;
+                    }
+                    try
+                    {
+                        var (rcS, signKey) = s.ExportPublicKey(hCon, true);
+                        var (rcN, encKey) = s.ExportPublicKey(hCon, false);
+                        lines.Add($"  容器 {cn}：");
+                        lines.Add($"      签名公钥  {SkfNative.Describe(rcS)}  len={signKey.Length}");
+                        lines.Add($"      加密公钥  {SkfNative.Describe(rcN)}  len={encKey.Length}");
+                    }
+                    finally { s.CloseContainer(hCon); }
+                }
+            }
+            finally { s.CloseApplication(hApp); }
+        }
+        finally { s.DisConnectDev(hDev); }
+
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    /// <summary>
+    /// 【探测】真实调用一次 <c>SKF_ImportRSAKeyPair</c>，用<b>最小负载</b>观察中间件的反应，
+    /// 以此判定该接口在本设备上是否可用、以及它期望的参数形态。
+    ///
+    /// <para><b>这是写操作</b>：会创建并以 <c>SKF_DeleteContainer</c> 清理一个临时容器
+    /// （默认名 <c>ZZIMPORTTEST</c>）；除此之外不触碰卡上任何既有数据。</para>
+    ///
+    /// <para>之所以要实际调用：国标 <c>SKF_ImportRSAKeyPair</c> 的 <c>pbEncryptedKey</c>
+    /// 要求「用设备密钥加密公钥保护的对称密钥」，而实测本卡容器的<b>加密公钥不存在</b>
+    /// （<c>SKF_ExportPublicKey(sign=false)</c> 返回 <c>0x0A000031 文件不存在</c>）。
+    /// 因此必须先看清中间件在参数不足时给什么错误码，才能判断这条路是否走得通，
+    /// 而不是照着国标把参数猜一遍。</para>
+    /// </summary>
+    public string ProbeImportKeyPairCall(UsbKeyDevice device, string adminPin, string probeContainer = "ZZIMPORTTEST")
+    {
+        var s = Session;
+        var lines = new List<string>();
+        var (_, hApp) = EnsureOpen(device);
+
+        var (rcAuth, remain) = s.VerifyPin(hApp, PinTypeAdmin, adminPin);
+        lines.Add($"管理口令认证：{SkfNative.Describe(rcAuth)}（剩余重试 {remain}）");
+        if (rcAuth != SkfNative.SAR_OK)
+            return string.Join(Environment.NewLine, lines);
+
+        // 建一个临时容器承载导入动作
+        var (rcC, hCon) = s.CreateContainer(hApp, probeContainer);
+        lines.Add($"SKF_CreateContainer({probeContainer})：{SkfNative.Describe(rcC)}");
+        if (rcC != SkfNative.SAR_OK)
+        {
+            // 已存在则尝试打开
+            var (rcO2, hCon2) = s.OpenContainer(hApp, probeContainer);
+            lines.Add($"  改尝试打开：{SkfNative.Describe(rcO2)}");
+            if (rcO2 != SkfNative.SAR_OK) return string.Join(Environment.NewLine, lines);
+            hCon = hCon2;
+        }
+
+        try
+        {
+            // 依次用「空对称算法 + 空负载」调用，只观察参数校验反应，不送入真实密钥材料。
+            (uint Alg, string Name)[] algs =
+            {
+                (0x00000000, "0（未指定）"),
+                (0x00000101, "SGD_SM1_ECB?"),
+                (0x00000401, "SGD_SM4_ECB?"),
+                (0x00000801, "SGD_AES128_ECB?"),
+            };
+
+            lines.Add("SKF_ImportRSAKeyPair 空负载调用（仅探测参数校验，不送真实密钥）：");
+            foreach (var (alg, name) in algs)
+            {
+                try
+                {
+                    var rc = s.ImportRsaKeyPair(hCon, alg, Array.Empty<byte>(), Array.Empty<byte>());
+                    lines.Add($"  symAlgId=0x{alg:X8} {name,-18} → {SkfNative.Describe(rc)}");
+                }
+                catch (Exception ex)
+                {
+                    lines.Add($"  symAlgId=0x{alg:X8} {name,-18} → 调用异常：{ex.Message}");
+                }
+            }
+
+            // ---- 分水岭实验：容器内先有一对密钥后，0x0A000031 是否消失？----
+            // 若消失 ⇒ 该接口依赖"容器内已存在加密密钥对"，属可绕过的前置条件；
+            // 若依旧 ⇒ 它找的是设备级文件，本中间件在纯导入场景下不给这条路。
+            lines.Add("");
+            lines.Add("【分水岭】先在容器内生成一对 RSA 密钥，再复查：");
+            var (rcG, _) = s.GenRsaKeyPair(hCon, 1024);
+            lines.Add($"  SKF_GenRSAKeyPair(1024) → {SkfNative.Describe(rcG)}");
+
+            var (rcP1, pk1) = s.ExportPublicKey(hCon, true);
+            var (rcP2, pk2) = s.ExportPublicKey(hCon, false);
+            lines.Add($"  生成后 签名公钥 → {SkfNative.Describe(rcP1)} len={pk1.Length}");
+            lines.Add($"  生成后 加密公钥 → {SkfNative.Describe(rcP2)} len={pk2.Length}");
+
+            try
+            {
+                var rc2 = s.ImportRsaKeyPair(hCon, 0x00000401, Array.Empty<byte>(), Array.Empty<byte>());
+                lines.Add($"  生成后再调 ImportRSAKeyPair → {SkfNative.Describe(rc2)}");
+                lines.Add(rc2 == SkfNative.SAR_OK
+                    ? "  ⇒ 结论：前置条件仅为「容器内已有密钥对」，导入路径【可行】。"
+                    : (rc2 == 0x0A000031
+                        ? "  ⇒ 结论：仍报「文件不存在」，说明它找的是设备级文件，本中间件不支持该导入路径。"
+                        : "  ⇒ 结论：错误码已改变，说明进入更深的校验阶段，路径需要继续细化参数。"));
+            }
+            catch (Exception ex)
+            {
+                lines.Add($"  生成后再调 ImportRSAKeyPair → 异常：{ex.Message}");
+            }
+        }
+        finally
+        {
+            s.CloseContainer(hCon);
+            var rcD = s.DeleteContainer(hApp, probeContainer);
+            lines.Add($"清理：SKF_DeleteContainer({probeContainer}) → {SkfNative.Describe(rcD)}");
+        }
+
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    /// <summary>
+    /// 【方案A 实测·第二步】按国标语义构造<b>真实参数</b>，尝试用 <c>SKF_ImportRSAKeyPair</c>
+    /// 把一对外部 RSA 密钥导入卡内。
+    ///
+    /// <para><b>国标参数关系</b>：</para>
+    /// <code>
+    /// pbWrappedKey   = 用对称算法 ulSymAlgId 加密后的 RSA 私钥密文
+    /// pbEncryptedKey = 用「容器公钥」加密的对称密钥密文
+    /// 中间件侧顺序：容器私钥解 pbEncryptedKey → 得对称密钥 → 解 pbWrappedKey → 得 RSA 私钥
+    /// </code>
+    ///
+    /// <para><b>前置事实</b>（均由本探针实测得到，非文档推断）：</para>
+    /// <list type="bullet">
+    /// <item>空负载调用返回 <c>0x0A000031 文件不存在</c> —— 容器内必须先有密钥对；</item>
+    /// <item>容器内生成密钥对后，同样的空负载调用改报 <c>0x0A000019 RSA解密错误</c> ——
+    /// 说明中间件确实在用容器私钥解 <c>pbEncryptedKey</c>，参数方向与国标一致；</item>
+    /// <item>本卡 <c>AlgSymCap = 0x00030700</c>，按 GM/T 0016 附录的 <c>SGD_</c> 位图解码为
+    /// SM4(ECB/CBC/CFB) 与 AES128(ECB/CBC)。</item>
+    /// </list>
+    ///
+    /// <para><b>这是写操作</b>：会建临时容器（默认 <c>ZZIMPKEY</c>）并在结束时删除。</para>
+    /// </summary>
+    public string ProbeImportRealKeyPair(UsbKeyDevice device, string adminPin, string probeContainer = "ZZIMPKEY")
+    {
+        var s = Session;
+        var lines = new List<string>();
+        var (_, hApp) = EnsureOpen(device);
+
+        var (rcAuth, _) = s.VerifyPin(hApp, PinTypeAdmin, adminPin);
+        lines.Add($"管理口令认证：{SkfNative.Describe(rcAuth)}");
+        if (rcAuth != SkfNative.SAR_OK) return string.Join(Environment.NewLine, lines);
+
+        var (rcC, hCon) = s.CreateContainer(hApp, probeContainer);
+        lines.Add($"SKF_CreateContainer({probeContainer})：{SkfNative.Describe(rcC)}");
+        if (rcC != SkfNative.SAR_OK)
+        {
+            var (rcO2, hCon2) = s.OpenContainer(hApp, probeContainer);
+            if (rcO2 != SkfNative.SAR_OK)
+            {
+                lines.Add($"  打开也失败：{SkfNative.Describe(rcO2)}");
+                return string.Join(Environment.NewLine, lines);
+            }
+            hCon = hCon2;
+        }
+
+        try
+        {
+            // 1) 先让容器具备解密能力
+            var (rcG, _) = s.GenRsaKeyPair(hCon, 1024);
+            lines.Add($"SKF_GenRSAKeyPair(1024)：{SkfNative.Describe(rcG)}");
+            if (rcG != SkfNative.SAR_OK) return string.Join(Environment.NewLine, lines);
+
+            // 2) 取容器公钥（268 字节厂商 blob，布局见 Roadmap/08 §4）
+            var (rcP, blob) = s.ExportPublicKey(hCon, true);
+            lines.Add($"SKF_ExportPublicKey(sign=true)：{SkfNative.Describe(rcP)} len={blob.Length}");
+
+            // 3) 造一对"待导入"的 RSA 密钥
+            using var rsaToImport = System.Security.Cryptography.RSA.Create(1024);
+            var pkcs1 = rsaToImport.ExportRSAPrivateKey();       // PKCS#1 RSAPrivateKey DER
+            lines.Add($"待导入私钥：PKCS#1 DER {pkcs1.Length} 字节");
+
+            // 4) 对称密钥 + 加密（AlgSymCap 表明支持 SM4/AES128；此处用 .NET 内置的 AES-128-ECB）
+            var symKey = new byte[16];
+            System.Security.Cryptography.RandomNumberGenerator.Fill(symKey);
+            byte[] wrapped;
+            using (var aes = System.Security.Cryptography.Aes.Create())
+            {
+                aes.Key = symKey;
+                aes.Mode = System.Security.Cryptography.CipherMode.ECB;
+                aes.Padding = System.Security.Cryptography.PaddingMode.PKCS7;
+                wrapped = aes.CreateEncryptor().TransformFinalBlock(pkcs1, 0, pkcs1.Length);
+            }
+            lines.Add($"pbWrappedKey={wrapped.Length} 字节");
+
+            // 5) 逐一遍历「字节序 × padding × 对称算法」三种不确定性，直到找到中间件接受的那组。
+            //    之所以要扫：厂商 blob 的 Modulus 字节序、以及它期望的 RSA padding 都没有文档，
+            //    而 0x0A000019「RSA解密错误」恰好说明它确实在做容器私钥解密，只是解不开我们的密文。
+            (bool ReverseMod, string OrdName)[] orders = { (false, "大端"), (true, "小端") };
+            (System.Security.Cryptography.RSAEncryptionPadding Pad, string PadName)[] pads =
+            {
+                (System.Security.Cryptography.RSAEncryptionPadding.Pkcs1, "PKCS#1v1.5"),
+                (System.Security.Cryptography.RSAEncryptionPadding.OaepSHA1, "OAEP-SHA1"),
+            };
+            (uint Alg, string Name)[] algs =
+            {
+                (0x00010000, "SGD_AES128_ECB"),
+                (0x00020000, "SGD_AES128_CBC"),
+                (0x00000100, "SGD_SM4_ECB"),
+                (0x00000200, "SGD_SM4_CBC"),
+            };
+
+            lines.Add("");
+            lines.Add("SKF_ImportRSAKeyPair 参数扫描：");
+            bool anyOk = false;
+            foreach (var (reverse, ordName) in orders)
+            {
+                var pub = TryParsePubKeyBlob(blob, reverse);
+                if (pub == null) { lines.Add($"  公钥解析失败（{ordName}），跳过。"); continue; }
+                using var _ = pub;
+                lines.Add($"  ── 公钥字节序：{ordName}（{pub.KeySize} 位）──");
+
+                foreach (var (pad, padName) in pads)
+                {
+                    byte[] encKey;
+                    try { encKey = pub.Encrypt(symKey, pad); }
+                    catch (Exception ex) { lines.Add($"    {padName}：加密失败 {ex.Message}"); continue; }
+
+                    foreach (var (alg, name) in algs)
+                    {
+                        try
+                        {
+                            var rc = s.ImportRsaKeyPair(hCon, alg, wrapped, encKey);
+                            lines.Add($"    {padName,-11} {name,-16} → {SkfNative.Describe(rc)}");
+                            if (rc == SkfNative.SAR_OK)
+                            {
+                                anyOk = true;
+                                var (rcChk, pk) = s.ExportPublicKey(hCon, true);
+                                lines.Add($"     导入后容器公钥：{SkfNative.Describe(rcChk)} len={pk.Length}");
+                                lines.Add($"     ⇒ 方案 A 成功！可用组合：字节序={ordName}, padding={padName}, ulSymAlgId=0x{alg:X8}({name})");
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lines.Add($"    {padName,-11} {name,-16} → 异常：{ex.Message}");
+                        }
+                    }
+                    if (anyOk) break;
+                }
+                if (anyOk) break;
+            }
+
+            if (!anyOk)
+                lines.Add("  ⇒ 上述组合全部失败，需要继续排查（对称算法标识或密钥包装格式可能另有约定）。");
+        }
+        finally
+        {
+            s.CloseContainer(hCon);
+            var rcD = s.DeleteContainer(hApp, probeContainer);
+            lines.Add($"清理：SKF_DeleteContainer({probeContainer}) → {SkfNative.Describe(rcD)}");
+        }
+
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    /// <summary>
+    /// 解析 <c>SKF_ExportPublicKey</c> 返回的厂商公钥 blob（实测 268 字节，RSA）。
+    /// <para>布局（Roadmap/08 §4 实测）：<c>[0..3]</c> 头、<c>[4..7]</c> 位长(小端)、
+    /// <c>[8..263]</c> Modulus[256]（小密钥右对齐）、<c>[264..267]</c> Exponent（大端）。</para>
+    /// </summary>
+    private static System.Security.Cryptography.RSA? TryParsePubKeyBlob(byte[] blob, bool reverseModulus = false)
+    {
+        try
+        {
+            if (blob.Length < 268) return null;
+            var bits = BitConverter.ToUInt32(blob, 4);
+            if (bits == 0 || bits % 8 != 0) bits = 1024;
+            var modLen = (int)(bits / 8);
+
+            var modulus = new byte[modLen];
+            // Modulus 区固定 256 字节、小密钥右对齐，取其末尾 modLen 字节
+            Array.Copy(blob, 8 + 256 - modLen, modulus, 0, modLen);
+            // 厂商 blob 的字节序没有文档：先按标准大端尝试，失败再试反转（由调用方遍历）。
+            if (reverseModulus) Array.Reverse(modulus);
+
+            var exponent = new byte[4];
+            Array.Copy(blob, 264, exponent, 0, 4);        // 大端，如 00 01 00 01
+
+            var rsa = System.Security.Cryptography.RSA.Create();
+            rsa.ImportParameters(new System.Security.Cryptography.RSAParameters
+            {
+                Modulus = modulus,
+                Exponent = exponent,
+            });
+            return rsa;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public byte[] ExportPublicKey(UsbKeyDevice device, string containerName, bool sign = true)
     {
         var s = Session;

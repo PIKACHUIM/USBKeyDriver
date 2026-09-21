@@ -6,8 +6,9 @@
 
   <!-- 部署：构建时复制厂商驱动 DLL（Library/LNCA、Library/HengBao）与运行配置到输出目录 -->
   <ItemGroup>
-    <None Include="..\..\..\Library\LNCA USBKey Manage\*.dll" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\..\..\Library\LNCA USBKey Manage\*.exe" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\Library\LNCA USBKey Manage\official driver\*.dll" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <!-- 复制厂商 exe（GP_ADM/GP_CLT/CSP 安装器等）；排除 38MB 的终端用户「数字证书管家」安装包，避免输出目录膨胀 -->
+    <None Include="..\..\..\Library\LNCA USBKey Manage\official driver\*.exe" Exclude="..\..\..\Library\LNCA USBKey Manage\official driver\LNCA数字证书管家安装包.exe" Link="Library\LNCA\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\..\Library\HengBao USB Manage\*.dll" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\..\Library\HengBao USB Manage\*.ini" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\..\Library\HengBao USB Manage\*.sig" Link="Library\HengBao\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

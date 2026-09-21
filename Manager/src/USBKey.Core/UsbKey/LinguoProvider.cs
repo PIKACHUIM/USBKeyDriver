@@ -364,7 +364,7 @@ public sealed class LinguoProvider : IKeyProvider
     public void RegisterToCsp(KeyContainer container)
     {
         if (container.CertRaw == null) throw new InvalidOperationException("证书数据不可用");
-        USBKey.Core.Crypto.CertHelper.Register(container.CertRaw, container.Name, container.KeyBinding);
+        USBKey.Core.Crypto.CertHelper.Register(container.CertRaw, container.Name);
         container.IsRegisteredInCsp = true;
     }
 

@@ -1,0 +1,5 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\mtoken_gm3000.dll
+;; rva=0x75 len=0x90 file_off=0x75
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\mtoken_gm3000.dll:     file format pei-i386
+

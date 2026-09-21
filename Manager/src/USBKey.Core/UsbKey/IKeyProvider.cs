@@ -99,23 +99,6 @@ public interface IKeyProvider : IDisposable
     /// <summary>注册证书到系统 CSP 证书库。</summary>
     void RegisterToCsp(KeyContainer container);
 
-    /// <summary>
-    /// 注册证书到系统证书库，并把卡内私钥容器一并关联。
-    /// <para>
-    /// 只写证书本体（公钥）是不够的：证书还需要 CERT_KEY_PROV_INFO 属性指明私钥所在
-    /// 的提供程序与容器，系统才认这张证书"有私钥"。默认实现把绑定信息挂到容器对象上，
-    /// 再由各平台既有的 <see cref="RegisterToCsp(KeyContainer)"/> 读取并写入证书属性，
-    /// 因此各平台无需重复实现。
-    /// </para>
-    /// </summary>
-    /// <param name="container">目标证书/容器。</param>
-    /// <param name="keyBinding">解析到的私钥容器绑定；null 表示只注册证书本体。</param>
-    void RegisterToCsp(KeyContainer container, Crypto.CertKeyBinding? keyBinding)
-    {
-        container.KeyBinding = keyBinding;
-        RegisterToCsp(container);
-    }
-
     /// <summary>从系统 CSP 证书库注销证书。</summary>
     void UnregisterFromCsp(KeyContainer container);
 

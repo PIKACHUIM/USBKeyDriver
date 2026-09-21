@@ -1,0 +1,59 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x34530 len=0x80 file_off=0x33930
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+10034530 <.text+0x33530>:
+10034530:	55                   	push   ebp
+10034531:	8b ec                	mov    ebp,esp
+10034533:	83 ec 0c             	sub    esp,0xc
+10034536:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+1003453d:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+10034540:	c1 e0 0b             	shl    eax,0xb
+10034543:	89 45 f8             	mov    DWORD PTR [ebp-0x8],eax
+10034546:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+10034549:	51                   	push   ecx
+1003454a:	e8 b1 bf 00 00       	call   0x10040500
+1003454f:	8b c8                	mov    ecx,eax
+10034551:	e8 aa b4 00 00       	call   0x1003fa00
+10034556:	89 45 f4             	mov    DWORD PTR [ebp-0xc],eax
+10034559:	83 7d f4 00          	cmp    DWORD PTR [ebp-0xc],0x0
+1003455d:	75 0b                	jne    0x1003456a
+1003455f:	c7 45 fc 06 00 00 0a 	mov    DWORD PTR [ebp-0x4],0xa000006
+10034566:	eb 36                	jmp    0x1003459e
+10034568:	eb 34                	jmp    0x1003459e
+1003456a:	8b 55 f8             	mov    edx,DWORD PTR [ebp-0x8]
+1003456d:	52                   	push   edx
+1003456e:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+10034571:	50                   	push   eax
+10034572:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+10034575:	51                   	push   ecx
+10034576:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+10034579:	52                   	push   edx
+1003457a:	6a 28                	push   0x28
+1003457c:	8b 4d f4             	mov    ecx,DWORD PTR [ebp-0xc]
+1003457f:	e8 9c f8 ff ff       	call   0x10033e20
+10034584:	50                   	push   eax
+10034585:	e8 f6 8c 02 00       	call   0x1005d280
+1003458a:	83 c4 18             	add    esp,0x18
+1003458d:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+10034590:	83 7d fc 00          	cmp    DWORD PTR [ebp-0x4],0x0
+10034594:	74 08                	je     0x1003459e
+10034596:	e8 25 9b 00 00       	call   0x1003e0c0
+1003459b:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+1003459e:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+100345a1:	8b e5                	mov    esp,ebp
+100345a3:	5d                   	pop    ebp
+100345a4:	c2 10 00             	ret    0x10
+100345a7:	cc                   	int3
+100345a8:	cc                   	int3
+100345a9:	cc                   	int3
+100345aa:	cc                   	int3
+100345ab:	cc                   	int3
+100345ac:	cc                   	int3
+100345ad:	cc                   	int3
+100345ae:	cc                   	int3
+100345af:	cc                   	int3

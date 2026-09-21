@@ -67,21 +67,6 @@ public class UsbDeviceDef
     /// </summary>
     public string Dll { get; set; } = "";
 
-    /// <summary>
-    /// 该型号在 Windows 侧使用的 CAPI 提供程序名（CSP），用于把证书与卡内私钥容器关联。
-    /// <para>
-    /// 留空时程序会在系统已注册的 CSP/KSP 里按容器名自动查找；只有自动查找不中
-    /// （例如容器名与 CSP 里的名字不同）才需要在这里写死，取值为注册表
-    /// <c>HKLM\SOFTWARE\Microsoft\Cryptography\Defaults\Provider</c> 下的键名。
-    /// </para>
-    /// </summary>
-    public string Csp { get; set; } = "";
-
-    /// <summary>
-    /// 该型号在 Windows 侧使用的 CNG 密钥存储提供程序名（KSP）。配置后优先于 <see cref="Csp"/>。
-    /// </summary>
-    public string Ksp { get; set; } = "";
-
     [JsonIgnore] public int VidInt => ParseHex(Vid);
     [JsonIgnore] public int PidInt => ParseHex(Pid);
     private static int ParseHex(string s) =>

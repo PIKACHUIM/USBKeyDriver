@@ -37,6 +37,9 @@ try
         case "certtest":
             CertTest(W, args);
             break;
+        case "pfximport":
+            PfxImportTest(W, args);
+            break;
         default:
             W("用法:");
             W("  BjcaProbe typelib [接口名过滤] [方法名过滤]   # 导出 DLL 内嵌 TypeLib 的权威签名");
@@ -45,6 +48,7 @@ try
             W("  BjcaProbe provider                          # 联调生产实现 BjcaProvider（枚举/详情/容器）");
             W("  BjcaProbe reset <新用户PIN> [管理口令] [标签] [--yes]   # 重置设备（清空内容+重设口令，不可撤销）");
             W("  BjcaProbe certtest [用户PIN] [--cleanup]     # 实测证书链路：建容器→取公钥/P10→导入证书/PFX→登录→清理");
+            W("  BjcaProbe pfximport <pfx路径> [口令] [--cleanup]  # 专项实测 ImportPfxToDevice 对不同 PFX 编码(PBES1/PBES2)的接受情况");
             break;
     }
 }
@@ -629,6 +633,89 @@ static void CertTest(Action<string> w, string[] args)
     else
     {
         w($"    跳过（未指定 --cleanup）。测试容器 [{cn}]/[{pfxCn}] 保留在设备上，如需删除请加 --cleanup 重跑。");
+    }
+
+    Com.Release(self);
+    w("done.");
+}
+
+/// <summary>
+/// 专项实测 <c>ImportPfxToDevice</c> 对不同 PFX 编码格式的接受情况。
+///
+/// <para><b>动机</b>：07 文档记的结论是「BJCA 不支持导入外部 PFX（含私钥）」，
+/// 但那是从一次失败倒推出来的；而组件 trace 日志显示失败点其实是内部
+/// <c>PKCS12_parse</c>（<b>解析</b>阶段），根本没走到「卡是否肯写入」这一步。
+/// 原测试代码用 <c>X509Certificate2.Export(X509ContentType.Pfx, pwd)</c>，
+/// 它在 .NET 5+ 上默认产出 <b>PBES2（PBKDF2 + AES-256 + SHA256）</b>，
+/// 而 <c>PKCS12_parse</c> 属 OpenSSL 老 API，不认 PBES2。</para>
+///
+/// <para>因此这里用<b>同样内容、但编码为 PBES1（3DES + SHA1）</b>的老式 PFX 重试，
+/// 以判定究竟是「PFX 编码格式问题」还是「设备确实不支持导入私钥」。</para>
+///
+/// <para>用法：<c>BjcaProbe pfximport &lt;pfx路径&gt; [口令] [--cleanup]</c></para>
+/// </summary>
+static void PfxImportTest(Action<string> w, string[] args)
+{
+    var pfxPath = args.Length > 1 ? args[1] : "";
+    var pwd = args.Length > 2 && !args[2].StartsWith("--") ? args[2] : "1234";
+    var cleanup = args.Any(a => string.Equals(a, "--cleanup", StringComparison.OrdinalIgnoreCase));
+    if (!File.Exists(pfxPath)) { w($"找不到 PFX 文件：{pfxPath}"); return; }
+
+    var dll = FindDll(null);
+    var (module, self) = Com.CreateXtxApp(dll);
+    var disp = (Com.IDispatch)Marshal.GetObjectForIUnknown(self);
+    var B = Com.VT_BSTR; var I4 = Com.VT_I4; var BOOL = Com.VT_BOOL;
+
+    object Call(int id, short retVt, params (short, object)[] a)
+    {
+        var (hr, ret, _) = Com.Invoke(disp, id, a, retVt);
+        return ret;
+    }
+    string S(int id, params (short, object)[] a) => Call(id, B, a) as string ?? "";
+    int N(int id, params (short, object)[] a) => Call(id, I4, a) is int v ? v : -1;
+    bool V(int id, params (short, object)[] a) => Call(id, BOOL, a) is int v && v != 0;
+
+    var sn = S(33).Split(new[] { ';', '|', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                  .FirstOrDefault()?.Trim() ?? "";
+    w($"设备 SN: {sn}");
+    if (sn.Length == 0) { w("未找到设备"); return; }
+
+    const string pfxCn = "BJCAPFXTEST";
+    var pfx = File.ReadAllBytes(pfxPath);
+    var b64 = Convert.ToBase64String(pfx);
+    w($"PFX      : {Path.GetFileName(pfxPath)}  {pfx.Length} 字节  口令={new string('*', pwd.Length)}");
+    w($"目标容器 : {pfxCn}");
+    w($"导入前   : 容器数={N(62, (B, sn))}  GetAllContainerName=[{S(79, (B, sn))}]");
+
+    w("");
+    w("== ImportPfxToDevice(bSign=true) ==");
+    var ok = V(113, (B, sn), (B, pfxCn), (BOOL, true), (B, b64), (B, pwd));
+    w($"结果 = {(ok ? "成功" : "失败")}   GetLastError={N(31)}   GetLastErrMsg=[{S(67)}]");
+
+    if (!ok)
+    {
+        w("");
+        w("== ImportPfxToDevice(bSign=false) 再试 ==");
+        var ok2 = V(113, (B, sn), (B, pfxCn), (BOOL, false), (B, b64), (B, pwd));
+        w($"结果 = {(ok2 ? "成功" : "失败")}   GetLastErrMsg=[{S(67)}]");
+    }
+
+    w("");
+    w($"导入后   : 容器数={N(62, (B, sn))}  GetAllContainerName=[{S(79, (B, sn))}]");
+    w($"           SOF_GetUserList=[{S(5)}]");
+
+    if (cleanup)
+    {
+        w("");
+        w("== 清理 ==");
+        w($"  IsContainerExist({pfxCn}) = {V(44, (B, sn), (B, pfxCn))}");
+        w($"  DeleteContainer({pfxCn}) → {(V(45, (B, sn), (B, pfxCn)) ? "成功" : "失败")}");
+        w($"  清理后容器数 = {N(62, (B, sn))}  GetAllContainerName=[{S(79, (B, sn))}]");
+    }
+    else
+    {
+        w("");
+        w("未指定 --cleanup；若已建出测试容器会留在卡上（名字见上）。");
     }
 
     Com.Release(self);

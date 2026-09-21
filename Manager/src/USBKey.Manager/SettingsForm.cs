@@ -69,9 +69,8 @@ internal sealed class SettingsForm : Form
             Left = 32, Top = 190, AutoSize = true,
             ForeColor = System.Drawing.Color.DimGray,
             Font = new Font("Microsoft YaHei UI", 8.25F),
-            Text = "默认开启：新识别的 USB Key 会自动注册其上证书，注册时把卡内私钥容器一并写入系统，\n" +
-                   "注册记录持久化保存，下次启动若证书库中缺失会自动重新注册。\n" +
-                   "手动「注销」过的证书不会被自动加回来；解析不到厂商 CSP/KSP 时会报错而不会写入空壳证书。",
+            Text = "默认开启：新识别的 USB Key 会自动把其证书注册到系统证书库，注册记录持久化保存，\n" +
+                   "下次启动若证书库中缺失会自动重新注册。手动「注销」过的证书不会被自动加回来。",
         };
 
         // 软件信息

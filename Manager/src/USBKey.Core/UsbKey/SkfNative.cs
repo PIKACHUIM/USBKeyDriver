@@ -190,6 +190,14 @@ internal static class SkfNative
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate uint GenEccKeyPairFn(IntPtr hContainer, uint ulAlgID, byte[] pbBlob);
 
+    /// <summary>
+    /// <c>SKF_ImportRSAKeyPair(hContainer, ulSymAlgId, pbWrappedKey, ulWrappedKeyLen, pbEncryptedKey, ulEncryptedKeyLen)</c>。
+    /// <para>实测本中间件为 6 参数，与 GM/T 0016 国标一致，故直接按国标声明。</para>
+    /// </summary>
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    internal delegate uint ImportRsaKeyPairFn(IntPtr hContainer, uint ulSymAlgId,
+        byte[] pbWrappedKey, uint ulWrappedKeyLen, byte[] pbEncryptedKey, uint ulEncryptedKeyLen);
+
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate uint GenRandomFn(IntPtr hDev, byte[] pbRandom, uint ulRandomLen);
 
@@ -624,6 +632,20 @@ internal sealed class SkfSession : IDisposable
         var rc = Fn<SkfNative.GenRsaKeyPairFn>("SKF_GenRSAKeyPair")(hContainer, bits, buf);
         return (rc, buf);
     }
+
+    /// <summary>
+    /// <c>SKF_ImportRSAKeyPair(hContainer, ulSymAlgId, pbWrappedKey, ulWrappedKeyLen, pbEncryptedKey, ulEncryptedKeyLen)</c>。
+    ///
+    /// <para>国标语义：先用 <paramref name="symAlgId"/> 指定的<b>对称算法</b>把 RSA 私钥加密成
+    /// <paramref name="wrappedKey"/>；再用设备的<b>密钥加密公钥</b>把该对称密钥加密成
+    /// <paramref name="encryptedKey"/>，一并送入容器。</para>
+    ///
+    /// <para>因此能否成功，取决于<b>能否取得设备的密钥加密公钥</b> —— 这一点需要先用
+    /// <c>SKF_ExportPublicKey</c> 等接口实地验证，不能凭文档假定。</para>
+    /// </summary>
+    public uint ImportRsaKeyPair(IntPtr hContainer, uint symAlgId, byte[] wrappedKey, byte[] encryptedKey) =>
+        Fn<SkfNative.ImportRsaKeyPairFn>("SKF_ImportRSAKeyPair")(
+            hContainer, symAlgId, wrappedKey, (uint)wrappedKey.Length, encryptedKey, (uint)encryptedKey.Length);
 
     /// <summary>SKF_GenECCKeyPair(hContainer, ulAlgID, pBlob)。</summary>
     public (uint Rc, byte[] Blob) GenEccKeyPair(IntPtr hContainer, uint algId)

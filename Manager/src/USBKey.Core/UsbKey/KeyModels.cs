@@ -49,25 +49,8 @@ public class KeyContainer
     public string KeyUsage { get; set; } = "";
     /// <summary>扩展用途（如 客户端身份验证）。</summary>
     public string ExtendedKeyUsage { get; set; } = "";
-    /// <summary>
-    /// 是否已注册到系统证书库（按指纹判定）。
-    /// <para>
-    /// 卡上的证书必然带着卡内私钥，注册时会把私钥容器一并写入证书属性，
-    /// 因此"已注册"即代表证书与私钥在系统侧都可用了，不需要再区分别的状态。
-    /// </para>
-    /// </summary>
+    /// <summary>是否已注册到系统 CSP 证书库。</summary>
     public bool IsRegisteredInCsp { get; set; }
-
-    /// <summary>
-    /// 私钥容器绑定（本次注册解析到的 CSP/KSP + 容器）。
-    /// <para>
-    /// 由 <c>IKeyProvider.RegisterToCsp(container, binding)</c> 写入、各平台既有的
-    /// <c>RegisterToCsp(container)</c> 读取，最终落到证书的 CERT_KEY_PROV_INFO 属性上。
-    /// 为空表示只注册证书本体（系统里不会有私钥）。
-    /// </para>
-    /// </summary>
-    [System.Text.Json.Serialization.JsonIgnore]
-    public Crypto.CertKeyBinding? KeyBinding { get; set; }
     /// <summary>证书序列号。</summary>
     public string SerialNumber { get; set; } = "";
     /// <summary>证书指纹(SHA1)。</summary>

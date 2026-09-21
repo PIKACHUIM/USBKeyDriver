@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BjcaProbe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7aad5a6b13fc07056a0c513f5575e7a8efee5482")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f43e742143d739451d0e62f275babd56d9f186c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BjcaProbe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BjcaProbe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

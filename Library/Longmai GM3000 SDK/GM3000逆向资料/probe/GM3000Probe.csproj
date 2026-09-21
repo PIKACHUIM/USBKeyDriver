@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>GM3000Probe</AssemblyName>
+    <RootNamespace>GM3000Probe</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!-- 直接复用 Manager 的实现，验证 Gm3000Provider 的真实代码路径。
+       路径用 MSBuildThisFileDirectory 起算：本工程已从 tools\ 迁到
+       「Library\Longmai GM3000 SDK\GM3000逆向资料\probe」，故到仓库根要多上 4 层。 -->
+  <ItemGroup>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\..\..\..\Manager\src\USBKey.Core\USBKey.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\GM3000_2.1.1.0\mtoken_GM.dll"
+          Link="Library\GM3000\mtoken_gm3000.dll" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

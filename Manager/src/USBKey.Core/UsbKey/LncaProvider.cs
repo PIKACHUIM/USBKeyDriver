@@ -255,16 +255,24 @@ public sealed class LncaProvider : IKeyProvider
 
     private static string FindLibraryRoot(string root)
     {
-        if (Directory.Exists(root) && File.Exists(Path.Combine(root, "JIT_USBKEY_HD.dll"))) return root;
+        const string probe = "JIT_USBKEY_HD.dll";
+        if (Directory.Exists(root) && File.Exists(Path.Combine(root, probe))) return root;
+
         var candidates = new[]
         {
             Path.Combine(root, "Library"),
             Path.Combine(root, "Library", "LNCA"),
+            // 2026-09 起厂商原始文件归入 SDK 目录下的 official driver 子目录
+            Path.Combine(root, "Library", "LNCA USBKey Manage", "official driver"),
+            Path.Combine(root, "Library", "LNCA USBKey Manage"),
             Path.Combine(AppContext.BaseDirectory, "Library"),
             Path.Combine(AppContext.BaseDirectory, "Library", "LNCA"),
+            Path.Combine(AppContext.BaseDirectory, "Library", "LNCA", "official driver"),
+            // 兜底：CSP（LNCACSPSetup1070）安装位置，同时包含全部 COS 模块
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "SysWOW64"),
         };
         foreach (var c in candidates)
-            if (Directory.Exists(c) && File.Exists(Path.Combine(c, "JIT_USBKEY_HD.dll")))
+            if (Directory.Exists(c) && File.Exists(Path.Combine(c, probe)))
                 return c;
         return root;
     }
@@ -670,7 +678,7 @@ public sealed class LncaProvider : IKeyProvider
     {
         if (container.CertRaw == null) throw new InvalidOperationException("证书数据不可用");
         // 通过标准 CryptoAPI 将证书注册到当前用户证书库
-        USBKey.Core.Crypto.CertHelper.Register(container.CertRaw, container.Name, container.KeyBinding);
+        USBKey.Core.Crypto.CertHelper.Register(container.CertRaw, container.Name);
         container.IsRegisteredInCsp = true;
     }
 
@@ -731,7 +739,7 @@ public sealed class LncaProvider : IKeyProvider
     /// <summary>
     /// 设备初始化（出厂重置）：<b>COS 层完全格式化</b> + <b>重设用户 PIN</b>，并逐步验证结果。
     /// <para>
-    /// 逆向结论（2026-09，静态反汇编验证；工具 <c>tools/disasm_lnca.py</c>）：
+    /// 逆向结论（2026-09，静态反汇编验证；工具 <c>Library/LNCA USBKey Manage/_lnca_reverse/tools/disasm_lnca.py</c>）：
     /// <list type="number">
     /// <item>JIT 层 <c>USBKey_InitKey</c>/<c>USBKey_Reset</c> 为调试空壳；
     /// HDCOS 层 <c>InitialCard</c> 为空 stub（<c>or eax,-1; ret 0x10</c>），二者均不可用。</item>

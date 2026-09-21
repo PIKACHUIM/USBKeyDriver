@@ -120,9 +120,9 @@ internal sealed class MainForm : Form
         _ctx = ctx;
         _registrar = new CertAutoRegistrar(ctx.Config, CertRegistrationStore.Load(AppPaths.CertRegistrationFile));
         Text = AppConfig.SoftwareName + (ctx.IsAdminMode ? "  [管理模式]" : "  [用户模式]");
-        ClientSize = new Size(1300, 820);
-        // 最小宽度要保证操作按钮一整行放得下（11 个按钮 ≈ 1160px），否则会被横向裁剪
-        MinimumSize = new Size(1200, 720);
+        ClientSize = new Size(1500, 860);
+        // 最小宽度要保证操作按钮一整行放得下（11 个按钮 ≈ 1160px）且证书名称列不挤，否则会被横向裁剪
+        MinimumSize = new Size(1300, 740);
         Font = new Font("Microsoft YaHei UI", 9F);
         StartPosition = FormStartPosition.CenterScreen;
         Shown += OnShown;
@@ -247,7 +247,7 @@ internal sealed class MainForm : Form
         _gridDevices.Columns.Add(NewCol("序列号", 190));
         _gridDevices.Columns.Add(NewCol("VID:PID", 90));
         _gridDevices.Columns.Add(NewCol("固件", 110));
-        _gridDevices.Columns.Add(NewCol("容量", 70));
+        _gridDevices.Columns.Add(NewCol("容量", 90));
         _gridDevices.Columns.Add(NewCol("状态", 90));
         _gridDevices.SelectionChanged += (s, e) =>
         {
@@ -264,9 +264,10 @@ internal sealed class MainForm : Form
         _gbCerts.Text = "证书 / 容器";
         _gbCerts.Padding = new Padding(6, 4, 6, 6);
         ConfigGrid(_gridCerts);
-        _gridCerts.Columns.Add(NewCol("类型", 80));   // 证书 / 仅密钥 / 空容器
-        _gridCerts.Columns.Add(NewCol("名称", 130));
-        _gridCerts.Columns.Add(NewCol("主体(Subject)", 320));
+        _gridCerts.Columns.Add(NewCol("类型", 70));   // 证书 / 仅密钥 / 空容器
+        // 名称（CN）是用户最常看的一列，权重给足；主体(Subject) 很长但可以靠悬停提示
+        _gridCerts.Columns.Add(NewCol("名称", 260));
+        _gridCerts.Columns.Add(NewCol("主体(Subject)", 300));
         _gridCerts.Columns.Add(NewCol("算法", 150));
         _gridCerts.Columns.Add(NewCol("密钥用途", 110));
         _gridCerts.Columns.Add(NewCol("有效期", 170));
@@ -899,7 +900,7 @@ internal sealed class MainForm : Form
                     d.SerialNumber,
                     d.Vid != 0 || d.Pid != 0 ? $"{d.Vid:X4}:{d.Pid:X4}" : "—",
                     string.IsNullOrWhiteSpace(d.FirmwareVersion) ? "—" : d.FirmwareVersion,
-                    d.CapacityKb > 0 ? (d.CapacityKb / 1024.0).ToString("0.#") + " MB" : "—",
+                    d.CapacityKb > 0 ? d.CapacityKb.ToString("N0") + " KB" : "—",
                     notReady ? "未就绪" : (d.IsLoggedIn ? "已解锁" : "未解锁"));
                 _gridDevices.Rows[idx].Tag = d;
                 if (notReady)
@@ -988,7 +989,7 @@ internal sealed class MainForm : Form
         _lblDevSerial.Text = string.IsNullOrWhiteSpace(dev.SerialNumber) ? "—" : dev.SerialNumber;
         _lblDevVidPid.Text = dev.Vid != 0 || dev.Pid != 0 ? $"{dev.Vid:X4}:{dev.Pid:X4}" : "—";
         _lblDevFw.Text = string.IsNullOrWhiteSpace(dev.FirmwareVersion) ? "—" : dev.FirmwareVersion;
-        _lblDevCap.Text = dev.CapacityKb > 0 ? (dev.CapacityKb / 1024.0).ToString("0.#") + " MB" : "—";
+        _lblDevCap.Text = dev.CapacityKb > 0 ? dev.CapacityKb.ToString("N0") + " KB" : "—";
         _btnLogin.Text = dev.IsLoggedIn ? "登出" : "登录";
 
         // 设备「已发现但未就绪」时（例如恒宝 U 宝未进入令牌模式 C_GetTokenInfo=CKR_FUNCTION_FAILED），
@@ -1162,17 +1163,6 @@ internal sealed class MainForm : Form
                 else if (key is FeatureKeys.ChangePin or FeatureKeys.CloudImport && !logged)
                 {
                     btn.Enabled = false;
-                }
-                else if (key is FeatureKeys.RegisterCert)
-                {
-                    // 只有两种状态：未注册 → 注册；已注册 → 注销
-                    var registered = cert?.IsRegisteredInCsp == true;
-                    btn.Text = registered ? "注销证书" : "注册证书";
-                    _toolTip.SetToolTip(btn, cert == null
-                        ? "注册/注销到系统证书库"
-                        : registered
-                            ? "从系统证书库注销（同时删除本地注册记录，重启后不会被自动注册）"
-                            : "注册到系统证书库，并把卡内私钥容器一并写入证书");
                 }
 
                 // 登录按钮随设备登录态切换文案
@@ -1624,31 +1614,10 @@ internal sealed class MainForm : Form
             return;
         }
 
-        // ---------- 注册：证书 + 卡内私钥容器一起写进系统证书库 ----------
-        // 卡上的证书必然携带卡内私钥，所以"注册"必须包含私钥容器；解析不到就不写，
-        // 否则只会得到一张系统用不了的空壳证书。
-        CertKeyBinding? binding = null;
-        RunBusy("正在注册（解析私钥容器）…", () =>
-        {
-            binding = ResolveKeyBinding(dev, cert);
-            if (binding == null) return;
-            OnPlatform(OpPlatform(), () => prov.RegisterToCsp(cert, binding));
-        });
+        // ---------- 注册 ----------
+        RunBusy("正在注册…", () => OnPlatform(OpPlatform(), () => prov.RegisterToCsp(cert)));
 
-        if (binding == null)
-        {
-            MessageBox.Show(
-                "注册失败：没有找到该证卡对应的厂商 CSP/KSP（私钥容器）。" + Environment.NewLine + Environment.NewLine +
-                "USB Key 上的证书必然带着卡内私钥，注册时要把它一并写进系统；" +
-                "找不到提供程序说明厂商 CSP/KSP 没装好，或它在 Windows 侧的容器名与卡侧不一致。" +
-                "这种情况下不会写入一张系统用不了的证书。" + Environment.NewLine + Environment.NewLine +
-                "处理：安装对应厂商的 CSP/KSP 后重试；或在 config.json 的 keyslist.<平台>[] 里用 csp / ksp " +
-                "显式指定提供程序名（指定后按卡侧容器名直接绑定）。",
-                AppConfig.SoftwareName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-
-        // 持久化：记录"这张证书来自哪台卡、私钥绑在哪个提供程序与容器"，供下次启动自动注册
+        // 持久化：记录"这张证书来自哪台卡"，供下次启动自动注册
         _registrar.Store.Upsert(new CertRegistrationRecord
         {
             Platform = dev.Platform,
@@ -1657,47 +1626,14 @@ internal sealed class MainForm : Form
             ContainerUuid = cert.ContainerUuid,
             Thumbprint = cert.Thumbprint,
             FriendlyName = cert.Name,
-            KeyProvider = binding.ProviderName,
-            KeyStoreKind = binding.Kind == KeyStoreKind.Cng ? "cng" : "capi",
-            KeyContainer = binding.ContainerName,
-            ProviderType = binding.ProviderType,
-            KeySpec = binding.KeySpec,
             RegisteredAtUtc = DateTime.UtcNow,
             LastSeenUtc = DateTime.UtcNow,
             NotAfterUtc = cert.NotAfter?.ToUniversalTime(),
         });
         _registrar.Store.Save();
 
-        MessageBox.Show("已注册到系统证书库（含卡内私钥）：" + Environment.NewLine + binding.Describe(),
-            AppConfig.SoftwareName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show("已注册到系统证书库。", AppConfig.SoftwareName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         ReloadContainers();
-    }
-
-    /// <summary>
-    /// 解析该证书在 Windows 侧对应的私钥容器（CSP/KSP）。
-    /// <para>
-    /// 优先用 config.json 里该型号指定的 csp/ksp；未指定时遍历系统已注册的 CSP/KSP，
-    /// 谁的容器列表里有同名条目就用谁（纯枚举，不需要 PIN）。
-    /// </para>
-    /// </summary>
-    private CertKeyBinding? ResolveKeyBinding(UsbKeyDevice dev, KeyContainer cert)
-    {
-        UsbDeviceDef? def = null;
-        if (_ctx.Config.KeyList != null && _ctx.Config.KeyList.TryGetValue(dev.Platform, out var defs) && defs != null)
-        {
-            def = defs.FirstOrDefault(d => (d.VidInt == 0 || d.VidInt == dev.Vid) &&
-                                           (d.PidInt == 0 || d.PidInt == dev.Pid))
-                  ?? defs.FirstOrDefault(d => string.IsNullOrEmpty(d.Vid) && string.IsNullOrEmpty(d.Pid));
-        }
-
-        string? pinned = null;
-        KeyStoreKind? kind = null;
-        if (!string.IsNullOrWhiteSpace(def?.Ksp)) { pinned = def!.Ksp; kind = KeyStoreKind.Cng; }
-        else if (!string.IsNullOrWhiteSpace(def?.Csp)) { pinned = def!.Csp; kind = KeyStoreKind.Capi; }
-
-        return CertKeyBinder.Resolve(
-            new[] { cert.ContainerName, cert.ContainerUuid, cert.Name },
-            pinned, kind, CertKeyBinder.KeySpecFromUsage(cert.KeyUsage));
     }
 
     private void DoChangePin(IKeyProvider prov, UsbKeyDevice dev)

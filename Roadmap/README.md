@@ -27,7 +27,7 @@
 | 7️⃣ | [恒宝 U 宝逆向分析与对接报告](./07-HengBao-U宝逆向分析.md) | 恒宝（民生银行）U 宝：PKCS#11 调用约定、槽位语义、重置能力边界、APDU 链路与 Manager 对接实现 | 恒宝对接开发者 |
 | — | [恒宝问题分析与修复（含更正）](./06-HengBao问题分析与修复.md) | 历史问题报告；**文首已注明调用约定结论的错误与更正** | 参考 |
 | 7️⃣ | [凌国(张家口银行)逆向分析报告](./docs/Linguo-逆向分析报告.md) | Linguo USB Key：无管理 API，改走 SCSI 直通 + ISO7816 APDU；含重置/改密码方案与实机验证清单 | 需要对接凌国 Key 的开发者 |
-| 8️⃣ | [龙脉(Longmai) GM3000 逆向分析报告](./docs/Longmai-GM3000-逆向分析报告.md) | GM3000 USB Key：厂商 SKF(GM/T 0016) 全签名还原；实测只有 2016 版中间件认老型号；含 Admin 不识别设备的根因与 PKCS#11 垫片方案 | 需要对接龙脉 Key 的开发者 |
+| 8️⃣ | [龙脉(Longmai) GM3000 逆向分析报告](../Library/Longmai%20GM3000%20SDK/GM3000逆向资料/docs/Longmai-GM3000-逆向分析报告.md) | GM3000 USB Key：厂商 SKF(GM/T 0016) 全签名还原；实测只有 2016 版中间件认老型号；含 Admin 不识别设备的根因与 PKCS#11 垫片方案；**分析工具/探针/脚本已随 SDK 交付**（见 `Library\Longmai GM3000 SDK\GM3000逆向资料\`） | 需要对接龙脉 Key 的开发者 |
 
 ---
 
@@ -101,7 +101,7 @@
   - 常见问题与陷阱（崩溃、参数错误、错误码）
 
 ### 8️⃣ 龙脉(Longmai) GM3000 逆向分析报告
-- **文件**: `docs/Longmai-GM3000-逆向分析报告.md`
+- **文件**: `Library/Longmai GM3000 SDK/GM3000逆向资料/docs/Longmai-GM3000-逆向分析报告.md`（配套工具/探针/脚本同目录）
 - **内容**:
   - 资产取证（版本/哈希/替换情况）与设备形态（USBSTOR/CD-ROM 老型号）
   - 官方工具加载链路实测（Admin → TokenMgr → PKCS#11）

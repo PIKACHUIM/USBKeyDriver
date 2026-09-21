@@ -1,0 +1,40 @@
+;; g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor
+;; rva=0x5D280 len=0x60 file_off=0x5C680
+
+g:\Codes\USBKeyDriver\Library\Longmai GM3000 SDK\GM3000_2.2.19\gm3000_pkcs11.dll.vendor:     file format pei-i386
+
+
+Disassembly of section .text:
+
+1005d280 <.text+0x5c280>:
+1005d280:	55                   	push   ebp
+1005d281:	8b ec                	mov    ebp,esp
+1005d283:	83 ec 18             	sub    esp,0x18
+1005d286:	a1 60 70 07 10       	mov    eax,ds:0x10077060
+1005d28b:	33 c5                	xor    eax,ebp
+1005d28d:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+1005d290:	c6 45 ec 00          	mov    BYTE PTR [ebp-0x14],0x0
+1005d294:	33 c0                	xor    eax,eax
+1005d296:	89 45 ed             	mov    DWORD PTR [ebp-0x13],eax
+1005d299:	89 45 f1             	mov    DWORD PTR [ebp-0xf],eax
+1005d29c:	89 45 f5             	mov    DWORD PTR [ebp-0xb],eax
+1005d29f:	66 89 45 f9          	mov    WORD PTR [ebp-0x7],ax
+1005d2a3:	88 45 fb             	mov    BYTE PTR [ebp-0x5],al
+1005d2a6:	8a 4d 0c             	mov    cl,BYTE PTR [ebp+0xc]
+1005d2a9:	88 4d ec             	mov    BYTE PTR [ebp-0x14],cl
+1005d2ac:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+1005d2af:	c1 fa 18             	sar    edx,0x18
+1005d2b2:	81 e2 ff 00 00 00    	and    edx,0xff
+1005d2b8:	88 55 ee             	mov    BYTE PTR [ebp-0x12],dl
+1005d2bb:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+1005d2be:	c1 f8 10             	sar    eax,0x10
+1005d2c1:	25 ff 00 00 00       	and    eax,0xff
+1005d2c6:	88 45 ef             	mov    BYTE PTR [ebp-0x11],al
+1005d2c9:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+1005d2cc:	c1 f9 08             	sar    ecx,0x8
+1005d2cf:	81 e1 ff 00 00 00    	and    ecx,0xff
+1005d2d5:	88 4d f0             	mov    BYTE PTR [ebp-0x10],cl
+1005d2d8:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+1005d2db:	81                   	.byte 0x81
+1005d2dc:	e2 ff                	loop   0x1005d2dd
+	...

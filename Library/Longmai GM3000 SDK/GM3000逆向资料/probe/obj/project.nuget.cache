@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "jGaosrEi5K0=",
+  "success": true,
+  "projectFilePath": "G:\\Codes\\USBKeyDriver\\Library\\Longmai GM3000 SDK\\GM3000逆向资料\\probe\\GM3000Probe.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pikachuren\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\pikachuren\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

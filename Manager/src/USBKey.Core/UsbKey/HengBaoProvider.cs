@@ -785,7 +785,7 @@ public sealed class HengBaoProvider : IKeyProvider
     public void RegisterToCsp(KeyContainer container)
     {
         if (container.CertRaw == null) throw new InvalidOperationException("证书数据不可用");
-        CertHelper.Register(container.CertRaw, container.Name, container.KeyBinding);
+        CertHelper.Register(container.CertRaw, container.Name);
         container.IsRegisteredInCsp = true;
     }
 

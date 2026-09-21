@@ -419,7 +419,7 @@ Clear_DF(hCard, &sw)                              ; 私有 APDU：BF CE 00 00 00
 
 1. 外部认证用的传输密钥**硬编码在 DLL 数据段**（RVA 0x19050：`63 79 74 62 79 68 79 78 73 79 6b 79 68 62 08 31` = `"cytbyhyxsykyhb"` + `08 31`），**不需要用户 PIN**。
    ⚠️ **实机修正（见 12.9）**：该常量是整个 SDK 共用的「出厂默认传输密钥」，只有**未修改过管理员口令**的卡才接受它；批量个性化后的卡密钥已被替换，此时 `HD_ClearDir` 必定失败（返回 -1），必须由调用方提供 SO 口令走备用链路。
-2. 交叉引用扫描（`tools/disasm_lnca.py --xrefs`）证明：`Clear_DF` 在 DLL 内**只有一个调用者**，即 `HD_ClearDir`（`0x68BC`）——它是 COS 层清除数据区（DF）的**唯一入口**。
+2. 交叉引用扫描（`_lnca_reverse/tools/disasm_lnca.py --xrefs`）证明：`Clear_DF` 在 DLL 内**只有一个调用者**，即 `HD_ClearDir`（`0x68BC`）——它是 COS 层清除数据区（DF）的**唯一入口**。
 3. `HD_ClearDir` 与 `HSErase` 互补：前者清 COS 层数据区（证书/容器/密钥记录），后者清存储层文件系统，**两者叠加才是真正的「完全格式化」**。
 
 ### 12.4 重设 PIN 的三个入口
@@ -460,8 +460,10 @@ SW 判定：0x9000 = 通过；(SW & 0xFFF0)==0x63C0 → 返回剩余重试次数
 |------|------|
 | `Manager/src/USBKey.Core/UsbKey/LncaHdcosNative.cs` | HDCOS 层 P/Invoke 声明（新增） |
 | `Manager/src/USBKey.Core/UsbKey/LncaProvider.cs::ResetDevice` | 新流程：存储层擦除 → `HD_ClearDir` 完全格式化 → 重设 PIN（Reload_Pin → HD_ChangePin → HSReWriteUserPin）→ `HD_VerifyPin` 验证 |
-| `Manager/tools/LncaProbe --format [port] [newPin] [puk] [--dry]` | 实机验证探针（`--dry` 只读探测，不做破坏性操作） |
-| `tools/disasm_lnca.py` | 反汇编工具（`--full`/`--xrefs`/`--imports`/`--strings`/`--data` 五种模式） |
+| `Library/LNCA USBKey Manage/_lnca_reverse/probe/LncaProbe` | 实机验证探针（`--format [port] [新PIN] [SO口令] [PUK] [--dry]`；`--dry` 只读探测，不做破坏性操作） |
+| `Library/LNCA USBKey Manage/_lnca_reverse/tools/disasm_lnca.py` | 反汇编工具（`--full`/`--xrefs`/`--imports`/`--strings`/`--wstrings`/`--data`/`--findpat`/`--countpat`/`--addrrefs`） |
+| `Library/LNCA USBKey Manage/_lnca_reverse/tools/lnca_keytest.ps1` | P1=0 通道候选密钥批量验证脚本 |
+| `Library/LNCA USBKey Manage/_lnca_reverse/README.md` | 归档索引：结论摘要 + 全部工具用法 + 路径说明 |
 
 **诚实原则**：每一步真实返回码都记录到 `LncaProvider.LastResetReport`；只有最终 `HD_VerifyPin(新 PIN)` 通过才判定成功，否则抛出带完整报告的异常，绝不假装成功。
 
@@ -633,22 +635,83 @@ ExternalAuthMF(hCard)  → -1000      ← 失败
 即可通过 `Clear_DF` 完成完全格式化、并由 `HDJIT_ReloadPin`/`InitialCard` 重设 PIN。
 穷举不可行（6~16 字节口令空间），只有「候选清单」有意义。
 
+#### (8) 华大通用层被砍掉的解锁命令复用（2026-09-21）
+
+**重要发现：`HD_hdcos480.dll`（华大通用 COS）保留了 LNCA 定制版（`HDCOS_LNCA.dll`）没有的命令**：
+
+| 导出 | APDU | 状态 |
+|------|------|------|
+| `Get_Info` (0x2050) | `BF C8 00 00 0F` | **可用**：rc=15，SW=0x9000，返回固定 15 字节 `86 01 4D 56 34 FA FD 00 00 39 38 FA FD 9E 4B 00` |
+| `Pin_Unblock` (0x27B0) | `84 24 00 P2 Lc <data>`（INS 0x24） | 长度校验：**只接受 12 或 18 字节**（其余 0x6700） |
+| `Application_UnBlock` (0x24A0) | `84 18 00 00 04 <4B>` | 未测 |
+| `Card_Block` (0x2500) / `Freeze_MF` (0x2000) | 私有 | 未测 |
+
+**`Pin_Unblock` 实测（PUK 解锁通道）**：P2=0/1/2/3 × 候选 PUK(123456/111111/888888/666666/999999/000000) 全部返回
+**SW=0x6984（Reference data invalidated）**，且**从不出现 0x63Cx 计数** ⇒ **该卡的「用户 PIN 解锁码(PUK)」同样已失效**（不是"猜错"，而是"引用已作废"）。
+
+**至此认证通道测绘完整**：
+
+| 通道 | 本卡结果 |
+|------|----------|
+| 外部认证 P1=0（传输密钥） | 未锁定（恒 0x63CF=15），但密钥 ≠ SDK 内置两把 |
+| 外部认证 P1=1（用户 PIN） | `0x6983` 已锁定 |
+| 外部认证 P1=2（管理员/SO） | `0x6983` 已锁定 |
+| ISO VERIFY P2=0 | `0x6982`（受外部认证门控） |
+| INS 0x24 解锁（PUK 计数） | `0x6984` 参考数据已失效 |
+| `Clear_DF` / `HD_ClearDir` | 需已认证 → 不可达 |
+
+**厂商工具与安装包调查**：`GP_ADM_LNCA.exe` 只调用 `HD_*` 证书类接口（无 SO PIN / 初始化 / 导入导出）；
+`LNCA数字证书管家安装包.exe`（Inno）解出的是 Qt5 云驱动客户端，其 `data\Driver.ini` 给出驱动映射：
+**华大 USBKey(vid_1677) → `LNCACSPSetup1070(Rsa&Sm2).exe`**（CSP v1.0.7.0）；该 CSP 包为 **ASPack 加壳**，
+静态无法解包，需运行安装后才能取到其中的 COS DLL（**当前唯一未挖掘的密钥来源**）。
+`LNCAUSBKey0.100.0.2Setup.exe`（→ `C:\Program Files (x86)\USBKeyActive\`）与管家安装目录均**不含 COS/密钥**。
+
+#### (9) 终局结论：CSP 1.0.7.0 的密钥与 SDK 版完全一致（2026-09-21）
+
+安装 `LNCACSPSetup1070(Rsa&Sm2).exe` 后，完整中间件落到 `C:\Windows\SysWOW64\`：
+
+| 模块 | 与 SDK 版对比 | keyB(`cytbyhy…`)/keyA(`A62F1A1D…`)/0x11×8 |
+|------|---------------|------------------------------------------|
+| `HDCOS_LNCA.dll` | **哈希相同** | 4 / 3 / 1 |
+| `HD_hdcos480.dll` | **哈希相同** | 0 / 0 / 0 |
+| `GP_COS_LNCA.dll` | 哈希不同 | **4 / 1 / 1（与新 SDK 一致）** |
+| `GP_COS_LNCA_RSA.dll`（SDK 无） | 新增 | **4 / 1 / 1** |
+| `GP_COS_LNCA_SM2.dll`（SDK 无） | 新增 | **0 / 0 / 0（无内置密钥表）** |
+| `SKF_APP_LNCA.dll`（SDK 无） | 新增 | 0 / 0 / 0 |
+| `GP_IFD_LNCA.dll` | 哈希不同 | 0 / 0 / 0 |
+| `HD_SortDev.dll` / `JIT_USBKEY_HD.dll` | 相同/新增 | 1 / 1 / 1、0/0/0 |
+
+→ **即便最新 CSP，内置密钥表仍是那两把，不存在第三把。**
+另外按「描述符+密钥」结构体形态（`0001010000000511`+keyA、`0002020000000522`+keyB 等）重试，结果仍为 `0x63CF`。
+
+**最终判定**：本卡的个人化传输密钥与该型号 SDK 的内置密钥不同（该批次/该客户被替换），
+且用户 PIN、PUK、管理员通道均已锁定/失效 ⇒ **软件侧无法自救**，须由 LNCA 或签发 CA
+提供传输密钥（拿到后本软件已可就地完成「完全格式化 + 重设 PIN + 验证」）。
+
 #### (4) 复现命令
 
 ```powershell
+# 工具归档位置（2026-09-21 起统一收纳于此）
+$R = "G:\Codes\USBKeyDriver\Library\LNCA USBKey Manage\_lnca_reverse"
+$P = "$R\probe\LncaProbe\bin\Release\net8.0\LncaProbe.exe"
+
 # 只读状态快照（不消耗任何认证计数，可反复执行）
-dotnet run --project Manager/tools/LncaProbe -c Release -- --jitstate
-dotnet run --project Manager/tools/LncaProbe -c Release -- --state 0
+& $P --jitstate
+& $P --state 0
 
 # 逐层定位（不加 --noerase 会真的发 Clear_DF）
-dotnet run --project Manager/tools/LncaProbe -c Release -- --deep 0 [--noerase]
+& $P --deep 0 [--noerase]
+
+# P1=0 通道候选密钥验证（不锁定，可安全试）
+& $P --key "<候选密钥>"
+pwsh -File "$R\tools\lnca_keytest.ps1"
 
 # 完整格式化 + 重设 PIN（破坏性）：port、新PIN、SO口令
-dotnet run --project Manager/tools/LncaProbe -c Release -- --format 0 <新PIN> <SO口令>
+& $P --format 0 <新PIN> <SO口令>
 ```
 
 ---
 
 **分析日期**：2026-09-20
-**分析方法**：Capstone 静态反汇编 + PE 导出/导入表解析 + 交叉引用扫描（`tools/disasm_lnca.py`）
+**分析方法**：Capstone 静态反汇编 + PE 导出/导入表解析 + 交叉引用扫描（`Library/LNCA USBKey Manage/_lnca_reverse/tools/disasm_lnca.py`）
 **版本**：1.4
